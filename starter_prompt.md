@@ -7,7 +7,7 @@ Handle only my bounded request. Inspect Git status, branch, remotes, recent hist
 and fetched origin/main; compare local/shared state and check overlapping issues/PRs.
 Do not overwrite or merge unrelated work.
 Read AGENTS.md, context.md, docs/experiment_protocol.md, docs/interfaces.md,
-docs/team_responsibilities.md and the relevant owner folder README.
+docs/team_responsibilities.md, docs/DELTA_DATA_HANDOFF.md and the relevant owner README.
 Summarize the approved design and actual implementation status; distinguish
 approved science, draft contracts, pending verification and historical evidence.
 Identify my workstream, owner and dependencies. Flag conflicts or missing technical

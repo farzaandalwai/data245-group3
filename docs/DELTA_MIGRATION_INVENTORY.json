@@ -1,0 +1,360 @@
+{
+  "date": "2026-11-19",
+  "old_root": "A:\\Projects\\DATA 245\\project propsoal",
+  "raw_destination": "data/raw/freshretail.csv",
+  "raw_sha256": "6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5",
+  "records": [
+    {
+      "old_relative_path": "COPILOT_LEGACY_DATA_AUDIT.md",
+      "bytes": 24923,
+      "sha256": "4460fa57b721bfeb3320fe8a59ffd65d70038c3ba24b602dfc47b26239844880",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "data/freshretail.csv",
+      "bytes": 323577557,
+      "sha256": "6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "data/processed/excluded_series.csv",
+      "bytes": 775,
+      "sha256": "75b3b3787d4ca0ba8dd12c926ebc6aafc5f0628f3c831c543335ed1d312d3d81",
+      "status": "HISTORICAL",
+      "preservation": "existing_new_copy",
+      "new_identical_path": "archive/original_pilot/data/processed/excluded_series.csv"
+    },
+    {
+      "old_relative_path": "data/processed/modeling_table.csv",
+      "bytes": 1078972,
+      "sha256": "eafd624d6d702657507eef20ecffe2fb09cfc87968fd81c63319924eb60fa1b0",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "data/processed/pilot_200_series.csv",
+      "bytes": 4530605,
+      "sha256": "de303b3f079b0258f15cbbcde14ab0d5e8a4bfb1f24756eb6b277e1bc7c8311f",
+      "status": "HISTORICAL",
+      "preservation": "existing_new_copy",
+      "new_identical_path": "archive/original_pilot/data/processed/pilot_200_series.csv"
+    },
+    {
+      "old_relative_path": "data/processed/pilot_series_manifest.csv",
+      "bytes": 1738,
+      "sha256": "8b7a5377c95e56e63ad5143cc8dc8a38ecc35032f64e2cfbbb8ae66d25519a42",
+      "status": "HISTORICAL",
+      "preservation": "existing_new_copy",
+      "new_identical_path": "archive/original_pilot/data/processed/pilot_series_manifest.csv"
+    },
+    {
+      "old_relative_path": "data/processed/secondary_all_target_days/modeling_table.csv",
+      "bytes": 1902945,
+      "sha256": "415fa708250c7d644a0f2a1c5a1d4a9413f29a75133ff9ed132e1f1926c11cb2",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "data/README.md",
+      "bytes": 1436,
+      "sha256": "f6ed4fe5b97cedc86995a92f85aacce5728b854e1f8d400f22f4a799de1f9748",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "DELTA_V1_TO_V2_MIGRATION_AUDIT.md",
+      "bytes": 45799,
+      "sha256": "641862edd3a0f8f5f18b9470b061ec13a68018fa52f234d816f4e42c3d78e7d3",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "docs/PROJECT_STATE_AUDIT.md",
+      "bytes": 46177,
+      "sha256": "13f6201d3800cb22f7f62eed36711acee949d0378b2230df65ac9e9482f2fce4",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "notebooks/01_data_preparation_and_baselines.ipynb",
+      "bytes": 53749,
+      "sha256": "43f0c4eb20de1a3bc175ff3c4eff5bcb701de33437bee1157b7bb4879bb5d2d7",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "notebooks/02_feature_engineering.ipynb",
+      "bytes": 18922,
+      "sha256": "6b7d62dfe96b001e2a81e761dc0f982bdd3bb67e31ce2c388c4504ea86193a5e",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "notebooks/03_modeling_and_evaluation.ipynb",
+      "bytes": 298713,
+      "sha256": "d483823ea5efd1fa9fc19ac009b86b88da768506ffede44290b87111a0cd5bae",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "README.md",
+      "bytes": 10267,
+      "sha256": "6049dca35e3632cef369a4730a5ef3c781da97ad34d4750340f2ba3aad6fc50a",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/baseline_metrics.csv",
+      "bytes": 260,
+      "sha256": "aebbe3137a74059a6aae57fad1c262d3358bc012ce9a4394c73309592974eb4c",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/baseline_predictions.csv",
+      "bytes": 400430,
+      "sha256": "dbf0797714e0907964b12f51c760ebab37c027abe8619c9e04843d1499f26a1c",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/data_audit.txt",
+      "bytes": 1554,
+      "sha256": "f125d8d216659cda8aef7e62360b86002bdada9fdd82bba54a55bb78791a6495",
+      "status": "HISTORICAL",
+      "preservation": "existing_new_copy",
+      "new_identical_path": "archive/original_pilot/results/data_audit.txt"
+    },
+    {
+      "old_relative_path": "results/figures/stockout_mae_improvement.png",
+      "bytes": 37611,
+      "sha256": "ed816771fe4fb5857f83777a29d201237e293cc10e764613d6169bba8253aaad",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/figures/test_bias_comparison.png",
+      "bytes": 58468,
+      "sha256": "462f3bcb8af8394a25593e07f3fe0420e8dfb42e96c823d80b3e55a926f1b098",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/figures/test_mae_comparison.png",
+      "bytes": 50025,
+      "sha256": "c165f60d100380ad928fc6f44f1003695bda51724d643cc1bdb0fac06f243138",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/figures/test_rmse_comparison.png",
+      "bytes": 55024,
+      "sha256": "75d0544242f20229ecbda78c05ee25813418dc86753aa508648a551c7387ceec",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/final_model_comparison.csv",
+      "bytes": 1721,
+      "sha256": "10d0775aaf5c9587f04e50d72602b736c6f7f16fa41fe0cc7cca1e80d14eede7",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/model_metrics.csv",
+      "bytes": 2481,
+      "sha256": "58bc248f0b5da2e6234704e8bf90339e23fb10913686b4d94181fec8a7d06eb4",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/model_predictions.csv",
+      "bytes": 2235240,
+      "sha256": "7a09d09254c698975b82a1b20d26dbe7367f908d225693e080d8e4b2d707852f",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/baseline_metrics.csv",
+      "bytes": 259,
+      "sha256": "e753a6971d6a0c92ecc6c295696ad76fcc05ae7403283be936ee15e05d212d20",
+      "status": "HISTORICAL",
+      "preservation": "existing_new_copy",
+      "new_identical_path": "archive/original_pilot/results/baseline_metrics.csv"
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/baseline_predictions.csv",
+      "bytes": 697664,
+      "sha256": "347161e45c49cd64d5cddfa24b35a5ee620b564ed5e9070a73036fba2afa73b1",
+      "status": "HISTORICAL",
+      "preservation": "existing_new_copy",
+      "new_identical_path": "archive/original_pilot/results/baseline_predictions.csv"
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/figures/stockout_mae_improvement.png",
+      "bytes": 40161,
+      "sha256": "f750f3e450087c468adafb7d159aaff6e1b300806211f5e6d48e76e19f8c3a52",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/figures/test_bias_comparison.png",
+      "bytes": 57717,
+      "sha256": "b23a1a4356cfecb765676a1cac6c101c9a953291e7d8f71242b66fb89bf0c797",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/figures/test_mae_comparison.png",
+      "bytes": 50141,
+      "sha256": "5a57d67f753af782211c10d2d04d89c0d57690925b6e4ba8d4e1b1b565a46996",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/figures/test_rmse_comparison.png",
+      "bytes": 54290,
+      "sha256": "7bb6810aa8f6531d005521294b398c55c42c8847609e197e49aca6fce2d2e2a0",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/final_model_comparison.csv",
+      "bytes": 1723,
+      "sha256": "7adef9dc2c5c6173fcdeaed87c1f2e867de5c052cf72549c32822de613940031",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/model_metrics.csv",
+      "bytes": 2482,
+      "sha256": "21a3fbe4755bd4f53c939658137af03b1762a4712bf700e98eafac26c4894494",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/model_predictions.csv",
+      "bytes": 3897858,
+      "sha256": "ed4a8576eafba20ec84b8499d357351f4a04376a18d6460305e263f60caaac48",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/README.md",
+      "bytes": 479,
+      "sha256": "1a7fd349e070cb56bb0bc790078fcf6a78728d26904ba74cd696672a7f246175",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/stockout_feature_effect.csv",
+      "bytes": 844,
+      "sha256": "de1774e0200e1d714a7f14984a974b33b8f7c4f271f3245c2ba10583bda9e82e",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/secondary_all_target_days/tuning_results.csv",
+      "bytes": 3661,
+      "sha256": "112a3415dd21f96adb5947215cebb897bd2a32540e2ffe703a84110bd5c5858c",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/stockout_feature_effect.csv",
+      "bytes": 843,
+      "sha256": "5938498bef9c4955239016ba32daadc5247a72b576ad46a291aa43f4c09f9a6d",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/target_eligibility_audit.txt",
+      "bytes": 438,
+      "sha256": "1c924fe169b4aa3fabb68decc2c7b58d2e8fc30415c819134b6497fa0f80817e",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "results/tuning_results.csv",
+      "bytes": 3659,
+      "sha256": "294e4623f7eebe2bfa2e14d8e9aceab76f291febac79e2031e8a0192ba26a6aa",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "src/build_features.py",
+      "bytes": 8935,
+      "sha256": "fad2781ecc529746dab1c2b5743e1e0805e5f0dece2084c3c70cd91162dd6176",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "src/data_explore.py",
+      "bytes": 299,
+      "sha256": "e5773e47496dbbf4e53f15c6e53c71a26d6ab8d1381d71c9032f5805a6927274",
+      "status": "HISTORICAL",
+      "preservation": "existing_new_copy",
+      "new_identical_path": "archive/original_pilot/data_prep_pipeline/data_explore.py"
+    },
+    {
+      "old_relative_path": "src/evaluate_models.py",
+      "bytes": 13803,
+      "sha256": "605b554cee38ddb9782a0ac061e28082f31576662fd64c04526aa43bfb584d67",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "src/prepare_and_baselines.py",
+      "bytes": 8170,
+      "sha256": "44cf533c9714b9f5f2ada061e25482994fd76d6fe962b91f4ea0576e59550e5e",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    },
+    {
+      "old_relative_path": "src/train_models.py",
+      "bytes": 9835,
+      "sha256": "edaeb9429e33ab1855b25d419465bd27390d8f9ba29749cf9bd5678f86e5a74f",
+      "status": "HISTORICAL",
+      "preservation": "verified_read_only_old_reference",
+      "new_identical_path": null
+    }
+  ]
+}

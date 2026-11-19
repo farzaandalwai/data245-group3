@@ -13,6 +13,7 @@ from pathlib import Path
 from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
+LOCAL_DIRECTORIES = {".git", ".venv", "venv", "env", "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache"}
 
 
 def require(condition, message):
@@ -144,7 +145,7 @@ def main():
     checked_markdown = 0
     for path in ROOT.rglob("*.md"):
         relative = path.relative_to(ROOT).as_posix()
-        if relative in historical or relative.startswith(("docs/prompts/", "docs/history/contract_v1/")) or ".git" in path.parts:
+        if relative in historical or relative.startswith(("docs/prompts/", "docs/history/contract_v1/")) or LOCAL_DIRECTORIES.intersection(path.relative_to(ROOT).parts):
             continue
         text = path.read_text(encoding="utf-8")
         require("\x00" not in text, f"NUL in Markdown: {relative}")
@@ -165,8 +166,7 @@ def main():
     retained = ([r["current_original_destination"] for r in manifest] +
                 [r["working_destination"] for r in manifest] +
                 [p.relative_to(ROOT).as_posix() for p in ROOT.rglob("README.md")
-                 if not any(part in {".git", ".venv", "venv", "env"}
-                            for part in p.relative_to(ROOT).parts)])
+                 if not LOCAL_DIRECTORIES.intersection(p.relative_to(ROOT).parts)])
     for path, should_ignore in [(p, True) for p in ignored] + [(p, False) for p in retained]:
         result = subprocess.run(["git", "check-ignore", "--no-index", "-q", path], cwd=ROOT,
                                 check=False)

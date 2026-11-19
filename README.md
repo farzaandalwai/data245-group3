@@ -23,7 +23,7 @@ gh repo clone farzaandalwai/data245-group3
 cd data245-group3
 ```
 
-These teammate clone commands have not been run in their environments. Open that folder in Codex, read [AGENTS.md](AGENTS.md), and paste [starter_prompt.md](starter_prompt.md), replacing its final task placeholder. Connecting GitHub alone does not share uncommitted files or merge branches.
+These teammate clone commands have not been run in their environments. Open that folder as the project in Codex. Codex loads [AGENTS.md](AGENTS.md) as project guidance; it directs the agent to fetch and read shared context when a task begins. No starter-prompt pasting is required. Send a short request such as “Get me oriented,” “Continue my task,” or a specific bounded task. [starter_prompt.md](starter_prompt.md) is an optional reference/fallback. Connecting GitHub alone does not share uncommitted files or merge branches.
 
 Read [context.md](context.md), the [fixed protocol](docs/experiment_protocol.md), [course requirements](docs/course_requirements.md), and [contribution record](docs/contributions.md) before new work. The bootstrap is the one initial commit permitted on `main`; future changes use task branches and PRs.
 
@@ -45,15 +45,70 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-The dependency list comes from imported code (`pandas`, `numpy`, `IPython`); package versions and model-runtime compatibility have not been tested or pinned. The setup checks establish file integrity, not a reproducible training environment. Prefer professor starter code if supplied later and document necessary deviations.
+The dependency list covers imported code (`pandas`, `numpy`, `IPython`) and YAML configuration checks (`PyYAML`); package versions and model-runtime compatibility have not been tested or pinned. The setup checks establish file integrity, not a reproducible training environment. Prefer professor starter code if supplied later and document necessary deviations.
+
+## Three-owner workspace
+
+DELTA owns data/shared features/baselines; DEVGRU owns linear/ridge; SAS owns tree/evaluation/integration. The explicit real-name mapping is in [context.md](context.md). Current responsibilities are in [docs/team_responsibilities.md](docs/team_responsibilities.md); inherited real-name attribution remains in provenance.
+
+```text
+data245-group3/
+  README.md  AGENTS.md  context.md  starter_prompt.md
+  .gitignore  .gitattributes  requirements.txt  pyproject.toml
+  .github/pull_request_template.md
+  configs/{dataset,experiments,models}.yaml
+  data/
+    raw/                       # local raw export; ignored
+    processed/                 # fixed pilot; future versioned feature bundles
+    manifests/                 # exact fixed manifest and exclusions
+  src/
+    data_preprocessing_DELTA/  # adapted inherited scripts
+    features_DELTA/            # shared feature producer; not implemented
+    models/
+      baselines_DELTA/
+      linear_regression_DEVGRU/
+      ridge_regression_DEVGRU/
+      decision_tree_SAS/
+      random_forest_SAS/        # optional, not implemented
+    evaluation_SAS/
+  notebooks/{DELTA_data,DEVGRU_linear_models,SAS_evaluation}/
+  results/
+    baselines_DELTA/inherited/  # original baseline evidence
+    linear_regression_DEVGRU/
+    ridge_regression_DEVGRU/
+    decision_tree_SAS/
+    random_forest_SAS/
+    comparisons_SAS/
+    predictions/
+    models/                    # binaries ignored
+  tests/
+  scripts/verify_setup.py
+  docs/                        # methodology, protocol, ownership, interfaces,
+                               # experiment log, provenance, course, AI/contributions
+  reports/{intermediate,individual,final}/
+  archive/original_pilot/       # ten byte-identical handoff originals
+```
+
+Most new component directories contain ownership/handoff guidance only. No new feature/model/evaluator is implemented. `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. Config files record the planned design and explicitly mark the feature/eligibility contract pending.
+
+You can develop and push owned components in parallel after agreeing the shared interface. Real model runs need the same verified DELTA feature bundle; final comparisons need accepted predictions, and new model test evaluation waits for the freeze. See [interfaces and dependencies](docs/interfaces.md).
+
+For the migrated layout, these checks are run and reported in the [migration record](docs/structure_migration.md):
+
+```sh
+python3 scripts/verify_setup.py
+python3 -m unittest discover -s tests -v
+```
+
+The layout tests require Python 3.11+ and PyYAML. Full pipeline/model/package installation remains unverified. No model training or notebook execution is part of these checks.
 
 ## Data and inherited results
 
 The pilot is already present at `data/processed/pilot_200_series.csv`: 200 fixed series, 18,000 rows, and 90 dates. Its 23 columns include 19 source fields plus day number, split, and two inherited prediction columns. Do not use a whole-frame predictor selection. Read [data/README.md](data/README.md) for sources, license, schemas, and raw-data acquisition.
 
-The raw `data/freshretail.csv` is intentionally absent and ignored (323,577,557 bytes at Drive metadata readback). It was not downloaded for setup. Do not run `data_explore.py` to substitute a current full upstream dataset for the specific inherited local export. Both imported preparation entry points can overwrite the fixed pilot and baseline files; inspect them and arrange a separate, explicitly authorized reproduction destination before any future execution.
+The raw `data/raw/freshretail.csv` is intentionally absent and ignored (323,577,557 bytes at Drive metadata readback). It was not downloaded for setup. The original files now live under `archive/original_pilot/`. Path-adapted working copies live in `src/data_preprocessing_DELTA/` and `notebooks/DELTA_data/`; they use separate ignored reproduction destinations and have not been run. The working notebook has cleared saved outputs/counters. The adapted `data_explore.py` still downloads a current upstream training split, which is not proof of reproducing the inherited local export. See the [migration record](docs/structure_migration.md).
 
-Inherited baseline scores in `results/baseline_metrics.csv` use all 3,000 rows of each validation/test split:
+Inherited baseline scores in `results/baselines_DELTA/inherited/baseline_metrics.csv` use all 3,000 rows of each validation/test split:
 
 - Persistence validation: MAE 0.417757, RMSE 0.677441, signed bias +0.002357.
 - Persistence test: MAE 0.444063, RMSE 0.697380, signed bias -0.002777.
@@ -66,7 +121,7 @@ These are inherited team results. They are not the stockout-aware comparison and
 
 At task start, checkpoints, and before final push: inspect status/branch/remotes, fetch origin, read `origin/main:context.md` and local context, compare the fetched base, and check open issues/PRs. Do not blindly pull into dirty work. Record owner, branch, affected files, dependencies, and acceptance criteria before implementation. An issue assignment is a coordination signal, not a lock.
 
-Start a distinct `<username>/<task>` branch from current main; concurrent sessions need separate worktrees. Keep changes bounded, preserve others' work, update context/contributions/AI disclosure, and push a small PR. A human integrator reviews the latest main, diff, checks, and overlaps, then merges one PR at a time. Other sessions fetch and reread context after each merge. No silent merge or force push.
+Start a distinct `<codename>/<task>` branch from current main; concurrent sessions need separate worktrees. Keep changes bounded, preserve others' work, update context/contributions/AI disclosure, and push a small PR. A human integrator reviews the latest main, diff, checks, and overlaps, then merges one PR at a time. Other sessions fetch and reread context after each merge. No silent merge or force push.
 
 Suggested optional next step: two teammates independently make tiny documentation PRs, merge sequentially, then each session fetches and identifies both preserved updates from context. That human coordination check has **not** been performed. The first future technical task is to inspect stockout semantics and freeze the matched eligibility/feature contract; do not start it without a bounded assignment.
 

@@ -1,0 +1,1 @@
+Do we need to send starter prompt at MD every time? Can it not just automatically do it? Because that would be extremely annoying for us to keep doing it again and again, starter prompt and the current task.

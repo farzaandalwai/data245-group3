@@ -2,7 +2,7 @@
 
 Updated 2026-11-18 (America/Los_Angeles). Task ownership is not proof of completion. This record can support later individual CRediT statements, but final statements require each human's validation and evidence.
 
-## Historical/planned assignments
+## Historical assignments from the original handoff
 
 - **Timothy Tran** — existing preparation, pilot, baseline work; reproduction support. The handoff explicitly states that he completed the pilot preparation/baselines, and source files/outputs are present. Setup imported and structurally checked them; full reproduction remains pending. Supplied GitHub mapping: `timothytran109` (GitHub canonical case `Timothytran109`).
 - **Farzaan Dalwai** — experiment protocol, integration, formal leakage audit, evaluation and bias analysis. Those technical experiments/audits remain pending. The authenticated setup account was verified as `farzaandalwai`; the user authorized repository setup under that account.
@@ -10,7 +10,11 @@ Updated 2026-11-18 (America/Los_Angeles). Task ownership is not proof of complet
 - **Denisha Tank** — planned decision-tree experiments; random forest optional after course-fit confirmation. No implementation or completion evidence imported.
 - **Mansi** — planned historical stockout features and optional context-length comparisons. No implementation or completion evidence imported.
 
-`shoddy16` is an explicitly requested collaborator with **unconfirmed full-name mapping**. Do not infer that this account belongs to any named member. Only `shoddy16` and `timothytran109` were invited; the five-person academic assignments are preserved, not redistributed among three GitHub accounts. No new teammate task assignments were made in setup.
+`shoddy16` is an explicitly requested collaborator with **unconfirmed full-name mapping**. Do not infer that this account belongs to any named member. Only `shoddy16` and `timothytran109` were invited. No task redistribution was inferred from account count during setup. The user subsequently explicitly confirmed only three active contributors and authorized the revised allocation below; the original five-person assignments remain historical provenance.
+
+## Current user-authorized active allocation
+
+The exact identity map is in `context.md`. Use codenames for current workspace labels: DELTA owns data/shared features/baselines; DEVGRU owns linear/ridge; SAS owns tree/evaluation/audit/integration. The user explicitly requested this three-person split and codename mapping after setup. Mansi and Denisha are not current active owners. This records the requested plan, not personal agreement/completion evidence or additional work credit. Full-name mapping for `shoddy16` is still unconfirmed.
 
 ## Evidence-backed contribution log
 
@@ -18,7 +22,7 @@ Updated 2026-11-18 (America/Los_Angeles). Task ownership is not proof of complet
 
 Human contributor as stated by source: **Timothy Tran**. Scope: raw-export preparation/audit, complete-series pilot selection, chronological split, persistence and seven-day-average baselines, predictions and metrics, handoff script/notebook/documentation.
 
-Evidence: `data_prep_pipeline/prepare_and_baselines.py`, `data_prep_pipeline/prepare_and_baselines.ipynb`, `data_prep_pipeline/data_explore.py`, `data/processed/`, `results/`, and the archived handoff README. Exact per-file sources, timestamps, and hashes are in [provenance](provenance.md). Drive modification times are not presented as execution dates. The supplied handoff attributes this work to Timothy; this setup does not invent his prior tools, AI usage, or validation process. CRediT categories such as data curation/software/validation remain subject to his confirmation.
+Evidence: the original script/notebook/downloader, pilot/manifest/exclusions, results, and README under `archive/original_pilot/`; canonical working input/evidence paths are documented in the migration record. Exact per-file sources, timestamps, and hashes are in [provenance](provenance.md). Drive modification times are not presented as execution dates. The supplied handoff attributes this work to Timothy; this setup does not invent his prior tools, AI usage, or validation process. CRediT categories such as data curation/software/validation remain subject to his confirmation.
 
 ### 2026-11-18 — repository bootstrap and migration
 
@@ -27,6 +31,18 @@ Human requester/account: **Farzaan Dalwai / verified GitHub `farzaandalwai`**. H
 AI assistance: Codex created the collaboration documentation and read-only import checker, imported original artifacts, converted the handoff README reading copy, performed static/structural checks, and operated GitHub setup under that authorization. It did not perform new model/feature work or author final report prose. Do not attribute AI-generated code/docs as personally implemented or validated by a student merely because their account owns the repository.
 
 Evidence: initial bootstrap diff and Git history, [setup verification](setup_verification.md), [AI assistance log](ai_assistance.md), and saved prompts. Human review/validation of this kit remains pending. Repository/invitation creation is a coordination action and does not complete the academic experimental assignments.
+
+### 2026-11-18 — automatic session-start guidance (pending integration)
+
+Human requester: Farzaan Dalwai. Request: avoid repeatedly pasting the starter prompt and task boilerplate. AI assistance: Codex verified automatic `AGENTS.md` instruction discovery against official OpenAI documentation and updated `AGENTS.md`, the README, and `starter_prompt.md` so only a short task/orientation/resume request is needed. Existing context/Git/protocol checks remain required. No experimental artifact changed.
+
+Original branch: `farzaandalwai/automatic-session-start`, PR #1. The startup improvement is retained in `SAS/three-person-layout`; its predecessor PR is superseded by the combined migration PR, with human integration still pending. Evidence: the branch diff, saved prompt, and AI log. Validation: existing setup checker and targeted documentation review; exact results recorded in [AI assistance](ai_assistance.md#2026-11-18--automatic-session-start-guidance). Human review is pending; this entry does not credit a student with personal implementation or completed experimental work.
+
+### 2026-11-18 — three-owner codename workspace migration (pending integration)
+
+Human requester: SAS / Farzaan Dalwai. User authorization: restructure to the proposed layout for three active contributors and use DELTA/DEVGRU/SAS labels with an explicit identity map. AI assistance: Codex archived originals unchanged, moved working manifest/results, adapted working legacy paths and cleared working notebook execution state, added useful component ownership/handoff/config/report guidance, documented independence/dependencies, and updated static/layout checks. Original authorship and source hashes are preserved; source path adaptations are AI-assisted migration work, not new original baseline authorship.
+
+Evidence: `SAS/three-person-layout` branch/PR diff, [migration record](structure_migration.md), migration manifest, exact saved request, and AI log. Verification and human-review status are recorded there. No new feature/model/evaluator/fixture/report was implemented or executed. DELTA/DEVGRU/SAS future task ownership is not credited as completed work.
 
 ## Future log entries
 

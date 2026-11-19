@@ -1,0 +1,5 @@
+model,split,n_observations,MAE,RMSE,bias
+persistence,validation,3000,0.417757,0.677441,0.002357
+persistence,test,3000,0.444063,0.697380,-0.002777
+recent_avg_7,validation,3000,0.337380,0.551965,-0.007276
+recent_avg_7,test,3000,0.362622,0.564407,-0.051647

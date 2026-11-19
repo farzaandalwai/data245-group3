@@ -1,48 +1,56 @@
 # Shared project context
 
-Updated: **2026-11-18, America/Los_Angeles**. Keep this concise current state; use files, Git history, issues/PRs, and verification evidence for proof. This is not live shared memory and cannot establish whether other sessions are idle.
+Updated: **2026-11-18, America/Los_Angeles**. This is orientation, not live shared memory or a work lock. Verify code/artifacts, issues/PRs, and Git history after fetching.
 
-## Objective and fixed decisions
+## This is us — active owner mapping
 
-Test whether historical stockout features improve next-day recorded normalized `sale_amount` beyond recent sales history with matched models/rows/budgets. Fixed input: the inherited seed-245 manifest of 200 series, 18,000 rows, 2024-03-28 through 2024-06-25. Train days 1–60, validation 61–75, test 76–90. Primary history is 14 days; planned common 7/14/28 comparison begins targets on day 29. Planned targets have zero 06:00–22:00 stockout hours only after semantics/indexing verification. All predictors use through `t-1` except known target-day calendar. Retain stockout history, use a predictor allowlist, fit preprocessing on train, tune on validation, and freeze before new test evaluation. Full [protocol](docs/experiment_protocol.md) is authoritative.
+The user explicitly confirmed only three active contributors and supplied these codenames:
 
-## Setup task and integration state
+- **DELTA = Timothy Tran (Tim)**; supplied GitHub account `timothytran109` (canonical case `Timothytran109`). Own data preparation, the shared sales-only/stockout-aware feature bundle, and baselines.
+- **DEVGRU = Shoury / Shourya**, named Shoury Ambarish Parab in the historical handoff. Own linear regression and course-approved ridge.
+- **SAS = Farzaan Dalwai (you; also written Farzan in the request)**; authenticated GitHub account verified as `farzaandalwai`. Own decision tree, optional course-approved random forest, common evaluation, formal leakage audit, and integration.
 
-- Owner/requester: Farzaan Dalwai; authenticated GitHub account verified as `farzaandalwai`.
-- Branch: `main`, authorized initial bootstrap exception. This snapshot contains setup/imports only. No experimental task branch, model work, or model result is integrated. Subsequent contributions require distinct task branches and PRs.
-- Affected files: root collaboration documents, `docs/`, `data/README.md`, inherited `data/processed/`, `data_prep_pipeline/`, inherited `results/`, `.gitignore`/`.gitattributes`, requirements, PR template, and read-only setup checker.
-- Dependencies: supplied setup prompt and accessible Drive artifacts; no raw-data download required. Acceptance: private repository, exactly the two requested write invitations, original-byte imports, all requested collaboration files, static/structural checks, safe initial commit/push and remote readback. Publication evidence is verified against live Git state at handoff; no self-referential commit hash is embedded here.
-- Open issues/PRs at bootstrap inspection: none. This is a setup record, not an atomic work claim. Recheck before any new task.
+Use DELTA/DEVGRU/SAS in active folder/branch/ownership labels. Retain original real-name authorship in imported sources and provenance. `shoddy16` has write access but its real-name/codename mapping remains unconfirmed; do not infer it from the three-account roster. Mansi and Denisha appear only in the historical five-person handoff; they are not active owners in the current user-authorized plan. This plan does not claim each teammate has personally reviewed or completed their future assignment.
 
-## Verified, inherited, missing, and pending
+## Current bounded task and integration state
 
-- Imported unchanged: Timothy's script/notebook/exploration script, original UTF-16 handoff README, exact manifest/pilot/exclusions, baseline predictions/metrics, raw audit. A separate UTF-8 reading copy is documented. All ten requested non-raw artifacts are present. [Provenance](docs/provenance.md) contains sources/timestamps/hashes.
-- Verified in setup: readability, byte counts/hashes, Python syntax, notebook JSON/code syntax, schemas, unique keys, fixed manifest/calendar/split consistency, and ignore rules. See [verification](docs/setup_verification.md) for exact executed checks and limits.
-- Inherited, not independently reproduced: raw-export audit (1,459,198 rows, 19 columns, 16,214 series; one 28-day `(420, 764)` excluded; no nulls/duplicate keys reported) and four six-decimal baseline score rows on 3,000 validation/test targets each. These are local-export counts and baseline evidence, not the main comparison.
-- Missing by design: raw `data/freshretail.csv` (323,577,557 bytes in Drive metadata; not downloaded or hashed). Other unavailable references: original proposal/intermediate report and professor starter code. [Data instructions](data/README.md) explain acquisition.
-- Pending: formal stockout-field/indexing audit, matched eligibility/feature/prediction contract, filter counts, features, regression/tree/ridge runs, matched baseline rescoring, formal leakage audit, clustered evaluation, literature verification, individual reports/disclosures, and presentation. No experiment was run by setup.
-- Limitations already fixed in the record: all-90-day completeness selection differs from training-only selection intended in the proposal; baseline test scores were already visible. Preserve/disclose both. Sustainability benefits remain unmeasured.
+Owner/requester: SAS. Branch: `SAS/three-person-layout`, started from current `origin/main` and retaining the automatic-startup doc improvement from PR #1. Scope: adapt the proposed workspace structure to these three owners, archive originals unchanged, relocate working inputs/results and adjust legacy paths, preserve all collaboration records, and document parallel work/dependencies. No experiments are authorized by this migration.
 
-## Team and access
+Acceptance: useful owner-specific folders/config metadata, exact codename mapping, original-byte archive and unchanged canonical data/evidence, safe reproduction output paths, passing static/schema/layout checks, and one reviewable migration PR. PR #1 is the known overlapping predecessor; this migration retains its startup improvement and replaces that PR without merging main. This branch's restructuring is **pending human integration into main**; the integrated main snapshot at task start contains only the original bootstrap. Never describe unmerged layout work as already on main.
 
-- Timothy Tran: existing preparation/pilot/baselines; reproduction support. Supplied account `timothytran109`.
-- Farzaan Dalwai: protocol/integration/formal audit/evaluation and bias analysis, pending beyond setup.
-- Shoury Ambarish Parab: planned linear/ridge experiments.
-- Denisha Tank: planned decision tree; optional random forest after course-fit check.
-- Mansi: planned stockout features; optional context comparisons.
+Migration verification: `python3 scripts/verify_setup.py` passed (ten original hashes, unchanged canonical data/evidence, syntax/JSON, schemas/manifest/calendar/splits, Markdown paths and ignore rules); `python3 -m unittest discover -s tests -v` passed all three path/config/ownership tests. No raw file or generated experiment is present. See `docs/structure_migration.md` for scope and runtime limits.
 
-Full-name mapping for `shoddy16` is unconfirmed. Five academic assignments remain intact; only `shoddy16` and `timothytran109` were invited. Both accepted during setup: collaborator/effective-permission readbacks verified write access and `admin: false` for each, with no invitations pending. This is verified repository access, not a claim that their clones or multi-user workflow were tested. Repository: [farzaandalwai/data245-group3](https://github.com/farzaandalwai/data245-group3), private.
+## Fixed scientific design
 
-GitHub rejected protection configuration with HTTP 403 requiring Pro or public visibility. No visibility/plan change was made. PR review, one approval, no force pushes/deletions, and sequential human integration are **team conventions, not enforced protection**.
+Question: do historical stockout features improve next-day recorded normalized `sale_amount` beyond recent sales history? Preserve the seed-245 manifest of 200 series, 18,000 rows, 2024-03-28 through 2024-06-25. Train days 1–60 (12,000 rows), validation 61–75 (3,000), test 76–90 (3,000), before lag/eligibility filtering. Primary history 14 days; planned common 7/14/28 comparison starts targets on day 29. Planned zero-stockout targets require semantics/indexing confirmation first. Predictors use through t-1 except known calendar; target-day availability is eligibility metadata only. Explicit allowlists, matched keys/budgets, train-only preprocessing, validation-only tuning, and a freeze before new model test evaluation remain required. See `docs/experiment_protocol.md`.
 
-## File map and next bounded task
+The pilot used all-90-day completeness rather than the proposal's training-only selection intention; preserve/disclose that availability-selection limitation. Baseline test scores have already been seen. Recorded sales are not unrestricted latent demand; sustainability benefits remain unmeasured.
 
-- `README.md`, `AGENTS.md`, `starter_prompt.md`: orientation and safe collaboration workflow.
-- `docs/experiment_protocol.md`, `docs/course_requirements.md`: fixed design/deviations and individual deliverables/rubric.
-- `docs/provenance.md`, `docs/handoff/`, `data/README.md`: source bytes, attribution, data acquisition.
-- `docs/contributions.md`, `docs/ai_assistance.md`, `docs/prompts/`: actual contributions/disclosures.
-- `scripts/verify_setup.py`: standard-library read-only integrity/schema checker, not the ML pipeline.
+## What exists and what is pending
 
-Optional human coordination check: two teammates make separate tiny documentation PRs, merge sequentially, then each session fetches and identifies both preserved updates. Success requires both contributions, accurate shared-state descriptions, and no direct edits to main. This check has not been performed; no teammate work was simulated.
+- Ten downloaded originals are byte-identical under `archive/original_pilot/`; source URLs/IDs/times/bytes/hashes, original authorship, and initial/current destinations are in `docs/provenance.md` and `docs/handoff/import_manifest.json`.
+- Shared working input: `data/processed/pilot_200_series.csv`; canonical manifest/exclusions: `data/manifests/`; inherited results: `results/baselines_DELTA/inherited/`. These working data/evidence bytes are unchanged.
+- Adapted legacy code: `src/data_preprocessing_DELTA/`; working notebook: `notebooks/DELTA_data/`. Raw input is now `data/raw/freshretail.csv`. Reproduction outputs go to separate ignored directories, not canonical inputs/evidence. The working notebook outputs/counters were cleared; originals retain historical outputs. Nothing was rerun.
+- The raw CSV remains absent by design (323,577,557 bytes in prior Drive metadata); no raw hash exists. The original proposal/intermediate report and professor starter code remain unavailable as separate imports.
+- Raw-export audit counts and baseline scores remain inherited/unreproduced. Structural checks are narrower evidence.
+- Configs and component READMEs describe planned work, not implementations. Feature/eligibility producers, model adapters, evaluator, formal leakage audit, and real feature bundle remain pending. Exact allowlists/statistics/stockout semantics must still be frozen; `contract_frozen: false` is intentional.
 
-Next technical task to assign explicitly: inspect pilot schema/stockout semantics and freeze the matched eligibility/feature/prediction contract, with no model fitting. Confirm an owner/branch/files/dependencies/acceptance criteria before implementation. Also verify exact deadline/presentation slot in Canvas and confirm remaining GitHub/name mappings when needed. Setup stops here.
+## Owner status — update your own section
+
+**DELTA:** inherited preparation/pilot/baselines exist. Future task: verify data/stockout semantics with SAS, then produce the shared feature bundle and matched baseline predictions after contract approval. No new implementation/run completed by this migration.
+
+**DEVGRU:** linear/ridge adapters and validation work pending. Can develop against an agreed labeled schema fixture after the interface review; real paired runs require DELTA's verified frozen bundle. Ridge requires course fit.
+
+**SAS:** tree/evaluator/audit work pending. Can develop adapters/key/metric tests against labeled fixtures after the interface review. Final comparisons require accepted predictions; new model test evaluation also requires frozen protocol and validation choices. Random forest stays optional.
+
+## How we avoid waiting unnecessarily
+
+Everyone can implement their owned component, commit/push their own task branch, and open PRs independently after the shared interface review. Use common versioned inputs/outputs rather than calling another owner's notebook. A real scientific dependency remains: model runs need the same verified DELTA feature bundle; final evaluation needs accepted predictions. Fixtures are development tools, never research findings. No fixture was generated by migration. Detailed handoffs are in `docs/interfaces.md` and `docs/team_responsibilities.md`.
+
+Shared configs/protocol/dependency changes require coordination. Each substantive task commit updates this context and applicable contribution/AI records; edit owner sections narrowly and resolve conflicts semantically. Merge one reviewed PR at a time; dependent sessions fetch/reread afterwards. Each human uses a separate clone; concurrent sessions need separate worktrees. Automatic `AGENTS.md` guidance means no repeated starter-prompt pasting is needed; a short task/orientation/resume message is enough.
+
+## Access, limitations, and next action
+
+Private repo: [farzaandalwai/data245-group3](https://github.com/farzaandalwai/data245-group3). At the last verified setup readback both `shoddy16` and `Timothytran109` had accepted write access without admin access. Recheck live state before access claims. GitHub rejected branch protection with a plan-level 403; PR review/one approval/no force pushes are conventions, not enforced rules. No plan/visibility change was made.
+
+First integrate the reviewed layout/startup changes, then freeze the shared feature/eligibility/prediction contract as the next explicit bounded technical task. Verify exact course deadline/presentation slot in Canvas. The optional two-human tiny-doc PR coordination exercise and teammate-machine execution checks have not been performed. Individual reports/disclosures remain each person's responsibility; no report or new model experiment was created here.

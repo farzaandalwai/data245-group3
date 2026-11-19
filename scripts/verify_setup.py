@@ -42,21 +42,29 @@ def main():
     manifest = json.loads((ROOT / "docs/handoff/import_manifest.json").read_text())
     require(len(manifest) == 10, "Expected ten original handoff files")
     for record in manifest:
-        payload = (ROOT / record["dest"]).read_bytes()
+        payload = (ROOT / record["current_original_destination"]).read_bytes()
         require(len(payload) == record["bytes"] == int(record["size"]),
                 f"Byte mismatch: {record['dest']}")
         require(hashlib.sha256(payload).hexdigest() == record["sha256"],
                 f"Hash mismatch: {record['dest']}")
+    for record in manifest:
+        working = ROOT / record["working_destination"]
+        require(working.is_file(), f"Missing working copy: {working}")
+        if working.suffix not in {".py", ".ipynb"}:
+            require(hashlib.sha256(working.read_bytes()).hexdigest() == record["sha256"],
+                    f"Canonical data/evidence changed: {working}")
     original = (ROOT / "docs/handoff/README.original.md").read_bytes()
     require(original.startswith((b"\xff\xfe", b"\xfe\xff")), "Missing UTF-16 BOM")
     reading = (ROOT / "docs/handoff/README.utf8.md").read_bytes().decode("utf-8")
     require(original.decode("utf-16") == reading, "Reading-copy text changed")
     print("PASS: ten original file hashes/byte counts and README encoding conversion")
 
-    scripts = sorted((ROOT / "data_prep_pipeline").glob("*.py")) + [Path(__file__)]
+    scripts = sorted(p for p in ROOT.rglob("*.py")
+                     if not any(part in {".git", ".venv", "venv", "env", "__pycache__"}
+                                for part in p.relative_to(ROOT).parts))
     for script in scripts:
         ast.parse(script.read_text(encoding="utf-8"), filename=str(script))
-    notebook = json.loads((ROOT / "data_prep_pipeline/prepare_and_baselines.ipynb").read_text())
+    notebook = json.loads((ROOT / "notebooks/DELTA_data/prepare_and_baselines.ipynb").read_text())
     require(notebook["nbformat"] == 4 and isinstance(notebook["metadata"], dict),
             "Unexpected notebook format")
     require(isinstance(notebook["cells"], list) and notebook["cells"], "No notebook cells")
@@ -73,7 +81,7 @@ def main():
     print(f"PASS: {len(scripts)} Python files parsed; notebook JSON/{len(notebook['cells'])} cells, "
           f"{code_cells} code cells parsed without execution")
 
-    pairs = read_csv("data/processed/pilot_series_manifest.csv", ["store_id", "product_id"])
+    pairs = read_csv("data/manifests/pilot_series_manifest.csv", ["store_id", "product_id"])
     selected = {pair(row) for row in pairs}
     require(len(pairs) == len(selected) == 200, "Manifest is not 200 unique series")
     raw_columns = ["city_id", "store_id", "management_group_id", "first_category_id",
@@ -100,7 +108,7 @@ def main():
             "A pilot series lacks the exact 90-day calendar")
     counts = Counter(row["split"] for row in pilot)
     require(counts == {"train": 12000, "validation": 3000, "test": 3000}, "Split count mismatch")
-    excluded = read_csv("data/processed/excluded_series.csv", ["store_id", "product_id",
+    excluded = read_csv("data/manifests/excluded_series.csv", ["store_id", "product_id",
                         "row_count", "distinct_dates", "missing_dates", "unexpected_dates"])
     require(len(excluded) == 1 and pair(excluded[0]) == (420, 764), "Wrong excluded series")
     require(excluded[0]["row_count"] == excluded[0]["distinct_dates"] == "28",
@@ -108,7 +116,7 @@ def main():
     require(pair(excluded[0]) not in selected, "Excluded series appears in manifest")
     print(f"PASS: pilot schema, unique keys, exact manifest/calendar and splits {dict(counts)}")
 
-    predictions = read_csv("results/baseline_predictions.csv", ["model", "store_id",
+    predictions = read_csv("results/baselines_DELTA/inherited/baseline_predictions.csv", ["model", "store_id",
                            "product_id", "dt", "day_number", "split", "sale_amount", "prediction"])
     models = {"persistence", "recent_avg_7"}
     predicted_keys = {(row["model"], *key(row), row["split"]) for row in predictions}
@@ -122,7 +130,7 @@ def main():
                 "Prediction metadata differs from pilot")
         require(float(row["sale_amount"]) == float(source["sale_amount"]), "Actual mismatch")
         require(math.isfinite(float(row["prediction"])), "Non-finite prediction")
-    metrics = read_csv("results/baseline_metrics.csv", ["model", "split", "n_observations",
+    metrics = read_csv("results/baselines_DELTA/inherited/baseline_metrics.csv", ["model", "split", "n_observations",
                        "MAE", "RMSE", "bias"])
     require(len(metrics) == 4 and {(r["model"], r["split"]) for r in metrics} ==
             {(m, s) for m in models for s in ("validation", "test")}, "Metric key mismatch")
@@ -131,7 +139,8 @@ def main():
                 for r in metrics), "Metric schema/value issue")
     print("PASS: inherited prediction/metric schemas, coverage and actuals (scores not recomputed)")
 
-    historical = {"docs/handoff/README.original.md", "docs/handoff/README.utf8.md"}
+    historical = {"docs/handoff/README.original.md", "docs/handoff/README.utf8.md",
+                  "archive/original_pilot/README.md"}
     checked_markdown = 0
     for path in ROOT.rglob("*.md"):
         relative = path.relative_to(ROOT).as_posix()
@@ -145,9 +154,19 @@ def main():
             local = unquote(target.split("#", 1)[0].strip("<>"))
             require((path.parent / local).exists(), f"Broken path in {relative}: {local}")
         checked_markdown += 1
-    ignored = ["data/freshretail.csv", "data/other.csv", ".env", ".env.local", "credentials.json",
-               ".venv/lib/test.py", "__pycache__/test.pyc", "models/model.joblib", "runs/new.csv"]
-    retained = [r["dest"] for r in manifest] + ["data/README.md", "results/README.md"]
+    ignored = ["data/raw/freshretail.csv", "data/freshretail.csv", "data/other.csv",
+               "archive/original_pilot/data/freshretail.csv", ".env", ".env.local", "credentials.json",
+               ".venv/lib/test.py", "__pycache__/test.pyc", "models/model.joblib", "runs/new.csv",
+               "data/manifests/reproduction/pilot_series_manifest.csv",
+               "data/processed/reproduction/pilot_200_series.csv",
+               "data/processed/feature_bundles/new/features.csv",
+               "results/baselines_DELTA/reproduction/baseline_metrics.csv",
+               "results/linear_regression_DEVGRU/new/predictions.csv", "results/models/tree.joblib"]
+    retained = ([r["current_original_destination"] for r in manifest] +
+                [r["working_destination"] for r in manifest] +
+                [p.relative_to(ROOT).as_posix() for p in ROOT.rglob("README.md")
+                 if not any(part in {".git", ".venv", "venv", "env"}
+                            for part in p.relative_to(ROOT).parts)])
     for path, should_ignore in [(p, True) for p in ignored] + [(p, False) for p in retained]:
         result = subprocess.run(["git", "check-ignore", "--no-index", "-q", path], cwd=ROOT,
                                 check=False)

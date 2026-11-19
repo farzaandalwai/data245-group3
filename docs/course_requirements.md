@@ -23,7 +23,7 @@ Recorded 2026-11-18 from the supplied [setup instruction](prompts/DATA245_Codex_
 3. **Lessons learned — 5 points.** Pending. Evidence required: each student's actual lessons, difficulties, and best practices with concrete examples. The setup log cannot substitute for personal reflection.
 4. **Prospects of winning competition / publication — 3 points.** Pending, including leaderboard applicability. Evidence required: honest comparison to available solutions and realistic prospects; no invented rank/publication claim.
 5. **Innovation — 5 points.** Pending. The matched stockout-feature comparison is planned in the protocol; novelty relative to verified literature remains to be justified.
-6. **Evaluation of performance — 5 points.** Pending for the research question. Existing `results/baseline_metrics.csv` and `results/baseline_predictions.csv` are inherited baseline evidence only. Matched model results, bias analysis, uncertainty, and honest limitations remain future work.
+6. **Evaluation of performance — 5 points.** Pending for the research question. Existing `results/baselines_DELTA/inherited/baseline_metrics.csv` and `results/baselines_DELTA/inherited/baseline_predictions.csv` are inherited baseline evidence only. Matched model results, bias analysis, uncertainty, and honest limitations remain future work.
 7. **Technical difficulty — 7 points.** Pending. Later evidence should document actual timing/leakage issues, categorical preprocessing, matching, integration, and solutions. Planning text is not execution evidence.
 8. **Used LaTeX — 1 point.** Pending. Evidence required: individual `.tex` source and rendered PDF using the specified template. Neither exists yet.
 9. **Literature Survey — 5 points.** Pending. Evidence required: verified sources and substantive subsections comparing approaches. Leads below are not completed literature work.
@@ -31,7 +31,7 @@ Recorded 2026-11-18 from the supplied [setup instruction](prompts/DATA245_Codex_
 
 ## Proposal provenance
 
-The proposal required abstract, motivation, literature, methodology, deliverables/milestones, team roles, course relevance, technical difficulty, novelty, impact, and Heilmeier questions. Preserve these requirements and the five-member roles in [contributions](contributions.md). Historical proposal milestones are not current completion evidence. The original proposal/intermediate report are currently missing as separate references; import only if later made available. They are not required to bootstrap the supplied starting design.
+The proposal required abstract, motivation, literature, methodology, deliverables/milestones, team roles, course relevance, technical difficulty, novelty, impact, and Heilmeier questions. Preserve these requirements and the historical five-member roles in [contributions](contributions.md); the current user-authorized three-person split is in [team responsibilities](team_responsibilities.md). Historical proposal milestones are not current completion evidence. The original proposal/intermediate report are currently missing as separate references; import only if later made available. They are not required to bootstrap the supplied starting design.
 
 ## Leads for later verification
 

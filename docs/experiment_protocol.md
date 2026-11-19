@@ -1,81 +1,82 @@
-# Fixed experiment protocol
+# Approved experiment protocol - v2.0
 
-Status: documented on 2026-11-18 (America/Los_Angeles); remaining feature/model work is not implemented. The next contract task must resolve the explicitly pending semantics below before modeling. Protocol changes require an explicit, versioned decision and consistent regeneration of affected evidence.
+**APPROVED scientific design: 2026-11-19, America/Los_Angeles.** All three active members agreed to the methodology in the [saved request](prompts/2026-11-19-methodology-alignment.md). This supersedes conflicting v1 assumptions. Approval does not imply implementation, a frozen technical contract, or results.
 
-## Question, target, and pilot
+## Authority and evidence statuses
 
-Does adding historical stockout information improve next-day **recorded normalized sales** forecasts beyond recent sales history, with everything else held matched? Predict `sale_amount` for each `(store_id, product_id, dt)`. Do not equate this target to unrestricted latent demand, mass, revenue, or food waste.
+Scientific authority, in order: this protocol; [interfaces](interfaces.md); [team responsibilities](team_responsibilities.md); `configs/*.yaml` metadata; [context](../context.md); [experiment log](experiment_log.md); other READMEs; historical `archive/` reference. Root [AGENTS.md](../AGENTS.md) governs agent workflow, not a separate methodology. Explicit user instructions govern the task; flag contradictions and record approved amendments rather than silently selecting a conflicting rule. Configs mirror the protocol and cannot approve changes themselves.
 
-Reuse `data/manifests/pilot_series_manifest.csv` exactly: 200 complete series selected with seed 245, totaling 18,000 pilot rows across 90 dates. Do not resample, even with the same seed, or substitute the full upstream dataset for the inherited local export.
+- **APPROVED:** scientific decisions below.
+- **PROPOSED:** recommendations such as the final sampling seed/algorithm.
+- **PENDING VERIFICATION:** raw-data provenance, precise stockout-hour semantics/indexing for the new producer, generated sample coverage, environment compatibility.
+- **DRAFT CONTRACT:** schemas, filenames, preprocessing, tuning grids/settings and uncertainty procedure until finalized and validated.
+- **NOT IMPLEMENTED:** redesigned feature bundles, final 1,000-series manifest, model runs and evaluation.
+- **IMPLEMENTED:** requires actual code and supporting checks; documentation alone never qualifies.
+- **HISTORICAL:** previous 200-series experiments/results and superseded contract evidence.
 
-Fixed boundaries, before history and eligibility filters:
+Remote V1 validation work from `1939586` is semantically reconciled in the current working tree, without a Git merge. Exact V1 contract/audit/lock/script/provenance copies are preserved under [historical evidence](history/contract_v1/README.md); their day-29/stockout-free rules are not active. [Active contract metadata](../configs/contract.yaml) registers V2 summaries and remains DRAFT, with no V2 freeze lock. Active tests validate V2; separate historical tests reproduce V1 evidence. Reusable parser/endpoint checks retain their original scope; V2 producer semantics remain pending verification. Git ancestry integration and human review remain outstanding.
 
-- Train: days 1–60, 2024-03-28 through 2024-05-26, 12,000 rows.
-- Validation: days 61–75, 2024-05-27 through 2024-06-10, 3,000 rows.
-- Test: days 76–90, 2024-06-11 through 2024-06-25, 3,000 rows.
+## Research question and target
 
-The inherited raw-export audit reports 1,459,198 rows, 19 columns, 16,214 series, 16,213 complete 90-day series, and one incomplete 28-day series `(420, 764)`, with no nulls or duplicate keys. Those raw counts were not independently reproduced in setup and do not describe the entire published dataset.
+Does adding historical stockout information improve next-day fresh-food recorded-sales forecasts compared with using sales history alone?
 
-## Matched comparison and historical predictors
+Use FreshRetailNet-50K for supervised regression of next-day normalized recorded `sale_amount`, keyed by `(store_id, product_id, dt)` where `dt` is the target date. Recorded sales can be lower than underlying customer demand when products are unavailable. We do not estimate unobserved demand, conduct causal inference, assume accuracy gains, or claim measured sustainability benefits.
 
-The primary comparison uses 14 days of recent history. Both conditions use the same model families, common features, eligible target keys, splits, preprocessing choices, and tuning budgets. The intended difference is the addition of historical stockout features.
+## Samples and primary population
 
-- Common predictors: sales lags 1 and 7, recent sales mean/standard deviation, known weekday, and categorical context including IDs treated as categories.
-- Added stockout predictors: past stockout hours, count/proportion of affected historical days, and last-day availability.
-- Planned common context-length comparison: 7/14/28 days. Begin eligible examples on day 29 for all conditions and lengths while keeping the original calendar split boundaries. Context comparisons remain optional later work.
-- For target day `t`, all historical predictors must use observations through `t-1` in the same series. Known calendar fields for `t` are allowed. Prior stockout days remain in input history.
-- Use an explicit predictor allowlist. Never feed baseline prediction columns, split labels, day/target-derived metadata, or the target itself into models accidentally.
-- Target-day actual sales, stock status/hourly sales, realized weather, and unverified future promotion/discount fields are prohibited predictors. Verify any proposed known-in-advance field before allowing it.
+Use **200 complete store-product series for development/debugging** and **1,000 complete series for the final experiment**. Preserve the inherited pilot, manifest and evidence unchanged. The final manifest is **NOT IMPLEMENTED**; use the same final selection across model families and feature conditions. Keep pilot and final outputs separate and versioned.
 
-Exact feature names, rolling statistics conventions, category handling, and missing-value rules must be agreed and documented in the next contract task; no feature producer exists yet.
+Use a fixed reproducible selection procedure. Proposed default seed: **245**; no different approved final seed was found. Recommended requirements: seek reasonable store/product/historical-stockout coverage; stratify stockout activity using training-period information only; never select/exclude based on validation/test outcomes; document algorithm, completeness/quality rules, source revision, coverage and provenance; save a versioned manifest. Document retrospective availability selection when assessing completeness across 90 days. A 1,000-series sample does not guarantee representativeness.
 
-## Retrospective target eligibility
+**Primary population: all eligible target dates, including stockout dates**, across training, validation and testing. Do not exclude an observation solely because `stock_hour6_22_cnt > 0`. Eligibility follows agreed history, sample and quality requirements; technical quality/missingness handling remains draft. Build history before applying the shared target mask, retaining prior stockout days. Log exclusions/counts by split and reason, with documented handling of overlapping filters.
 
-Planned primary train, validation, and test targets have zero reported stockout hours during 06:00–22:00. Independently confirm field semantics, interval boundaries, and hourly-array indexing against source documentation and local values before implementing this rule. The publisher's data card describes `stock_hour6_22_cnt` as an out-of-stock-hour count; that description alone does not constitute the project's formal local consistency/indexing audit.
+**Secondary test evaluation:** fully stocked target dates and target dates with stockouts, labeled retrospectively after prediction. These are subgroups of the same predictions, not different targets or separately trained models. Target-day stockout metadata stays outside every predictor allowlist. Precise count semantics, business-hour endpoints and hourly indexing require v2 verification; no parser rule is approved here.
 
-Target-day availability is retrospective eligibility metadata only and must be retained separately from predictors. Do not remove prior stockout days from the input history. Report counts removed by each history, availability, missingness, or other eligibility filter, by split, including overlapping-filter handling. Both feature conditions must use exactly the same final eligible target keys. Resulting eligible row counts remain unknown; setup checked only the inherited split counts.
+The superseded stockout-free policy removed approximately **43.16%** of candidate targets in the prior eligibility audit. This is historical filter evidence, not an active preprocessing requirement or a redesigned experiment result.
 
-## Fitting, tuning, and test discipline
+## Primary predictors and timing
 
-- Fit preprocessing on training rows only. Treat IDs as categorical variables, not numeric magnitudes.
-- Core models: linear regression and decision-tree regression. Ridge is allowed if covered in the course. Random forest is optional after course-fit confirmation. No CNN/RNN/LSTM/deep learning or unrelated models added to inflate scope.
-- Select hyperparameters on validation only, with equal budgets across feature conditions. Freeze features, eligibility, models, metrics, and parameters before new model test evaluation.
-- Daily walk-forward features may use prior observed validation/test days. Do not use future data or refit model/preprocessing parameters on those periods.
-- Apply nonnegative predictions consistently across all compared models/baselines, document the rule, and preserve prediction provenance.
+Primary maximum lookback: **14 days**. Transform within each chronologically ordered store-product series. For target date `t`, historical predictors use dates strictly before `t`; previous `w`-day means/proportions use `t-w` through `t-1`. Known target-date calendar features are allowed. Earlier observed validation/test dates may supply history for later predictions without parameter refitting.
 
-## Baselines and evaluation
+| Condition | Approved conceptual predictors |
+| --- | --- |
+| `sales_only` | Sales lags 1, 2, 3, 7, 14; previous 7-day and 14-day mean recorded sales; day of week; weekend indicator |
+| `stockout_aware` | Every sales-only predictor plus previous-day stockout hours; previous 7-day and 14-day mean stockout hours; previous 7-day and 14-day proportion of days with stockouts |
 
-Existing implemented baselines are persistence (yesterday's sales) and the mean of the preceding seven days. Their inherited metrics are in `results/baselines_DELTA/inherited/baseline_metrics.csv`, using all 3,000 rows per evaluation split; these have not been independently reproduced. Recompute them later on **exactly the matched eligible evaluation rows** and save new results separately.
+Both conditions share identical keys, actuals, splits and common predictors. Use explicit finalized allowlists. Store/product IDs are keys, not automatically approved predictors. Current/future sales or stockouts, baseline predictions and split labels cannot be predictors. Additional weather, discount, promotion, holiday or categorical predictors require an explicit protocol amendment. Optional 7/14/28-day sensitivity comparisons are not required core work and must not delay primary targets to day 29; any sensitivity population needs a documented comparison policy.
 
-Planned, not implemented: lag-7 same-weekday sales, and a recent mean over stocked historical dates with ordinary historical mean fallback. Define the window and empty-history fallback details before implementation.
+## Chronological splits and fitting
 
-For actual `y` and consistently nonnegative prediction `p`, report:
+Retain the 90-day project horizon:
 
-- MAE: mean of `abs(p - y)`.
-- RMSE: square root of mean of `(p - y)^2`.
-- Signed bias: mean of `p - y` (positive means overprediction).
-- Mean underprediction: mean of `max(y - p, 0)` over all evaluated rows.
-- Mean overprediction: mean of `max(p - y, 0)` over all evaluated rows.
+| Split | Days | Established calendar | Projected final candidate targets |
+| --- | --- | --- | ---: |
+| Train | 1 to 60 | 2024-03-28 to 2024-05-26 | 46,000 |
+| Validation | 61 to 75 | 2024-05-27 to 2024-06-10 | 15,000 |
+| Test | 76 to 90 | 2024-06-11 to 2024-06-25 | 15,000 |
 
-Report overall, per-series, and store-level results, plus strata with/without historical stockouts using an explicitly agreed historical window. Course-appropriate additional metrics require limitations; avoid undefined percentage errors on zero sales. Use paired store-clustered uncertainty if enough stores exist, documenting the resampling unit and adequacy; daily rows are not independent replicates. No uncertainty estimates have been computed in setup.
+With 14 prior days, candidate targets start on **day 15**. These **PROJECTED**, ungenerated counts assume exactly 1,000 complete 90-day series with no additional quality exclusions: **76,000 total**. Inherited pilot source counts 12,000/3,000/3,000 describe rows before history eligibility, not final observations.
 
-The proposal's pilot goal is at least 10% lower MAE from stockout features with no greater mean underprediction. This is a target, not an achieved outcome or a reason to tune on test. Report null and negative findings honestly.
+Fit preprocessing on training only; tune on validation only. Document equal per-condition tuning budgets/policy within each applicable model family. Freeze actual validation selections, source/bundle/contract revisions and parameters before new test evaluation. Never use test results to select sample, features, models or parameters. Do not refit preprocessing/models on validation/test without an approved amendment. Exact preprocessing, settings and prediction postprocessing (including any nonnegative clipping) remain contract decisions; apply agreed rules consistently and preserve provenance.
 
-## Disclosed limitations and deviations
+## Models and baselines
 
-1. The inherited pilot required completeness over all 90 days, whereas the proposal intended training-only selection. This is retrospective availability selection and limits generalization; it is not proof of target leakage. Preserve the actual manifest. An optional training-only-selection sensitivity study would need its own explicit version and scope.
-2. Original baseline test scores have already been seen. Do not claim a pristine unseen test. Freeze later choices before any new model test evaluation and disclose prior exposure.
-3. The full raw-data pipeline and experiment-wide leakage checks have not been independently rerun. Static import checks are narrower evidence. The raw local export is smaller than the published dataset.
-4. Stockout-free target evaluation is retrospective and changes the evaluated population. It does not identify latent demand on censored days or establish food-waste reduction.
+- **Required core:** Linear Regression (DEVGRU), Decision Tree Regression (SAS).
+- **Approved extensions:** Ridge Regression (DEVGRU), optional Random Forest Regression (SAS). These are not prohibited or awaiting course-fit approval in this design; implementation remains pending.
+- **Required baselines:** previous-day recorded sales (`persistence`), preceding 7-day mean recorded sales (`recent_avg_7`), owned by DELTA.
 
-## Proposed handoff contract — agreement pending
+Each applicable learned model compares both feature conditions on matched observations under a documented tuning policy. Baselines use the same evaluation population as common references. Precise grids/settings must be finalized in the implementation contract; no selected settings or gains are claimed. Other historical baseline ideas are outside required core work. No deep learning or scope inflation.
 
-Before modeling, agree on a prediction record with unique `(store_id, product_id, dt, model, feature_set, split)`, plus actual value, prediction, and run identifier. Multiple runs need separate versioned output files/run namespaces so uniqueness remains meaningful. Specify date and ID types and allowed split/feature-set values.
+## Evaluation
 
-Keep eligible target keys, filter reasons, feature definitions, input hashes, timing provenance, preprocessing/tuning decisions, and run metadata separate from predictor inputs. Retain enough lineage to match predictions to identical targets and explain every exclusion. Imported baseline predictions use their historical schema and have no `feature_set`/run ID; preserve them rather than silently rewriting them to the proposed contract.
+For actual `y` and prediction `p`, primary metric is **MAE = mean(abs(p-y))**. Secondary metrics: **RMSE = sqrt(mean((p-y)^2))** and **signed bias = mean(p-y)**; positive bias means overprediction.
 
-No model-output producers or feature/eligibility implementation are authorized by setup. The next bounded technical task is inspection and contract freezing only.
+Where practical, report relative MAE improvement `100 * (MAE_sales_only - MAE_stockout_aware) / MAE_sales_only` (undefined for zero denominator), test subgroup errors for stocked/stockout target dates, and under/overprediction behavior. Mean underprediction is `mean(max(y-p,0))`; mean overprediction is `mean(max(p-y,0))`, each over all evaluated rows. Report denominators and empty groups honestly. Series/store summaries can supplement the overall comparison.
 
-## Workspace ownership update
+Use identical evaluation keys and actuals across conditions, model families and baselines. Provide appropriate paired uncertainty where practical, acknowledging dependence within stores/series and across dates; resampling units, adequacy and settings remain draft. Daily rows are not independent replicates. Report null or worse performance honestly.
 
-The user-authorized active team is DELTA (data/shared features/baselines), DEVGRU (linear/ridge), and SAS (tree/evaluation/audit/integration), with identities in `context.md`. This replaces historical task ownership without altering scientific choices or claiming completed work. The requested codename folders/configs are organization only; the handoff schemas remain draft and stockout semantics/eligibility still require verification. See [current responsibilities](team_responsibilities.md) and [interfaces](interfaces.md).
+## Central pipeline, limitations and implementation gate
+
+DELTA is the authoritative data/feature producer. DEVGRU and SAS consume approved versioned outputs; model owners must not independently redefine targets, samples, eligibility, history, splits, shared evaluation keys or metrics. All predictions follow one group-approved schema; see [interfaces](interfaces.md). All three share scientific decisions, final integration, review and submissions; ownership is not contribution credit.
+
+The historical pilot used all-90-day completeness rather than the earlier training-only intention. Disclose retrospective availability selection and document the final algorithm. Baseline test results have already been seen: the examined holdout is not pristine confirmatory evidence, including when reused within a larger sample. Raw export lineage, environment/runtime compatibility and full leakage/producer checks remain pending. Historical scores are not final v2 results. Finalize and verify the remaining draft technical details before shared implementation; real runs additionally require DELTA's validated bundle and frozen validation choices.

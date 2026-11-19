@@ -1,0 +1,24 @@
+# Active V2 metadata registration, not a producer schema or runtime implementation.
+protocol_version: '2.0'
+contract_version: '2.0-draft'
+scientific_status: approved
+technical_contract_status: draft
+contract_frozen: false
+implementation_verified: false
+authority: docs/experiment_protocol.md
+interfaces: docs/interfaces.md
+metadata_files:
+  dataset: configs/dataset.yaml
+  experiments: configs/experiments.yaml
+  models: configs/models.yaml
+historical_evidence: docs/history/contract_v1
+initial_validation_parameters_frozen: false
+new_model_test_evaluation_allowed: false
+pending:
+  - raw_provenance_and_environment_compatibility
+  - v2_stockout_semantics_verification
+  - final_sampling_algorithm_and_manifest_coverage
+  - exact_schemas_encodings_and_quality_rules
+  - preprocessing_and_prediction_postprocessing
+  - model_settings_and_validation_tuning_grids
+  - dependence_aware_uncertainty_procedure

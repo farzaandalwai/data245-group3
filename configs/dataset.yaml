@@ -1,16 +1,44 @@
-# Fixed inputs and paths, not a data-acquisition or feature-generation command.
+# Metadata only; not consumed by an ML producer. Existing path keys support layout checks.
 layout_version: 2
 owner: DELTA
+protocol_version: '2.0'
+scientific_status: approved
+technical_contract_status: draft
 pilot: data/processed/pilot_200_series.csv
 manifest: data/manifests/pilot_series_manifest.csv
 exclusions: data/manifests/excluded_series.csv
 raw: data/raw/freshretail.csv
 original_archive: archive/original_pilot
 import_manifest: docs/handoff/import_manifest.json
+dataset: FreshRetailNet-50K
 key: [store_id, product_id, dt]
 target: sale_amount
+target_definition: next-day normalized recorded sales, not latent demand
+forecast_horizon_days: 1
 seed: 245
 pilot_series: 200
 pilot_rows: 18000
+pilot_purpose: development_debugging
+pilot_evidence_status: historical_preserve_unchanged
+final_sample:
+  series: 1000
+  complete_series_required: true
+  status: not_generated
+  manifest: null
+  proposed_seed: 245
+  seed_status: proposed_default
+  fixed_reproducible_selection_required: true
+  same_sample_across_models_and_conditions: true
+  recommended_requirements:
+    - seek_store_product_and_stockout_activity_coverage
+    - stratify_stockout_activity_using_training_period_only
+    - never_select_on_validation_or_test_outcomes
+    - document_algorithm_completeness_rules_and_coverage
+    - save_versioned_manifest_and_provenance
+  representativeness_guaranteed: false
 raw_downloaded: false
+raw_provenance_status: pending_verification
 stockout_semantics_verified: false
+stockout_semantics_status: pending_v2_verification_preserve_historical_v1_audit
+environment_compatibility: pending_verification
+historical_stockout_evidence: docs/history/contract_v1/docs/contract_audit.json

@@ -1,26 +1,20 @@
-# Starting or resuming work
+# Reusable cross-tool startup prompt
 
-**You do not need to paste this file into every chat.** Clone the repository once into your own folder, open that folder as the project in Codex, and send a short task request. Each human uses a separate clone; concurrent sessions on one computer use separate worktrees.
-
-Codex loads the root [AGENTS.md](AGENTS.md) as project guidance. That file directs it to inspect Git state, fetch origin, read the latest shared/local context, verify identity, and check for overlapping work at the start of a task. See the [official OpenAI documentation](https://learn.chatgpt.com/docs/agent-configuration/agents-md) for instruction discovery. `starter_prompt.md` has no special automatic-loading role.
-
-## What to type
-
-- First session or no assigned task: **“Get me oriented.”** Codex should summarize completed/pending work and suggest a bounded task without starting remaining experiments.
-- Returning to an existing task: **“Continue my task.”** Codex should inspect current state and resume only when the recorded owner/branch/task is unambiguous. Otherwise it should help clarify the next task.
-- Starting new work: state the bounded task in an ordinary sentence, such as **“Review the documented eligibility contract and list unresolved decisions; do not implement it yet.”**
-
-The repository rules supply the repeated collaboration/protocol instructions. The short human message supplies the task. Previously agreed tasks can be recovered from the current chat and recorded branch/context/issue state; an academic role alone is not authorization to run every remaining experiment.
-
-Active owners use DELTA, DEVGRU, and SAS; the identity map is in [context.md](context.md). See [team responsibilities](docs/team_responsibilities.md) for owned paths and [interfaces](docs/interfaces.md) for parallel-development handoffs and real-run dependencies. New task branches use `<codename>/<task>`; preserve the original authorship recorded in provenance.
-
-## Optional fallback
-
-If a session appears to have missed the project guidance, first confirm that the actual clone is open as the project, then start a new chat there. You can also send this short diagnostic request:
+Root [AGENTS.md](AGENTS.md) is the common repository guidance. This optional prompt can be pasted into Codex, Copilot, Claude or another coding assistant; it is not a second protocol.
 
 ```text
-Show which AGENTS.md instructions apply, read the latest shared context,
-and get me oriented. Do not change files or run experiments.
+Handle only my bounded request. Inspect Git status, branch, remotes, recent history,
+and fetched origin/main; compare local/shared state and check overlapping issues/PRs.
+Do not overwrite or merge unrelated work.
+Read AGENTS.md, context.md, docs/experiment_protocol.md, docs/interfaces.md,
+docs/team_responsibilities.md and the relevant owner folder README.
+Summarize the approved design and actual implementation status; distinguish
+approved science, draft contracts, pending verification and historical evidence.
+Identify my workstream, owner and dependencies. Flag conflicts or missing technical
+decisions before implementation. Follow the common document hierarchy; historical
+handoffs and old contracts cannot override the approved protocol.
+Make only requested changes; do not start experiments from an orientation request.
+My bounded task is: [describe task and constraints].
 ```
 
-No additional hook, scheduled automation, or service is needed for this workflow. Automatic instruction loading supplies guidance when Codex starts work; it does not synchronize uncommitted changes, merge PRs, or start tasks without a message.
+"Get me oriented" requests orientation only. "Continue my task" resumes only an unambiguous recorded task after checking current state. Separate humans use separate clones; concurrent implementation sessions use separate worktrees and task branches under the collaboration rules. Explicit task constraints, including requests for uncommitted current-tree edits, take precedence.

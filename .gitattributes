@@ -7,3 +7,6 @@
 /docs/handoff/README.original.md -text
 /docs/handoff/README.utf8.md -text
 /docs/prompts/DATA245_Codex_Setup_Prompt.md -text
+
+# Preserve exact imported V1 evidence and its lock across Windows checkouts.
+/docs/history/contract_v1/** -text

@@ -1,56 +1,46 @@
 # Shared project context
 
-Updated: **2026-11-18, America/Los_Angeles**. This is orientation, not live shared memory or a work lock. Verify code/artifacts, issues/PRs, and Git history after fetching.
+Updated **2026-11-19, America/Los_Angeles**. Orientation/handoff only, not live shared memory or a lock. Fetch and compare current Git/issue/PR state at startup.
 
-## This is us — active owner mapping
+## Active identity and ownership
 
-The user explicitly confirmed only three active contributors and supplied these codenames:
+- **DELTA - Timothy Tran (Tim)**; confirmed GitHub `Timothytran109`. Central dataset/data contract, raw validation, preparation, pilot/final sampling, splits, shared sales/stockout features, manifests, persistence/7-day baselines and provenance/preprocessing validation.
+- **DEVGRU - Shoury**, named Shoury Ambarish Parab in the historical handoff. Linear Regression and approved Ridge extension, model training/tuning and standardized predictions.
+- **SAS - Farzaan Dalwai**; confirmed GitHub `farzaandalwai`. Decision Tree, optional approved Random Forest, shared evaluation/comparison, leakage/integration checks, figures and summaries.
 
-- **DELTA = Timothy Tran (Tim)**; supplied GitHub account `timothytran109` (canonical case `Timothytran109`). Own data preparation, the shared sales-only/stockout-aware feature bundle, and baselines.
-- **DEVGRU = Shoury / Shourya**, named Shoury Ambarish Parab in the historical handoff. Own linear regression and course-approved ridge.
-- **SAS = Farzaan Dalwai (you; also written Farzan in the request)**; authenticated GitHub account verified as `farzaandalwai`. Own decision tree, optional course-approved random forest, common evaluation, formal leakage audit, and integration.
+All three share scientific decisions, review, integration and final submissions. Folder ownership is not completed contribution credit. Historical five-member assignments retain attribution; Mansi/Denisha are not active owners. `shoddy16` has an unconfirmed full-name mapping; do not infer identity from Git settings or account count.
 
-Use DELTA/DEVGRU/SAS in active folder/branch/ownership labels. Retain original real-name authorship in imported sources and provenance. `shoddy16` has write access but its real-name/codename mapping remains unconfirmed; do not infer it from the three-account roster. Mansi and Denisha appear only in the historical five-person handoff; they are not active owners in the current user-authorized plan. This plan does not claim each teammate has personally reviewed or completed their future assignment.
+## Current bounded reconciliation task and Git state
 
-## Current bounded task and integration state
+Owner: DELTA / authenticated GitHub `Timothytran109` (recheck live identity at task startup). Actual inspected state differs from the supplied assumption: local `main` at `35bfa71`, V2 edits still uncommitted, two commits behind fetched `origin/main` at `1939586`, no MERGE_HEAD or unmerged index entries. No new commit, branch, merge, staging or push was performed. The initial 35 changed/new files were backed up outside the repository before reconciliation.
 
-Owner/requester: SAS. Branch: `SAS/three-person-layout`, started from current `origin/main` and retaining the automatic-startup doc improvement from PR #1. Scope: adapt the proposed workspace structure to these three owners, archive originals unchanged, relocate working inputs/results and adjust legacy paths, preserve all collaboration records, and document parallel work/dependencies. No experiments are authorized by this migration.
+Scope: preserve remote V1 validation/provenance bytes, register active V2 metadata, adapt static tests/helpers and current guidance. Acceptance: V2 scientific invariants pass, V1 audit/lock reproduce separately, originals unchanged, no ML/data generation, and an honest Git handoff. Exact source copies and manifest live under `docs/history/contract_v1/`; active `configs/contract.yaml` is a metadata aggregator with DRAFT technical status, not the old scientific authority or an implemented producer schema.
 
-Acceptance: useful owner-specific folders/config metadata, exact codename mapping, original-byte archive and unchanged canonical data/evidence, safe reproduction output paths, passing static/schema/layout checks, and one reviewable migration PR. PR #1 is the known overlapping predecessor; this migration retains its startup improvement and replaces that PR without merging main. This branch's restructuring is **pending human integration into main**; the integrated main snapshot at task start contains only the original bootstrap. Never describe unmerged layout work as already on main.
+Semantic reconciliation is complete in the working tree; Git ancestry integration is not. PR #2/layout is merged locally, PR #3/V1 is merged remotely. Preserve remote attribution records (copied exactly in historical evidence) and their valid integration corrections during the later Git merge. See [reconciliation record](docs/V2_RECONCILIATION.md) for files/checks/limitations. New tests/helpers are static validation only, not ML producer/evaluator implementations.
 
-Migration verification: `python3 scripts/verify_setup.py` passed (ten original hashes, unchanged canonical data/evidence, syntax/JSON, schemas/manifest/calendar/splits, Markdown paths and ignore rules); `python3 -m unittest discover -s tests -v` passed all three path/config/ownership tests. No raw file or generated experiment is present. See `docs/structure_migration.md` for scope and runtime limits.
+## Approved science and source of truth
 
-## Fixed scientific design
+Goal: test incremental value of historical stockouts for next-day normalized recorded `sale_amount`, not latent-demand estimation or causal inference. Approved v2 uses all eligible target dates including stockouts; secondary test subgroups are fully stocked/stockout target dates, labeled after prediction. Target-day stockouts are never predictors.
 
-Question: do historical stockout features improve next-day recorded normalized `sale_amount` beyond recent sales history? Preserve the seed-245 manifest of 200 series, 18,000 rows, 2024-03-28 through 2024-06-25. Train days 1–60 (12,000 rows), validation 61–75 (3,000), test 76–90 (3,000), before lag/eligibility filtering. Primary history 14 days; planned common 7/14/28 comparison starts targets on day 29. Planned zero-stockout targets require semantics/indexing confirmation first. Predictors use through t-1 except known calendar; target-day availability is eligibility metadata only. Explicit allowlists, matched keys/budgets, train-only preprocessing, validation-only tuning, and a freeze before new model test evaluation remain required. See `docs/experiment_protocol.md`.
+Development: 200 complete series, preserving inherited sample. Final: 1,000 complete series, manifest not generated; fixed reproducible algorithm, proposed seed 245, training-only stockout stratification and no validation/test outcome selection. Primary maximum history 14 days, candidate targets day 15; splits remain days 1 to 60/61 to 75/76 to 90. Final counts 46,000/15,000/15,000 are projections only.
 
-The pilot used all-90-day completeness rather than the proposal's training-only selection intention; preserve/disclose that availability-selection limitation. Baseline test scores have already been seen. Recorded sales are not unrestricted latent demand; sustainability benefits remain unmeasured.
+Core Linear Regression/Decision Tree; approved Ridge/optional Random Forest; required persistence/7-day baselines. MAE primary, RMSE and mean(prediction-actual) bias secondary. Conditions share keys/targets/common features. DELTA owns the sole shared producer. Exact feature concepts and all scientific rules live in [experiment_protocol.md](docs/experiment_protocol.md), not this summary.
 
-## What exists and what is pending
+Read in precedence order: [protocol](docs/experiment_protocol.md), [interfaces](docs/interfaces.md), [responsibilities](docs/team_responsibilities.md), `configs/*.yaml`, this context, [experiment log](docs/experiment_log.md), workstream READMEs; archive is historical only. [AGENTS.md](AGENTS.md) governs workflow; Copilot points to it. Flag contradictions instead of silently choosing another methodology.
 
-- Ten downloaded originals are byte-identical under `archive/original_pilot/`; source URLs/IDs/times/bytes/hashes, original authorship, and initial/current destinations are in `docs/provenance.md` and `docs/handoff/import_manifest.json`.
-- Shared working input: `data/processed/pilot_200_series.csv`; canonical manifest/exclusions: `data/manifests/`; inherited results: `results/baselines_DELTA/inherited/`. These working data/evidence bytes are unchanged.
-- Adapted legacy code: `src/data_preprocessing_DELTA/`; working notebook: `notebooks/DELTA_data/`. Raw input is now `data/raw/freshretail.csv`. Reproduction outputs go to separate ignored directories, not canonical inputs/evidence. The working notebook outputs/counters were cleared; originals retain historical outputs. Nothing was rerun.
-- The raw CSV remains absent by design (323,577,557 bytes in prior Drive metadata); no raw hash exists. The original proposal/intermediate report and professor starter code remain unavailable as separate imports.
-- Raw-export audit counts and baseline scores remain inherited/unreproduced. Structural checks are narrower evidence.
-- Configs and component READMEs describe planned work, not implementations. Feature/eligibility producers, model adapters, evaluator, formal leakage audit, and real feature bundle remain pending. Exact allowlists/statistics/stockout semantics must still be frozen; `contract_frozen: false` is intentional.
+## Existing versus pending evidence
 
-## Owner status — update your own section
+**HISTORICAL:** ten originals under `archive/original_pilot/`, canonical `data/processed/pilot_200_series.csv` (200 series/18,000 rows), `data/manifests/`, inherited results under `results/baselines_DELTA/inherited/`. Original attribution/hashes: [provenance](docs/provenance.md). Legacy scripts/notebook have adapted paths and separate reproduction destinations; they have not been rerun by this task.
 
-**DELTA:** inherited preparation/pilot/baselines exist. Future task: verify data/stockout semantics with SAS, then produce the shared feature bundle and matched baseline predictions after contract approval. No new implementation/run completed by this migration.
+**PRESERVED AND REPRODUCED:** the exact historical v1 source/pilot audit and frozen definitions are isolated under `docs/history/contract_v1/`. Its claims are bounded historical evidence, not v2 producer validation or new model results. The superseded stockout-free filter removed approximately 43.16% of candidates; it is not active eligibility.
 
-**DEVGRU:** linear/ridge adapters and validation work pending. Can develop against an agreed labeled schema fixture after the interface review; real paired runs require DELTA's verified frozen bundle. Ridge requires course fit.
+**NOT IMPLEMENTED:** v2 bundle, final 1,000-series sample, model adapters/runs, evaluator, final uncertainty/results and full leakage audit. Raw export remains absent/unhashed; full export lineage remains unverified. Missing regenerated artifacts are expected, not defects.
 
-**SAS:** tree/evaluator/audit work pending. Can develop adapters/key/metric tests against labeled fixtures after the interface review. Final comparisons require accepted predictions; new model test evaluation also requires frozen protocol and validation choices. Random forest stays optional.
+## Next cross-team dependencies
 
-## How we avoid waiting unnecessarily
+1. Preserve/review the current working tree on a task branch, then integrate fetched main ancestry in a separately authorized Git operation, resolving overlaps against the reconciled V2 tree. No merge is currently in progress.
+2. Jointly finalize the **DRAFT CONTRACT**: stockout-hour semantics/indexing verification for v2, final reproducible sampling/coverage, exact schemas/encodings, quality/missingness handling, preprocessing, prediction policy, model/tuning settings and uncertainty procedure. Science is approved; these are technical details.
+3. DELTA implements/validates the centralized shared bundle and matched baselines. DEVGRU/SAS implement owned consumers against the same reviewed contract; agreed labeled fixtures can support development. Real paired runs wait for the same verified bundle.
+4. Record validation selections before new test evaluation; final comparisons need accepted prediction files. Prior baseline test scores were seen; reused holdout is not pristine. Preserve retrospective 90-day completeness limitations and unmeasured sustainability claims.
 
-Everyone can implement their owned component, commit/push their own task branch, and open PRs independently after the shared interface review. Use common versioned inputs/outputs rather than calling another owner's notebook. A real scientific dependency remains: model runs need the same verified DELTA feature bundle; final evaluation needs accepted predictions. Fixtures are development tools, never research findings. No fixture was generated by migration. Detailed handoffs are in `docs/interfaces.md` and `docs/team_responsibilities.md`.
-
-Shared configs/protocol/dependency changes require coordination. Each substantive task commit updates this context and applicable contribution/AI records; edit owner sections narrowly and resolve conflicts semantically. Merge one reviewed PR at a time; dependent sessions fetch/reread afterwards. Each human uses a separate clone; concurrent sessions need separate worktrees. Automatic `AGENTS.md` guidance means no repeated starter-prompt pasting is needed; a short task/orientation/resume message is enough.
-
-## Access, limitations, and next action
-
-Private repo: [farzaandalwai/data245-group3](https://github.com/farzaandalwai/data245-group3). At the last verified setup readback both `shoddy16` and `Timothytran109` had accepted write access without admin access. Recheck live state before access claims. GitHub rejected branch protection with a plan-level 403; PR review/one approval/no force pushes are conventions, not enforced rules. No plan/visibility change was made.
-
-First integrate the reviewed layout/startup changes, then freeze the shared feature/eligibility/prediction contract as the next explicit bounded technical task. Verify exact course deadline/presentation slot in Canvas. The optional two-human tiny-doc PR coordination exercise and teammate-machine execution checks have not been performed. Individual reports/disclosures remain each person's responsibility; no report or new model experiment was created here.
+Checks for reconciliation are recorded in [the reconciliation record](docs/V2_RECONCILIATION.md); [the alignment audit](docs/REPOSITORY_CHANGE_AUDIT.md) describes the earlier documentation-only snapshot. No implementation/training/preprocessing or experiment was executed. Environment/package/model compatibility and teammate-machine validation remain pending. Course deadlines/presentation slots and personal reports/disclosures remain each student's responsibility.

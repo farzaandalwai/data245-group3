@@ -2,6 +2,8 @@
 
 Updated 2026-11-18 (America/Los_Angeles). Task ownership is not proof of completion. This record can support later individual CRediT statements, but final statements require each human's validation and evidence.
 
+Current integration note (2026-11-19): startup/layout work is merged via PR #2 (`35bfa71`); historical pending-integration labels below refer to earlier snapshots. The current documentation alignment remains local/uncommitted. Historical course-fit conditions do not override approved v2 extensions.
+
 ## Historical assignments from the original handoff
 
 - **Timothy Tran** — existing preparation, pilot, baseline work; reproduction support. The handoff explicitly states that he completed the pilot preparation/baselines, and source files/outputs are present. Setup imported and structurally checked them; full reproduction remains pending. Supplied GitHub mapping: `timothytran109` (GitHub canonical case `Timothytran109`).
@@ -14,7 +16,7 @@ Updated 2026-11-18 (America/Los_Angeles). Task ownership is not proof of complet
 
 ## Current user-authorized active allocation
 
-The exact identity map is in `context.md`. Use codenames for current workspace labels: DELTA owns data/shared features/baselines; DEVGRU owns linear/ridge; SAS owns tree/evaluation/audit/integration. The user explicitly requested this three-person split and codename mapping after setup. Mansi and Denisha are not current active owners. This records the requested plan, not personal agreement/completion evidence or additional work credit. Full-name mapping for `shoddy16` is still unconfirmed.
+The exact identity map is in `context.md`. Use codenames for current workspace labels: DELTA owns data/shared features/baselines; DEVGRU owns linear/ridge; SAS owns tree/evaluation/audit/integration. The user explicitly requested this three-person split and codename mapping after setup. Mansi and Denisha are not current active owners. The 2026-11-19 request records all three members' agreement to the current design/allocation; agreement is not completion evidence or additional work credit. Full-name mapping for `shoddy16` is still unconfirmed.
 
 ## Evidence-backed contribution log
 
@@ -44,6 +46,18 @@ Human requester: SAS / Farzaan Dalwai. User authorization: restructure to the pr
 
 Evidence: `SAS/three-person-layout` branch/PR diff, [migration record](structure_migration.md), migration manifest, exact saved request, and AI log. Verification and human-review status are recorded there. No new feature/model/evaluator/fixture/report was implemented or executed. DELTA/DEVGRU/SAS future task ownership is not credited as completed work.
 
+### 2026-11-19 - v2 documentation/configuration alignment (local, uncommitted)
+
+Requester/session identity verified through GitHub API: **Timothytran109 / DELTA / Timothy Tran**. The supplied task states all three active members agreed to the scientific design. Codex assistance synchronized active Markdown, shared AI guidance and YAML metadata, recorded the decision and preserved the exact prompt. No human implementation/validation credit is inferred from ownership or authorization.
+
+Evidence: working-tree diff, [alignment audit](REPOSITORY_CHANGE_AUDIT.md), [saved request](prompts/2026-11-19-methodology-alignment.md), AI log. Checks/results are recorded in the audit. Human review remains pending. No ML code, datasets, historical artifacts or generated results changed; no models/features implemented or experiments run. No branch, commit, push, merge or PR created. Fetched main's conflicting v1 contract still requires a separately authorized integration task.
+
 ## Future log entries
 
 For each substantive task commit record date, human contributor, bounded task, branch/PR, files/evidence, checks actually run, AI assistance, human validation, integration status, and candidate CRediT roles backed by that work. Record merge/integration separately from unmerged branch progress. Never create fake teammate commits or credit someone merely for owning a planned task.
+
+### 2026-11-19 - static V2/V1 semantic reconciliation (local, uncommitted)
+
+Human requester/session: DELTA / Timothy Tran (`Timothytran109`, authenticated mapping). Codex assistance: preserved prior working files outside checkout, imported exact remote V1 evidence/source/provenance records, registered V2 draft metadata and adapted static helpers/tests/docs. Remote SAS/Farzaan authorization and original AI contribution record remain intact in the historical snapshot; neither ownership nor automated checks imply personal student implementation or independent human review. No ML/data/model/evaluator implementation or experiment was executed.
+
+Evidence/checks: [reconciliation record](V2_RECONCILIATION.md) and [saved request](prompts/2026-11-19-v2-semantic-reconciliation.md). Original data/archive/results unchanged. Human review and Git ancestry integration remain pending; no stage/commit/merge/push was performed.

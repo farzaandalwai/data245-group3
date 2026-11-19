@@ -1,34 +1,45 @@
-# Shared handoff interfaces — draft v0
+# Shared interfaces - v2 DRAFT CONTRACT
 
-Status: workspace contract draft, not a verified feature/eligibility implementation. Paths and active ownership are established by this migration; stockout semantics/indexing, exact predictor columns/statistics, preprocessing details, filter counts, and final run schema agreement still require the next bounded review. `configs/experiments.yaml` deliberately records `contract_frozen: false`.
+The [v2 protocol](experiment_protocol.md) approves the scientific design. Minimum conceptual requirements follow; exact filenames, serialization, dtypes/encodings, missingness handling, preprocessing, tuning settings and validation procedures remain **DRAFT CONTRACT**. No v2 bundle/producer exists. `configs/experiments.yaml` retains `contract_frozen: false`.
 
-## Common source
+## Shared observation and bundle
 
-DELTA's fixed inputs are `data/processed/pilot_200_series.csv` and `data/manifests/pilot_series_manifest.csv`. Keys are `(store_id, product_id, dt)`; IDs are integer source identifiers but categorical model inputs, dates are ISO `YYYY-MM-DD`, and actual `sale_amount` is recorded normalized sales. Preserve the inherited manifest and original chronological split boundaries. The pilot's existing prediction columns and split/day metadata are not approved predictors.
+DELTA owns the authoritative producer for the 200-series development pilot and pending 1,000-series final sample. Existing pilot/manifest bytes are historical inputs, not the final sample. Proposed bundle root: `data/processed/feature_bundles/<bundle_id>/`; exact filenames require agreement.
 
-## Proposed feature bundle
+| Requirement | Existing/proposed fields and meaning |
+| --- | --- |
+| Stable observation key | `(store_id, product_id, dt)`; `dt` is ISO target date; preserve source ID identity |
+| Actual | Normalized recorded `sale_amount`; proposed modeling/prediction alias `actual`, exactly equal to source target |
+| Split | `split`: `train`, `validation`, `test`, assigned by protocol calendar |
+| Common predictors | Explicit `sales_only` allowlist below |
+| Added history | Explicit stockout allowlist below; union with common list gives `stockout_aware` |
+| Evaluation metadata | Retrospective target-day stockout count/status and stocked/stockout group, separate from model inputs; names/semantics pending |
+| Lineage | Experiment version, development/final purpose, sample manifest/hash, source revision/hash, timing provenance, eligibility/filter counts/reasons, bundle/schema version/hash |
 
-Version under `data/processed/feature_bundles/<bundle_id>/`, with immutable input/bundle hashes and acquisition instructions for other clones. No bundle exists yet.
+IDs are keys only. Source `sale_amount`, `stock_hour6_22_cnt`, `hours_stock_status`, `hours_sale`, inherited prediction columns, subgroup metadata and split/day metadata stay outside predictor allowlists. The calendar features below are the only approved target-date inputs.
 
-- One eligible target-key set, split assignment, actual values, and exclusion/filter log shared by both conditions.
-- Common feature columns and separately listed additional historical stockout columns; ordered explicit allowlists, dtypes, missingness rules, category policy, rolling-statistic conventions, and feature definitions.
-- Eligibility/target-day availability and timing provenance kept separately from predictor frames. Target-day availability must not leak through an automatic all-column selection.
-- Original/eligible counts per split and each filter, history-window identity, source hashes, schema/contract version, owner, and validation evidence.
+## Approved concepts and proposed column spellings
 
-Models consume the bundle rather than recalculate history/eligibility differently. Fit preprocessing using training rows only; model-specific transformations are documented and held matched across feature conditions. Daily features may use prior observed evaluation days without parameter refitting. Exact file names/serialization and predictor lists must be agreed before producers are implemented.
+Concepts are approved; newly introduced column spellings remain draft. Retain established compatible names:
 
-## Proposed prediction schema
+- `sales_only`: `sales_lag_1`, `sales_lag_2`, `sales_lag_3`, `sales_lag_7`, `sales_lag_14`, `sales_mean_7`, `sales_mean_14`, `weekday`, `is_weekend`.
+- Added stockout features: `stockout_hours_lag_1`, `stockout_hours_mean_7`, `stockout_hours_mean_14`, `stockout_day_fraction_7`, `stockout_day_fraction_14`.
+- `stockout_aware`: ordered union of both lists, with shared values unchanged.
 
-Columns: `store_id`, `product_id`, `dt`, `actual`, `prediction`, `model`, `feature_set`, `split`, `run_id`. The first two are source integer IDs, `dt` is ISO date, actual/prediction are finite numbers, and the remaining identifiers are strings. `feature_set` is `sales_only` or `stockout_aware`; `split` is `train`, `validation`, or `test`, with primary evaluation on validation/test. Apply the agreed nonnegative prediction policy consistently. This migration defines no producer.
+For target `t`, lag `k` reads `t-k`; each `w`-day rolling mean/proportion uses prior dates `t-w` through `t-1`, grouped/sorted by series. Retain prior stockout days in history. Exact stockout-day predicates/hour parsing require verification; no array-indexing rule is approved here. Record weekday encoding and weekend convention.
 
-Within a run, require unique `(store_id, product_id, dt, model, feature_set, split)`. Store multiple runs in separate files/directories and keep `run_id` consistent with their metadata. Both conditions for a model must predict exactly the common eligible evaluation keys with identical actuals/splits. Do not silently drop difficult rows or fill failed predictions without an agreed policy.
+One common target mask starts from day 15 and agreed sample/history/quality rules, with no exclusion solely for target-day stockout. Conditions must share identical keys, actuals and splits. All model families use the same comparison observations; baselines use the same evaluation population. Do not silently drop failures, join by row position or redefine selection in an adapter. The evaluator joins target-day subgroup metadata by key after prediction.
 
-Each run also needs model settings, train-fitted preprocessing metadata, validation selection/tuning budget, bundle/schema version and hash, code revision, date, environment, prediction policy, checks, owner, and evidence status. Save a separate run under its owner/model result directory; `results/predictions/` can hold an exchange manifest rather than divergent copies. Generated artifacts remain ignored unless explicitly reviewed for tracking.
+## Prediction exchange
 
-Imported baseline files keep their original schema (`sale_amount` as actual, no feature-set/run ID). Preserve them; future matched baseline producers must explicitly adapt to the agreed schema and write separate outputs.
+Retain proposed columns: `store_id`, `product_id`, `dt`, `actual`, `prediction`, `model`, `feature_set`, `split`, `run_id`. Exact serialization/types remain draft: preserve source integer IDs, ISO dates, finite numeric actuals/predictions, string labels. `feature_set` uses `sales_only`/`stockout_aware`; split uses the three values above. Baselines are common references; specify their label/reuse convention without implying they learn stockout effects.
 
-## Independent development and final gates
+Within a run require unique `(store_id, product_id, dt, model, feature_set, split)`. Separate run namespaces prevent collisions. Learned models emit paired conditions with exact shared evaluation keys/actuals. Outputs belong beneath owner/model result folders; a proposed `results/predictions/` exchange manifest should point to authoritative outputs. Preserve historical baseline schema/bytes (`sale_amount` actual, no feature-set/run ID); future adapters write separate outputs.
 
-DELTA builds the shared data/feature layer; DEVGRU builds linear/ridge adapters; SAS builds tree/evaluation adapters. Before real bundle delivery, use a mutually agreed labeled fixture to test interfaces. It must not be confused with the inherited pilot, real training, or evaluation evidence. No fixtures/results were generated during migration.
+Runs record experiment/protocol and technical-contract versions, development/final purpose, sample manifest/hash, feature definitions, input/bundle hashes, hyperparameters, random seed, train-fitted preprocessing, validation tuning policy/budget and selected settings, source revision, environment, prediction policy, date, owner, checks and evidence status. Freeze choices before new test evaluation. Metadata serialization and prediction postprocessing remain draft.
 
-SAS's evaluator consumes standardized predictions and bundle provenance, not other owners' notebooks. Final model comparisons wait for accepted real predictions from the same frozen bundle. New model test evaluation waits for the protocol/feature/model/metric and validation-choice freeze. Structural independence does not remove those scientific dependencies.
+## Evaluator checks and dependencies
+
+SAS's evaluator must reject missing/extra/duplicate keys, split inconsistencies, target mismatches, nonfinite predictions, incorrect model/condition coverage and incompatible experiment/sample/bundle versions. Compare to the shared expected key set rather than an inner join hiding failures. Check subgroup metadata coverage separately; never remove stockout targets to repair a primary-population comparison. Empty groups are not evaluable, not zero error. Metrics follow the protocol.
+
+The current tree registers [V2 metadata](../configs/contract.yaml) and separates [historical V1 evidence](history/contract_v1/README.md) and tests. No historical lock freezes V2. Complete semantics, exact schemas, quality rules, preprocessing, tuning/settings, prediction handling and uncertainty specification jointly; Git ancestry integration/human review also remain outstanding. Owners can then implement separately against the reviewed contract, using clearly labeled development fixtures if agreed. None are generated here. Real runs require DELTA's validated bundle; comparisons require accepted predictions; new test evaluation also requires frozen validation choices. Scientific approval is not a technical freeze or producer verification.

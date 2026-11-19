@@ -1,10 +1,16 @@
-# Ownership/status metadata. Folder existence does not mean a model is implemented.
+# Ownership/approval metadata only; no model runner consumes these settings.
+protocol_version: '2.0'
+scientific_status: approved
 prediction_contract_status: draft
 prediction_columns: [store_id, product_id, dt, actual, prediction, model, feature_set, split, run_id]
+tuning_grids_and_model_settings: pending_technical_contract
+prediction_postprocessing: pending_technical_contract
+applicable_learned_models_compare_both_feature_conditions: true
+baselines_use_same_evaluation_population: true
 models:
-  persistence: {owner: DELTA, status: inherited_unreproduced, matched_eligible_scoring: pending}
-  recent_avg_7: {owner: DELTA, status: inherited_unreproduced, matched_eligible_scoring: pending}
-  linear_regression: {owner: DEVGRU, status: not_implemented}
-  ridge_regression: {owner: DEVGRU, status: pending_course_fit_and_implementation}
-  decision_tree: {owner: SAS, status: not_implemented}
-  random_forest: {owner: SAS, status: optional_pending_course_fit}
+  persistence: {owner: DELTA, scope: required_baseline, status: inherited_unreproduced, matched_eligible_scoring: pending}
+  recent_avg_7: {owner: DELTA, scope: required_baseline, status: inherited_unreproduced, matched_eligible_scoring: pending}
+  linear_regression: {owner: DEVGRU, scope: required_core, status: not_implemented}
+  ridge_regression: {owner: DEVGRU, scope: approved_extension, status: not_implemented}
+  decision_tree: {owner: SAS, scope: required_core, status: not_implemented}
+  random_forest: {owner: SAS, scope: approved_optional_extension, status: not_implemented}

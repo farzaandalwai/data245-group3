@@ -5,3 +5,5 @@
 `data_explore.py` is a path-adapted historical downloader, guarded by `main`. It would fetch a current upstream training split, which is not proof of reproducing the smaller inherited export. It requires download dependencies beyond the minimal analysis stack; do not use it for bootstrap acquisition.
 
 Both originals are byte-identical in `archive/original_pilot/data_prep_pipeline/`. Neither working script was run during migration. Future task: validate input lineage/schema and support the shared eligibility/feature contract. Do not implement new experiments as part of a folder change.
+
+For v2, DELTA owns centralized 200-series development/1,000-series final selection, the data contract, splits, manifests and quality/provenance checks. The final manifest is not generated. Follow [the approved protocol](../../docs/experiment_protocol.md) and finalize the [draft interfaces](../../docs/interfaces.md), with V1 evidence retained separately and V2 technical details pending, before implementation. The legacy runner is not the redesigned producer.

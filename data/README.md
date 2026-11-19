@@ -3,10 +3,10 @@
 ## What is present
 
 - `processed/pilot_200_series.csv`: exact inherited 200-series, 18,000-row pilot. The 23 columns are the 19 local source columns plus `day_number`, `split`, `pred_persistence`, and `pred_recent_avg_7`. Forecast columns are artifacts, not approved predictors.
-- `manifests/pilot_series_manifest.csv`: 200 unique `(store_id, product_id)` pairs. This is the fixed sampling authority; do not regenerate it.
+- `manifests/pilot_series_manifest.csv`: 200 unique `(store_id, product_id)` pairs. This is the historical development pilot sampling authority; do not regenerate it. The approved final sample will have a separate 1,000-series manifest, not generated yet.
 - `manifests/excluded_series.csv`: one excluded 28-day series `(420, 764)` and its missing dates. These are inherited raw-export exclusion details, not a new raw audit.
 
-The pilot's `hours_sale` and `hours_stock_status` fields contain array-like text, including embedded newlines; use a CSV parser, not physical line counts or unrestricted `eval`. Parsing stockout-array semantics and the 06:00–22:00 interval remains the next technical task. Do not infer eligibility from a casual string inspection.
+The pilot's `hours_sale` and `hours_stock_status` fields contain array-like text, including embedded newlines; use a CSV parser, not physical line counts or unrestricted `eval`. Stockout-array semantics/hour indexing remain pending verification for v2; preserve the historical source/pilot audit on fetched main as narrower evidence. Do not infer subgroup parsing rules from casual string inspection. All otherwise eligible stockout target dates enter the primary comparison.
 
 Keys are `(store_id, product_id, dt)`; dates are ISO `YYYY-MM-DD`. Original split counts are train 12,000, validation 3,000, test 3,000. Baseline history columns intentionally have initial missing values; these are distinct from the inherited claim of no nulls in the 19-column raw export.
 

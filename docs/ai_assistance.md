@@ -1,5 +1,7 @@
 # AI assistance disclosure
 
+Current integration correction (2026-11-19): layout/startup changes are merged via PR #2 at `35bfa71`. Pending-integration labels in the dated historical records below describe earlier snapshots; they are not current migration status. Human technical review is a separate claim. Current v2 alignment edits are local/uncommitted.
+
 ## 2026-11-18 — setup and import
 
 - Tool: Codex desktop coding agent. Model family exposed by this session: GPT-6. Exact model variant/version: **unknown**. Do not infer a precise release identifier.
@@ -32,3 +34,18 @@ Imported Timothy Tran artifacts retain their original authorship. His earlier AI
 ## Required future updates
 
 For every substantive AI-assisted change, add date, actual tool/model if exposed (unknown otherwise), exact prompt or saved repo-relative prompt path, relevant assignment item and assistance scope, changed artifacts, checks, human validation, and branch/PR/integration state. Each student's final disclosure must reflect their own use and answer the assignment's similar-solutions/GenAI questions. No SJSU disclosure certificate was created or submitted here.
+
+## 2026-11-19 - approved methodology documentation alignment
+
+- Tool: Codex coding agent; GPT-6 family, exact model variant/version unknown. No skill was needed for repository Markdown/YAML editing.
+- Requester verified by authenticated GitHub API as Timothytran109 (DELTA). Exact supplied request preserved byte-for-byte in [the saved prompt](prompts/2026-11-19-methodology-alignment.md); earlier prompts/historical sources unchanged.
+- Assistance: inspect local repository and fetched main, read-only GitHub identity/issues/PR inspection, synchronize active scientific documentation/AI instructions/YAML metadata, preserve provenance/history and flag conflicting remote v1 contract.
+- Validation: read-only static integrity/layout tests, YAML parsing, local Markdown paths and consistency review; exact outcomes/limits in [alignment audit](REPOSITORY_CHANGE_AUDIT.md).
+- Boundaries: no ML implementation, preprocessing/training, notebook execution, new experimental output, dataset migration, branch creation, commit, push, merge or PR. Human review remains pending. Scientific approval does not imply technical interface freeze or implementation validation.
+
+## 2026-11-19 - V2 semantic reconciliation and validation
+
+- Tool: Codex, GPT-6 family; exact model version unknown. Scope authorized by [saved request](prompts/2026-11-19-v2-semantic-reconciliation.md): static contract metadata, read-only audit helpers/tests and documentation; no ML pipeline or experiment implementation.
+- Preserved initial 35 changed/new files outside checkout, then imported exact V1 source/evidence/lock/provenance bytes with SHA-256 source manifest; retained original attribution and AI records. Reused safe binary parser/endpoints, separated historical audit reproduction from active V2 checks, registered active draft metadata and corrected Git-state claims.
+- Verification: full static/layout/V2/historical test suite, existing integrity/link/syntax checker, YAML duplicate-key/consistency checks and whitespace/boundary review; results in [reconciliation record](V2_RECONCILIATION.md). No feature/data generation, notebook execution, training or scoring.
+- Actual repository state contradicted the prompt's assumed commit/merge state; no history operation or staging was performed. Human review and remote ancestry integration remain pending. Historical audit reproduction is not V2 producer verification or final experimental evidence.

@@ -1,7 +1,7 @@
 # Methodology entry point
 
-The fixed design, target, splits, features, leakage limits, metrics, test exposure, and deviations are defined once in [experiment_protocol.md](experiment_protocol.md). This file is a navigation entry point, not a second protocol or an experiment result.
+The [approved v2 protocol](experiment_protocol.md) is the scientific source of truth for the recorded-sales question, population, sample strategy, features, splits, models, metrics and limitations. It supersedes conflicting historical v1 assumptions. This file is navigation, not a second protocol or experimental result.
 
-Implementation boundaries follow [team_responsibilities.md](team_responsibilities.md); file/data contracts are drafted in [interfaces.md](interfaces.md). DELTA supplies shared data/features and baselines, DEVGRU supplies linear/ridge predictions, and SAS supplies tree predictions and common evaluation/integration. Both feature conditions must remain matched.
+Implementation boundaries are in [responsibilities](team_responsibilities.md); shared conceptual requirements and **DRAFT CONTRACT** details are in [interfaces](interfaces.md). DELTA produces the shared data/features/baselines; DEVGRU consumes them for linear/ridge and SAS for tree/optional forest plus common evaluation.
 
-At restructuring, only inherited preparation/baseline code exists. Feature producers, matched eligibility, models, evaluator, and the formal leakage audit remain pending. The [experiment log](experiment_log.md) distinguishes executed evidence from planned work. No sustainability outcome or final comparison is claimed.
+Scientific approval does not mean technical freeze or implemented functionality. The new final sample, feature bundle, model runs and evaluation remain **NOT IMPLEMENTED**. Historical pilot results and narrower audit evidence remain historical. See [context](../context.md) for remaining Git integration and technical-verification dependencies and [experiment log](experiment_log.md) for dated decisions.

@@ -170,3 +170,7 @@ No blanket license was applied to teammate code or third-party data. Import comm
 ## Authorized structure migration
 
 The user explicitly changed the active team to three and requested codename-based folders: DELTA, DEVGRU, SAS, with identities in `context.md`. Historical source authorship is unchanged. The [migration record](structure_migration.md) explains path changes and separates byte-identical originals/data from derived working code. [migration_manifest.json](handoff/migration_manifest.json) records migration-time paths, byte counts, hashes, and adaptation status. Working notebook execution state was cleared; its original outputs remain archived. No raw pipeline, feature producer, model, scoring, or new result was executed.
+
+## Preserved remote V1 contract evidence - 2026-11-19
+
+Exact source/audit/lock/script/test/freeze/prompt and original contribution/AI/provenance records from fetched commit `193958625ead844d243405729298e27d485fc0b5` are preserved under [historical V1 evidence](history/contract_v1/README.md), with source paths and SHA-256 values in its manifest. Records retain Farzaan Dalwai/SAS authorization and Codex assistance without inventing teammate implementation credit. Publisher references remain historical evidence, not a new raw-export audit or V2 semantic freeze. Active V2 metadata/tests are separate; the four-entry V1 lock is unchanged and not active authority. No original experimental evidence was modified.

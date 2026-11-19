@@ -1,0 +1,16 @@
+{
+  "status": "historical_not_active_authority",
+  "source_commit": "193958625ead844d243405729298e27d485fc0b5",
+  "files": {
+    "configs/contract.yaml": "5d9285968526d0ecfcf9031cf27490a454017a9cba0bd320f80e9bd12c0fd7c7",
+    "configs/contract.lock.json": "9e08dffb95a722a3f1be76b3b0ea53ec9b886ae6b23d1c3514c960168b8d10f9",
+    "docs/contract_audit.json": "a260847513e9ea0ccc4e2a980954ee1e13bce2f77bc7059a026d69e51bd04174",
+    "docs/contract_freeze.md": "a7e2aec3e65587978ca9973ba7c627596d6c75ec47a3d851d3e1ba3962add821",
+    "scripts/audit_contract.py": "d075a99d31e2f3eb02d75ca79ddcbbbc4f6d5ead21934fa010facb22f93303b2",
+    "tests/test_shared_contract.py": "8459d3d46264d161127136e592a5a6a2300348954fa1abcb5e1cfbe99037c461",
+    "docs/prompts/2026-11-18-merge-and-freeze.md": "b5fc976dc7400575dd2fd2ab5b1d5a72babb25e9a2d95489edb6a7594617807a",
+    "docs/contributions.md": "fc67751369c4315b94471a4542ff07978b513fa862b2ca6138a2183e758c5670",
+    "docs/ai_assistance.md": "2faeb8b209baf87fd380da0d7d481ed2994282dff82487ac963ac63ceb917fa2",
+    "docs/provenance.md": "43fa147ca49a4f6b273df3a7dba9bf8d2eb0f24db4598108e1bbf323b97b5bb2"
+  }
+}

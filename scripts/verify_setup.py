@@ -144,7 +144,7 @@ def main():
     checked_markdown = 0
     for path in ROOT.rglob("*.md"):
         relative = path.relative_to(ROOT).as_posix()
-        if relative in historical or relative.startswith("docs/prompts/") or ".git" in path.parts:
+        if relative in historical or relative.startswith(("docs/prompts/", "docs/history/contract_v1/")) or ".git" in path.parts:
             continue
         text = path.read_text(encoding="utf-8")
         require("\x00" not in text, f"NUL in Markdown: {relative}")

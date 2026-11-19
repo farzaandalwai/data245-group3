@@ -6,4 +6,5 @@ active_owners = ["DELTA", "DEVGRU", "SAS"]
 requirements_file = "requirements.txt"
 protocol_file = "docs/experiment_protocol.md"
 owner_map_file = "context.md"
-config_files = ["configs/dataset.yaml", "configs/experiments.yaml", "configs/models.yaml"]
+config_files = ["configs/dataset.yaml", "configs/experiments.yaml", "configs/models.yaml", "configs/contract.yaml"]
+contract_file = "configs/contract.yaml"

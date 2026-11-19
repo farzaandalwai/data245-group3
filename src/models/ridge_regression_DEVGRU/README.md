@@ -1,5 +1,7 @@
 # Ridge regression — DEVGRU
 
-Status: course-fit confirmation and implementation pending. Use the same shared feature-bundle and prediction contracts as linear regression, with matched eligible keys and tuning budgets across feature conditions. Fit preprocessing on training only and choose regularization on validation only.
+Status: APPROVED extension; NOT IMPLEMENTED. No further course-fit gate applies under the v2 protocol. Use the same shared feature-bundle and prediction contracts as linear regression, with matched eligible keys and tuning budgets across feature conditions. Fit preprocessing on training only and choose regularization on validation only.
 
 Write separate runs under `results/ridge_regression_DEVGRU/`. Do not add ridge results or claim coverage until the implementation is actually run and checked. Shared interfaces are in `docs/interfaces.md`.
+
+Follow the [approved v2 protocol](../../../docs/experiment_protocol.md) and [draft shared contract](../../../docs/interfaces.md). Real runs use DELTA's same verified development/final bundle and target keys, including otherwise eligible stockout target dates; subgroup labels are evaluation-only. V1 evidence/tests are now separate from active V2 checks; finalize the draft technical interface before implementation. Git ancestry integration remains pending.

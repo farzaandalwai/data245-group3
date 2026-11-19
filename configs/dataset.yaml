@@ -1,4 +1,3 @@
-# Fixed inputs and paths, not a data-acquisition or feature-generation command.
 layout_version: 2
 owner: DELTA
 pilot: data/processed/pilot_200_series.csv
@@ -7,10 +6,15 @@ exclusions: data/manifests/excluded_series.csv
 raw: data/raw/freshretail.csv
 original_archive: archive/original_pilot
 import_manifest: docs/handoff/import_manifest.json
-key: [store_id, product_id, dt]
+key:
+- store_id
+- product_id
+- dt
 target: sale_amount
 seed: 245
 pilot_series: 200
 pilot_rows: 18000
 raw_downloaded: false
-stockout_semantics_verified: false
+stockout_semantics_verified: true
+stockout_semantics_scope: publisher code and fixed local pilot only
+stockout_semantics_evidence: docs/contract_audit.json

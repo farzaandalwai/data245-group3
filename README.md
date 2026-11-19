@@ -89,9 +89,9 @@ data245-group3/
   archive/original_pilot/       # ten byte-identical handoff originals
 ```
 
-Most new component directories contain ownership/handoff guidance only. No new feature/model/evaluator is implemented. `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. Config files record the planned design and explicitly mark the feature/eligibility contract pending.
+Most new component directories contain ownership/handoff guidance only. No new feature/model/evaluator is implemented. `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. The shared definition is frozen as [contract v1.0.0](configs/contract.yaml), with a [hash lock](configs/contract.lock.json) and [source/local audit](docs/contract_freeze.md). Implementation and a real feature bundle remain pending.
 
-You can develop and push owned components in parallel after agreeing the shared interface. Real model runs need the same verified DELTA feature bundle; final comparisons need accepted predictions, and new model test evaluation waits for the freeze. See [interfaces and dependencies](docs/interfaces.md).
+You can now develop and push owned components in parallel against the frozen shared interface. Real model runs need the same verified DELTA feature bundle; final comparisons need accepted predictions, and new model test evaluation waits for a pre-test record of validation-selected settings for both conditions. See [interfaces and dependencies](docs/interfaces.md).
 
 For the migrated layout, these checks are run and reported in the [migration record](docs/structure_migration.md):
 
@@ -100,7 +100,7 @@ python3 scripts/verify_setup.py
 python3 -m unittest discover -s tests -v
 ```
 
-The layout tests require Python 3.11+ and PyYAML. Full pipeline/model/package installation remains unverified. No model training or notebook execution is part of these checks.
+The layout/contract tests require Python 3.11+ and PyYAML. The read-only `python3 scripts/audit_contract.py` command reproduces the field/eligibility summary without model fitting or scoring. Full pipeline/model/package installation remains unverified. No model training or notebook execution is part of these checks.
 
 ## Data and inherited results
 
@@ -123,7 +123,7 @@ At task start, checkpoints, and before final push: inspect status/branch/remotes
 
 Start a distinct `<codename>/<task>` branch from current main; concurrent sessions need separate worktrees. Keep changes bounded, preserve others' work, update context/contributions/AI disclosure, and push a small PR. A human integrator reviews the latest main, diff, checks, and overlaps, then merges one PR at a time. Other sessions fetch and reread context after each merge. No silent merge or force push.
 
-Suggested optional next step: two teammates independently make tiny documentation PRs, merge sequentially, then each session fetches and identifies both preserved updates from context. That human coordination check has **not** been performed. The first future technical task is to inspect stockout semantics and freeze the matched eligibility/feature contract; do not start it without a bounded assignment.
+Suggested optional next step: two teammates independently make tiny documentation PRs, merge sequentially, then each session fetches and identifies both preserved updates from context. That human coordination check has **not** been performed. The source/local field audit and contract definition freeze are complete. The next bounded implementation is DELTA’s shared feature bundle and independent value/timing/key checks; DEVGRU and SAS can build their model/evaluator adapters against v1 in parallel. No new implementation starts automatically from this README.
 
 ## Sources and rights
 

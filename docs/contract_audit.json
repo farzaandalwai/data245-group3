@@ -1,0 +1,72 @@
+{
+  "audit_scope": "fixed local 18000-row pilot only; read-only field/eligibility audit",
+  "contract_freeze_date_local": "2026-11-18 America/Los_Angeles",
+  "source_evidence": {
+    "dataset_card": "https://huggingface.co/datasets/Dingdong-Inc/FreshRetailNet-50K/blob/main/README.md",
+    "publisher_commit": "8af694a09a5a427d1d50648d348c022565a781f2",
+    "publisher_source_blob": "fc56086de90fb075913e8d053b8e0a438dd1d030",
+    "publisher_source": "https://github.com/Dingdong-Inc/frn-50k-baseline/blob/8af694a09a5a427d1d50648d348c022565a781f2/latent_demand_recovery/exp/data/generate_data.py#L61-L63"
+  },
+  "pilot_sha256": "de303b3f079b0258f15cbbcde14ab0d5e8a4bfb1f24756eb6b277e1bc7c8311f",
+  "rows_checked": 18000,
+  "series_checked": 200,
+  "stores_in_pilot": 113,
+  "stock_status_vector_length": 24,
+  "stock_status_values_observed": [
+    0,
+    1
+  ],
+  "stockout_value": 1,
+  "hour_interval": "[06:00,22:00), source array indices 6 through 21",
+  "slice_start_inclusive": 6,
+  "slice_stop_exclusive": 22,
+  "daily_count_min": 0,
+  "daily_count_max": 16,
+  "slice_6_22_count_mismatches": 0,
+  "slice_6_23_count_mismatches": 7682,
+  "static_context_columns_checked": [
+    "city_id",
+    "management_group_id",
+    "first_category_id",
+    "second_category_id",
+    "third_category_id"
+  ],
+  "series_with_context_drift": 0,
+  "filter_order": [
+    "day_number >= 29",
+    "target stock_hour6_22_cnt == 0"
+  ],
+  "splits": {
+    "train": {
+      "original": 12000,
+      "removed_history": 5600,
+      "after_history": 6400,
+      "removed_target_stockout_after_history": 2707,
+      "eligible": 3693,
+      "eligible_stores": 113,
+      "eligible_series": 198,
+      "series_with_no_eligible_targets": 2
+    },
+    "validation": {
+      "original": 3000,
+      "removed_history": 0,
+      "after_history": 3000,
+      "removed_target_stockout_after_history": 1302,
+      "eligible": 1698,
+      "eligible_stores": 113,
+      "eligible_series": 198,
+      "series_with_no_eligible_targets": 2
+    },
+    "test": {
+      "original": 3000,
+      "removed_history": 0,
+      "after_history": 3000,
+      "removed_target_stockout_after_history": 1253,
+      "eligible": 1747,
+      "eligible_stores": 113,
+      "eligible_series": 199,
+      "series_with_no_eligible_targets": 1
+    }
+  },
+  "no_feature_table_model_predictions_or_scores_produced": true
+}

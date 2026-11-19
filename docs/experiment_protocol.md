@@ -1,6 +1,6 @@
 # Fixed experiment protocol
 
-Status: documented on 2026-11-18 (America/Los_Angeles); remaining feature/model work is not implemented. The next contract task must resolve the explicitly pending semantics below before modeling. Protocol changes require an explicit, versioned decision and consistent regeneration of affected evidence.
+Status: documented on 2026-11-18 (America/Los_Angeles); remaining feature/model work is not implemented. The later [v1.0.0 freeze](contract_freeze.md) fixes exact semantics/interfaces and records source/local consistency; implementation and experiment-wide leakage verification remain pending. Protocol changes require an explicit, versioned decision and consistent regeneration of affected evidence.
 
 ## Question, target, and pilot
 
@@ -27,13 +27,13 @@ The primary comparison uses 14 days of recent history. Both conditions use the s
 - Use an explicit predictor allowlist. Never feed baseline prediction columns, split labels, day/target-derived metadata, or the target itself into models accidentally.
 - Target-day actual sales, stock status/hourly sales, realized weather, and unverified future promotion/discount fields are prohibited predictors. Verify any proposed known-in-advance field before allowing it.
 
-Exact feature names, rolling statistics conventions, category handling, and missing-value rules must be agreed and documented in the next contract task; no feature producer exists yet.
+Exact primary names, population rolling std (`ddof=0`), category handling, file schemas, error policy and tuning budgets are fixed in [configs/contract.yaml](../configs/contract.yaml) v1.0.0 and [interfaces](interfaces.md). The minimal common categorical context is store ID, product ID and known weekday; other raw hierarchy/promotion/weather fields are excluded. No feature producer exists yet.
 
 ## Retrospective target eligibility
 
-Planned primary train, validation, and test targets have zero reported stockout hours during 06:00–22:00. Independently confirm field semantics, interval boundaries, and hourly-array indexing against source documentation and local values before implementing this rule. The publisher's data card describes `stock_hour6_22_cnt` as an out-of-stock-hour count; that description alone does not constitute the project's formal local consistency/indexing audit.
+Primary train, validation, and test targets have zero reported stockout hours during [06:00,22:00). The later source/local audit confirms status 1 as out of stock and the 16-bin slice `[6:22]` against pinned publisher code and all 18,000 pilot rows (zero count mismatches). See [audit evidence](contract_freeze.md). This verifies the field convention/consistency for the fixed pilot, not raw-export lineage, annotation ground truth, or actual feature-producer correctness.
 
-Target-day availability is retrospective eligibility metadata only and must be retained separately from predictors. Do not remove prior stockout days from the input history. Report counts removed by each history, availability, missingness, or other eligibility filter, by split, including overlapping-filter handling. Both feature conditions must use exactly the same final eligible target keys. Resulting eligible row counts remain unknown; setup checked only the inherited split counts.
+Target-day availability is retrospective eligibility metadata only and must be retained separately from predictors. Do not remove prior stockout days from the input history. Report counts removed by each history, availability, missingness, or other eligibility filter, by split, including overlapping-filter handling. Both feature conditions must use exactly the same final eligible target keys. The later read-only audit gives 3,693 training, 1,698 validation, and 1,747 test targets after the fixed filters. The original setup checked only inherited split counts; no matched forecast score has been computed by the audit.
 
 ## Fitting, tuning, and test discipline
 
@@ -68,14 +68,14 @@ The proposal's pilot goal is at least 10% lower MAE from stockout features with 
 3. The full raw-data pipeline and experiment-wide leakage checks have not been independently rerun. Static import checks are narrower evidence. The raw local export is smaller than the published dataset.
 4. Stockout-free target evaluation is retrospective and changes the evaluated population. It does not identify latent demand on censored days or establish food-waste reduction.
 
-## Proposed handoff contract — agreement pending
+## Frozen handoff contract — v1.0.0
 
-Before modeling, agree on a prediction record with unique `(store_id, product_id, dt, model, feature_set, split)`, plus actual value, prediction, and run identifier. Multiple runs need separate versioned output files/run namespaces so uniqueness remains meaningful. Specify date and ID types and allowed split/feature-set values.
+The frozen prediction record requires unique `(store_id, product_id, dt, model, feature_set, split)`, plus actual value, prediction, and run identifier. Multiple runs need separate versioned output files/run namespaces so uniqueness remains meaningful. Exact date/ID types and allowed split/feature-set values are in the canonical YAML and interface guide.
 
 Keep eligible target keys, filter reasons, feature definitions, input hashes, timing provenance, preprocessing/tuning decisions, and run metadata separate from predictor inputs. Retain enough lineage to match predictions to identical targets and explain every exclusion. Imported baseline predictions use their historical schema and have no `feature_set`/run ID; preserve them rather than silently rewriting them to the proposed contract.
 
-No model-output producers or feature/eligibility implementation are authorized by setup. The next bounded technical task is inspection and contract freezing only.
+No model-output producers or feature/eligibility implementation are authorized by setup. Contract definition/source-field inspection is now complete. The next bounded task can implement and independently verify the shared bundle; this protocol document does not itself implement it.
 
 ## Workspace ownership update
 
-The user-authorized active team is DELTA (data/shared features/baselines), DEVGRU (linear/ridge), and SAS (tree/evaluation/audit/integration), with identities in `context.md`. This replaces historical task ownership without altering scientific choices or claiming completed work. The requested codename folders/configs are organization only; the handoff schemas remain draft and stockout semantics/eligibility still require verification. See [current responsibilities](team_responsibilities.md) and [interfaces](interfaces.md).
+The user-authorized active team is DELTA (data/shared features/baselines), DEVGRU (linear/ridge), and SAS (tree/evaluation/audit/integration), with identities in `context.md`. This replaces historical task ownership without altering scientific choices or claiming completed work. The requested codename folders/configs are organization only; the handoff definitions are now frozen in v1.0.0 and source/local stockout consistency is verified; actual feature/model/evaluator implementations remain pending. See [current responsibilities](team_responsibilities.md) and [interfaces](interfaces.md).

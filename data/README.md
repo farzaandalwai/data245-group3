@@ -6,7 +6,7 @@
 - `manifests/pilot_series_manifest.csv`: 200 unique `(store_id, product_id)` pairs. This is the fixed sampling authority; do not regenerate it.
 - `manifests/excluded_series.csv`: one excluded 28-day series `(420, 764)` and its missing dates. These are inherited raw-export exclusion details, not a new raw audit.
 
-The pilot's `hours_sale` and `hours_stock_status` fields contain array-like text, including embedded newlines; use a CSV parser, not physical line counts or unrestricted `eval`. Parsing stockout-array semantics and the 06:00–22:00 interval remains the next technical task. Do not infer eligibility from a casual string inspection.
+The pilot's `hours_sale` and `hours_stock_status` fields contain array-like text, including embedded newlines; use a CSV parser, not physical line counts or unrestricted `eval`. The source/local audit verified 24 binary stock entries, value 1 as out of stock, and the [06:00,22:00) interval (indices 6–21); see [contract audit](../docs/contract_freeze.md). Historical feature values and their implementation timing still need independent producer checks.
 
 Keys are `(store_id, product_id, dt)`; dates are ISO `YYYY-MM-DD`. Original split counts are train 12,000, validation 3,000, test 3,000. Baseline history columns intentionally have initial missing values; these are distinct from the inherited claim of no nulls in the 19-column raw export.
 
@@ -36,4 +36,4 @@ The small pilot, manifest, exclusions, and baseline artifacts are explicitly ret
 
 ## Current ownership and handoff
 
-DELTA owns these shared inputs, the future feature bundle, and matched baseline outputs. DEVGRU and SAS consume one verified bundle; they must not independently resample or redefine feature eligibility. Bundle layout and unresolved contract decisions are in [interfaces](../docs/interfaces.md). Config metadata in `configs/dataset.yaml` records the current canonical paths.
+DELTA owns these shared inputs, the future feature bundle, and matched baseline outputs. DEVGRU and SAS consume one verified bundle; they must not independently resample or redefine feature eligibility. Frozen bundle/eligibility/feature/prediction definitions are in [interfaces](../docs/interfaces.md) and `configs/contract.yaml` v1.0.0. The eligible train/validation/test counts are 3,693/1,698/1,747; no actual feature bundle has been produced. Config metadata in `configs/dataset.yaml` records the current canonical paths.

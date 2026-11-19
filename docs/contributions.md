@@ -32,17 +32,23 @@ AI assistance: Codex created the collaboration documentation and read-only impor
 
 Evidence: initial bootstrap diff and Git history, [setup verification](setup_verification.md), [AI assistance log](ai_assistance.md), and saved prompts. Human review/validation of this kit remains pending. Repository/invitation creation is a coordination action and does not complete the academic experimental assignments.
 
-### 2026-11-18 — automatic session-start guidance (pending integration)
+### 2026-11-18 — automatic session-start guidance (integrated through PR #2)
 
 Human requester: Farzaan Dalwai. Request: avoid repeatedly pasting the starter prompt and task boilerplate. AI assistance: Codex verified automatic `AGENTS.md` instruction discovery against official OpenAI documentation and updated `AGENTS.md`, the README, and `starter_prompt.md` so only a short task/orientation/resume request is needed. Existing context/Git/protocol checks remain required. No experimental artifact changed.
 
-Original branch: `farzaandalwai/automatic-session-start`, PR #1. The startup improvement is retained in `SAS/three-person-layout`; its predecessor PR is superseded by the combined migration PR, with human integration still pending. Evidence: the branch diff, saved prompt, and AI log. Validation: existing setup checker and targeted documentation review; exact results recorded in [AI assistance](ai_assistance.md#2026-11-18--automatic-session-start-guidance). Human review is pending; this entry does not credit a student with personal implementation or completed experimental work.
+Original branch: `farzaandalwai/automatic-session-start`, PR #1. The startup improvement is retained in `SAS/three-person-layout`; its predecessor PR is superseded by the combined migration PR, and those retained changes merged through PR #2 at the user’s explicit instruction; independent human technical validation is still pending. Evidence: the branch diff, saved prompt, and AI log. Validation: existing setup checker and targeted documentation review; exact results recorded in [AI assistance](ai_assistance.md#2026-11-18--automatic-session-start-guidance). Human review is pending; this entry does not credit a student with personal implementation or completed experimental work.
 
-### 2026-11-18 — three-owner codename workspace migration (pending integration)
+### 2026-11-18 — three-owner codename workspace migration (integrated through PR #2)
 
 Human requester: SAS / Farzaan Dalwai. User authorization: restructure to the proposed layout for three active contributors and use DELTA/DEVGRU/SAS labels with an explicit identity map. AI assistance: Codex archived originals unchanged, moved working manifest/results, adapted working legacy paths and cleared working notebook execution state, added useful component ownership/handoff/config/report guidance, documented independence/dependencies, and updated static/layout checks. Original authorship and source hashes are preserved; source path adaptations are AI-assisted migration work, not new original baseline authorship.
 
 Evidence: `SAS/three-person-layout` branch/PR diff, [migration record](structure_migration.md), migration manifest, exact saved request, and AI log. Verification and human-review status are recorded there. No new feature/model/evaluator/fixture/report was implemented or executed. DELTA/DEVGRU/SAS future task ownership is not credited as completed work.
+
+### 2026-11-18 — contract field audit and definition freeze
+
+Human requester/authorization: SAS / Farzaan Dalwai, “do it” to the proposed merge-and-freeze next steps. Codex assistance: reviewed/merged PR #2; read pinned primary sources; authored the read-only pilot stockout/eligibility audit and focused tests; specified/locked v1 feature/bundle/prediction/preprocessing/tuning/evaluation rules and updated shared docs. This is AI-assisted audit/definition work under user authorization, not a claim that SAS personally implemented a feature producer/model or that teammates independently approved the contract.
+
+Evidence: `scripts/audit_contract.py`, `docs/contract_audit.json`, `configs/contract.yaml`, `configs/contract.lock.json`, `tests/test_shared_contract.py`, [freeze record](contract_freeze.md), and actual `SAS/freeze-shared-contract` PR/Git integration state. All 18,000 local rows passed source/index consistency; eligible counts 3,693/1,698/1,747; eight layout/contract tests passed. No features/models/scoring/report were produced. Future DELTA/DEVGRU/SAS implementations and individual human validation remain separate pending contributions.
 
 ## Future log entries
 

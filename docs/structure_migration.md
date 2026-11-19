@@ -1,6 +1,6 @@
 # Three-owner workspace migration
 
-Date: 2026-11-18 (America/Los_Angeles). Owner/requester: SAS. Branch: `SAS/three-person-layout`, pending human PR integration. The user explicitly requested the proposed repository layout adapted to the three active contributors, then supplied DELTA/DEVGRU/SAS folder labels and required the identity map in `context.md`. This supersedes the old five-person active allocation while preserving its historical provenance.
+Date: 2026-11-18 (America/Los_Angeles). Owner/requester: SAS. Branch: `SAS/three-person-layout`, integrated by PR #2 as merge commit `35bfa71208d0297c72c41f00c104abed9027235b` at the user’s explicit instruction. No separate teammate approval is claimed. The user explicitly requested the proposed repository layout adapted to the three active contributors, then supplied DELTA/DEVGRU/SAS folder labels and required the identity map in `context.md`. This supersedes the old five-person active allocation while preserving its historical provenance.
 
 ## Scope and preservation
 
@@ -22,7 +22,7 @@ The active legacy script/notebook now write only to separate `reproduction` dest
 
 ## Three-person organization
 
-DELTA owns data/preparation/shared features/baselines; DEVGRU owns linear/ridge; SAS owns tree/evaluation/audit/integration. Component directories contain useful handoff/acceptance notes, not fake model implementations. Requested config files mirror current paths and planned design, with the unresolved contract explicitly marked pending. `pyproject.toml` is checked workspace metadata, not an asserted installable package. `requirements.txt` remains the dependency source, adding PyYAML for config validation without inventing pinned versions.
+DELTA owns data/preparation/shared features/baselines; DEVGRU owns linear/ridge; SAS owns tree/evaluation/audit/integration. Component directories contain useful handoff/acceptance notes, not fake model implementations. At migration time the config files mirrored paths/plans and correctly marked the contract pending. The later [contract freeze](contract_freeze.md) records the separately completed source audit and v1 definitions; this does not retroactively turn migration checks into model evidence. `pyproject.toml` is checked workspace metadata, not an asserted installable package. `requirements.txt` remains the dependency source, adding PyYAML for config validation without inventing pinned versions.
 
 The existing protocol/course/provenance/contribution/AI/prompt records, PR template, byte-preservation rules, setup checker, and automatic `AGENTS.md` startup behavior are retained. Methodology/log/responsibility/interface docs and individual report workspace guidance were added. The repository name/remote/privacy and original authorship remain the same. No feature producer, model, evaluator, fixture, final finding, or individual report was implemented by this task.
 
@@ -45,4 +45,4 @@ Recorded results: all ten original archive hashes and the unchanged canonical da
 
 Every staged path was reviewed individually: staged blobs matched local bytes, archived originals matched source hashes, and relocated/deleted old paths had the intended preserved replacements. Authored-file whitespace checks passed with inherited CRLF handled explicitly; exact saved prompts and archived sources were excluded from formatting changes. A targeted scan found no saved credentials/private keys or expiring download references. The active legacy source/notebook differences were reviewed against their archived originals and limited to documented migration changes.
 
-Full raw reproduction, notebook runtime, package installation, cross-machine operation, and multi-user coordination remain unverified. Human review and merge remain pending.
+Full raw reproduction, notebook runtime, package installation, cross-machine operation, and multi-user coordination remain unverified. PR #2 merged at the user’s direction after agent diff/check review; independent human technical validation remains pending.

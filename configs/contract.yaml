@@ -1,0 +1,399 @@
+# Frozen interface/design v1; no implementation or model result is implied.
+contract_version: 1.0.0
+status: frozen_for_implementation
+frozen_date_local: 2026-11-18 America/Los_Angeles
+authorized_by: SAS user instruction; Codex-assisted definition and audit
+implementation_verified: false
+scope: input, eligibility, feature definitions, preprocessing, tuning plan, prediction and evaluation interfaces;
+  no producers/models implemented
+owners:
+  data_features_baselines: DELTA
+  linear_ridge: DEVGRU
+  tree_evaluation_integration: SAS
+source:
+  pilot: data/processed/pilot_200_series.csv
+  pilot_sha256: de303b3f079b0258f15cbbcde14ab0d5e8a4bfb1f24756eb6b277e1bc7c8311f
+  series_manifest: data/manifests/pilot_series_manifest.csv
+  series_manifest_sha256: 8b7a5377c95e56e63ad5143cc8dc8a38ecc35032f64e2cfbbb8ae66d25519a42
+  key:
+  - store_id
+  - product_id
+  - dt
+  target: sale_amount
+  audit_report: docs/contract_audit.json
+  source_rows: 18000
+  source_series: 200
+stockout_semantics:
+  array_field: hours_stock_status
+  array_length: 24
+  stockout_value: 1
+  daily_field: stock_hour6_22_cnt
+  start_hour_inclusive: 6
+  stop_hour_exclusive: 22
+  hours_in_interval: 16
+  source_index_count_mismatches: 0
+  publisher_commit: 8af694a09a5a427d1d50648d348c022565a781f2
+eligibility:
+  first_target_day: 29
+  history_rule: 28 consecutive same-series source dates before t
+  target_stockout_hours: 0
+  sequential_filters:
+  - insufficient_28_day_history
+  - target_stockout
+  retain_stockout_days_in_input_history: true
+  additional_missing_or_invalid_values: fail, never silently drop or impute
+  same_target_keys_for_all_conditions_models_windows: true
+  counts_by_split:
+    train:
+      original: 12000
+      removed_history: 5600
+      after_history: 6400
+      removed_target_stockout_after_history: 2707
+      eligible: 3693
+      eligible_stores: 113
+      eligible_series: 198
+      series_with_no_eligible_targets: 2
+    validation:
+      original: 3000
+      removed_history: 0
+      after_history: 3000
+      removed_target_stockout_after_history: 1302
+      eligible: 1698
+      eligible_stores: 113
+      eligible_series: 198
+      series_with_no_eligible_targets: 2
+    test:
+      original: 3000
+      removed_history: 0
+      after_history: 3000
+      removed_target_stockout_after_history: 1253
+      eligible: 1747
+      eligible_stores: 113
+      eligible_series: 199
+      series_with_no_eligible_targets: 1
+  zero_eligible_series_policy: retain fixed manifest; report absent per-series metrics as not evaluable, never fabricate
+    or drop other keys
+features:
+  required_history_window: 14
+  optional_history_windows:
+  - 7
+  - 28
+  categorical_predictors:
+  - store_id
+  - product_id
+  - weekday
+  common_predictors:
+  - store_id
+  - product_id
+  - weekday
+  - sales_lag_1
+  - sales_lag_7
+  - sales_mean_14
+  - sales_std_14
+  stockout_additional_predictors:
+  - stockout_hours_lag_1
+  - stockout_hours_mean_14
+  - stockout_day_fraction_14
+  - stockout_free_lag_1
+  feature_sets:
+    sales_only:
+    - store_id
+    - product_id
+    - weekday
+    - sales_lag_1
+    - sales_lag_7
+    - sales_mean_14
+    - sales_std_14
+    stockout_aware:
+    - store_id
+    - product_id
+    - weekday
+    - sales_lag_1
+    - sales_lag_7
+    - sales_mean_14
+    - sales_std_14
+    - stockout_hours_lag_1
+    - stockout_hours_mean_14
+    - stockout_day_fraction_14
+    - stockout_free_lag_1
+  weekday_encoding: Monday=0 through Sunday=6, derived from target dt and treated as categorical
+  sales_lag_1: recorded sale_amount on t-1 in the same series
+  sales_lag_7: recorded sale_amount on t-7 in the same series
+  sales_mean_14: arithmetic mean over exactly t-14 through t-1, including stockout days
+  sales_std_14: population standard deviation (ddof=0) over exactly t-14 through t-1
+  stockout_hours_lag_1: stock_hour6_22_cnt on t-1
+  stockout_hours_mean_14: arithmetic mean of stock_hour6_22_cnt over exactly t-14 through t-1
+  stockout_day_fraction_14: count of days with stock_hour6_22_cnt>0 among t-14 through t-1, divided by 14
+  stockout_free_lag_1: 1 iff t-1 has stock_hour6_22_cnt==0 in [06:00,22:00); else 0
+  optional_window_naming: replace suffix _14 on rolling features with _7 or _28; lags/weekday/IDs unchanged; same
+    eligible keys
+  excluded_source_columns:
+  - sale_amount
+  - hours_sale
+  - hours_stock_status
+  - stock_hour6_22_cnt
+  - discount
+  - activity_flag
+  - holiday_flag
+  - precpt
+  - avg_temperature
+  - avg_humidity
+  - avg_wind_level
+  - city_id
+  - management_group_id
+  - first_category_id
+  - second_category_id
+  - third_category_id
+  - day_number
+  - split
+  - pred_persistence
+  - pred_recent_avg_7
+  excluded_note: excludes raw/unshifted source fields, target-derived metadata, and unapproved context; derived
+    past stockout predictors above are allowed
+  target_day_calendar_exception:
+  - weekday
+  no_feature_from_date_after: t-1 except target weekday and known identity keys
+  build_order: derive historical features from the full ordered same-series pilot, including stockout dates, before
+    applying the common target eligibility mask
+bundle:
+  root: data/processed/feature_bundles/<bundle_id>
+  serialization: UTF-8 CSV, LF newlines, ISO dates, decimal finite numeric values with round-trip precision; JSON
+    metadata
+  sort_order:
+  - store_id numeric ascending
+  - product_id numeric ascending
+  - dt ascending
+  required_files:
+    manifest.json: version/run/source/contract hashes, file SHA-256/bytes/rows, split/filter counts, definitions
+      and producer evidence
+    targets.csv:
+    - store_id
+    - product_id
+    - dt
+    - split
+    - actual
+    features_14.csv:
+    - store_id
+    - product_id
+    - dt
+    - weekday
+    - sales_lag_1
+    - sales_lag_7
+    - sales_mean_14
+    - sales_std_14
+    - stockout_hours_lag_1
+    - stockout_hours_mean_14
+    - stockout_day_fraction_14
+    - stockout_free_lag_1
+    eligibility.csv:
+    - store_id
+    - product_id
+    - dt
+    - split
+    - day_number
+    - history_eligible
+    - target_stockout_hours
+    - target_stockout_free
+    - eligible
+    - exclusion_reason
+    feature_provenance_14.csv:
+    - store_id
+    - product_id
+    - dt
+    - history_start_dt
+    - history_end_dt
+    - max_source_dt
+    - history_window_days
+    - history_stockout_days
+    - history_stockout_stratum
+  targets_features_provenance_rows: only eligible targets, identical unique keys; do not join by row position alone
+  eligibility_rows: all 18000 source keys, sequential first-failure reason or eligible; booleans encoded 0/1
+  provenance_dates: history_start_dt=t-14, history_end_dt=max_source_dt=t-1 for required window
+  stratum_values:
+  - history_with_stockout
+  - history_without_stockout
+  actual_definition: exact imported sale_amount, never transformed or replaced with latent demand
+  ids: CSV base-10 integers; cast allowlisted IDs to categorical strings inside train-fitted preprocessing
+  no_duplicate_header_columns: true
+  producer_acceptance: DELTA must independently verify feature values, timing/matched keys and hashes before marking
+    a real bundle verified
+preprocessing:
+  fit_rows: eligible training targets only
+  estimator_scope: one pooled estimator per model/feature_set/window; never silently switch to per-series models
+  categorical: one-hot encode store_id, product_id, weekday; fit vocabulary on training only; unknown categories
+    map to all-zero indicators without dropping target rows
+  linear_ridge_one_hot_drop: first category per field
+  tree_one_hot_drop: none
+  linear_ridge_numeric: 'StandardScaler equivalent: training mean and population std; constant feature scale=1;
+    numeric features only'
+  tree_numeric: unscaled numeric features
+  imputation: none; unexpected missing/nonfinite required values fail acceptance
+  refit_on_validation_or_test: false
+  nonnegative_predictions: max(raw_prediction,0.0), same rule for all compared models/baselines
+  applies_to: learned models only; deterministic baselines have no fitted preprocessing
+models:
+  linear_regression:
+    owner: DEVGRU
+    enabled: true
+    family: ordinary least squares with intercept
+    tuning_candidates: 1
+  decision_tree:
+    owner: SAS
+    enabled: true
+    criterion: squared_error
+    splitter: best
+    random_state: 245
+    max_features: null
+    min_samples_split: 2
+    grid:
+      max_depth:
+      - 3
+      - 5
+      - 8
+      - null
+      min_samples_leaf:
+      - 5
+      - 20
+      - 50
+    tuning_candidates_per_feature_set: 12
+    tie_break: lowest validation MAE, then shallower depth (unlimited last), then larger min_samples_leaf
+  ridge_regression:
+    owner: DEVGRU
+    enabled: false
+    gate: confirm course fit in a versioned amendment before real runs
+    proposed_alpha_grid:
+    - 0.01
+    - 0.1
+    - 1.0
+    - 10.0
+    - 100.0
+  random_forest:
+    owner: SAS
+    enabled: false
+    gate: optional future task/course fit/versioned amendment; no budget or runs authorized
+selection:
+  metric: validation row-weighted MAE after nonnegative clipping
+  same_candidate_budget_between_feature_conditions: true
+  primary_window: 14
+  test_gate: record chosen settings and code/contract/bundle hashes for both conditions before first new-model test
+    scoring; never use test scores for choices
+  initial_validation_parameters_frozen: false
+  new_model_test_evaluation_policy: requires a pre-test validation-freeze record for both conditions, approved for
+    integration by SAS; otherwise blocked
+  validation_freeze_record_fields:
+  - contract_sha256
+  - bundle_manifest_sha256
+  - model
+  - feature_sets
+  - selected_parameters_by_feature_set
+  - validation_candidate_metrics
+  - code_revision
+  - frozen_at_utc
+  - integrator
+  - history_window_days
+baselines:
+  owner: DELTA
+  required_existing:
+  - persistence
+  - recent_avg_7
+  matched_rows: exact same eligible evaluation keys and actuals as models; save new runs separately
+  planned_not_implemented:
+    lag_7: recorded sales on t-7
+    stocked_recent_avg_14: mean recorded sales among prior 14 dates with zero business-hour stockout count; if none,
+      ordinary prior-14 mean
+  new_baseline_implementation_requires_separate_task: true
+  feature_set_label: sales_only
+  reuse_as_common_reference_for_both_model_conditions: true
+  run_metadata_policy: preprocessing=not_applicable, tuning_candidates=0, fixed baseline definition as selected_parameters;
+    cite shared validation freeze before new test scoring
+predictions:
+  columns:
+  - store_id
+  - product_id
+  - dt
+  - actual
+  - prediction
+  - model
+  - feature_set
+  - split
+  - run_id
+  unique_within_run:
+  - store_id
+  - product_id
+  - dt
+  - model
+  - feature_set
+  - split
+  allowed_splits:
+  - train
+  - validation
+  - test
+  during_development: validation; training diagnostics separate; test blocked until selection freeze
+  run_root: use the explicit run_roots_by_model mapping; run_id separates feature conditions/windows
+  files:
+  - predictions.csv
+  - run_metadata.json
+  metadata_required:
+  - contract_version
+  - contract_sha256
+  - bundle_id
+  - bundle_manifest_sha256
+  - code_revision
+  - owner
+  - model
+  - feature_set
+  - history_window_days
+  - run_id
+  - created_at_utc
+  - environment
+  - preprocessing
+  - tuning_candidates
+  - selected_parameters
+  - prediction_policy
+  - verification
+  - test_gate_status
+  - validation_freeze_sha256
+  finite_nonnegative_predictions: true
+  actual_must_equal_shared_targets: true
+  missing_duplicate_or_extra_keys: fail, do not silently drop rows
+  fixture_policy: clearly label synthetic fixtures as development-only; no fixture outcome is research evidence
+  run_roots_by_model:
+    persistence: results/baselines_DELTA/persistence/<run_id>
+    recent_avg_7: results/baselines_DELTA/recent_avg_7/<run_id>
+    linear_regression: results/linear_regression_DEVGRU/<run_id>
+    ridge_regression: results/ridge_regression_DEVGRU/<run_id>
+    decision_tree: results/decision_tree_SAS/<run_id>
+    random_forest: results/random_forest_SAS/<run_id>
+  one_condition_per_run: true
+  one_history_window_per_run: true
+evaluation:
+  owner: SAS
+  primary_aggregation: row-weighted overall MAE/RMSE/bias/underprediction/overprediction
+  signed_error: prediction - actual
+  underprediction: mean(max(actual-prediction,0)) over all evaluated rows
+  overprediction: mean(max(prediction-actual,0)) over all evaluated rows
+  breakdowns:
+  - per-series (not evaluable when zero targets)
+  - per-store
+  - store-macro mean as separate summary
+  - prior-14-day history-with/without-stockout strata
+  percentage_errors: no per-row MAPE; MAE improvement undefined if sales-only MAE=0
+  paired_store_bootstrap:
+    replicates: 1000
+    seed: 245
+    minimum_stores: 20
+    interval_percentiles:
+    - 2.5
+    - 97.5
+    statistic: row-weighted MAE(stockout_aware)-MAE(sales_only), resample entire stores with replacement using identical
+      sampled stores for the paired conditions
+    quantile: linear interpolation at (n-1)*q
+    below_minimum: omit interval and state insufficient clusters
+  goal: at least 10 percent lower MAE with no greater mean underprediction; target only, not achieved
+limitations:
+- all-90-day complete-series pilot selection was retrospective
+- inherited baseline test scores already seen
+- eligibility is retrospective stockout-free-target evaluation, not latent-demand estimation
+- source semantics verified only against publisher code and fixed local pilot, not raw export or annotation ground
+  truth
+- implementation and full experiment-wide leakage audit remain pending

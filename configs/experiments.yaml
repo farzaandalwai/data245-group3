@@ -1,19 +1,49 @@
-# Planned protocol metadata only. No feature/model producer is implemented here.
-status: contract_pending
-contract_frozen: false
+status: frozen_for_implementation
+contract_frozen: true
 primary_history_days: 14
-planned_history_days: [7, 14, 28]
+planned_history_days:
+- 7
+- 14
+- 28
 first_target_day: 29
-feature_sets: [sales_only, stockout_aware]
+feature_sets:
+- sales_only
+- stockout_aware
 eligibility:
-  status: pending_stockout_semantics_and_indexing_audit
+  status: source_and_local_pilot_consistency_verified
   planned_target_stockout_hours: 0
   target_availability_is_predictor: false
   keep_stockouts_in_history: true
 splits:
-  train: {first_day: 1, last_day: 60, start: '2024-03-28', end: '2024-05-26', original_rows: 12000}
-  validation: {first_day: 61, last_day: 75, start: '2024-05-27', end: '2024-06-10', original_rows: 3000}
-  test: {first_day: 76, last_day: 90, start: '2024-06-11', end: '2024-06-25', original_rows: 3000}
-metrics: [MAE, RMSE, signed_bias, mean_underprediction, mean_overprediction]
+  train:
+    first_day: 1
+    last_day: 60
+    start: '2024-03-28'
+    end: '2024-05-26'
+    original_rows: 12000
+  validation:
+    first_day: 61
+    last_day: 75
+    start: '2024-05-27'
+    end: '2024-06-10'
+    original_rows: 3000
+  test:
+    first_day: 76
+    last_day: 90
+    start: '2024-06-11'
+    end: '2024-06-25'
+    original_rows: 3000
+metrics:
+- MAE
+- RMSE
+- signed_bias
+- mean_underprediction
+- mean_overprediction
 feature_bundle_root: data/processed/feature_bundles
-new_model_test_evaluation: blocked_until_protocol_and_validation_choices_frozen
+new_model_test_evaluation: blocked_until_validation_parameters_and_run_metadata_frozen
+contract_version: 1.0.0
+contract_file: configs/contract.yaml
+eligible_rows:
+  train: 3693
+  validation: 1698
+  test: 1747

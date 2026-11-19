@@ -1,0 +1,15 @@
+{
+  "contract_version": "1.0.0",
+  "status": "frozen_for_implementation",
+  "frozen_date_local": "2026-11-18 America/Los_Angeles",
+  "authorization_prompt": "docs/prompts/2026-11-18-merge-and-freeze.md",
+  "sha256": {
+    "configs/contract.yaml": "5d9285968526d0ecfcf9031cf27490a454017a9cba0bd320f80e9bd12c0fd7c7",
+    "docs/contract_audit.json": "a260847513e9ea0ccc4e2a980954ee1e13bce2f77bc7059a026d69e51bd04174",
+    "data/processed/pilot_200_series.csv": "de303b3f079b0258f15cbbcde14ab0d5e8a4bfb1f24756eb6b277e1bc7c8311f",
+    "data/manifests/pilot_series_manifest.csv": "8b7a5377c95e56e63ad5143cc8dc8a38ecc35032f64e2cfbbb8ae66d25519a42"
+  },
+  "implementation_verified": false,
+  "initial_validation_parameters_frozen": false,
+  "initial_new_model_test_evaluation_allowed": false
+}

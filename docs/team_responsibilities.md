@@ -22,13 +22,13 @@ Future deliverable: paired decision-tree predictions, common metric/key checks, 
 
 ## What can happen in parallel
 
-After one shared interface review, DELTA can build the real feature producer while DEVGRU builds linear-model adapters and SAS builds tree/evaluator adapters. Model/evaluator development can use clearly labeled deterministic schema fixtures; fixture scores must never be presented as research results. No fixture or new producer was created by restructuring.
+The v1.0.0 interface is now frozen at the user’s direction. DELTA can build the real feature producer while DEVGRU builds linear-model adapters and SAS builds tree/evaluator adapters against that same definition. Model/evaluator development can use clearly labeled deterministic schema fixtures; fixture scores must never be presented as research results. No fixture or new producer was created by restructuring.
 
 Everyone can commit/push their own branch and open a PR before the others finish. Components exchange versioned input/output files and metadata; do not make someone execute another person's notebook or wait for their full branch to be merged just to develop an adapter.
 
 ## Where waiting is required
 
-1. First agree on stable paths, exact data/feature/prediction schemas, target eligibility, timing, and tuning/evaluation rules. The current interface document is a draft, and stockout semantics/indexing/allowlists remain unverified.
+1. Stable paths and v1 data/feature/prediction/eligibility/timing/tuning interfaces are frozen in `configs/contract.yaml`; source/local semantics and counts are audited. Read this version before implementation, and coordinate a versioned amendment if a change is needed. This does not claim independent teammate approval or producer correctness.
 2. Real paired model/baseline runs require the same frozen verified DELTA feature bundle and target keys. New model test evaluation also waits for frozen protocol and validation choices. Existing baseline test exposure remains disclosed.
 3. Final comparisons require accepted prediction files for the relevant models. Partial validation diagnostics must be labeled partial.
 

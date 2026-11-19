@@ -1,10 +1,35 @@
-# Ownership/status metadata. Folder existence does not mean a model is implemented.
-prediction_contract_status: draft
-prediction_columns: [store_id, product_id, dt, actual, prediction, model, feature_set, split, run_id]
+prediction_contract_status: frozen_1.0.0
+prediction_columns:
+- store_id
+- product_id
+- dt
+- actual
+- prediction
+- model
+- feature_set
+- split
+- run_id
 models:
-  persistence: {owner: DELTA, status: inherited_unreproduced, matched_eligible_scoring: pending}
-  recent_avg_7: {owner: DELTA, status: inherited_unreproduced, matched_eligible_scoring: pending}
-  linear_regression: {owner: DEVGRU, status: not_implemented}
-  ridge_regression: {owner: DEVGRU, status: pending_course_fit_and_implementation}
-  decision_tree: {owner: SAS, status: not_implemented}
-  random_forest: {owner: SAS, status: optional_pending_course_fit}
+  persistence:
+    owner: DELTA
+    status: inherited_unreproduced
+    matched_eligible_scoring: pending
+  recent_avg_7:
+    owner: DELTA
+    status: inherited_unreproduced
+    matched_eligible_scoring: pending
+  linear_regression:
+    owner: DEVGRU
+    status: not_implemented
+  ridge_regression:
+    owner: DEVGRU
+    status: pending_course_fit_and_implementation
+    enabled: false
+  decision_tree:
+    owner: SAS
+    status: not_implemented
+  random_forest:
+    owner: SAS
+    status: optional_pending_course_fit
+    enabled: false
+contract_file: configs/contract.yaml

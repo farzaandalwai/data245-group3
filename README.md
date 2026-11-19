@@ -23,7 +23,7 @@ gh repo clone farzaandalwai/data245-group3
 cd data245-group3
 ```
 
-These teammate clone commands have not been run in their environments. Open that folder in Codex, read [AGENTS.md](AGENTS.md), and paste [starter_prompt.md](starter_prompt.md), replacing its final task placeholder. Connecting GitHub alone does not share uncommitted files or merge branches.
+These teammate clone commands have not been run in their environments. Open that folder as the project in Codex. Codex loads [AGENTS.md](AGENTS.md) as project guidance; it directs the agent to fetch and read shared context when a task begins. No starter-prompt pasting is required. Send a short request such as “Get me oriented,” “Continue my task,” or a specific bounded task. [starter_prompt.md](starter_prompt.md) is an optional reference/fallback. Connecting GitHub alone does not share uncommitted files or merge branches.
 
 Read [context.md](context.md), the [fixed protocol](docs/experiment_protocol.md), [course requirements](docs/course_requirements.md), and [contribution record](docs/contributions.md) before new work. The bootstrap is the one initial commit permitted on `main`; future changes use task branches and PRs.
 

@@ -1,5 +1,6 @@
 # Repository instructions
 
+- This file is the automatic project startup guidance. Do not require humans to paste `starter_prompt.md` or repeat these rules. For each new task, perform the startup checks below from a short human request. “Get me oriented” means orientation only; “continue my task” means resume an unambiguous, previously recorded task after checking current state. If the task is unclear, orient and suggest a bounded next task.
 - Scope each session to the human's bounded task. If no task is supplied, orient and suggest one; do not start remaining experiments automatically. Setup ends after migration.
 - Git provides versioned collaboration, not live shared memory. `context.md` or issue assignment cannot guarantee another session is idle. Use no custom locking service.
 - At task start, meaningful long-task checkpoints, and before final push: inspect status/branch/remotes; fetch origin; read these instructions, `git show origin/main:context.md`, local context, relevant changes, and open issues/PRs. Compare against the last fetched base. Never blindly pull into dirty work.

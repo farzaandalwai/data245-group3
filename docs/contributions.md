@@ -28,6 +28,12 @@ AI assistance: Codex created the collaboration documentation and read-only impor
 
 Evidence: initial bootstrap diff and Git history, [setup verification](setup_verification.md), [AI assistance log](ai_assistance.md), and saved prompts. Human review/validation of this kit remains pending. Repository/invitation creation is a coordination action and does not complete the academic experimental assignments.
 
+### 2026-11-18 — automatic session-start guidance (pending integration)
+
+Human requester: Farzaan Dalwai. Request: avoid repeatedly pasting the starter prompt and task boilerplate. AI assistance: Codex verified automatic `AGENTS.md` instruction discovery against official OpenAI documentation and updated `AGENTS.md`, the README, and `starter_prompt.md` so only a short task/orientation/resume request is needed. Existing context/Git/protocol checks remain required. No experimental artifact changed.
+
+Branch: `farzaandalwai/automatic-session-start`; task PR pending human integration. Evidence: the branch diff, saved prompt, and AI log. Validation: existing setup checker and targeted documentation review; exact results recorded in [AI assistance](ai_assistance.md#2026-11-18--automatic-session-start-guidance). Human review is pending; this entry does not credit a student with personal implementation or completed experimental work.
+
 ## Future log entries
 
 For each substantive task commit record date, human contributor, bounded task, branch/PR, files/evidence, checks actually run, AI assistance, human validation, integration status, and candidate CRediT roles backed by that work. Record merge/integration separately from unmerged branch progress. Never create fake teammate commits or credit someone merely for owning a planned task.

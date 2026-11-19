@@ -13,6 +13,14 @@
 
 Imported Timothy Tran artifacts retain their original authorship. His earlier AI use, prompts, and model versions are unknown to this session and must not be inferred. The setup prompt's prior preparation/review statements remain source claims at their stated status.
 
+## 2026-11-18 — automatic session-start guidance
+
+- Tool/model: Codex desktop, GPT-6 family; exact model variant/version unknown. Skills: OpenAI Docs for current product behavior; previously read create-rule guidance for the compact repository instruction update.
+- Exact prompt: [2026-11-18-automatic-session-start.md](prompts/2026-11-18-automatic-session-start.md).
+- Scope: remove repeated manual starter-prompt pasting from onboarding, state that `AGENTS.md` supplies startup guidance, and support short orientation/task/resume requests. Source checked: [official OpenAI AGENTS.md documentation](https://learn.chatgpt.com/docs/agent-configuration/agents-md). No hook or scheduled automation was added.
+- Validation: `python3 scripts/verify_setup.py` passed (ten original hashes/byte counts and encoding conversion; Python/notebook parsing; pilot schema/manifest/keys/calendar/splits; inherited prediction/metric structure; 14 current Markdown files/paths; ignore rules). The task diff was reviewed for documentation scope. No new tests or experiments were run; imported source/data/result files are unchanged.
+- Branch/integration: `farzaandalwai/automatic-session-start`, not merged into `main`; human PR review/integration and human validation remain pending.
+
 ## Required future updates
 
 For every substantive AI-assisted change, add date, actual tool/model if exposed (unknown otherwise), exact prompt or saved repo-relative prompt path, relevant assignment item and assistance scope, changed artifacts, checks, human validation, and branch/PR/integration state. Each student's final disclosure must reflect their own use and answer the assignment's similar-solutions/GenAI questions. No SJSU disclosure certificate was created or submitted here.

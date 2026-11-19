@@ -14,6 +14,14 @@ Test whether historical stockout features improve next-day recorded normalized `
 - Dependencies: supplied setup prompt and accessible Drive artifacts; no raw-data download required. Acceptance: private repository, exactly the two requested write invitations, original-byte imports, all requested collaboration files, static/structural checks, safe initial commit/push and remote readback. Publication evidence is verified against live Git state at handoff; no self-referential commit hash is embedded here.
 - Open issues/PRs at bootstrap inspection: none. This is a setup record, not an atomic work claim. Recheck before any new task.
 
+## Current documentation task — pending integration
+
+- Owner/requester: Farzaan Dalwai, authenticated account `farzaandalwai`; branch `farzaandalwai/automatic-session-start`, based on current `origin/main`.
+- Task: remove repetitive manual starter-prompt pasting. Make the automatic `AGENTS.md` startup workflow explicit while retaining short human task requests.
+- Files: `AGENTS.md`, `README.md`, `starter_prompt.md`, this context, contribution/AI logs, and the saved user request. Dependencies: official OpenAI instruction-discovery documentation and the existing repository rules. No open issues/PRs overlapped at task start.
+- Acceptance: no onboarding instruction requires repasting the starter; `AGENTS.md` directs startup context/Git checks; humans can say their task, “get me oriented,” or resume an already recorded task; no new experiments. Check Markdown paths and inherited artifact integrity with the existing setup checker, then publish a small task PR for human integration.
+- Status: documentation changes complete on this branch only; not integrated into `main`. `python3 scripts/verify_setup.py` passed, including unchanged original hashes and current Markdown paths. The integrated bootstrap already contains startup-check instructions in `AGENTS.md`; this task removes misleading manual onboarding directions. Human PR review/integration remains pending.
+
 ## Verified, inherited, missing, and pending
 
 - Imported unchanged: Timothy's script/notebook/exploration script, original UTF-16 handoff README, exact manifest/pilot/exclusions, baseline predictions/metrics, raw audit. A separate UTF-8 reading copy is documented. All ten requested non-raw artifacts are present. [Provenance](docs/provenance.md) contains sources/timestamps/hashes.

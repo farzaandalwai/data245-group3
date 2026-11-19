@@ -1,6 +1,6 @@
 ## Change and owner
 
-Human owner:
+Owner codename (DELTA, DEVGRU, SAS; mapping in context.md):
 Relevant issue:
 Task branch and affected files:
 What behavior/evidence changed, and why:
@@ -10,6 +10,7 @@ What behavior/evidence changed, and why:
 Commands actually run and results:
 Evidence paths (distinguish inherited, newly executed, and unverified):
 Dependencies or overlapping PRs checked:
+Feature-bundle/contract version, if applicable:
 
 ## Protocol and shared records
 

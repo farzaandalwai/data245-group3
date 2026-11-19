@@ -12,7 +12,7 @@ Date: 2026-11-18 (America/Los_Angeles). This is setup/import evidence only.
 - Attempted `PUT /repos/farzaandalwai/data245-group3/branches/main/protection` with PR review, one approval, stale-review dismissal, admin enforcement, force pushes disabled, and deletions disabled. GitHub returned HTTP 403: “Upgrade to GitHub Pro or make this repository public to enable this feature.” This is an external plan limitation, not an approval rejection. No plan or visibility change was made. Review/approval/no-force-push rules are team conventions and are not enforced protection.
 - Initial commit/push and remote tree/ref readback are the final bootstrap steps. Use the live commands below to check publication; Git history is the commit evidence. No multi-user coordination check has been performed.
 
-## Local import checks
+## Original bootstrap local import checks
 
 The checker is `python3 scripts/verify_setup.py`, using the standard library. Python version at setup: 3.14.2. The checker does not import `pandas`/`numpy` or the original scripts, execute cells, train, regenerate data/predictions, or recompute metric values.
 
@@ -52,3 +52,7 @@ gh api repos/farzaandalwai/data245-group3/collaborators
 Invitations are time-sensitive: recheck before claiming accepted access. A teammate must accept before verified private-repository access. The clone/open/starter-prompt workflow and optional two-human documentation PR exercise have not been executed on teammates' machines.
 
 No new experiment, final report, presentation, disclosure certificate, literature survey, leaderboard rank, or measured sustainability finding is setup evidence.
+
+## Later structure migration
+
+The bootstrap results above are historical checks on the initial layout. The current archive/canonical paths, extended ignore checks, and YAML/TOML/output-safety regression checks are documented in [structure_migration.md](structure_migration.md). The raw destination is now `data/raw/freshretail.csv`. No original checksum or inherited result was changed by the migration, and no legacy producer/notebook was run.

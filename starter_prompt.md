@@ -12,6 +12,8 @@ Codex loads the root [AGENTS.md](AGENTS.md) as project guidance. That file direc
 
 The repository rules supply the repeated collaboration/protocol instructions. The short human message supplies the task. Previously agreed tasks can be recovered from the current chat and recorded branch/context/issue state; an academic role alone is not authorization to run every remaining experiment.
 
+Active owners use DELTA, DEVGRU, and SAS; the identity map is in [context.md](context.md). See [team responsibilities](docs/team_responsibilities.md) for owned paths and [interfaces](docs/interfaces.md) for parallel-development handoffs and real-run dependencies. New task branches use `<codename>/<task>`; preserve the original authorship recorded in provenance.
+
 ## Optional fallback
 
 If a session appears to have missed the project guidance, first confirm that the actual clone is open as the project, then start a new chat there. You can also send this short diagnostic request:

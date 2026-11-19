@@ -1,0 +1,112 @@
+[
+  {
+    "source_id": "1s4QCLKaMtMlyQXNMzqNr-SqGCCaN7hJm",
+    "initial_import_destination": "docs/handoff/README.original.md",
+    "archived_original": "archive/original_pilot/README.md",
+    "original_sha256": "203e60646d0bba620b1586eb558c0dcc67f00b05ff1f0c192985c3749b61f4c3",
+    "working_destination": "docs/handoff/README.original.md",
+    "working_bytes": 23414,
+    "working_sha256_at_migration": "203e60646d0bba620b1586eb558c0dcc67f00b05ff1f0c192985c3749b61f4c3",
+    "status": "byte_identical_working_copy",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "1X-GjOXS9qZOzuS4indgQHoxVFLhuNzgB",
+    "initial_import_destination": "results/data_audit.txt",
+    "archived_original": "archive/original_pilot/results/data_audit.txt",
+    "original_sha256": "f125d8d216659cda8aef7e62360b86002bdada9fdd82bba54a55bb78791a6495",
+    "working_destination": "results/baselines_DELTA/inherited/data_audit.txt",
+    "working_bytes": 1554,
+    "working_sha256_at_migration": "f125d8d216659cda8aef7e62360b86002bdada9fdd82bba54a55bb78791a6495",
+    "status": "byte_identical_working_copy",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "1KXGtfJJaczk2IyAW4FO0bOvWwQjGCvZZ",
+    "initial_import_destination": "results/baseline_metrics.csv",
+    "archived_original": "archive/original_pilot/results/baseline_metrics.csv",
+    "original_sha256": "e753a6971d6a0c92ecc6c295696ad76fcc05ae7403283be936ee15e05d212d20",
+    "working_destination": "results/baselines_DELTA/inherited/baseline_metrics.csv",
+    "working_bytes": 259,
+    "working_sha256_at_migration": "e753a6971d6a0c92ecc6c295696ad76fcc05ae7403283be936ee15e05d212d20",
+    "status": "byte_identical_working_copy",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "1TNVSGdXWIK6ZlooaLg8fuZWXyfUqN5aP",
+    "initial_import_destination": "results/baseline_predictions.csv",
+    "archived_original": "archive/original_pilot/results/baseline_predictions.csv",
+    "original_sha256": "347161e45c49cd64d5cddfa24b35a5ee620b564ed5e9070a73036fba2afa73b1",
+    "working_destination": "results/baselines_DELTA/inherited/baseline_predictions.csv",
+    "working_bytes": 697664,
+    "working_sha256_at_migration": "347161e45c49cd64d5cddfa24b35a5ee620b564ed5e9070a73036fba2afa73b1",
+    "status": "byte_identical_working_copy",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "18tq2qwOTpe4ViAQ_KowK0zsl9aZAw1RS",
+    "initial_import_destination": "data/processed/pilot_200_series.csv",
+    "archived_original": "archive/original_pilot/data/processed/pilot_200_series.csv",
+    "original_sha256": "de303b3f079b0258f15cbbcde14ab0d5e8a4bfb1f24756eb6b277e1bc7c8311f",
+    "working_destination": "data/processed/pilot_200_series.csv",
+    "working_bytes": 4530605,
+    "working_sha256_at_migration": "de303b3f079b0258f15cbbcde14ab0d5e8a4bfb1f24756eb6b277e1bc7c8311f",
+    "status": "byte_identical_working_copy",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "1vxeoaH9ztGB9O3krxgCyaaue7xIByO47",
+    "initial_import_destination": "data/processed/pilot_series_manifest.csv",
+    "archived_original": "archive/original_pilot/data/processed/pilot_series_manifest.csv",
+    "original_sha256": "8b7a5377c95e56e63ad5143cc8dc8a38ecc35032f64e2cfbbb8ae66d25519a42",
+    "working_destination": "data/manifests/pilot_series_manifest.csv",
+    "working_bytes": 1738,
+    "working_sha256_at_migration": "8b7a5377c95e56e63ad5143cc8dc8a38ecc35032f64e2cfbbb8ae66d25519a42",
+    "status": "byte_identical_working_copy",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "11HF5MPpiqHXId2tPmAz_q6Rzu950utbe",
+    "initial_import_destination": "data/processed/excluded_series.csv",
+    "archived_original": "archive/original_pilot/data/processed/excluded_series.csv",
+    "original_sha256": "75b3b3787d4ca0ba8dd12c926ebc6aafc5f0628f3c831c543335ed1d312d3d81",
+    "working_destination": "data/manifests/excluded_series.csv",
+    "working_bytes": 775,
+    "working_sha256_at_migration": "75b3b3787d4ca0ba8dd12c926ebc6aafc5f0628f3c831c543335ed1d312d3d81",
+    "status": "byte_identical_working_copy",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "1UCl-qTyEnL8PFfnVH6kmFTXeiqbSX4kr",
+    "initial_import_destination": "data_prep_pipeline/prepare_and_baselines.ipynb",
+    "archived_original": "archive/original_pilot/data_prep_pipeline/prepare_and_baselines.ipynb",
+    "original_sha256": "04494a70255aab7ff9d69eb8e8a21c89c60a6a364b53d26b25396380f442d071",
+    "working_destination": "notebooks/DELTA_data/prepare_and_baselines.ipynb",
+    "working_bytes": 21123,
+    "working_sha256_at_migration": "4d095a002b669ebbfde29dfc1bf126d0e44399a4f2ca2f186fe9bf6f948245c5",
+    "status": "path_adapted_working_copy_not_executed",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "1jXMsK0fI0s2ofzvJmgX9Kdt20HAzpUwa",
+    "initial_import_destination": "data_prep_pipeline/prepare_and_baselines.py",
+    "archived_original": "archive/original_pilot/data_prep_pipeline/prepare_and_baselines.py",
+    "original_sha256": "5afb9a400f25b40a4bb0dbfdbdf501641541180adf8c953039871359d0e8857c",
+    "working_destination": "src/data_preprocessing_DELTA/prepare_and_baselines.py",
+    "working_bytes": 8379,
+    "working_sha256_at_migration": "e3610e6d5c806b4196fa6b8b14b2c767073eed19f2ec8f0cef4d96051198c6c2",
+    "status": "path_adapted_working_copy_not_executed",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  },
+  {
+    "source_id": "1mnInCx3wX1WN8-G0xIMimQssWbgYiRbW",
+    "initial_import_destination": "data_prep_pipeline/data_explore.py",
+    "archived_original": "archive/original_pilot/data_prep_pipeline/data_explore.py",
+    "original_sha256": "e5773e47496dbbf4e53f15c6e53c71a26d6ab8d1381d71c9032f5805a6927274",
+    "working_destination": "src/data_preprocessing_DELTA/data_explore.py",
+    "working_bytes": 753,
+    "working_sha256_at_migration": "82b6ff44c9d113f5f842315832f085e5003928b783766886b03974420b2c5c8f",
+    "status": "path_adapted_working_copy_not_executed",
+    "date_local": "2026-11-18 America/Los_Angeles"
+  }
+]

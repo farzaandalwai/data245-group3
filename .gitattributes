@@ -1,13 +1,9 @@
-# Preserve the acquired bytes regardless of each teammate's autocrlf setting.
+# Original source/data/evidence bytes must survive all autocrlf settings.
+/archive/original_pilot/** -text
 /data/processed/pilot_200_series.csv -text
-/data/processed/pilot_series_manifest.csv -text
-/data/processed/excluded_series.csv -text
-/data_prep_pipeline/prepare_and_baselines.py -text
-/data_prep_pipeline/prepare_and_baselines.ipynb -text
-/data_prep_pipeline/data_explore.py -text
-/results/baseline_metrics.csv -text
-/results/baseline_predictions.csv -text
-/results/data_audit.txt -text
+/data/manifests/pilot_series_manifest.csv -text
+/data/manifests/excluded_series.csv -text
+/results/baselines_DELTA/inherited/** -text
 /docs/handoff/README.original.md -text
 /docs/handoff/README.utf8.md -text
 /docs/prompts/DATA245_Codex_Setup_Prompt.md -text

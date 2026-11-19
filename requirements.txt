@@ -3,3 +3,5 @@
 pandas
 numpy
 ipython
+# YAML configuration validation for the repository layout checks.
+PyYAML

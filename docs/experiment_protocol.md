@@ -6,7 +6,7 @@ Status: documented on 2026-11-18 (America/Los_Angeles); remaining feature/model 
 
 Does adding historical stockout information improve next-day **recorded normalized sales** forecasts beyond recent sales history, with everything else held matched? Predict `sale_amount` for each `(store_id, product_id, dt)`. Do not equate this target to unrestricted latent demand, mass, revenue, or food waste.
 
-Reuse `data/processed/pilot_series_manifest.csv` exactly: 200 complete series selected with seed 245, totaling 18,000 pilot rows across 90 dates. Do not resample, even with the same seed, or substitute the full upstream dataset for the inherited local export.
+Reuse `data/manifests/pilot_series_manifest.csv` exactly: 200 complete series selected with seed 245, totaling 18,000 pilot rows across 90 dates. Do not resample, even with the same seed, or substitute the full upstream dataset for the inherited local export.
 
 Fixed boundaries, before history and eligibility filters:
 
@@ -45,7 +45,7 @@ Target-day availability is retrospective eligibility metadata only and must be r
 
 ## Baselines and evaluation
 
-Existing implemented baselines are persistence (yesterday's sales) and the mean of the preceding seven days. Their inherited metrics are in `results/baseline_metrics.csv`, using all 3,000 rows per evaluation split; these have not been independently reproduced. Recompute them later on **exactly the matched eligible evaluation rows** and save new results separately.
+Existing implemented baselines are persistence (yesterday's sales) and the mean of the preceding seven days. Their inherited metrics are in `results/baselines_DELTA/inherited/baseline_metrics.csv`, using all 3,000 rows per evaluation split; these have not been independently reproduced. Recompute them later on **exactly the matched eligible evaluation rows** and save new results separately.
 
 Planned, not implemented: lag-7 same-weekday sales, and a recent mean over stocked historical dates with ordinary historical mean fallback. Define the window and empty-history fallback details before implementation.
 
@@ -75,3 +75,7 @@ Before modeling, agree on a prediction record with unique `(store_id, product_id
 Keep eligible target keys, filter reasons, feature definitions, input hashes, timing provenance, preprocessing/tuning decisions, and run metadata separate from predictor inputs. Retain enough lineage to match predictions to identical targets and explain every exclusion. Imported baseline predictions use their historical schema and have no `feature_set`/run ID; preserve them rather than silently rewriting them to the proposed contract.
 
 No model-output producers or feature/eligibility implementation are authorized by setup. The next bounded technical task is inspection and contract freezing only.
+
+## Workspace ownership update
+
+The user-authorized active team is DELTA (data/shared features/baselines), DEVGRU (linear/ridge), and SAS (tree/evaluation/audit/integration), with identities in `context.md`. This replaces historical task ownership without altering scientific choices or claiming completed work. The requested codename folders/configs are organization only; the handoff schemas remain draft and stockout semantics/eligibility still require verification. See [current responsibilities](team_responsibilities.md) and [interfaces](interfaces.md).

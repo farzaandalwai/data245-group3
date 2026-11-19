@@ -19,7 +19,15 @@ Imported Timothy Tran artifacts retain their original authorship. His earlier AI
 - Exact prompt: [2026-11-18-automatic-session-start.md](prompts/2026-11-18-automatic-session-start.md).
 - Scope: remove repeated manual starter-prompt pasting from onboarding, state that `AGENTS.md` supplies startup guidance, and support short orientation/task/resume requests. Source checked: [official OpenAI AGENTS.md documentation](https://learn.chatgpt.com/docs/agent-configuration/agents-md). No hook or scheduled automation was added.
 - Validation: `python3 scripts/verify_setup.py` passed (ten original hashes/byte counts and encoding conversion; Python/notebook parsing; pilot schema/manifest/keys/calendar/splits; inherited prediction/metric structure; 14 current Markdown files/paths; ignore rules). The task diff was reviewed for documentation scope. No new tests or experiments were run; imported source/data/result files are unchanged.
-- Branch/integration: `farzaandalwai/automatic-session-start`, not merged into `main`; human PR review/integration and human validation remain pending.
+- Original branch/PR: `farzaandalwai/automatic-session-start`, PR #1. Its automatic-startup guidance is retained in the later `SAS/three-person-layout` migration branch/PR; no silent main merge occurred. Human integration/validation remain pending.
+
+## 2026-11-18 — three-person codename structure migration
+
+- Tool/model: Codex desktop, GPT-6 family; exact model variant/version unknown. User context: explicit three-person correction, requested repository reorganization, and DELTA/DEVGRU/SAS labels. Exact current instructions: [layout request](prompts/2026-11-18-three-person-layout.md).
+- Scope: requested directory structure and ownership/dependency documentation, immutable archive, working path migration, cleared working notebook execution state, YAML/TOML metadata, updated provenance/context and verification. No new data/model/feature/evaluator producer or scientific fixture was authored or run. Original legacy algorithms remain attributed to Timothy Tran; changed paths/wrapping and documentation are AI-assisted migration work.
+- Tools: Git/gh for shared-state inspection and branch/PR handling, Python standard library for safe file operations/hash/syntax/JSON/CSV checks, PyYAML safe parsing for configuration checks, and file patching. PyYAML is now an explicit unpinned dependency grounded in config validation; a clean package installation/model runtime was not tested.
+- Verification: the migration checker passed (ten original hashes, unchanged canonical data/evidence, syntax/JSON, pilot/prediction schema and keys, calendar/split counts, 53 current Markdown paths, expanded ignore checks), and all three layout unit tests passed. Every staged path/blob was reviewed, source adaptations were compared against originals, authored whitespace checks passed, and a targeted saved-credential scan found none. Detailed scope/runtime limits are in [structure migration](structure_migration.md); publication readback is the final handoff step. No legacy scripts or notebook cells were executed and no inherited metric was recomputed.
+- Integration: `SAS/three-person-layout`, pending human PR review/integration. The prior automatic-startup PR is superseded with its changes retained. Human technical validation remains pending.
 
 ## Required future updates
 

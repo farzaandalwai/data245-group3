@@ -1,0 +1,9 @@
+# Workspace metadata consumed by tests; requirements.txt owns dependencies.
+# This is not an installable model package or an experiment runner.
+[tool.data245]
+layout_version = 2
+active_owners = ["DELTA", "DEVGRU", "SAS"]
+requirements_file = "requirements.txt"
+protocol_file = "docs/experiment_protocol.md"
+owner_map_file = "context.md"
+config_files = ["configs/dataset.yaml", "configs/experiments.yaml", "configs/models.yaml"]

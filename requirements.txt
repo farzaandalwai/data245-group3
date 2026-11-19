@@ -1,0 +1,5 @@
+# Imported script and notebook imports; installation/runtime unverified.
+# Versions intentionally unpinned until a course-compatible environment is tested.
+pandas
+numpy
+ipython

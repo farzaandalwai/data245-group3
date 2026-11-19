@@ -1,0 +1,859 @@
+# DATA 245 — DELTA V2 Full Data Migration, Preprocessing Implementation, Testing, and Handoff
+
+Act as a Principal Data Engineer, Senior Machine Learning Engineer, and ML Research Infrastructure Lead.
+
+You are implementing the DELTA workstream of our DATA 245 graduate machine learning project.
+
+**THIS IS AN AUTHORIZED IMPLEMENTATION TASK, NOT AN AUDIT-ONLY TASK.**
+
+I want you to migrate and reuse technically sound work from my previous project, implement the approved V2 centralized data pipeline, generate appropriate development/final datasets, test everything thoroughly, and update the relevant Markdown documentation when implementation is complete.
+
+Work carefully and systematically. Do not stop after writing a plan or producing another audit.
+
+## 1. Workspace and authority
+
+Two folders are open in VS Code.
+
+**NEW — Official group repository**
+
+`A:\Projects\DATA 245\data245-group3`
+
+This is the ONLY destination for new implementation, generated V2 artifacts, tests, and active documentation.
+
+**OLD — Previous project**
+
+`A:\Projects\DATA 245\project propsoal`
+
+This contains previous preprocessing, feature engineering, raw data, notebooks, predictions, and evaluation results.
+
+The OLD folder is READ-ONLY. Never modify or move its files.
+
+### Read first
+
+In NEW:
+
+- `AGENTS.md`
+- `context.md`
+- `docs/experiment_protocol.md`
+- `docs/interfaces.md`
+- `docs/team_responsibilities.md`
+- `configs/contract.yaml`
+- `configs/dataset.yaml`
+- `configs/experiments.yaml`
+- `configs/models.yaml`
+- Relevant DELTA workstream READMEs
+- Existing tests and setup scripts
+
+In OLD:
+
+- `COPILOT_LEGACY_DATA_AUDIT.md`
+- `DELTA_V1_TO_V2_MIGRATION_AUDIT.md`
+- `src/prepare_and_baselines.py`
+- `src/build_features.py`
+- Relevant preprocessing notebooks and data documentation
+
+Read other old scripts and artifacts selectively when they are relevant to migration.
+
+Treat the approved NEW V2 scientific protocol as authoritative.
+
+I am DELTA and have responsibility for the centralized data contract and implementation.
+
+Use sound engineering judgment to finalize the previously draft DELTA-specific technical details, document decisions explicitly, and keep DEVGRU/SAS informed through the shared contract.
+
+Do not change approved scientific decisions.
+
+---
+
+# 2. Approved research design — NONNEGOTIABLE
+
+## Research question
+
+Does adding historical stockout information improve next-day fresh-food recorded-sales forecasts compared with using sales history alone?
+
+We predict normalized recorded `sale_amount`, not latent customer demand.
+
+## Dataset
+
+FreshRetailNet-50K project export.
+
+Historical development sample: 200 complete store-product series.
+
+Final experiment: 1,000 complete store-product series.
+
+Use a reproducible, documented selection process.
+
+Preserve the existing 200-series development manifest exactly.
+
+## Primary population
+
+Use ALL otherwise eligible target dates, including dates with stockouts.
+
+Do not filter targets based solely on target-day stockout hours.
+
+## Secondary evaluation
+
+Separately evaluate predictions on:
+
+- Fully stocked target days.
+- Target days with stockouts.
+
+These are evaluation groups, not separately trained models.
+
+Target-day stockout status must never be a model predictor.
+
+## Historical features
+
+Maximum lookback: 14 days.
+
+Sales-only predictors:
+
+1. `sales_lag_1`
+2. `sales_lag_2`
+3. `sales_lag_3`
+4. `sales_lag_7`
+5. `sales_lag_14`
+6. `sales_mean_7`
+7. `sales_mean_14`
+8. `weekday`
+9. `is_weekend`
+
+Stockout-aware predictors: the same nine predictors plus:
+
+10. `stockout_hours_lag_1`
+11. `stockout_hours_mean_7`
+12. `stockout_hours_mean_14`
+13. `stockout_day_fraction_7`
+14. `stockout_day_fraction_14`
+
+All lags and rolling statistics use only historical dates strictly before the target date.
+
+Store/product identifiers are keys, not predictors.
+
+Do not introduce weather, promotions, categorical ID predictors, or additional features into the approved primary experiment.
+
+## Chronological split
+
+For each complete 90-day series:
+
+- Days 1–60: train.
+- Days 61–75: validation.
+- Days 76–90: test.
+- First eligible target: day 15.
+
+With no additional quality exclusions, expected development counts are 9,200 training, 3,000 validation, and 3,000 test targets.
+
+Expected final counts are 46,000 training, 15,000 validation, and 15,000 test targets.
+
+These counts are expectations that must be verified, not fabricated outputs.
+
+## Models and evaluation
+
+DELTA owns:
+
+- Persistence baseline.
+- Previous 7-day mean baseline.
+
+DEVGRU owns Linear Regression and Ridge.
+
+SAS owns Decision Tree, optional Random Forest, and common model evaluation.
+
+MAE is primary. RMSE and signed prediction bias are secondary.
+
+Do not implement DEVGRU or SAS model-training code in this task.
+
+---
+
+# 3. Implementation principles
+
+Follow these rules throughout:
+
+1. Preserve existing working code where technically sound.
+2. Adapt previous implementations rather than rewriting everything unnecessarily.
+3. Preserve historical experiment files and attribution.
+4. Never silently overwrite existing data, manifests, or results.
+5. Do not alter the OLD project.
+6. Do not modify historical V1 contract/archive evidence in NEW.
+7. Do not commit raw datasets, generated large feature tables, model binaries, or secrets to Git.
+8. Do not create another competing preprocessing implementation in notebooks.
+9. Keep the DELTA source modular, deterministic, testable, and reproducible.
+10. Use explicit schemas, validation, logging, and meaningful exceptions.
+11. Use Python 3.12 compatibility where possible.
+12. Prefer pandas, NumPy, and standard Python tools already supported by the project.
+13. Avoid unnecessary distributed frameworks, orchestration platforms, databases, and new dependencies.
+14. Do not train or tune learned ML models.
+15. Do not use final test results to revise features, sampling, or model choices.
+16. Keep old and new experimental outputs unmistakably separated.
+17. Use repository-relative paths and centralized configuration.
+18. Preserve an immutable record of the data and configuration used for each run.
+
+Do not commit, push, merge, reset, or rewrite Git history.
+
+Do not modify another owner's model implementation without authorization.
+
+You may add DELTA source code, tests, scripts, configuration, appropriate local data files, and documentation.
+
+---
+
+# 4. PHASE 1 — Inspect and safely migrate raw data
+
+Identify the authoritative raw export in OLD:
+
+`data/freshretail.csv`
+
+Previous audit evidence:
+
+- 1,459,198 rows.
+- 19 columns.
+- 16,214 store-product series.
+- 16,213 complete 90-day series.
+- 184 stores.
+- 417 products.
+- Date range: 2024-03-28 to 2024-06-25.
+- Previous measured byte size: 323,577,557 bytes.
+
+Previous measured local SHA-256:
+
+`6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5`
+
+First confirm the source file exists and independently calculate its current checksum.
+
+If the byte size/hash differs, do not silently treat it as the original export. Investigate and record the difference.
+
+Copy the verified raw dataset into the appropriate NEW local raw-data directory, preferably:
+
+`data/raw/freshretail.csv`
+
+Do NOT move or delete the original.
+
+If the destination already exists, compare hashes before taking action. Never overwrite a different dataset silently.
+
+After copying:
+
+- Verify identical SHA-256 checksums.
+- Verify file size.
+- Verify header/schema.
+- Confirm `.gitignore` excludes the raw CSV.
+- Confirm it is not staged for Git.
+- Document source and destination paths relative to their projects.
+- Record date, measured hash, byte size, row count, schema, and provenance limitations.
+
+A matching hash establishes byte identity with the previous local file, not independent verification of the upstream dataset's provenance.
+
+Update the source acquisition documentation without inventing an export procedure.
+
+If upstream semantics or normalization cannot be established, preserve their verification status as pending.
+
+Also inventory OLD processed datasets and results.
+
+Retain all unique historical evidence where practical under appropriately labeled historical storage or archives, respecting existing Git and data policies.
+
+Do not duplicate material already preserved in NEW.
+
+Do not move historical stocked-only metrics into active V2 result directories.
+
+For large historical data artifacts, prioritize preserving an intact local copy or a verified reference and manifest rather than unnecessarily duplicating hundreds of megabytes in Git.
+
+---
+
+# 5. PHASE 2 — Salvage and refactor data validation
+
+Inspect OLD:
+
+`src/prepare_and_baselines.py`
+
+Inspect NEW:
+
+`src/data_preprocessing_DELTA/`
+
+Reuse verified logic for:
+
+- Required-column validation.
+- Store-product-date key checks.
+- Exact-date completeness.
+- Chronological sorting.
+- Exclusion accounting.
+- Reproducible manifests.
+- Split labeling.
+
+Improve the existing implementation.
+
+The new validator must:
+
+- Check required columns and dtypes.
+- Reject null keys and invalid target values.
+- Detect duplicate store-product-date keys.
+- Validate source dates against the approved 90-day calendar.
+- Check each selected complete series has exactly the approved dates.
+- Reject unexpected nonfinite numeric values in required fields.
+- Validate nonnegative normalized recorded sales.
+- Validate stockout count bounds and integer/count semantics, subject to source verification.
+- Distinguish invalid records from incomplete series.
+- Produce clear quality and exclusion reports.
+- Fail before publishing artifacts if mandatory validations fail.
+
+Do not automatically impute missing sales or stockout values as zero.
+
+Separate pure validation/transformation logic from output-writing functions.
+
+Use configurable paths and sample sizes rather than hardcoded OLD-only locations.
+
+Retain the existing 200-series canonical development data and manifest.
+
+Do not regenerate or overwrite the original pilot unless a separate reconciliation proves it necessary.
+
+---
+
+# 6. PHASE 3 — Verify stockout semantics
+
+This is a critical technical gate.
+
+Inspect the dataset's source references and available data dictionary, plus:
+
+- `stock_hour6_22_cnt`
+- `hours_stock_status`
+- Existing historical stockout audit.
+- The historical safe binary parser and endpoint tests in NEW.
+- Representative local raw records.
+
+Determine and verify:
+
+- Whether hourly values represent stockout versus availability.
+- Whether the hourly vector uses 24 ordered entries.
+- Which positions correspond to 06:00 and 22:00.
+- Whether the counting convention includes or excludes endpoints.
+- Whether the existing count agrees with the hourly vector.
+- How missing, closed, or invalid hours are represented.
+- Whether zero stockout hours is an appropriate retrospective group definition.
+
+Use targeted read-only source verification when available.
+
+Distinguish directly demonstrated properties from undocumented business semantics.
+
+Add validation tests for the verified interpretation.
+
+Do NOT reintroduce the old target-stockout exclusion.
+
+If authoritative semantics cannot be fully verified, continue developing independent functionality, but mark subgroup labels and related producer acceptance as provisional.
+
+Do not claim a fully verified final feature bundle when a required stockout interpretation remains unresolved.
+
+---
+
+# 7. PHASE 4 — Implement reproducible sampling
+
+Retain the existing fixed 200-series development pilot.
+
+Implement a separate final 1,000-series selection pipeline.
+
+Use a documented, deterministic selection algorithm.
+
+Technical defaults authorized for DELTA:
+
+- Default seed: 245.
+- Fixed source-file identity.
+- Stable store/product key normalization and ordering.
+- Complete-series eligibility under the agreed 90-day dataset protocol.
+- No sample choice based on validation/test outcomes.
+- Training-period information only for any outcome-derived stockout-activity strata.
+- Deterministic tie-breaking and sample selection.
+- Saved selected-series manifest and coverage report.
+
+Prefer a simple, explainable sampling method that provides reasonable coverage of stores, products, and training-period stockout activity.
+
+If stratification would introduce unjustified complexity or unstable tiny strata, use deterministic seeded sampling with clearly measured coverage and document that decision.
+
+Report the number of unique stores/products, training-period stockout activity distribution, and sample coverage.
+
+Do not optimize the sampled cohort using model performance.
+
+Do not use test-period sales/stockout values to decide which complete eligible series are more desirable.
+
+Document the retrospective complete-90-day selection criterion separately.
+
+The final manifest must reproduce identically from the same validated source and configuration.
+
+Keep development and final artifacts in distinct versioned locations.
+
+Do not imply the 1,000-series final experiment is complete merely because the manifest exists.
+
+---
+
+# 8. PHASE 5 — Salvage and adapt feature engineering
+
+Inspect OLD:
+
+`src/build_features.py`
+
+Implement the shared V2 feature producer in:
+
+`src/features_DELTA/`
+
+Reuse the existing correctly grouped and shifted lag/rolling calculations.
+
+Preserve:
+
+- Grouping by store/product.
+- Chronological ordering.
+- Sales history.
+- Historical stockout information.
+- Calendar features.
+- Independent feature reconstruction checks.
+
+Change:
+
+- Old target-stockout filtering.
+- Hardcoded 200-series assertions.
+- Hardcoded stocked-only counts.
+- Old feature naming where it differs from V2.
+- Function side effects.
+- Unversioned output paths.
+- Incomplete quality validation.
+
+For a target date t:
+
+- Sales lag 1 = sales at t-1.
+- Sales lag 14 = sales at t-14.
+- Previous 7-day sales mean = observations t-7 through t-1.
+- Previous 14-day sales mean = observations t-14 through t-1.
+- Historical stockout windows follow the same strictly prior-date rule.
+- Proportions of stockout days count previous dates meeting the verified positive-stockout predicate.
+
+Generate the approved nine common features and five additional stockout features.
+
+The sales-only and stockout-aware conditions must use the SAME:
+
+- Store-product-date observations.
+- Targets.
+- Chronological splits.
+- Shared feature values.
+- History/quality eligibility rules.
+
+Do not independently drop observations per feature condition.
+
+Do not pass current-day stockout status, identifiers, split labels, raw target columns, or inherited predictions into model feature matrices.
+
+Build all historical features before applying the common eligibility rules.
+
+Do not shift the target twice.
+
+Use feature calculations that remain correct at train/validation/test boundaries.
+
+---
+
+# 9. PHASE 6 — Implement a centralized V2 feature-bundle contract
+
+DELTA is the authoritative producer.
+
+Finalize a practical, versioned, documented technical contract compatible with the approved scientific protocol.
+
+Use these preferred output conventions unless current NEW documentation provides an equally sound established convention.
+
+Suggested root:
+
+`data/processed/feature_bundles/<bundle_id>/`
+
+Create separate development and final bundles.
+
+Preferred contents:
+
+### observations.csv
+
+Columns:
+
+`store_id, product_id, dt, actual, split`
+
+- One row per eligible target.
+- Unique `(store_id, product_id, dt)`.
+- `actual` is recorded `sale_amount`.
+- Valid split labels.
+- ISO-formatted target date.
+
+### features_sales_only.csv
+
+Observation keys plus the nine approved common predictors.
+
+### features_stockout_aware.csv
+
+Observation keys plus the same nine common predictors and five approved historical stockout predictors.
+
+### evaluation_metadata.csv
+
+Observation keys plus:
+
+`target_stockout_hours, target_stockout_group`
+
+Group labels:
+
+- `fully_stocked`
+- `stockout`
+
+Use only once the stockout interpretation is verified.
+
+These are retrospective evaluation metadata and MUST NOT appear in model predictor allowlists.
+
+### sample_manifest.csv
+
+Selected store-product combinations, with enough metadata for reproducible sampling and coverage auditing.
+
+### eligibility_audit.csv
+
+Document candidate counts, warmup exclusions, quality exclusions, and retained targets by split.
+
+Do not treat target-day stockouts as an exclusion reason.
+
+### quality_report.json
+
+Document measured data integrity, exclusions, feature validations, coverage and any unresolved semantics.
+
+### feature_spec.json
+
+Document exact predictor names/order, definitions, timing, dtypes, units, and data availability.
+
+### bundle_manifest.json
+
+Include:
+
+- Protocol version.
+- Contract version/status.
+- Development versus final purpose.
+- Source SHA-256.
+- Sample manifest identity.
+- Feature definitions.
+- Configuration/source revision.
+- Bundle/artifact hashes.
+- Split counts.
+- Validation status.
+- Unresolved limitations.
+- Generated artifact paths.
+
+Protect immutable bundles from silent overwriting.
+
+Add an explicit CLI to generate development and final bundles.
+
+Document exact commands for teammates.
+
+Do not require DEVGRU or SAS to execute DELTA's full preprocessing pipeline just to load an already accepted bundle.
+
+Generate a small deterministic synthetic fixture, separately labeled as test-only data, for early consumer development.
+
+---
+
+# 10. PHASE 7 — Rebuild the two baselines
+
+Implement DELTA baseline code under:
+
+`src/models/baselines_DELTA/`
+
+Reuse the old formulas:
+
+- Persistence: previous-day recorded sales.
+- Recent average: mean recorded sales across the previous seven days.
+
+Both must consume the authoritative accepted V2 observations/history.
+
+Output predictions in the same format expected from learned models.
+
+Preferred shared prediction schema:
+
+`store_id, product_id, dt, actual, prediction, model, feature_set, split, run_id`
+
+For baseline names use:
+
+- `persistence`
+- `recent_avg_7`
+
+Baselines are common reference forecasts rather than separate stockout-aware models.
+
+Do not create artificial stockout-aware baseline variants.
+
+Include bundle/run provenance.
+
+Use the same target keys as the learned-model evaluation population.
+
+Recompute development baseline results from the accepted V2 dataset.
+
+For final experiment test predictions/metrics, preserve test isolation: do not publish or use final test performance to make adaptive feature, sample, or protocol changes. If the agreed release/freeze gate is not satisfied, generate and validate the final input bundle but leave final test scoring pending.
+
+Do not copy old baseline metrics and relabel them V2.
+
+Do not overwrite inherited or archived baseline evidence.
+
+---
+
+# 11. PHASE 8 — Implement automated tests
+
+This is essential.
+
+The new repository already contains static V2 tests and separate historical V1 verification.
+
+Extend that existing infrastructure.
+
+Do not replace or weaken valid historical tests to make V2 pass.
+
+Add behavioral tests for:
+
+1. Required-field validation.
+2. Invalid/null store-product-date keys.
+3. Duplicate records.
+4. Missing calendar dates.
+5. Incorrect date windows.
+6. Nonfinite numeric values.
+7. Stockout count bounds.
+8. Hourly status parsing and count reconciliation.
+9. Deterministic final sampling.
+10. Sampling independence from validation/test outcomes.
+11. Store/product isolation during lag calculations.
+12. Correct prior-only rolling windows.
+13. Correct day-15 first target.
+14. Split boundaries on days 60/61 and 75/76.
+15. Preservation of stockout target dates.
+16. No target-day sales or stockout predictor leakage.
+17. No future-value leakage into previous-date features.
+18. Sales-only and stockout-aware key equality.
+19. Target and split consistency across bundles.
+20. Correct feature allowlists.
+21. Retrospective metadata excluded from predictors.
+22. Baseline formula correctness.
+23. Baseline prediction-key coverage.
+24. Deterministic artifact outputs.
+25. Bundle hash/provenance validation.
+26. Development versus final artifact separation.
+
+Use independent small golden fixtures and edge cases rather than tests that merely duplicate the implementation formulas.
+
+Use lightweight synthetic data to test edge cases without repeatedly scanning the full raw CSV.
+
+Run the appropriate existing test suite and setup checks.
+
+If required dependencies are missing, install them into the project's existing local virtual environment or a new ignored virtual environment.
+
+Do not install dependencies globally or silently introduce undeclared runtime requirements.
+
+Fix genuine failing DELTA tests.
+
+Do not hide failures or delete tests.
+
+---
+
+# 12. PHASE 9 — Run the development and final data pipeline
+
+After implementation and tests:
+
+### Development
+
+- Use the canonical 200-series pilot.
+- Generate the V2 all-eligible-target feature bundle.
+- Verify expected counts and all actual exclusions.
+- Validate every shared feature and output key.
+- Run and validate development baselines.
+- Save a development run manifest.
+- Keep previous pilot results archival.
+
+### Final
+
+- Select the approved 1,000 complete series.
+- Freeze and save the deterministic final sampling manifest.
+- Generate the V2 final feature bundle.
+- Validate sample coverage and expected observation counts.
+- Verify matching predictor conditions.
+- Verify raw, sample, feature, and output hashes.
+- Record the complete quality report.
+
+Do not tune models or analyze final test model performance.
+
+If an upstream semantic issue blocks trustworthy final acceptance, preserve the completed verified work and clearly label the final output as provisional.
+
+Do not fabricate a successful final run.
+
+The raw dataset is approximately 324 MB. Process it efficiently, avoid unnecessary full-file reads, and do not create duplicate raw exports.
+
+---
+
+# 13. PHASE 10 — Update ALL affected active documentation
+
+Only after determining what has actually been implemented and verified, synchronize documentation.
+
+Review and update relevant active files including:
+
+- `README.md`
+- `AGENTS.md`
+- `context.md`
+- `starter_prompt.md`
+- `docs/experiment_protocol.md` only where technical implementation clarification is warranted
+- `docs/interfaces.md`
+- `docs/team_responsibilities.md` only if needed
+- `docs/methodology.md`
+- `docs/experiment_log.md`
+- `docs/provenance.md`
+- `docs/ai_assistance.md`
+- `docs/contributions.md`, if actual completed work warrants an entry
+- `configs/contract.yaml`
+- `configs/dataset.yaml`
+- `configs/experiments.yaml`
+- Relevant `src/`, `data/`, `notebooks/`, `results/`, and `tests/` README files
+- Existing Copilot and agent instruction files, if needed
+
+Do not blindly rewrite every Markdown file.
+
+Update only files affected by the implementation, integration, current state, or handoff.
+
+Preserve the authoritative document hierarchy.
+
+Do not change the approved scientific methodology.
+
+Do not overwrite historical decisions or claim that a teammate completed work they have not done.
+
+Ensure every document distinguishes:
+
+- APPROVED scientific design.
+- IMPLEMENTED functionality.
+- VERIFIED outputs.
+- DRAFT or pending technical details.
+- HISTORICAL V1 artifacts.
+- PENDING teammate implementations.
+
+Update stale post-merge descriptions where current Git evidence demonstrates they are wrong.
+
+Add a concise DELTA technical handoff document:
+
+`docs/DELTA_DATA_HANDOFF.md`
+
+This must tell DEVGRU, SAS, and their LLM assistants:
+
+- Which dataset/bundle is authoritative.
+- Exact filenames and paths.
+- How to obtain the local raw data when required.
+- Which feature table to load.
+- Exact approved feature allowlists.
+- Exact target and split definitions.
+- Expected row counts and verified actual row counts.
+- How to join observation keys safely.
+- Which columns must NEVER be predictors.
+- How to access retrospective evaluation metadata.
+- How to validate artifact hashes.
+- How to run preprocessing tests.
+- How to generate a new development bundle.
+- What the model prediction output format must be.
+- Which experiments are historical and must not be mixed.
+- Which technical details remain unresolved.
+- What DEVGRU and SAS can start implementing immediately.
+
+Add exact commands and small usage examples based on actual implemented files, not invented entry points.
+
+Ensure `AGENTS.md` and `context.md` point future coding assistants to the handoff and the approved protocol.
+
+The central protocol should not be duplicated in dozens of READMEs.
+
+---
+
+# 14. PHASE 11 — Final verification and deliverables
+
+Run applicable verification after all changes.
+
+Check:
+
+- Git status.
+- Project setup checks.
+- Active V2 contract tests.
+- Historical V1 tests.
+- New DELTA behavioral tests.
+- YAML and JSON parsing.
+- Source/schema integrity.
+- Data hashes.
+- Feature allowlists.
+- Bundle consistency.
+- Development result reproducibility.
+- Documentation links.
+- README commands.
+- `.gitignore` coverage.
+- Whitespace checks.
+
+Do not run `git add -A`, commit, or push.
+
+Do not stage large generated data.
+
+Create one implementation report:
+
+`docs/DELTA_V2_IMPLEMENTATION_REPORT.md`
+
+It must include:
+
+1. Executive Summary
+2. Source and Migration Inventory
+3. Files Reused from OLD
+4. Files Newly Implemented
+5. Raw Dataset Provenance and Verified Hash
+6. Stockout Semantic Verification
+7. Data Validation Changes
+8. Development Sampling and Dataset
+9. Final 1,000-Series Selection
+10. Exact Feature Definitions
+11. V2 Eligibility and Target Retention
+12. Shared Bundle Contract
+13. Baseline Implementation and Results
+14. Automated Test Coverage
+15. Test Results and Failures
+16. Generated Artifact Paths and Sizes
+17. Git Tracking and Ignore Verification
+18. Updated Documentation
+19. DELTA-to-DEVGRU/SAS Handoff
+20. Remaining Risks or Blockers
+21. Final Technical Assessment
+
+For every output, distinguish:
+
+- CREATED
+- VERIFIED
+- PROVISIONAL
+- HISTORICAL
+- NOT IMPLEMENTED
+
+Provide measured counts and observed test results.
+
+Do not claim a result exists unless the file exists and passed the relevant checks.
+
+At the end of your response provide:
+
+**A. Files modified and created**
+
+**B. Data copied or generated**
+
+**C. Tests passed/failed**
+
+**D. What was salvaged**
+
+**E. What was rebuilt**
+
+**F. Exact DELTA handoff readiness**
+
+**G. Remaining work and blockers**
+
+**H. What I should upload to ChatGPT for independent review**
+
+---
+
+# 15. Execution and token-efficiency requirements
+
+Execute the task in phases, but continue across phases rather than stopping after planning.
+
+Start with inspecting current Git state and validating the data source.
+
+Then implement the lowest-risk reusable components first.
+
+After each major phase, run focused checks rather than repeatedly rerunning the entire pipeline.
+
+Reserve the comprehensive test suite for the final verification gate.
+
+Keep terminal output concise.
+
+Do not repeatedly dump large datasets, entire notebooks, or long Markdown files.
+
+Avoid unnecessary broad web searches when repository documentation and local evidence suffice.
+
+If one technical ambiguity cannot be resolved, complete independent phases and clearly identify the affected blocked deliverables.
+
+Do not silently guess data semantics, fabricate validation results, or override scientific decisions.
+
+When a phase requires more work than fits into one execution, preserve a precise completed-work summary in the implementation report so another session can continue without repeating completed phases.
+
+**Final objective: Deliver a tested, reproducible, centralized DELTA V2 data pipeline and clean technical handoff, using as much verified legacy work as safely possible, without modifying historical evidence or implementing other teammates' models.**

@@ -1,10 +1,10 @@
-# Active V2 metadata registration, not a producer schema or runtime implementation.
+# Active V2 registration; producer v2.0.0 implemented, broader experiment freeze pending.
 protocol_version: '2.0'
 contract_version: '2.0-draft'
 scientific_status: approved
 technical_contract_status: draft
 contract_frozen: false
-implementation_verified: false
+implementation_verified: true
 authority: docs/experiment_protocol.md
 interfaces: docs/interfaces.md
 metadata_files:
@@ -15,10 +15,11 @@ historical_evidence: docs/history/contract_v1
 initial_validation_parameters_frozen: false
 new_model_test_evaluation_allowed: false
 pending:
-  - raw_provenance_and_environment_compatibility
-  - v2_stockout_semantics_verification
-  - final_sampling_algorithm_and_manifest_coverage
-  - exact_schemas_encodings_and_quality_rules
+  - raw_export_lineage_and_learned_model_environment_compatibility
+  - undocumented_closed_or_missing_hour_business_semantics
   - preprocessing_and_prediction_postprocessing
   - model_settings_and_validation_tuning_grids
   - dependence_aware_uncertainty_procedure
+producer_contract_version: 2.0.0
+producer_status: verified_operational_provisional_business_semantics
+producer_handoff: docs/DELTA_DATA_HANDOFF.md

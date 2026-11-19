@@ -58,13 +58,15 @@ class SharedContractTests(unittest.TestCase):
             self.assertEqual(config["protocol_version"], "2.0")
             self.assertEqual(config["scientific_status"], "approved")
         self.assertEqual(self.contract["technical_contract_status"], "draft")
-        for flag in ("contract_frozen", "implementation_verified",
+        for flag in ("contract_frozen",
                      "initial_validation_parameters_frozen", "new_model_test_evaluation_allowed"):
             self.assertIs(self.contract[flag], False)
+        self.assertIs(self.contract["implementation_verified"], True)
+        self.assertEqual(self.contract["producer_contract_version"], "2.0.0")
         self.assertIs(self.experiment["contract_frozen"], False)
         self.assertEqual(self.models["prediction_contract_status"], "draft")
 
-    def test_recorded_sales_samples_and_pending_final_manifest(self):
+    def test_recorded_sales_samples_and_registered_final_manifest(self):
         self.assertEqual(self.data["target"], "sale_amount")
         self.assertEqual(self.data["forecast_horizon_days"], 1)
         self.assertEqual(self.data["key"], ["store_id", "product_id", "dt"])
@@ -72,8 +74,8 @@ class SharedContractTests(unittest.TestCase):
         self.assertEqual(self.data["pilot_purpose"], "development_debugging")
         final = self.data["final_sample"]
         self.assertEqual(final["series"], 1000)
-        self.assertEqual(final["status"], "not_generated")
-        self.assertIsNone(final["manifest"])
+        self.assertEqual(final["status"], "generated_verified_operational_provisional")
+        self.assertEqual(final["manifest"], "data/processed/feature_bundles/v2-final-1000-r2/sample_manifest.csv")
         self.assertEqual(final["proposed_seed"], 245)
         self.assertTrue(final["same_sample_across_models_and_conditions"])
         self.assertTrue(final["fixed_reproducible_selection_required"])
@@ -109,13 +111,13 @@ class SharedContractTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             candidate_history_reason(29, history_days=28)
 
-    def test_chronology_and_projected_not_observed_counts(self):
+    def test_chronology_and_verified_counts(self):
         splits = self.experiment["splits"]
         self.assertEqual([(splits[s]["first_day"], splits[s]["last_day"])
                           for s in ("train", "validation", "test")],
                          [(1, 60), (61, 75), (76, 90)])
         projected = self.experiment["projected_final_candidate_counts"]
-        self.assertEqual(projected["status"], "projected_not_generated")
+        self.assertEqual(projected["status"], "verified_generated_no_quality_exclusions")
         self.assertEqual([projected[s] for s in ("train", "validation", "test", "total")],
                          [46000, 15000, 15000, 76000])
         self.assertNotIn("eligible_rows", self.experiment)
@@ -185,7 +187,7 @@ class SharedContractTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 parse_stock_status(malformed)
         self.assertFalse(self.data["stockout_semantics_verified"])
-        self.assertEqual(self.experiment["eligibility"]["subgroup_semantics"], "pending_verification")
+        self.assertEqual(self.experiment["eligibility"]["subgroup_semantics"], "operational_verified_business_provisional")
 
     def test_duplicate_yaml_keys_rejected(self):
         with self.assertRaises(ValueError):

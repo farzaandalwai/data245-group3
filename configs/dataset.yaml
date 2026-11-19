@@ -1,4 +1,4 @@
-# Metadata only; not consumed by an ML producer. Existing path keys support layout checks.
+# V2 producer configuration; scientific authority remains the protocol.
 layout_version: 2
 owner: DELTA
 protocol_version: '2.0'
@@ -23,10 +23,10 @@ pilot_evidence_status: historical_preserve_unchanged
 final_sample:
   series: 1000
   complete_series_required: true
-  status: not_generated
-  manifest: null
+  status: generated_verified_operational_provisional
+  manifest: data/processed/feature_bundles/v2-final-1000-r2/sample_manifest.csv
   proposed_seed: 245
-  seed_status: proposed_default
+  seed_status: authorized_implemented_default
   fixed_reproducible_selection_required: true
   same_sample_across_models_and_conditions: true
   recommended_requirements:
@@ -37,8 +37,13 @@ final_sample:
     - save_versioned_manifest_and_provenance
   representativeness_guaranteed: false
 raw_downloaded: false
+raw_copied_verified: true
 raw_provenance_status: pending_verification
 stockout_semantics_verified: false
-stockout_semantics_status: pending_v2_verification_preserve_historical_v1_audit
-environment_compatibility: pending_verification
+stockout_semantics_status: operational_verified_business_semantics_provisional
+environment_compatibility: verified_python_3_12_10
 historical_stockout_evidence: docs/history/contract_v1/docs/contract_audit.json
+
+source_sha256: 6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5
+stockout_operational_semantics_verified: true
+selection_algorithm: seeded_sha256_rank_no_outcome_strata

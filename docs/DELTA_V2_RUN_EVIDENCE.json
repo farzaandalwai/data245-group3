@@ -1,0 +1,901 @@
+{
+  "date": "2026-11-19",
+  "branch": "DELTA/v2-data-pipeline",
+  "base": "5dcd128",
+  "raw_sha256": "6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5",
+  "source_snapshot": "data/manifests/v2-source-r2",
+  "baseline_run": {
+    "path": "results/baselines_DELTA/v2/v2-development-baselines-r2",
+    "files": {
+      "metrics.csv": {
+        "sha256": "023fdcac868d7980bc85157dc94f7d7c1349bff26d6bb0132f5bcd86758c0a73",
+        "bytes": 561
+      },
+      "predictions.csv": {
+        "sha256": "315c1d7633b4167a75bbed1e3ed4080f9131ec6bd6d2010c9aa38ff7ebfe406b",
+        "bytes": 3490119
+      },
+      "run_manifest.json": {
+        "sha256": "88c52c29efa7e9ed8f5cc0c41ca6102b82daf6fd2c8b737963f9a65258cd0582",
+        "bytes": 561
+      }
+    },
+    "metrics": [
+      {
+        "model": "persistence",
+        "split": "test",
+        "rows": 3000,
+        "MAE": 0.44406333333333337,
+        "RMSE": 0.6973798343322908,
+        "signed_bias": -0.0027766666666666612
+      },
+      {
+        "model": "persistence",
+        "split": "train",
+        "rows": 9200,
+        "MAE": 0.4111510869565217,
+        "RMSE": 0.657686863841422,
+        "signed_bias": -0.008985869565217392
+      },
+      {
+        "model": "persistence",
+        "split": "validation",
+        "rows": 3000,
+        "MAE": 0.41775666666666667,
+        "RMSE": 0.6774407477164823,
+        "signed_bias": 0.0023566666666666658
+      },
+      {
+        "model": "recent_avg_7",
+        "split": "test",
+        "rows": 3000,
+        "MAE": 0.3626219047619047,
+        "RMSE": 0.564407043014243,
+        "signed_bias": -0.05164666666666667
+      },
+      {
+        "model": "recent_avg_7",
+        "split": "train",
+        "rows": 9200,
+        "MAE": 0.33866009316770185,
+        "RMSE": 0.5345405968996242,
+        "signed_bias": -0.013435869565217392
+      },
+      {
+        "model": "recent_avg_7",
+        "split": "validation",
+        "rows": 3000,
+        "MAE": 0.33738047619047623,
+        "RMSE": 0.551964786784755,
+        "signed_bias": -0.0072757142857142795
+      }
+    ]
+  },
+  "historical_manifest_bytes_preserved": true,
+  "superseded_r1_bundles": {
+    "v2-development-200-r1": {
+      "path": "data/processed/feature_bundles/v2-development-200-r1",
+      "manifest_sha256": "399821262e6dfd340bdd22c64c69c6a04c9348ef1d50b746363630f81262951c",
+      "sample_sha256": "79fa3759f30fee49e7a2a5edead0884456be1767788e6eb0fb326dbb2e772cc4",
+      "split_counts": {
+        "test": 3000,
+        "train": 9200,
+        "validation": 3000
+      },
+      "purpose": "development_debugging",
+      "status": "VERIFIED operational; PROVISIONAL business semantics",
+      "bytes": 6283423,
+      "artifacts": {
+        "configuration_snapshot.json": {
+          "bytes": 8550,
+          "sha256": "e16eedcebf279e45c49807f5b441ce0563328749bbebb325ac8a2d37299a4082"
+        },
+        "eligibility_audit.csv": {
+          "bytes": 173,
+          "sha256": "b31592413d2b2f55d672f71808a684f78449fafc9e1c9e2e18231eaadcb24bba"
+        },
+        "evaluation_metadata.csv": {
+          "bytes": 494737,
+          "sha256": "b86869b865cfbf45f9a611849d13122a62a1e32d4987e2aa96103053d82ed0b5"
+        },
+        "feature_spec.json": {
+          "bytes": 3784,
+          "sha256": "dbe47fb024eff3f1032a832a78f025cadbf2211313cd52907fcaf77684ca071b"
+        },
+        "features_sales_only.csv": {
+          "bytes": 2061270,
+          "sha256": "3a4f0d4f32644bea879c69b3bfb368e8fbf512d9a6050d88a95b1c354c461d7b"
+        },
+        "features_stockout_aware.csv": {
+          "bytes": 3095244,
+          "sha256": "c83bde3fcdc33e0665a30d64a0deae14e078b9bc2792406164917b82a681f222"
+        },
+        "observations.csv": {
+          "bytes": 612632,
+          "sha256": "a17340dba1a4048c5f884801843380d1d11476fb823e6a9e3b5e43a73e229edd"
+        },
+        "quality_report.json": {
+          "bytes": 2173,
+          "sha256": "3c44cb83ec750fd1c89d9746ef43bd58a131bc8c0d5726c1af3b0064e67b2ea6"
+        },
+        "sample_manifest.csv": {
+          "bytes": 1537,
+          "sha256": "79fa3759f30fee49e7a2a5edead0884456be1767788e6eb0fb326dbb2e772cc4"
+        }
+      },
+      "quality": {
+        "business_semantics": "PROVISIONAL: missing/closed hours not independently documented; fully_stocked means zero annotated stockout in interval only",
+        "coverage": {
+          "eligible_population_series": 16213,
+          "products": 113,
+          "series": 200,
+          "series_fraction": 0.012335779929686054,
+          "stores": 113,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.18333333333333332,
+            "0.25": 0.35,
+            "0.5": 0.43333333333333335,
+            "0.75": 0.5333333333333333,
+            "1.0": 0.9833333333333333
+          }
+        },
+        "population_coverage": {
+          "eligible_population_series": 16213,
+          "products": 417,
+          "series": 16213,
+          "series_fraction": 1.0,
+          "stores": 184,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.03333333333333333,
+            "0.25": 0.35,
+            "0.5": 0.43333333333333335,
+            "0.75": 0.5333333333333333,
+            "1.0": 1.0
+          }
+        },
+        "quality_exclusions_selected": 0,
+        "source": {
+          "columns": [
+            "city_id",
+            "store_id",
+            "management_group_id",
+            "first_category_id",
+            "second_category_id",
+            "third_category_id",
+            "product_id",
+            "dt",
+            "sale_amount",
+            "hours_sale",
+            "stock_hour6_22_cnt",
+            "hours_stock_status",
+            "discount",
+            "holiday_flag",
+            "activity_flag",
+            "precpt",
+            "avg_temperature",
+            "avg_humidity",
+            "avg_wind_level"
+          ],
+          "complete_series": 16213,
+          "date_max": "2024-06-25",
+          "date_min": "2024-03-28",
+          "duplicate_keys": 0,
+          "hourly_count_mismatches": 0,
+          "incomplete_series": [
+            {
+              "missing_days": 62,
+              "product_id": 764,
+              "reason": "incomplete_90_day_calendar",
+              "row_count": 28,
+              "store_id": 420
+            }
+          ],
+          "invalid_records": 0,
+          "products": 417,
+          "rows": 1459198,
+          "series": 16214,
+          "stores": 184
+        },
+        "stockout_interpretation": "Operationally verified: 24 binary entries, 1=stockout, indices [6:22]; full export reconciled",
+        "validation": {
+          "independent_predictor_values": 212800,
+          "independent_reconstruction_rows": 15200
+        }
+      },
+      "environment": {
+        "PyYAML": "6.0.3",
+        "numpy": "2.5.5",
+        "pandas": "3.1.1",
+        "python": "3.12.10"
+      }
+    },
+    "v2-final-1000-r1": {
+      "path": "data/processed/feature_bundles/v2-final-1000-r1",
+      "manifest_sha256": "7239be62f771356dab33f47f75e38caf4be68127852103891dd403d0cb53978a",
+      "sample_sha256": "830d30a1249f609ad3c95c37032d2e7b7f0d5671fc7ad8864ad8b5e31d1356e7",
+      "split_counts": {
+        "test": 15000,
+        "train": 46000,
+        "validation": 15000
+      },
+      "purpose": "final_experiment",
+      "status": "VERIFIED operational; PROVISIONAL business semantics",
+      "bytes": 31372619,
+      "artifacts": {
+        "configuration_snapshot.json": {
+          "bytes": 8550,
+          "sha256": "e16eedcebf279e45c49807f5b441ce0563328749bbebb325ac8a2d37299a4082"
+        },
+        "eligibility_audit.csv": {
+          "bytes": 179,
+          "sha256": "8b3b66367f75b1e9694002f7f9c8acec1c9587152c160ad5d6798c6028863513"
+        },
+        "evaluation_metadata.csv": {
+          "bytes": 2476976,
+          "sha256": "cc14e2a815a92649aa79253836ea309673ee62e5be50713f5c846ea3241ee11f"
+        },
+        "feature_spec.json": {
+          "bytes": 3784,
+          "sha256": "dbe47fb024eff3f1032a832a78f025cadbf2211313cd52907fcaf77684ca071b"
+        },
+        "features_sales_only.csv": {
+          "bytes": 10278983,
+          "sha256": "6d054686298815332b38e842517687fc0690985f3eb2146fbf160a23b9d9ae44"
+        },
+        "features_stockout_aware.csv": {
+          "bytes": 15464572,
+          "sha256": "b6757aa57044c7882c8a6ba1cede42db4cf94fcdf04f823a2036b676d6a391eb"
+        },
+        "observations.csv": {
+          "bytes": 3061448,
+          "sha256": "7a0e12de2960dc09f1640ca908f00dd169934c20d4af1cb2d15bac5821145bd4"
+        },
+        "quality_report.json": {
+          "bytes": 2159,
+          "sha256": "e6a1153278a07decdcc5639f940f26d6b4bd8abe391e59ac3eff192cff3bf3e9"
+        },
+        "sample_manifest.csv": {
+          "bytes": 72645,
+          "sha256": "830d30a1249f609ad3c95c37032d2e7b7f0d5671fc7ad8864ad8b5e31d1356e7"
+        }
+      },
+      "quality": {
+        "business_semantics": "PROVISIONAL: missing/closed hours not independently documented; fully_stocked means zero annotated stockout in interval only",
+        "coverage": {
+          "eligible_population_series": 16213,
+          "products": 239,
+          "series": 1000,
+          "series_fraction": 0.06167889964843027,
+          "stores": 183,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.13333333333333333,
+            "0.25": 0.35,
+            "0.5": 0.43333333333333335,
+            "0.75": 0.5333333333333333,
+            "1.0": 1.0
+          }
+        },
+        "population_coverage": {
+          "eligible_population_series": 16213,
+          "products": 417,
+          "series": 16213,
+          "series_fraction": 1.0,
+          "stores": 184,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.03333333333333333,
+            "0.25": 0.35,
+            "0.5": 0.43333333333333335,
+            "0.75": 0.5333333333333333,
+            "1.0": 1.0
+          }
+        },
+        "quality_exclusions_selected": 0,
+        "source": {
+          "columns": [
+            "city_id",
+            "store_id",
+            "management_group_id",
+            "first_category_id",
+            "second_category_id",
+            "third_category_id",
+            "product_id",
+            "dt",
+            "sale_amount",
+            "hours_sale",
+            "stock_hour6_22_cnt",
+            "hours_stock_status",
+            "discount",
+            "holiday_flag",
+            "activity_flag",
+            "precpt",
+            "avg_temperature",
+            "avg_humidity",
+            "avg_wind_level"
+          ],
+          "complete_series": 16213,
+          "date_max": "2024-06-25",
+          "date_min": "2024-03-28",
+          "duplicate_keys": 0,
+          "hourly_count_mismatches": 0,
+          "incomplete_series": [
+            {
+              "missing_days": 62,
+              "product_id": 764,
+              "reason": "incomplete_90_day_calendar",
+              "row_count": 28,
+              "store_id": 420
+            }
+          ],
+          "invalid_records": 0,
+          "products": 417,
+          "rows": 1459198,
+          "series": 16214,
+          "stores": 184
+        },
+        "stockout_interpretation": "Operationally verified: 24 binary entries, 1=stockout, indices [6:22]; full export reconciled",
+        "validation": {
+          "independent_predictor_values": 1064000,
+          "independent_reconstruction_rows": 76000
+        }
+      },
+      "environment": {
+        "PyYAML": "6.0.3",
+        "numpy": "2.5.5",
+        "pandas": "3.1.1",
+        "python": "3.12.10"
+      }
+    },
+    "v2-synthetic-fixture-r1": {
+      "path": "data/processed/feature_bundles/v2-synthetic-fixture-r1",
+      "manifest_sha256": "c384bbdd5bda48c14f70e36b557a233da54a904b85d4715a65b3e7fc7f532152",
+      "sample_sha256": "315ecb18e2a8c9f811025c733de6be0102c4b5816a8169f355346faf4296a465",
+      "split_counts": {
+        "test": 30,
+        "train": 92,
+        "validation": 30
+      },
+      "purpose": "synthetic_test_only",
+      "status": "VERIFIED operational; PROVISIONAL business semantics",
+      "bytes": 54133,
+      "artifacts": {
+        "configuration_snapshot.json": {
+          "bytes": 8550,
+          "sha256": "e16eedcebf279e45c49807f5b441ce0563328749bbebb325ac8a2d37299a4082"
+        },
+        "eligibility_audit.csv": {
+          "bytes": 159,
+          "sha256": "7174500e9c7ea77e9ef4840bd7300a114bd21c021e118603ea836aa45efeaeac"
+        },
+        "evaluation_metadata.csv": {
+          "bytes": 4681,
+          "sha256": "ae8b9761c79e5c5018f51db47b5ddcd2d17723cdd140cb5e5cab75a3680d3979"
+        },
+        "feature_spec.json": {
+          "bytes": 3784,
+          "sha256": "dbe47fb024eff3f1032a832a78f025cadbf2211313cd52907fcaf77684ca071b"
+        },
+        "features_sales_only.csv": {
+          "bytes": 7730,
+          "sha256": "823b52bd0150e30cab370a2dc4a862328edc5982d888f06ea17c26649f258e6f"
+        },
+        "features_stockout_aware.csv": {
+          "bytes": 20005,
+          "sha256": "ddafdba369834740c87b52a2a622c909c08f6d32dfd85190a1d52e8fce75af71"
+        },
+        "observations.csv": {
+          "bytes": 4108,
+          "sha256": "481a0c9ea2c88dd6b152d8d31ca1fdd2f75b4cd6336fdda3179936dbba659a17"
+        },
+        "quality_report.json": {
+          "bytes": 1682,
+          "sha256": "701e814175450f71c45eaa7c1b5c2884dbe13314dffb14b2a5ac12c15dd71d8c"
+        },
+        "sample_manifest.csv": {
+          "bytes": 175,
+          "sha256": "315ecb18e2a8c9f811025c733de6be0102c4b5816a8169f355346faf4296a465"
+        }
+      },
+      "quality": {
+        "business_semantics": "PROVISIONAL: missing/closed hours not independently documented; fully_stocked means zero annotated stockout in interval only",
+        "coverage": {
+          "eligible_population_series": 2,
+          "products": 1,
+          "series": 2,
+          "series_fraction": 1.0,
+          "stores": 2,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.3333333333333333,
+            "0.25": 0.3333333333333333,
+            "0.5": 0.3333333333333333,
+            "0.75": 0.3333333333333333,
+            "1.0": 0.3333333333333333
+          }
+        },
+        "population_coverage": {
+          "eligible_population_series": 2,
+          "products": 1,
+          "series": 2,
+          "series_fraction": 1.0,
+          "stores": 2,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.3333333333333333,
+            "0.25": 0.3333333333333333,
+            "0.5": 0.3333333333333333,
+            "0.75": 0.3333333333333333,
+            "1.0": 0.3333333333333333
+          }
+        },
+        "quality_exclusions_selected": 0,
+        "source": {
+          "columns": [
+            "store_id",
+            "product_id",
+            "dt",
+            "sale_amount",
+            "stock_hour6_22_cnt",
+            "hours_stock_status"
+          ],
+          "complete_series": 2,
+          "date_max": "2024-06-25",
+          "date_min": "2024-03-28",
+          "duplicate_keys": 0,
+          "hourly_count_mismatches": 0,
+          "incomplete_series": [],
+          "invalid_records": 0,
+          "products": 1,
+          "rows": 180,
+          "series": 2,
+          "stores": 2
+        },
+        "stockout_interpretation": "Operationally verified: 24 binary entries, 1=stockout, indices [6:22]; full export reconciled",
+        "validation": {
+          "independent_predictor_values": 2128,
+          "independent_reconstruction_rows": 152
+        }
+      },
+      "environment": {
+        "PyYAML": "6.0.3",
+        "numpy": "2.5.5",
+        "pandas": "3.1.1",
+        "python": "3.12.10"
+      }
+    }
+  },
+  "bundles": {
+    "v2-development-200-r2": {
+      "path": "data/processed/feature_bundles/v2-development-200-r2",
+      "manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+      "sample_sha256": "79fa3759f30fee49e7a2a5edead0884456be1767788e6eb0fb326dbb2e772cc4",
+      "split_counts": {
+        "test": 3000,
+        "train": 9200,
+        "validation": 3000
+      },
+      "purpose": "development_debugging",
+      "status": "VERIFIED operational; PROVISIONAL business semantics",
+      "bytes": 6284204,
+      "artifacts": {
+        "configuration_snapshot.json": {
+          "bytes": 9014,
+          "sha256": "03da28020a78089ed1f9e149d7bffe3665a4aac7cd995b12a7fef4c2d7609aeb"
+        },
+        "eligibility_audit.csv": {
+          "bytes": 173,
+          "sha256": "b31592413d2b2f55d672f71808a684f78449fafc9e1c9e2e18231eaadcb24bba"
+        },
+        "evaluation_metadata.csv": {
+          "bytes": 494737,
+          "sha256": "b86869b865cfbf45f9a611849d13122a62a1e32d4987e2aa96103053d82ed0b5"
+        },
+        "feature_spec.json": {
+          "bytes": 3784,
+          "sha256": "dbe47fb024eff3f1032a832a78f025cadbf2211313cd52907fcaf77684ca071b"
+        },
+        "features_sales_only.csv": {
+          "bytes": 2061270,
+          "sha256": "3a4f0d4f32644bea879c69b3bfb368e8fbf512d9a6050d88a95b1c354c461d7b"
+        },
+        "features_stockout_aware.csv": {
+          "bytes": 3095244,
+          "sha256": "c83bde3fcdc33e0665a30d64a0deae14e078b9bc2792406164917b82a681f222"
+        },
+        "observations.csv": {
+          "bytes": 612632,
+          "sha256": "a17340dba1a4048c5f884801843380d1d11476fb823e6a9e3b5e43a73e229edd"
+        },
+        "quality_report.json": {
+          "bytes": 2173,
+          "sha256": "3c44cb83ec750fd1c89d9746ef43bd58a131bc8c0d5726c1af3b0064e67b2ea6"
+        },
+        "sample_manifest.csv": {
+          "bytes": 1537,
+          "sha256": "79fa3759f30fee49e7a2a5edead0884456be1767788e6eb0fb326dbb2e772cc4"
+        }
+      },
+      "quality": {
+        "business_semantics": "PROVISIONAL: missing/closed hours not independently documented; fully_stocked means zero annotated stockout in interval only",
+        "coverage": {
+          "eligible_population_series": 16213,
+          "products": 113,
+          "series": 200,
+          "series_fraction": 0.012335779929686054,
+          "stores": 113,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.18333333333333332,
+            "0.25": 0.35,
+            "0.5": 0.43333333333333335,
+            "0.75": 0.5333333333333333,
+            "1.0": 0.9833333333333333
+          }
+        },
+        "population_coverage": {
+          "eligible_population_series": 16213,
+          "products": 417,
+          "series": 16213,
+          "series_fraction": 1.0,
+          "stores": 184,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.03333333333333333,
+            "0.25": 0.35,
+            "0.5": 0.43333333333333335,
+            "0.75": 0.5333333333333333,
+            "1.0": 1.0
+          }
+        },
+        "quality_exclusions_selected": 0,
+        "source": {
+          "columns": [
+            "city_id",
+            "store_id",
+            "management_group_id",
+            "first_category_id",
+            "second_category_id",
+            "third_category_id",
+            "product_id",
+            "dt",
+            "sale_amount",
+            "hours_sale",
+            "stock_hour6_22_cnt",
+            "hours_stock_status",
+            "discount",
+            "holiday_flag",
+            "activity_flag",
+            "precpt",
+            "avg_temperature",
+            "avg_humidity",
+            "avg_wind_level"
+          ],
+          "complete_series": 16213,
+          "date_max": "2024-06-25",
+          "date_min": "2024-03-28",
+          "duplicate_keys": 0,
+          "hourly_count_mismatches": 0,
+          "incomplete_series": [
+            {
+              "missing_days": 62,
+              "product_id": 764,
+              "reason": "incomplete_90_day_calendar",
+              "row_count": 28,
+              "store_id": 420
+            }
+          ],
+          "invalid_records": 0,
+          "products": 417,
+          "rows": 1459198,
+          "series": 16214,
+          "stores": 184
+        },
+        "stockout_interpretation": "Operationally verified: 24 binary entries, 1=stockout, indices [6:22]; full export reconciled",
+        "validation": {
+          "independent_predictor_values": 212800,
+          "independent_reconstruction_rows": 15200
+        }
+      },
+      "environment": {
+        "PyYAML": "6.0.3",
+        "numpy": "2.5.5",
+        "pandas": "3.1.1",
+        "python": "3.12.10"
+      },
+      "sample_origin": {
+        "canonical_manifest_sha256": "8b7a5377c95e56e63ad5143cc8dc8a38ecc35032f64e2cfbbb8ae66d25519a42",
+        "canonical_pilot_sha256": "de303b3f079b0258f15cbbcde14ab0d5e8a4bfb1f24756eb6b277e1bc7c8311f",
+        "development_values": "canonical pilot retained; legacy serialization has sub-ULP-scale differences from raw",
+        "pilot_raw_comparison_tolerance": {
+          "atol": 1e-12,
+          "rtol": 1e-12
+        },
+        "pilot_raw_max_absolute_difference": 4.440892098500626e-16,
+        "pilot_raw_sales_different_float_values": 54
+      }
+    },
+    "v2-final-1000-r2": {
+      "path": "data/processed/feature_bundles/v2-final-1000-r2",
+      "manifest_sha256": "52f4faec954ee311970bb567682d4ac7b466a2d5b8ce7f8c87af5d171fc6af7c",
+      "sample_sha256": "830d30a1249f609ad3c95c37032d2e7b7f0d5671fc7ad8864ad8b5e31d1356e7",
+      "split_counts": {
+        "test": 15000,
+        "train": 46000,
+        "validation": 15000
+      },
+      "purpose": "final_experiment",
+      "status": "VERIFIED operational; PROVISIONAL business semantics",
+      "bytes": 31373083,
+      "artifacts": {
+        "configuration_snapshot.json": {
+          "bytes": 9014,
+          "sha256": "03da28020a78089ed1f9e149d7bffe3665a4aac7cd995b12a7fef4c2d7609aeb"
+        },
+        "eligibility_audit.csv": {
+          "bytes": 179,
+          "sha256": "8b3b66367f75b1e9694002f7f9c8acec1c9587152c160ad5d6798c6028863513"
+        },
+        "evaluation_metadata.csv": {
+          "bytes": 2476976,
+          "sha256": "cc14e2a815a92649aa79253836ea309673ee62e5be50713f5c846ea3241ee11f"
+        },
+        "feature_spec.json": {
+          "bytes": 3784,
+          "sha256": "dbe47fb024eff3f1032a832a78f025cadbf2211313cd52907fcaf77684ca071b"
+        },
+        "features_sales_only.csv": {
+          "bytes": 10278983,
+          "sha256": "6d054686298815332b38e842517687fc0690985f3eb2146fbf160a23b9d9ae44"
+        },
+        "features_stockout_aware.csv": {
+          "bytes": 15464572,
+          "sha256": "b6757aa57044c7882c8a6ba1cede42db4cf94fcdf04f823a2036b676d6a391eb"
+        },
+        "observations.csv": {
+          "bytes": 3061448,
+          "sha256": "7a0e12de2960dc09f1640ca908f00dd169934c20d4af1cb2d15bac5821145bd4"
+        },
+        "quality_report.json": {
+          "bytes": 2159,
+          "sha256": "e6a1153278a07decdcc5639f940f26d6b4bd8abe391e59ac3eff192cff3bf3e9"
+        },
+        "sample_manifest.csv": {
+          "bytes": 72645,
+          "sha256": "830d30a1249f609ad3c95c37032d2e7b7f0d5671fc7ad8864ad8b5e31d1356e7"
+        }
+      },
+      "quality": {
+        "business_semantics": "PROVISIONAL: missing/closed hours not independently documented; fully_stocked means zero annotated stockout in interval only",
+        "coverage": {
+          "eligible_population_series": 16213,
+          "products": 239,
+          "series": 1000,
+          "series_fraction": 0.06167889964843027,
+          "stores": 183,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.13333333333333333,
+            "0.25": 0.35,
+            "0.5": 0.43333333333333335,
+            "0.75": 0.5333333333333333,
+            "1.0": 1.0
+          }
+        },
+        "population_coverage": {
+          "eligible_population_series": 16213,
+          "products": 417,
+          "series": 16213,
+          "series_fraction": 1.0,
+          "stores": 184,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.03333333333333333,
+            "0.25": 0.35,
+            "0.5": 0.43333333333333335,
+            "0.75": 0.5333333333333333,
+            "1.0": 1.0
+          }
+        },
+        "quality_exclusions_selected": 0,
+        "source": {
+          "columns": [
+            "city_id",
+            "store_id",
+            "management_group_id",
+            "first_category_id",
+            "second_category_id",
+            "third_category_id",
+            "product_id",
+            "dt",
+            "sale_amount",
+            "hours_sale",
+            "stock_hour6_22_cnt",
+            "hours_stock_status",
+            "discount",
+            "holiday_flag",
+            "activity_flag",
+            "precpt",
+            "avg_temperature",
+            "avg_humidity",
+            "avg_wind_level"
+          ],
+          "complete_series": 16213,
+          "date_max": "2024-06-25",
+          "date_min": "2024-03-28",
+          "duplicate_keys": 0,
+          "hourly_count_mismatches": 0,
+          "incomplete_series": [
+            {
+              "missing_days": 62,
+              "product_id": 764,
+              "reason": "incomplete_90_day_calendar",
+              "row_count": 28,
+              "store_id": 420
+            }
+          ],
+          "invalid_records": 0,
+          "products": 417,
+          "rows": 1459198,
+          "series": 16214,
+          "stores": 184
+        },
+        "stockout_interpretation": "Operationally verified: 24 binary entries, 1=stockout, indices [6:22]; full export reconciled",
+        "validation": {
+          "independent_predictor_values": 1064000,
+          "independent_reconstruction_rows": 76000
+        }
+      },
+      "environment": {
+        "PyYAML": "6.0.3",
+        "numpy": "2.5.5",
+        "pandas": "3.1.1",
+        "python": "3.12.10"
+      },
+      "sample_origin": {
+        "seed": 245,
+        "selection_algorithm": "SHA256 rank of ASCII v2|seed|integer_store|integer_product; ascending digest then keys; first n; output sorted keys",
+        "selection_uses_outcomes": false
+      }
+    },
+    "v2-synthetic-fixture-r2": {
+      "path": "data/processed/feature_bundles/v2-synthetic-fixture-r2",
+      "manifest_sha256": "3c51884b4d24a615d797578af8fc047c1109d82ec55b3017ce97556b7b180769",
+      "sample_sha256": "315ecb18e2a8c9f811025c733de6be0102c4b5816a8169f355346faf4296a465",
+      "split_counts": {
+        "test": 30,
+        "train": 92,
+        "validation": 30
+      },
+      "purpose": "synthetic_test_only",
+      "status": "VERIFIED operational; PROVISIONAL business semantics",
+      "bytes": 54597,
+      "artifacts": {
+        "configuration_snapshot.json": {
+          "bytes": 9014,
+          "sha256": "03da28020a78089ed1f9e149d7bffe3665a4aac7cd995b12a7fef4c2d7609aeb"
+        },
+        "eligibility_audit.csv": {
+          "bytes": 159,
+          "sha256": "7174500e9c7ea77e9ef4840bd7300a114bd21c021e118603ea836aa45efeaeac"
+        },
+        "evaluation_metadata.csv": {
+          "bytes": 4681,
+          "sha256": "ae8b9761c79e5c5018f51db47b5ddcd2d17723cdd140cb5e5cab75a3680d3979"
+        },
+        "feature_spec.json": {
+          "bytes": 3784,
+          "sha256": "dbe47fb024eff3f1032a832a78f025cadbf2211313cd52907fcaf77684ca071b"
+        },
+        "features_sales_only.csv": {
+          "bytes": 7730,
+          "sha256": "823b52bd0150e30cab370a2dc4a862328edc5982d888f06ea17c26649f258e6f"
+        },
+        "features_stockout_aware.csv": {
+          "bytes": 20005,
+          "sha256": "ddafdba369834740c87b52a2a622c909c08f6d32dfd85190a1d52e8fce75af71"
+        },
+        "observations.csv": {
+          "bytes": 4108,
+          "sha256": "481a0c9ea2c88dd6b152d8d31ca1fdd2f75b4cd6336fdda3179936dbba659a17"
+        },
+        "quality_report.json": {
+          "bytes": 1682,
+          "sha256": "701e814175450f71c45eaa7c1b5c2884dbe13314dffb14b2a5ac12c15dd71d8c"
+        },
+        "sample_manifest.csv": {
+          "bytes": 175,
+          "sha256": "315ecb18e2a8c9f811025c733de6be0102c4b5816a8169f355346faf4296a465"
+        }
+      },
+      "quality": {
+        "business_semantics": "PROVISIONAL: missing/closed hours not independently documented; fully_stocked means zero annotated stockout in interval only",
+        "coverage": {
+          "eligible_population_series": 2,
+          "products": 1,
+          "series": 2,
+          "series_fraction": 1.0,
+          "stores": 2,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.3333333333333333,
+            "0.25": 0.3333333333333333,
+            "0.5": 0.3333333333333333,
+            "0.75": 0.3333333333333333,
+            "1.0": 0.3333333333333333
+          }
+        },
+        "population_coverage": {
+          "eligible_population_series": 2,
+          "products": 1,
+          "series": 2,
+          "series_fraction": 1.0,
+          "stores": 2,
+          "training_series_without_stockout": 0,
+          "training_stockout_day_fraction_quantiles": {
+            "0.0": 0.3333333333333333,
+            "0.25": 0.3333333333333333,
+            "0.5": 0.3333333333333333,
+            "0.75": 0.3333333333333333,
+            "1.0": 0.3333333333333333
+          }
+        },
+        "quality_exclusions_selected": 0,
+        "source": {
+          "columns": [
+            "store_id",
+            "product_id",
+            "dt",
+            "sale_amount",
+            "stock_hour6_22_cnt",
+            "hours_stock_status"
+          ],
+          "complete_series": 2,
+          "date_max": "2024-06-25",
+          "date_min": "2024-03-28",
+          "duplicate_keys": 0,
+          "hourly_count_mismatches": 0,
+          "incomplete_series": [],
+          "invalid_records": 0,
+          "products": 1,
+          "rows": 180,
+          "series": 2,
+          "stores": 2
+        },
+        "stockout_interpretation": "Operationally verified: 24 binary entries, 1=stockout, indices [6:22]; full export reconciled",
+        "validation": {
+          "independent_predictor_values": 2128,
+          "independent_reconstruction_rows": 152
+        }
+      },
+      "environment": {
+        "PyYAML": "6.0.3",
+        "numpy": "2.5.5",
+        "pandas": "3.1.1",
+        "python": "3.12.10"
+      },
+      "sample_origin": {
+        "seed": 245,
+        "selection_algorithm": "SHA256 rank of ASCII v2|seed|integer_store|integer_product; ascending digest then keys; first n; output sorted keys",
+        "selection_uses_outcomes": false
+      }
+    }
+  },
+  "superseded_note": "r1 retained intact. r2 explicitly records tighter pilot/raw tolerance and actual run date; scientific design and CSV values unchanged.",
+  "checks": {
+    "unittest": {
+      "passed": 35,
+      "failed": 0,
+      "behavioral": 17,
+      "active_v2": 10,
+      "historical_v1": 5,
+      "layout": 3
+    },
+    "real_reproduction": "PASS: 10 real CSV byte hashes, two development baseline CSV byte hashes, deterministic selection, three bundle hashes and immutable source snapshots",
+    "old_files_unchanged": 44,
+    "staged_files": 0,
+    "final_predictions_or_metrics_generated": false
+  }
+}

@@ -3,22 +3,18 @@
 ## What is present
 
 - `processed/pilot_200_series.csv`: exact inherited 200-series, 18,000-row pilot. The 23 columns are the 19 local source columns plus `day_number`, `split`, `pred_persistence`, and `pred_recent_avg_7`. Forecast columns are artifacts, not approved predictors.
-- `manifests/pilot_series_manifest.csv`: 200 unique `(store_id, product_id)` pairs. This is the historical development pilot sampling authority; do not regenerate it. The approved final sample will have a separate 1,000-series manifest, not generated yet.
+- `manifests/pilot_series_manifest.csv`: 200 unique `(store_id, product_id)` pairs. This is the historical development pilot sampling authority; do not regenerate it. The approved final sample will have a separate 1,000-series manifest, generated inside the final feature bundle.
 - `manifests/excluded_series.csv`: one excluded 28-day series `(420, 764)` and its missing dates. These are inherited raw-export exclusion details, not a new raw audit.
 
-The pilot's `hours_sale` and `hours_stock_status` fields contain array-like text, including embedded newlines; use a CSV parser, not physical line counts or unrestricted `eval`. Stockout-array semantics/hour indexing remain pending verification for v2; preserve the historical source/pilot audit on fetched main as narrower evidence. Do not infer subgroup parsing rules from casual string inspection. All otherwise eligible stockout target dates enter the primary comparison.
+The pilot's `hours_sale` and `hours_stock_status` fields contain array-like text, including embedded newlines; use a CSV parser, not physical line counts or unrestricted `eval`. V2 verifies the publisher convention (24 binary entries, 1=stockout, indices [6:22]) against every local record; missing/closed-hour business semantics remain provisional. Historical audits are unchanged. Do not infer subgroup parsing rules from casual string inspection. All otherwise eligible stockout target dates enter the primary comparison.
 
 Keys are `(store_id, product_id, dt)`; dates are ISO `YYYY-MM-DD`. Original split counts are train 12,000, validation 3,000, test 3,000. Baseline history columns intentionally have initial missing values; these are distinct from the inherited claim of no nulls in the 19-column raw export.
 
-## Raw export — deliberately missing locally
+## Raw export - verified local copy
 
-The specific team export is [freshretail.csv on Drive](https://drive.google.com/file/d/1A0nGSmtUDzAi_AGHYbuoxzNub4yLcubL/view?usp=drivesdk), observed as 323,577,557 bytes at setup metadata readback. Its future local destination is `data/raw/freshretail.csv`. It was not downloaded or hashed during setup and must never enter Git/history.
+The team Drive reference remains [freshretail.csv](https://drive.google.com/file/d/1A0nGSmtUDzAi_AGHYbuoxzNub4yLcubL/view?usp=drivesdk). For this task, DELTA copied OLD `data/freshretail.csv` to NEW `data/raw/freshretail.csv`, without altering OLD. Both files measure 323,577,557 bytes and SHA-256 `6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5`. Local byte identity is established; the export extraction procedure and exact upstream lineage remain unverified.
 
-For a later explicitly authorized reproduction:
-
-1. Obtain access to the [shared folder](https://drive.google.com/drive/folders/1_saUNK4VOT7vpbSjiCw2XKIOpWa3IkHy), resolve the file's current metadata/name/size, and download that specific raw export to the destination above.
-2. Record acquisition time, actual bytes, and SHA-256 in provenance. No trusted original raw checksum is available in this kit; computing a new hash alone does not prove equality to an unknown historical hash.
-3. Keep the fixed pilot, canonical manifest, and inherited baselines protected. The adapted working entry points now use separate `reproduction` output directories; their original bytes remain in the archive. Full pipeline reproduction remains unrun.
+Teammates obtain this exact export or the accepted local bundle from DELTA. Verify hashes before use; never overwrite a different dataset. Raw/generated tables are ignored and must never enter Git. Canonical pilot/manifests/inherited results remain unchanged. Legacy reproduction runners were not executed.
 
 The publisher's [Hugging Face dataset](https://huggingface.co/datasets/Dingdong-Inc/FreshRetailNet-50K) is a source reference. Fetching its current full training split is not equivalent to recovering this smaller local export. `src/data_preprocessing_DELTA/data_explore.py` is a path-adapted historical downloader that would write to `data/raw/freshretail.csv`; it was inspected, not executed. The original working-directory-relative version is archived. Any future download would need dependencies beyond the minimal imported analysis imports and current metadata verification.
 
@@ -36,4 +32,6 @@ The small pilot, manifest, exclusions, and baseline artifacts are explicitly ret
 
 ## Current ownership and handoff
 
-DELTA owns these shared inputs, the future feature bundle, and matched baseline outputs. DEVGRU and SAS consume one verified bundle; they must not independently resample or redefine feature eligibility. Bundle layout and unresolved contract decisions are in [interfaces](../docs/interfaces.md). Config metadata in `configs/dataset.yaml` records the current canonical paths.
+DELTA owns these shared inputs, the implemented shared feature bundles, and matched baseline outputs. DEVGRU and SAS consume one verified bundle; they must not independently resample or redefine feature eligibility. Bundle layout and unresolved contract decisions are in [interfaces](../docs/interfaces.md). Config metadata in `configs/dataset.yaml` records the current canonical paths.
+
+Current local acquisition and bundles: [DELTA handoff](../docs/DELTA_DATA_HANDOFF.md). Raw copy and final input generation are verified; final scoring is pending.

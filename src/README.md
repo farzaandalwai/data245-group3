@@ -4,4 +4,8 @@
 - `models/linear_regression_DEVGRU/`, `models/ridge_regression_DEVGRU/`: DEVGRU.
 - `models/decision_tree_SAS/`, optional `models/random_forest_SAS/`, and `evaluation_SAS/`: SAS.
 
-The only implemented working code at migration is the path-adapted inherited preparation/downloader. The other component READMEs define ownership, handoffs, and acceptance criteria; they are not completed model/feature implementations. Read `docs/team_responsibilities.md` and `docs/interfaces.md` first. Source folders are not installed Python packages yet; no package/import API is claimed.
+The legacy preparation/downloader remain preserved reproduction tools. DELTA V2 modules now implement shared data/features/baselines; other owners' model/evaluator folders remain guidance only. Read `docs/team_responsibilities.md` and `docs/interfaces.md` first. Imports shown in the handoff work from repository root using Python namespace packages; this repository is not a separately installed distribution.
+
+## DELTA V2 update - 2026-11-19
+
+DELTA V2 producer and baselines are implemented; learned models/common evaluator remain pending. See [handoff](../docs/DELTA_DATA_HANDOFF.md).

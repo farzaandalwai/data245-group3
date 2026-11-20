@@ -48,6 +48,11 @@ def checked_id(run_id):
 def pinned_bundle(path, manifest_sha256):
     if not isinstance(manifest_sha256, str) or not re.fullmatch(r"[0-9a-f]{64}", manifest_sha256):
         raise ValueError("Supply the trusted 64-character lowercase bundle manifest SHA-256")
+    # Reject final-purpose manifests before load_bundle can open any outcome CSV.
+    if sha256(Path(path) / "bundle_manifest.json") != manifest_sha256:
+        raise ValueError("Bundle manifest identity mismatch")
+    header = read_json(Path(path) / "bundle_manifest.json")
+    development_gate(header.get("purpose"), ("validation",))
     tables, manifest = load_bundle(path, expected_manifest_sha256=manifest_sha256)
     development_gate(manifest["purpose"], ("validation",))
     identity = {name: manifest[name] for name in (

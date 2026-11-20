@@ -7,3 +7,5 @@ ipython
 PyYAML
 # SAS Decision Tree consumer; tested versions are recorded in requirements-sas-tested.txt.
 scikit-learn
+# SAS development figure exports (headless PNG/SVG).
+matplotlib

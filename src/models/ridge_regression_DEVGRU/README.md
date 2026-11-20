@@ -1,7 +1,7 @@
 # Ridge regression — DEVGRU
 
-Status: APPROVED extension; NOT IMPLEMENTED. No further course-fit gate applies under the v2 protocol. Use the same shared feature-bundle and prediction contracts as linear regression, with matched eligible keys and tuning budgets across feature conditions. Fit preprocessing on training only and choose regularization on validation only.
+Status: APPROVED extension; implemented for development validation. Use the same shared feature-bundle and prediction contracts as Linear Regression, with matched eligible keys and tuning budgets across feature conditions. Fit preprocessing on training only and choose regularization on validation only. The technical contract remains provisional and final/test evaluation is blocked.
 
-Write separate runs under `results/ridge_regression_DEVGRU/`. Do not add ridge results or claim coverage until the implementation is actually run and checked. Shared interfaces are in `docs/interfaces.md`.
+The original development run is preserved in the DEVGRU evidence package under `artifacts/DEVGRU/development/`, including separate sales-only and stockout-aware predictions, alpha-selection evidence, and metadata. Selected development alphas were 10.0 and 100.0 respectively. No serialized fitted model was saved. Shared interfaces are in `docs/interfaces.md`.
 
 Follow the [approved v2 protocol](../../../docs/experiment_protocol.md) and [draft shared contract](../../../docs/interfaces.md). Real runs use DELTA's same verified development/final bundle and target keys, including otherwise eligible stockout target dates; subgroup labels are evaluation-only. V1 evidence/tests are now separate from active V2 checks; DELTA producer 2.0.0 is implemented and operationally verified; see [handoff](../../../docs/DELTA_DATA_HANDOFF.md). Base ancestry integration is complete. Consumer development may proceed; human acceptance, remaining model/evaluation details and final-scoring freeze remain pending.

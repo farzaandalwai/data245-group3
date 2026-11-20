@@ -111,3 +111,13 @@ Retrospective subgroups: 1,698 fully-stocked / 1,302 stockout rows. Detailed
 metrics, limitations, source hashes and PNG/SVG figures are in the versioned run
 and [handoff](SAS_DEVELOPMENT_COMPARISON.md). Final scoring remains blocked;
 no final input/outcomes were inspected, no PR merged.
+
+## 2026-11-20 — SAS Random Forest, DEVELOPMENT only
+
+Requester: SAS / Farzaan Dalwai. [Request](prompts/2026-11-20-sas-random-forest.md).
+Implemented the approved optional Random Forest on `SAS/random-forest-development`
+with the tree's grid, seed and train-only/validation-MAE protocol. Real run
+`sas-forest-dev-200-r1` on the exact r2 development bundle: validation MAE
+sales-only 0.335969 / aware 0.336504; aware minus sales +0.000535, 95% store
+interval [-0.003533, +0.005357], so no clear stockout-feature benefit. No test
+scoring, no final input, no team-frozen setting. Details: [SAS Random Forest](SAS_RANDOM_FOREST.md).

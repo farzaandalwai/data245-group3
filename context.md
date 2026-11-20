@@ -62,6 +62,13 @@ validation-only simple baselines now use one evaluator on 3,000 matched rows /
 `artifacts/SAS/development/harmonized-200-series-20261120-r3/`. All paired
 whole-store 95% intervals include zero. These are DEVELOPMENT, not final evidence.
 
+**SAS RANDOM FOREST (branch `SAS/random-forest-development`, DEVELOPMENT only):**
+the approved optional forest is implemented with the tree's grid/seed and
+train-only/validation-MAE protocol (fixed 200 trees, `max_features=1.0`). Real
+validation MAE sales-only 0.335969 / aware 0.336504; aware minus sales +0.000535,
+store interval [-0.003533, +0.005357] includes zero. Not group-frozen; no test
+scoring. See [SAS Random Forest](docs/SAS_RANDOM_FOREST.md). Stacked on PR #7.
+
 **PENDING:** PR6 inventory/execution-lineage confirmation, final model/settings
 and collective tie-rule agreement, final freeze/entry-point acceptance and final
 reports. DEVGRU models are implemented; earlier not-implemented labels are stale.

@@ -1,0 +1,98 @@
+{
+  "artifacts": {
+    "coverage_audit.json": {
+      "bytes": 1732,
+      "sha256": "06249ad00085e2547d3700e34abcf15d5994d3774fccace1998454f2a6386d9d"
+    },
+    "mae_difference_intervals.csv": {
+      "bytes": 809,
+      "sha256": "957be30f0466707a1ba3b3de23506ce24d8bec56d729a81bb45ea9e069146dc7"
+    },
+    "overall.csv": {
+      "bytes": 513,
+      "sha256": "7b7907d7ef8c6b8aeff299def9c676645482111a74ce70eee74f3c04bf10912e"
+    },
+    "paired_comparisons.csv": {
+      "bytes": 496,
+      "sha256": "7bf70fba38bc4b418f3b79f11e24740829ce8ab38e68211e596a0bc7d70b69ce"
+    },
+    "per_series.csv": {
+      "bytes": 76054,
+      "sha256": "dcebb7b2650aa30ea819c83a8b6d0ddf852f8131913f64d6116f8c22010dc510"
+    },
+    "per_store.csv": {
+      "bytes": 41944,
+      "sha256": "2b5bc3cc720934574cfbe283308e2d17725bed979b13975a5fc823b803ffb327"
+    },
+    "subgroups.csv": {
+      "bytes": 946,
+      "sha256": "62fe129d25e8507679f8d6c94404271bc17df7184c0b555ba22e38d0fb9ffe3e"
+    }
+  },
+  "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+  "comparison_version": "2.0-development-1",
+  "environment": {
+    "numpy": "2.4.3",
+    "pandas": "3.0.1",
+    "python": "3.14.2"
+  },
+  "evidence_status": "DEVELOPMENT_NOT_FINAL",
+  "generated_utc": "2026-11-20T04:03:48.562448+00:00",
+  "models": [
+    "decision_tree"
+  ],
+  "owner": "SAS",
+  "prediction_runs": [
+    {
+      "models": [
+        "decision_tree"
+      ],
+      "run_id": "sas-tree-dev-200-bootstrap-r1",
+      "run_manifest_sha256": "f9d0079f227842f4e8e4cc3dc17c598763963482f86f6648c7acf65e22c57a66"
+    }
+  ],
+  "producer_contract_version": "2.0.0",
+  "protocol_version": "2.0",
+  "purpose": "development_debugging",
+  "run_id": "sas-dev-validation-bootstrap-r1",
+  "sample_sha256": "79fa3759f30fee49e7a2a5edead0884456be1767788e6eb0fb326dbb2e772cc4",
+  "scored_splits": [
+    "validation"
+  ],
+  "source": {
+    "base_commit": "d2a323eb2358d6d94f01d2c6fc73c32c00756618",
+    "branch": "SAS/local-tree-evaluator",
+    "files_sha256": {
+      "requirements.txt": "305d468fbdba9531fd76fb678b02fc992ea56fbee11f99aaa947d0d551086a92",
+      "scripts/sas_v2.py": "1e49e380f023c8766b63157e3441101c2464c206d8c229ff35cd8a630d856ffa",
+      "src/evaluation_SAS/bootstrap.py": "6f123a0dadeef8d4f721dad3a598ce9df5c1fe089a5b33848c96d378ef63048e",
+      "src/evaluation_SAS/runs.py": "8fd1e0687f83e19f2bf79e90549931208149510441ef2423fdc3b809cef09815",
+      "src/evaluation_SAS/v2.py": "de2b93d1afab3323e16b3f38b2aa450091a3bf269fecdbff03736b12c4370e14",
+      "src/models/decision_tree_SAS/v2.py": "a4574ad314863967bca9df76e593b25a685a2cdb87daebc68b4f2127658c99fc"
+    },
+    "working_tree_dirty": true
+  },
+  "technical_contract_status": "draft",
+  "test_scored": false,
+  "uncertainty": {
+    "cluster_unit": "store_id",
+    "confidence_level": 0.95,
+    "estimand": "row_weighted_MAE_stockout_aware_minus_sales_only",
+    "limitations": [
+      "Conditional on this sample, fitted models and validation-selected settings; no refitting",
+      "Validation selection can make validation comparisons optimistic",
+      "Few stores can produce unstable or degenerate percentile intervals",
+      "Assumes independent stores; shared calendar shocks and cross-store dependence are not addressed",
+      "Observed-store resampling does not establish population representativeness",
+      "Historical holdout exposure and retrospective series completeness remain limitations",
+      "Training intervals are descriptive diagnostics, not held-out performance"
+    ],
+    "method": "paired_store_cluster_percentile",
+    "quantile_method": "linear",
+    "replicates": 2000,
+    "rng": "numpy.Generator(PCG64)",
+    "scope": "development_train_validation_only",
+    "seed": 245
+  },
+  "uncertainty_status": "implemented_development_paired_store_bootstrap"
+}

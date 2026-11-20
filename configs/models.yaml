@@ -19,4 +19,4 @@ models:
   linear_regression: {owner: DEVGRU, scope: required_core, status: implemented_development_PR6_verified_provenance_review_pending}
   ridge_regression: {owner: DEVGRU, scope: approved_extension, status: implemented_development_PR6_verified_provenance_review_pending}
   decision_tree: {owner: SAS, scope: required_core, status: implemented_development_verified_final_pending}
-  random_forest: {owner: SAS, scope: approved_optional_extension, status: not_implemented}
+  random_forest: {owner: SAS, scope: approved_optional_extension, status: implemented_development_only_final_pending}

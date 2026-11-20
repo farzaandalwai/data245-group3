@@ -83,6 +83,7 @@ def new_run(destination):
 def source_snapshot():
     paths = [*sorted((ROOT / "src/evaluation_SAS").glob("*.py")),
              *sorted((ROOT / "src/models/decision_tree_SAS").glob("*.py")),
+             *sorted((ROOT / "src/models/random_forest_SAS").glob("*.py")),
              ROOT / "scripts/sas_v2.py", ROOT / "requirements.txt"]
     files = {path.relative_to(ROOT).as_posix(): sha256(path) for path in paths}
     return {
@@ -142,6 +143,50 @@ def train_tree_run(bundle, manifest_sha256, destination, run_id, policy_path):
         }
         write_json(temporary / "run_manifest.json", manifest)
         # Verify serialized values and provenance through the exchange consumer.
+        load_prediction_run(temporary, identity, tables["observations"])
+    return manifest
+
+
+def train_forest_run(bundle, manifest_sha256, destination, run_id, policy_path):
+    """Development-only Random Forest run; no executable model file is saved."""
+    import sklearn
+    import scipy
+    from src.models.random_forest_SAS.v2 import fit_development, validate_policy
+
+    checked_id(run_id)
+    if Path(destination).exists():
+        raise FileExistsError(f"Immutable run already exists: {destination}")
+    tables, _, identity = pinned_bundle(bundle, manifest_sha256)
+    policy = read_json(policy_path)
+    validate_policy(policy)
+    predicted, selection, _ = fit_development(
+        tables, policy, purpose=identity["purpose"], run_id=run_id)
+    report = evaluate_predictions(
+        predicted, tables["observations"], tables["evaluation_metadata"],
+        purpose=identity["purpose"], models=["random_forest"], splits=("train", "validation"))
+    with new_run(destination) as temporary:
+        write_csv(temporary / "predictions.csv", predicted)
+        write_csv(temporary / "development_metrics.csv", report["overall"])
+        write_csv(temporary / "mae_difference_intervals.csv", report["mae_difference_intervals"])
+        write_json(temporary / "selection.json", selection)
+        write_json(temporary / "coverage_audit.json", report["coverage_audit"])
+        manifest = {
+            **identity, "prediction_run_version": "2.0-development-1", "owner": "SAS",
+            "run_id": run_id, "models": ["random_forest"], "scored_splits": ["train", "validation"],
+            "evidence_status": report["coverage_audit"]["evidence_status"],
+            "technical_contract_status": "draft", "group_validation_choices_frozen": False,
+            "test_scored": False, "generated_utc": datetime.now(timezone.utc).isoformat(),
+            "uncertainty": report["coverage_audit"]["uncertainty"],
+            "policy": policy, "policy_file_sha256": sha256(policy_path),
+            "selected_parameters": selection["selected_parameters"],
+            "training_rows": selection["training_rows"], "validation_rows": selection["validation_rows"],
+            "source": source_snapshot(),
+            "environment": {"python": platform.python_version(), "numpy": np.__version__,
+                            "pandas": pd.__version__, "scikit-learn": sklearn.__version__,
+                            "scipy": scipy.__version__},
+            "artifacts": _inventory(temporary),
+        }
+        write_json(temporary / "run_manifest.json", manifest)
         load_prediction_run(temporary, identity, tables["observations"])
     return manifest
 

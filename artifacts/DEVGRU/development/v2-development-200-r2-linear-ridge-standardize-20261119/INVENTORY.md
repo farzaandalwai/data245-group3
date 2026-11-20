@@ -43,7 +43,7 @@ Each contains 12,200 rows: 9,200 train and 3,000 validation. No file contains te
 |---|---:|---|---|
 | `ridge_alpha_selection.csv` | 404 | `2b5d4b13a699a1ab3ce09b5f8f2a42613d069977fafa15a5b543079352dcbbb8` | Present; 10 candidate records. Selected alpha is 10.0 for `sales_only` and 100.0 for `stockout_aware`. |
 | `validation_metrics.csv` | 931 | `7c1032be0b89ad26f5586b266d8aa8e9a6aaf55e9a80e9c1cee90bd69bccbce4` | Present; train and validation metrics for all four combinations. |
-| `paired_validation_comparison.csv` | 611 | `63051e6a2bb4d6976f525ee5ae23288d05c3d6c499f910b5f3f598ccf427450` | Present; two paired bootstrap records, 2,000 repetitions and 200 series. |
+| `paired_validation_comparison.csv` | 611 | `63051e6a2bb4d6976f525eeba5e23288d05c3d6c499f910b5f3f598ccf427450` | Present; two paired bootstrap records, 2,000 repetitions and 200 series. |
 | `run_metadata.json` | 5,580 | `563c5cbc0e6d31e780d622700c7054aa2dd5e91d2eaa93178837b03726fff713` | Present; enriched with four experiment records, paths, run IDs, metrics, bundle identity, and settings. |
 | `development_report.md` | 2,732 | `ef50e38013d7e158351752cc890e74b99726ac831cc706ea0e052eb59ea56b4b` | Present; supporting development report. |
 
@@ -63,6 +63,15 @@ Observed Git status was clean apart from the existing warning for the inaccessib
 The outputs are not present as tracked repository files because `.gitignore` explicitly ignores `/runs/` and also ignores generated `*.csv` files. The original experiment directory is therefore local/ignored evidence rather than a committed artifact set. This inventory report is itself placed under `runs/DEVGRU/inventory/`, outside the original experiment directory and also ignored by the repository.
 
 ## Limitations
+
+## Checksum correction
+
+The original inventory recorded a malformed checksum for `paired_validation_comparison.csv`:
+
+- Previous recorded value: `63051e6a2bb4d6976f525ee5ae23288d05c3d6c499f910b5f3f598ccf427450`
+- Independently recalculated source and shared-copy value: `63051e6a2bb4d6976f525eeba5e23288d05c3d6c499f910b5f3f598ccf427450`
+
+The source and shared CSV bytes were not changed. The run metadata and development report checksums independently match their source/shared files; their earlier reported mismatch was caused by comparison against the malformed inventory record, not by modified artifacts.
 
 - The four prediction files and supporting artifacts are locally available and hashable, but are not tracked in the shared repository.
 - No saved fitted model objects are available for later reload; reproducing models would require rerunning the development code, which was intentionally not done here.

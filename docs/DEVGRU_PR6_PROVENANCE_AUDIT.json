@@ -1,0 +1,33 @@
+{
+  "audit_date": "2026-11-20",
+  "bundle_id": "v2-development-200-r2",
+  "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+  "source_directory": "runs/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119",
+  "shared_directory": "artifacts/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119",
+  "revisions": {
+    "recorded_experiment_source": "d2a323eb2358d6d94f01d2c6fc73c32c00756618",
+    "devgru_implementation": "aabb56f9dc9c04170f6a1dfda8329faf968d9990",
+    "artifact_packaging": "044fac1a9ed0fae52179df25946a5a994f2826b5",
+    "current_main": "c54f9ab1d499e754f77c4a85422445a0614f3850"
+  },
+  "serialized_models_saved": false,
+  "prediction_checks": {
+    "schema": ["store_id", "product_id", "dt", "actual", "prediction", "model", "feature_set", "split", "run_id"],
+    "rows_per_file": 12200,
+    "train_rows_per_file": 9200,
+    "validation_rows_per_file": 3000,
+    "test_rows_per_file": 0,
+    "negative_predictions": {"linear_regression": 9, "ridge_regression": 6}
+  },
+  "artifacts": [
+    {"path": "development_report.md", "sha256": "ef50e38013d7e158351752cc890e74b99726ac831cc706ea0e052eb59ea56b4b", "source_destination_equal": true, "inventory_equal": true},
+    {"path": "paired_validation_comparison.csv", "sha256": "63051e6a2bb4d6976f525eeba5e23288d05c3d6c499f910b5f3f598ccf427450", "source_destination_equal": true, "inventory_equal": false, "previous_inventory_value": "63051e6a2bb4d6976f525ee5ae23288d05c3d6c499f910b5f3f598ccf427450"},
+    {"path": "ridge_alpha_selection.csv", "sha256": "2b5d4b13a699a1ab3ce09b5f8f2a42613d069977fafa15a5b543079352dcbbb8", "source_destination_equal": true, "inventory_equal": true},
+    {"path": "run_metadata.json", "sha256": "563c5cbc0e6d31e780d622700c7054aa2dd5e91d2eaa93178837b03726fff713", "source_destination_equal": true, "inventory_equal": true},
+    {"path": "validation_metrics.csv", "sha256": "7c1032be0b89ad26f5586b266d8aa8e9a6aaf55e9a80e9c1cee90bd69bccbce4", "source_destination_equal": true, "inventory_equal": true},
+    {"path": "linear_regression/sales_only.predictions.csv", "sha256": "fd2d1d1f30d2d1870f4b1fdb3ead9d1703ff3ed14d410f91e7de62ef440561d7", "source_destination_equal": true, "inventory_equal": true},
+    {"path": "linear_regression/stockout_aware.predictions.csv", "sha256": "4af534b8fcd8f150d998da99d925bdc1881cc128b46f9218abf720f37754495c", "source_destination_equal": true, "inventory_equal": true},
+    {"path": "ridge_regression/sales_only.predictions.csv", "sha256": "aaf2b9be37f1ab28d2a54db089ed13ee65ef3daa865cdedd72f26336f2b3785a", "source_destination_equal": true, "inventory_equal": true},
+    {"path": "ridge_regression/stockout_aware.predictions.csv", "sha256": "54e1547aa462d15fd3d65e2b242a600eaf43f5dbd0401da8acf57438bad518df", "source_destination_equal": true, "inventory_equal": true}
+  ]
+}

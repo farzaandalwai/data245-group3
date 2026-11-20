@@ -5,3 +5,5 @@ numpy
 ipython
 # YAML configuration validation for the repository layout checks.
 PyYAML
+# SAS Decision Tree consumer; tested versions are recorded in requirements-sas-tested.txt.
+scikit-learn

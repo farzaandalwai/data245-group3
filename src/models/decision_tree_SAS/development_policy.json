@@ -1,0 +1,13 @@
+{
+  "policy_version": "sas-tree-development-1",
+  "status": "development_only_not_group_frozen",
+  "criterion": "squared_error",
+  "random_state": 245,
+  "preprocessing": "none",
+  "prediction_postprocessing": "none",
+  "selection_metric": "MAE",
+  "selection_split": "validation",
+  "tie_break": "first_in_declared_grid_order",
+  "max_depth": [3, 5, 8, null],
+  "min_samples_leaf": [5, 20, 50]
+}

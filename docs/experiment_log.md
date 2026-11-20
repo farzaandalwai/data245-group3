@@ -47,3 +47,42 @@ Preserved exact remote V1 contract/audit/four-entry lock/script/tests/freeze/pro
 User-authorized implementation by Codex for DELTA (`Timothytran109`, authenticated). Branch `DELTA/v2-data-pipeline`, base `5dcd128`; local uncommitted, no staging/publication. Raw identity verified and copied; 200-series development and deterministic 1,000-series final inputs generated with 15,200/76,000 observations and all eligible stockout targets retained. All features independently reconstructed. Development persistence/7-day baselines recomputed; no final scoring or learned-model training. Evidence, hashes, coverage and metrics: [run evidence](DELTA_V2_RUN_EVIDENCE.json), [implementation report](DELTA_V2_IMPLEMENTATION_REPORT.md), [handoff](DELTA_DATA_HANDOFF.md).
 
 Producer semantics are operationally verified (24 binary hours, 1=stockout, [6:22]); undocumented closed/missing hours and export lineage remain provisional. Broader contract and validation choices remain unfrozen. No scientific design changed. Seed 245 and unstratified SHA-256 key ranking are explicit authorized technical decisions; training-only coverage is reported, not used to optimize selection. Historical test exposure remains disclosed. Original evidence is unchanged.
+
+## 2026-11-19 - SAS synthetic implementation validation (no research run)
+
+Owner/requester: SAS / Farzaan Dalwai (`farzaandalwai`, authenticated). Codex
+implemented the local Decision Tree/development evaluator on
+`SAS/local-tree-evaluator` from integrated DELTA base `d2a323e`. No staging,
+commit or publication. Scope/evidence: [SAS handoff](SAS_LOCAL_HANDOFF.md).
+
+DELTA's unchanged producer generated a labeled two-series synthetic fixture
+(92 train / 30 validation / 30 test observations). SAS fitted/selected paired
+trees with an equal 12-candidate development budget per condition, generated
+244 train/validation predictions and evaluated only 30 validation keys per
+condition in the CLI comparison. No test predictions/scoring; numeric fixture
+scores are not forecasting findings. All 56 tests and the setup checker passed.
+
+Real development/final r2 bundles are absent here. No real learned-model run,
+shared validation freeze, final comparison, uncertainty interval or environmental
+benefit is claimed. Optional forest remains deferred until the core comparison
+works. Real-run results will be recorded separately after artifact acceptance.
+
+## 2026-11-19 - SAS real development validation with paired intervals
+
+SAS authorization: [integration request](prompts/2026-11-19-sas-integration.md).
+Input: exact DELTA `v2-development-200-r2`, trusted manifest SHA-256
+`043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7`;
+discovered in the shared Drive folder, all ten files verified. No substitution.
+Training 9,200 / validation 3,000; 113 validation stores. Run
+`sas-tree-dev-200-bootstrap-r1`; comparison `sas-dev-validation-bootstrap-r1`.
+Both conditions selected depth 5/minimum leaf 5 using equal 12-candidate budgets,
+train-only fitting and validation MAE; no clipping/refitting on validation.
+
+Validation MAE sales-only 0.348255 / aware 0.352070. Difference aware minus sales
++0.003814, 95% paired store-cluster percentile interval [-0.003332, +0.013629],
+seed 245/2,000 replicates. These are developmental estimates conditional on
+validation selection, not a final claim; no clear improvement established.
+No test predictions/scoring, no teammates' model implementation, no merge.
+Synthetic bootstrap smoke runs are separately labeled and are not research
+findings. All 61 tests passed; exact provenance/limits in
+[SAS integration](SAS_INTEGRATION.md) and [evidence](SAS_INTEGRATION_EVIDENCE.json).

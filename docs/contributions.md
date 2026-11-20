@@ -67,3 +67,39 @@ Evidence/checks: [reconciliation record](V2_RECONCILIATION.md) and [saved reques
 Human requester: Timothy Tran / DELTA (`Timothytran109`, authenticated). Evidenced human action: authorization and supplied research constraints/legacy inputs. Codex implemented the centralized validator, sampler, shared features, immutable bundle contract, baseline runner, tests and handoff, adapted from preserved legacy DELTA work. Raw migration, development/final inputs and development baseline outputs were generated and checked. No other owner's implementation was modified. Human review and personal contribution validation remain pending; ownership/authorization is not personal coding credit.
 
 Branch `DELTA/v2-data-pipeline`, base `5dcd128`; no commit/push/merge/staging/PR. Base ancestry integration is complete, unlike earlier historical notes. [Report](DELTA_V2_IMPLEMENTATION_REPORT.md), [run evidence](DELTA_V2_RUN_EVIDENCE.json) and [AI record](ai_assistance.md) document actual checks/results and remaining limitations. Candidate data-curation/software/validation contributions require the student's confirmation.
+
+## 2026-11-19 - SAS local tree and development evaluator
+
+Requester: **Farzaan Dalwai / SAS**, authenticated GitHub `farzaandalwai`.
+Human action evidenced: authorizing local implementation and withholding
+publication until review/validation. Codex implemented the Decision Tree consumer,
+provisional development policy, shared evaluation/provenance checks, local CLI,
+synthetic behavioral/integration tests and documentation. No DELTA/DEVGRU code,
+historical originals or real data definitions were changed. Earlier DELTA
+uncommitted labels above are snapshots; Git shows its integration at `d2a323e`.
+
+Evidence: [saved request](prompts/2026-11-19-sas-local-implementation.md),
+[SAS handoff](SAS_LOCAL_HANDOFF.md), local diff and AI record. Branch
+`SAS/local-tree-evaluator`, base `d2a323e`; no staging, commit, push, merge or PR.
+Automated checks and smoke runs are synthetic only; no real model experiment,
+final test score, uncertainty finding or student-authored final report is claimed.
+Independent human review/personal contribution validation remains pending.
+
+## 2026-11-19 - SAS integration and real development validation
+
+Requester: SAS / Farzaan Dalwai (`farzaandalwai`, authenticated). The
+[new request](prompts/2026-11-19-sas-integration.md) supersedes the preceding
+local-only publication restriction and explicitly authorizes staging SAS changes,
+commit/push and a draft PR, without merging. Codex implemented the 95% paired
+whole-store bootstrap (2,000 replicates/seed 245), recorded no-clipping versus
+V1, and kept proposed ties/unverified DEVGRU requirements distinct from approval.
+
+Broader Drive discovery located DELTA's exact r2 development bundle; all ten
+files were checksum/schema-verified before local import. Codex ran the real SAS
+development tree/validation comparison and separate synthetic checks. No DEVGRU
+model or DELTA producer was implemented/modified, no final/test scoring occurred,
+and original data/evidence remain unchanged. Evidence:
+[integration record](SAS_INTEGRATION.md), [run identities](SAS_INTEGRATION_EVIDENCE.json),
+branch diff and AI log. All 61 tests and setup checks passed. Human implementation
+credit/review remain pending; authorization and AI-run checks are not personal
+student coding or independent human scientific validation.

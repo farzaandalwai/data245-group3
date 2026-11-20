@@ -1,10 +1,16 @@
-# Ownership/approval metadata only; no model runner consumes these settings.
+# Ownership/approval metadata; SAS's local runner uses its explicit development policy.
 protocol_version: '2.0'
 scientific_status: approved
 prediction_contract_status: draft
 prediction_columns: [store_id, product_id, dt, actual, prediction, model, feature_set, split, run_id]
 tuning_grids_and_model_settings: pending_technical_contract
-prediction_postprocessing: pending_technical_contract
+prediction_postprocessing: none_no_prediction_clipping
+linear_ridge_requirements:
+  standardization: fitted_on_training_only
+  ridge_alpha_selection: validation_MAE
+  verification_status: pending_executable_and_behavioral_review_metadata_is_not_proof
+proposed_tie_rules_status: awaiting_team_agreement
+current_SAS_tree_exact_tie_rule: first_in_declared_grid_order
 applicable_learned_models_compare_both_feature_conditions: true
 baselines_use_same_evaluation_population: true
 models:
@@ -12,5 +18,5 @@ models:
   recent_avg_7: {owner: DELTA, scope: required_baseline, status: implemented_v2_development, matched_eligible_scoring: verified_development_final_blocked}
   linear_regression: {owner: DEVGRU, scope: required_core, status: not_implemented}
   ridge_regression: {owner: DEVGRU, scope: approved_extension, status: not_implemented}
-  decision_tree: {owner: SAS, scope: required_core, status: not_implemented}
+  decision_tree: {owner: SAS, scope: required_core, status: implemented_development_verified_final_pending}
   random_forest: {owner: SAS, scope: approved_optional_extension, status: not_implemented}

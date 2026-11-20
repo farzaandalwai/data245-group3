@@ -8,13 +8,13 @@ The target is `sale_amount` for `(store_id, product_id, dt)` in FreshRetailNet-5
 
 ## Status as of 2026-11-19 (America/Los_Angeles)
 
-The group-approved [v2 protocol](docs/experiment_protocol.md) is the scientific authority. It uses all eligible target dates including stockouts, 200 development/1,000 final series, 14-day primary history, core linear/tree models and approved Ridge/optional Random Forest extensions. Secondary test groups are retrospective stocked/stockout target dates. DELTA producer, immutable development/final inputs, synthetic fixture and development baselines are implemented and verified operationally. Learned models/common evaluation remain pending. Business semantics are provisional and final test scoring is blocked. Start with [DELTA handoff](docs/DELTA_DATA_HANDOFF.md).
+The group-approved [v2 protocol](docs/experiment_protocol.md) is the scientific authority. It uses all eligible target dates including stockouts, 200 development/1,000 final series, 14-day primary history, core linear/tree models and approved Ridge/optional Random Forest extensions. Secondary test groups are retrospective stocked/stockout target dates. DELTA producer/inputs/development baselines are operationally verified in its recorded runs. SAS’s Decision Tree/development evaluator passed synthetic checks and real development validation on DELTA’s exact pinned r2 bundle, including 95% paired store-cluster intervals. See [SAS integration](docs/SAS_INTEGRATION.md). Business semantics remain provisional and final test scoring is blocked. See [DELTA handoff](docs/DELTA_DATA_HANDOFF.md) and [SAS handoff](docs/SAS_LOCAL_HANDOFF.md).
 
-Layout PR #2, PR #3 and V2 methodology are integrated in base `5dcd128`. DELTA implementation is uncommitted on `DELTA/v2-data-pipeline`; no merge is in progress. See [reconciliation](docs/V2_RECONCILIATION.md). See [context](context.md) and [alignment audit](docs/REPOSITORY_CHANGE_AUDIT.md).
+DELTA implementation is merged in base `d2a323e`; earlier layout/methodology work is integrated. Current branch `SAS/local-tree-evaluator` contains SAS integration work for an authorized draft PR; no merge is in progress. See [context](context.md) for the current task and [reconciliation](docs/V2_RECONCILIATION.md) for historical integration evidence.
 
 - Timothy Tran's preparation code, notebook, exact 200-series manifest, pilot, exclusions, audit, predictions, and baseline metrics are imported unchanged. The original handoff is in [docs/handoff](docs/handoff/README.utf8.md). Attribution and hashes are in [provenance](docs/provenance.md).
 - Setup verifies imported bytes, syntax/JSON, schemas, unique keys, manifest membership, calendar coverage, and split counts. It does not reproduce the full raw-data pipeline or independently reproduce baseline scores.
-- New shared features, automated leakage checks and development baselines exist. No trained models, final comparison, final findings or individual reports were created. See [shared context](context.md) for current coordination and pending work.
+- Shared features, automated leakage checks and development baselines exist. SAS’s tree/evaluator has synthetic tests and a real development run; final comparison/findings and individual reports remain pending. See [shared context](context.md).
 - The private repository is [farzaandalwai/data245-group3](https://github.com/farzaandalwai/data245-group3). Both `shoddy16` and `Timothytran109` accepted their invitations during setup; collaborator and effective-permission readbacks verified write access without admin access. No invitations remained pending at that check.
 - Branch protection status and the exact GitHub checks are recorded in [setup verification](docs/setup_verification.md).
 
@@ -49,7 +49,7 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-The dependency list covers imported code (`pandas`, `numpy`, `IPython`) and YAML configuration checks (`PyYAML`); tested DELTA package versions are in [run evidence](docs/DELTA_V2_RUN_EVIDENCE.json); learned-model compatibility remains pending. The setup checks establish file integrity, not a reproducible training environment. Prefer professor starter code if supplied later and document necessary deviations.
+The dependency list covers imported code (`pandas`, `numpy`, `IPython`), YAML checks (`PyYAML`) and SAS trees (`scikit-learn`). DELTA's environment remains in [run evidence](docs/DELTA_V2_RUN_EVIDENCE.json); SAS's separate tested Python 3.14.2 environment is recorded in `requirements-sas-tested.txt`. Cross-machine/Python-3.12 model compatibility remains pending. Prefer professor starter code if supplied later and document necessary deviations.
 
 ## Three-owner workspace
 
@@ -93,7 +93,7 @@ data245-group3/
   archive/original_pilot/       # ten byte-identical handoff originals
 ```
 
-DELTA producer/baseline modules are implemented. Learned-model/common evaluator folders still contain guidance only. `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. Configs register the implemented producer and broader experiment metadata; the overall freeze remains pending. The [protocol](docs/experiment_protocol.md#authority-and-evidence-statuses) defines the common authority hierarchy for all assistants; [Copilot guidance](.github/copilot-instructions.md) points to it.
+DELTA producer/baselines and local SAS Decision Tree/development evaluator are implemented. DEVGRU models and the optional SAS forest remain pending. `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. The broader technical freeze remains pending. The [protocol](docs/experiment_protocol.md#authority-and-evidence-statuses) defines the authority hierarchy; [Copilot guidance](.github/copilot-instructions.md) points to it.
 
 You can develop and push owned components in parallel after agreeing the shared interface. Real model runs need the same verified DELTA feature bundle; final comparisons need accepted predictions, and new model test evaluation waits for the freeze. See [interfaces and dependencies](docs/interfaces.md).
 
@@ -104,13 +104,13 @@ python3 scripts/verify_setup.py
 python3 -m unittest discover -s tests -v
 ```
 
-The layout tests require Python 3.11+ and PyYAML. DELTA pipeline/package installation is verified; learned-model installation remains pending. No model training or notebook execution is part of these checks.
+Layout checks require Python 3.11+ and PyYAML; the full suite additionally imports the declared data/model dependencies and trains tiny synthetic trees. It does not train on real inputs, run final/test scoring, or execute legacy notebooks.
 
 ## Data and inherited results
 
 The inherited development pilot is already present at `data/processed/pilot_200_series.csv`: 200 fixed series, 18,000 rows, and 90 dates. Its 23 columns include 19 source fields plus day number, split, and two inherited prediction columns. Do not use a whole-frame predictor selection. Read [data/README.md](data/README.md) for sources, license, schemas, and raw-data acquisition.
 
-The raw `data/raw/freshretail.csv` is present locally and ignored: 323,577,557 verified bytes, copied byte-identically from OLD. SHA-256 and provenance limits are in the handoff. The original files now live under `archive/original_pilot/`. Path-adapted working copies live in `src/data_preprocessing_DELTA/` and `notebooks/DELTA_data/`; they use separate ignored reproduction destinations and have not been run. The working notebook has cleared saved outputs/counters. The adapted `data_explore.py` still downloads a current upstream training split, which is not proof of reproducing the inherited local export. See the [migration record](docs/structure_migration.md).
+DELTA's recorded raw export has 323,577,557 verified bytes; its SHA-256 and provenance limits are in the handoff. The raw CSV and final bundle are absent here. DELTA’s exact development r2 bundle was located in Drive, verified and imported locally; Git does not distribute these ignored bytes. The original files remain under `archive/original_pilot/`. Path-adapted working copies live in `src/data_preprocessing_DELTA/` and `notebooks/DELTA_data/`; they use separate ignored reproduction destinations and have not been run here. The working notebook has cleared execution state. The adapted downloader fetches a current upstream split, which cannot silently replace the registered local export. See [migration](docs/structure_migration.md).
 
 Inherited baseline scores in `results/baselines_DELTA/inherited/baseline_metrics.csv` use all 3,000 rows of each validation/test split:
 

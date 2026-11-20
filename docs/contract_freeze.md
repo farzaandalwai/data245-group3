@@ -1,5 +1,5 @@
 # Contract status and historical freeze
 
-The active scientific design is [V2](experiment_protocol.md); its [registered contract metadata](../configs/contract.yaml) remains **DRAFT**, `contract_frozen: false`, implementation unverified. No final dataset, feature bundle, selected model settings or final results are implied.
+The active scientific design is [V2](experiment_protocol.md); its broader [technical contract](../configs/contract.yaml) remains **DRAFT**, `contract_frozen: false`. DELTA producer 2.0.0 and its recorded inputs are operationally verified; [SAS integration](SAS_INTEGRATION.md) has synthetic checks and a real development/validation run with paired store-cluster intervals. No clipping is agreed. Proposed parameter ties and DEVGRU behavioral verification remain pending; this does not freeze final model choices or establish final findings. Final/test scoring remains blocked.
 
 The previous V1 freeze, original audit, source references, contract and four-entry integrity lock are preserved byte-for-byte in [historical evidence](history/contract_v1/README.md). Historical endpoint/parser checks and audit reproduction remain available; V1 target eligibility, features, disabled extensions and frozen technical settings do not govern V2. See [reconciliation](V2_RECONCILIATION.md). No Git merge has occurred in this reconciliation session.

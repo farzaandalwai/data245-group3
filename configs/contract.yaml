@@ -17,9 +17,9 @@ new_model_test_evaluation_allowed: false
 pending:
   - raw_export_lineage_and_learned_model_environment_compatibility
   - undocumented_closed_or_missing_hour_business_semantics
-  - preprocessing_and_prediction_postprocessing
+  - linear_ridge_standardization_and_validation_MAE_behavioral_verification
   - model_settings_and_validation_tuning_grids
-  - dependence_aware_uncertainty_procedure
+  - parameter_tie_rule_agreement_and_final_uncertainty_workflow_acceptance
 producer_contract_version: 2.0.0
 producer_status: verified_operational_provisional_business_semantics
 producer_handoff: docs/DELTA_DATA_HANDOFF.md

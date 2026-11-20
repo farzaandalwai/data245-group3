@@ -1,0 +1,82 @@
+{
+  "artifacts": {
+    "comparison_run": {
+      "bytes": 2572,
+      "path": "results/comparisons_SAS/v2/sas-synthetic-comparison-20261119-r1/comparison_manifest.json",
+      "sha256": "7f0e1796993e2fd779efdd418d56dd852efc62b86a0e6f7e5f8cbd16ae8b9d91"
+    },
+    "synthetic_bundle": {
+      "bytes": 3474,
+      "path": "data/processed/feature_bundles/sas-local-fixture-20261119-r1/bundle_manifest.json",
+      "sha256": "9c5bc8929b2c9621372d4921a139628c58914623005c0c23afb63673c459b572"
+    },
+    "tree_run": {
+      "bytes": 3399,
+      "path": "results/decision_tree_SAS/v2/sas-synthetic-tree-20261119-r1/run_manifest.json",
+      "sha256": "146f55546f64d9bd597f7675525b25a40b8efd7f994d44d9cd420642de353eb5"
+    }
+  },
+  "automated_checks": {
+    "all_passed": true,
+    "existing_tests": 35,
+    "sas_tests": 21,
+    "setup_integrity_passed": true,
+    "unittest_total": 56
+  },
+  "base_commit": "d2a323eb2358d6d94f01d2c6fc73c32c00756618",
+  "branch": "SAS/local-tree-evaluator",
+  "comparison": {
+    "models": [
+      "decision_tree"
+    ],
+    "rows_per_condition": 30,
+    "scored_splits": [
+      "validation"
+    ],
+    "test_scored": false
+  },
+  "date": "2026-11-19",
+  "environment": {
+    "numpy": "2.4.3",
+    "pandas": "3.0.1",
+    "python": "3.14.2",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1"
+  },
+  "evidence_status": "SYNTHETIC_NOT_RESEARCH",
+  "integration_test": "SAS tree plus two DELTA-compatible synthetic baselines; no real inputs",
+  "limits": [
+    "Real DELTA raw/r2 development/final bundles absent from this checkout",
+    "No real learned-model validation or new test/final scoring",
+    "Development grid/no-transform/no-clipping policy is not group frozen",
+    "No uncertainty interval or real-data figure/finding",
+    "Python-3.12 and teammate-machine compatibility not tested",
+    "No clean environment installation was performed; tests used existing local packages",
+    "Human review/personal contribution validation pending"
+  ],
+  "owner": "SAS",
+  "publication_status": "unstaged_uncommitted_unpushed",
+  "python": "3.14.2",
+  "source": {
+    "base_commit": "d2a323eb2358d6d94f01d2c6fc73c32c00756618",
+    "branch": "SAS/local-tree-evaluator",
+    "files_sha256": {
+      "requirements.txt": "305d468fbdba9531fd76fb678b02fc992ea56fbee11f99aaa947d0d551086a92",
+      "scripts/sas_v2.py": "1e49e380f023c8766b63157e3441101c2464c206d8c229ff35cd8a630d856ffa",
+      "src/evaluation_SAS/runs.py": "dcf63169a04e19caac9c47a8b2ebe5e928507077519cb4b8fa8e27e1bc395f98",
+      "src/evaluation_SAS/v2.py": "aec7f5c7c45723dc4fc456e041bc44d9f60d268aaf520b6890bcf3b4182862de",
+      "src/models/decision_tree_SAS/v2.py": "a4574ad314863967bca9df76e593b25a685a2cdb87daebc68b4f2127658c99fc"
+    },
+    "working_tree_dirty": true
+  },
+  "tree_predictions": {
+    "candidates_per_condition": 12,
+    "rows_per_condition": 122,
+    "splits": [
+      "train",
+      "validation"
+    ],
+    "test_predictions": 0,
+    "total": 244
+  }
+}

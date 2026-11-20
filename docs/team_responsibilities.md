@@ -14,6 +14,14 @@ All three share scientific decisions, final integration, review and submissions.
 
 DELTA alone produces the approved shared dataset/features. DEVGRU and SAS consume them without independently redefining targets, sampling, eligibility, windows, split boundaries, shared evaluation keys or metrics. Use the [interfaces](interfaces.md) and explicit predictor allowlists.
 
-V1 evidence/tests are now separated from active V2 checks in the local tree. DELTA producer v2.0.0 and test-only fixture are implemented; see [handoff](DELTA_DATA_HANDOFF.md). Base ancestry integration is complete. Owners can build their components against the producer interface while jointly finalizing remaining model/evaluation details. Fixtures are never research evidence. Real runs need DELTA's common validated bundle; comparisons need accepted predictions; test evaluation also needs frozen validation selections. DELTA producer and development baselines are verified operationally; learned models/common evaluator remain pending.
+V1 evidence/tests are separated from active V2 checks. DELTA producer v2.0.0 is integrated; see [handoff](DELTA_DATA_HANDOFF.md). SAS's Decision Tree/development evaluator is now implemented locally and synthetic-verified; real learned-model validation remains pending. Owners can build against the producer interface while jointly finalizing remaining settings. Fixtures are never research evidence. Real runs need DELTA's common validated bundle; full comparisons need accepted predictions; test evaluation also needs frozen validation selections.
 
 Use separate clones and task branches/worktrees for normal implementation. Coordinate shared docs/configs/dependencies and other owners' implementations; issue assignments are not locks. Preserve valid context/contribution updates, review and merge one PR at a time, then fetch/reread. The current DELTA implementation request requires NEW-only implementation with no commit, push or merge.
+
+Current SAS local task (2026-11-19): Decision Tree/development evaluator implemented
+and tested with synthetic inputs; real-data validation awaits exact DELTA bundles.
+The [SAS handoff](SAS_LOCAL_HANDOFF.md) records scope and remaining dependencies.
+This user request authorizes local work only; nothing is staged, committed or
+published. Prior DELTA task-specific Git restrictions above are historical.
+
+Latest SAS integration authorization supersedes the local-only restrictions above: real development validation on the exact DELTA bundle and paired store-cluster intervals are complete; task branch commit/push and a draft PR are authorized. DEVGRU models remain untouched. See [SAS integration](SAS_INTEGRATION.md). No merge or final scoring.

@@ -63,3 +63,51 @@ For every substantive AI-assisted change, add date, actual tool/model if exposed
 Codex assisted the user-confirmed DELTA account, authenticated as `Timothytran109`. Exact model version is unknown. [Substantive prompt](prompts/2026-11-19-delta-v2-implementation.txt) is preserved byte-for-byte. No sub-agents were used. Assistance includes validation/sampling/features/bundle/baseline code, synthetic behavioral tests, local raw copy and development/final input generation, development baseline scoring, source verification and documentation. No learned models, final test scoring, OLD edits, archive edits, commits, pushes or merges.
 
 AI adapted verified legacy formulas and implemented new infrastructure. Human review remains pending; automated checks do not imply personal student implementation or independent human validation. [Report](DELTA_V2_IMPLEMENTATION_REPORT.md) records tests, initial failures/fixes, limits and exact artifacts. No sustainability or final forecasting improvement is claimed.
+
+## 2026-11-19 - SAS local Decision Tree and development evaluation
+
+- Tool: Codex (GPT-6 family; exact variant/version unknown), shell/Git/gh,
+  Python/unittest, file patching and official scikit-learn API documentation.
+  No subagents were used. No additional skill workflow was applied.
+- Requester authenticated as `farzaandalwai` / SAS. Exact instruction:
+  [saved request](prompts/2026-11-19-sas-local-implementation.md). The user
+  authorized independent local work and explicitly withheld pushing/publication.
+- Assistance: Decision Tree paired-condition consumer, explicit provisional
+  development policy, strict shared prediction/metadata/provenance evaluation,
+  immutable local run artifacts, CLI, synthetic tests and status/handoff records.
+  DELTA producer and DEVGRU implementations were not modified. DELTA's unchanged
+  synthetic fixture producer was used; real ignored bundles remain unavailable.
+- API references checked: [DecisionTreeRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)
+  and [data-leakage guidance](https://scikit-learn.org/stable/common_pitfalls.html).
+  Training uses train rows only, tuning validation only; no test predictions or
+  final scoring. Development settings do not freeze the shared contract.
+- Verification: 21 new SAS tests plus 35 existing tests passed; setup checks
+  passed; command-line synthetic tree/comparison smoke runs completed. Initial
+  tests exposed overflow handling and percent-rounding edge cases; both were
+  corrected and the full suite rerun. Exact artifacts/limits are in the
+  [SAS handoff](SAS_LOCAL_HANDOFF.md).
+- State: branch `SAS/local-tree-evaluator` from `d2a323e`; all changes unstaged and
+  uncommitted, no push/merge/PR. Human review remains pending. Authorization and
+  automated checks do not imply personal student coding or scientific findings.
+
+## 2026-11-19 - SAS bootstrap integration and draft submission
+
+Codex (GPT-6 family; exact variant unknown) acted for authenticated SAS requester
+`farzaandalwai` under [explicit integration authorization](prompts/2026-11-19-sas-integration.md).
+Tools: shell/Git/gh, Python/NumPy/pandas/scikit-learn/unittest, patching, Google
+Drive connector using its Google Drive skill, and official NumPy sampling/quantile
+API references linked in the integration record. No subagents or teammate messages.
+
+Assistance: paired store-cluster confidence intervals, strict matched coverage,
+bootstrap behavioral tests, protocol/metadata decision records, broader Drive
+discovery and exact r2 input download/verification, real development train/validation
+run, synthetic CLI checks, evidence/handoff updates, and authorized Git/draft PR
+operations. Expiring authenticated download URLs are not saved to the repository.
+No teammate model code, no original archive changes, no final/test scoring/merge.
+
+All 61 tests passed, including 26 SAS checks; setup and whitespace checks passed.
+Real development results (113 stores) are distinct from synthetic validation and
+are conditional on validation-selected models; the interval includes zero.
+Exact artifacts, limitations and pending human/DEVGRU verification are in
+[integration evidence](SAS_INTEGRATION_EVIDENCE.json) and [integration record](SAS_INTEGRATION.md).
+Student personal contribution and independent human review remain unverified.

@@ -9,9 +9,10 @@ Scientific authority, in order: this protocol; [interfaces](interfaces.md); [tea
 - **APPROVED:** scientific decisions below.
 - **PROPOSED:** recommendations such as the final sampling seed/algorithm.
 - **PENDING VERIFICATION:** exact raw-export lineage and normalization coefficient; undocumented missing/closed-hour business semantics; learned-model environment compatibility on consumer machines.
-- **DRAFT CONTRACT:** remaining learned-model preprocessing, prediction policy, tuning grids/settings and uncertainty procedure. DELTA producer schemas/filenames are implemented; see handoff.
+- **DRAFT CONTRACT:** remaining learned-model verification/tuning settings, parameter tie agreement and final workflow acceptance. DELTA producer schemas/filenames are implemented; see handoff.
 - **IMPLEMENTED / VERIFIED operationally:** DELTA producer, development/final feature bundles, final 1,000-series manifest and development baselines; see [handoff](DELTA_DATA_HANDOFF.md).
-- **NOT IMPLEMENTED:** learned-model runs, common evaluator and final comparisons.
+- **IMPLEMENTED / DEVELOPMENT VERIFIED:** SAS Decision Tree consumer and common development evaluator with paired store-cluster intervals; [integration record](SAS_INTEGRATION.md). Synthetic checks and real development validation use distinct evidence. Tree settings remain provisional, not a shared technical freeze.
+- **NOT IMPLEMENTED:** final scoring/comparisons; DEVGRU linear/ridge and optional SAS forest implementations.
 - **IMPLEMENTED:** requires actual code and supporting checks; documentation alone never qualifies.
 - **HISTORICAL:** previous 200-series experiments/results and superseded contract evidence.
 
@@ -58,7 +59,9 @@ Retain the 90-day project horizon:
 
 With 14 prior days, candidate targets start on **day 15**. These expected counts were **VERIFIED** by DELTA generation for 1,000 complete series with no additional quality exclusions: **76,000 total** (handoff records artifact identities). Inherited pilot source counts 12,000/3,000/3,000 describe rows before history eligibility, not final observations.
 
-Fit preprocessing on training only; tune on validation only. Document equal per-condition tuning budgets/policy within each applicable model family. Freeze actual validation selections, source/bundle/contract revisions and parameters before new test evaluation. Never use test results to select sample, features, models or parameters. Do not refit preprocessing/models on validation/test without an approved amendment. Exact preprocessing, settings and prediction postprocessing (including any nonnegative clipping) remain contract decisions; apply agreed rules consistently and preserve provenance.
+Fit preprocessing on training only; tune on validation only. Linear/ridge must standardize using training-fitted statistics; Ridge alpha must be selected by validation MAE. These are requirements pending executable/behavioral verification, not compliance established by metadata. Document equal per-condition tuning budgets/policy within each applicable model family. Freeze actual validation selections, source/bundle/contract revisions and parameters before new test evaluation. Never use test results to select sample, features, models or parameters. Do not refit preprocessing/models on validation/test without an approved amendment.
+
+**Team decision, recorded by SAS authorization:** no prediction clipping; retain raw finite predictions, including negative values. This supersedes the original V1 proposal to apply nonnegative clipping before selection/scoring. The historical V1 snapshot remains unchanged. SAS's tree already follows no-clipping; linear/ridge compliance awaits code/behavioral review. Remaining settings stay draft. Proposed complexity-based tie rules await team agreement; SAS currently resolves exact validation-MAE ties by first candidate in its explicit ordered grid. See [integration record](SAS_INTEGRATION.md).
 
 ## Models and baselines
 
@@ -74,7 +77,9 @@ For actual `y` and prediction `p`, primary metric is **MAE = mean(abs(p-y))**. S
 
 Where practical, report relative MAE improvement `100 * (MAE_sales_only - MAE_stockout_aware) / MAE_sales_only` (undefined for zero denominator), test subgroup errors for stocked/stockout target dates, and under/overprediction behavior. Mean underprediction is `mean(max(y-p,0))`; mean overprediction is `mean(max(p-y,0))`, each over all evaluated rows. Report denominators and empty groups honestly. Series/store summaries can supplement the overall comparison.
 
-Use identical evaluation keys and actuals across conditions, model families and baselines. Provide appropriate paired uncertainty where practical, acknowledging dependence within stores/series and across dates; resampling units, adequacy and settings remain draft. Daily rows are not independent replicates. Report null or worse performance honestly.
+Use identical evaluation keys and actuals across conditions, model families and baselines. For development/validation, report 95% paired store-cluster percentile intervals for MAE(stockout-aware) minus MAE(sales-only), seed 245, 2,000 replicates. Sample S whole stores with replacement per replicate, retaining every matched row and repeated cluster; recompute the pooled row-weighted difference with the replicate's row denominator. Use the 2.5th/97.5th percentiles (linear interpolation), report S, and do not construct an interval with fewer than two stores. Negative differences favor stockout-aware. This does not authorize final/test scoring. Final workflow acceptance remains pending.
+
+These intervals condition on fixed fitted models/validation selections; they do not include training/tuning uncertainty, can be unstable with few stores, and assume independent store clusters. Shared calendar shocks/cross-store dependence, retrospective sample selection, and historical holdout exposure remain limitations. Training intervals are descriptive; validation-selected comparisons may be optimistic. Daily rows are not independent replicates. Report null or worse performance honestly. Details: [SAS integration](SAS_INTEGRATION.md).
 
 ## Central pipeline, limitations and implementation gate
 

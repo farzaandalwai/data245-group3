@@ -56,7 +56,18 @@ secondary_metrics: [RMSE, signed_bias]
 signed_bias_definition: mean(prediction - actual)
 metrics: [MAE, RMSE, signed_bias, mean_underprediction, mean_overprediction]
 additional_reporting: [relative_MAE_improvement, target_stockout_subgroups, underprediction_overprediction, dependence_aware_uncertainty]
-uncertainty_method_status: draft
+uncertainty_method_status: implemented_development_only_final_workflow_pending
+development_uncertainty:
+  method: paired_store_cluster_percentile
+  difference: MAE_stockout_aware_minus_sales_only
+  confidence_level: 0.95
+  replicates: 2000
+  seed: 245
+  rng: numpy_Generator_PCG64
+  quantile_method: linear
+  aggregation: pooled_row_weighted_with_replicate_row_denominator
+  minimum_stores_for_interval: 2
+  allowed_splits: [train, validation]
 feature_bundle_root: data/processed/feature_bundles
 new_model_test_evaluation: blocked_until_technical_contract_bundle_and_validation_choices_frozen
 historical_v1_evidence: docs/history/contract_v1

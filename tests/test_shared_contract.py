@@ -156,7 +156,10 @@ class SharedContractTests(unittest.TestCase):
             model = self.models["models"][name]
             self.assertEqual((model["owner"], model["scope"]), (owner, scope))
             self.assertNotIn("enabled", model)  # Approval is distinct from implementation.
-            if scope != "required_baseline":
+            if name == "decision_tree":
+                self.assertEqual(model["status"],
+                                 "implemented_development_verified_final_pending")
+            elif scope != "required_baseline":
                 self.assertEqual(model["status"], "not_implemented")
         self.assertTrue(self.models["applicable_learned_models_compare_both_feature_conditions"])
         self.assertTrue(self.models["baselines_use_same_evaluation_population"])

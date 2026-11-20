@@ -14,6 +14,13 @@ All three share scientific decisions, review, integration and final submissions.
 
 Current requester: SAS / Farzaan Dalwai, authenticated GitHub `farzaandalwai`, reverified 2026-11-19. DELTA's implementation commit `308c658` is merged into main at `d2a323e`; its earlier uncommitted/no-merge handoff statements are historical snapshots. Origin was fetched successfully and no open issues/PRs were present at SAS task start. Current task branch `SAS/local-tree-evaluator` starts at `d2a323e`; the initial local changes are retained. The latest explicit integration request now authorizes SAS commit/push and a draft PR, without merge. Publication state is tracked in the task branch/PR and integration record.
 
+Publication verified: implementation commit `3e55dd4` pushed to
+`origin/SAS/local-tree-evaluator`; [PR #4](https://github.com/farzaandalwai/data245-group3/pull/4)
+is OPEN and DRAFT against `main`. No merge. This receipt is a documentation-only
+follow-up on that same task branch. Next work requires review of the draft,
+DEVGRU behavioral evidence and final-workflow gates; do not infer merge or test
+scoring authorization from the draft submission.
+
 Current authorized scope: SAS Decision Tree/development evaluator, paired store-cluster intervals, consumer CLI, behavioral tests and affected shared decision/status/AI records, followed by SAS-only staging/commit/push and a draft PR. See [SAS handoff](docs/SAS_LOCAL_HANDOFF.md) and [saved request](docs/prompts/2026-11-19-sas-local-implementation.md). DELTA's [handoff](docs/DELTA_DATA_HANDOFF.md) and [report](docs/DELTA_V2_IMPLEMENTATION_REPORT.md) remain producer evidence. No edits to DELTA/DEVGRU implementations, OLD, archives, canonical pilot/manifests or inherited results.
 
 ## Approved science and source of truth

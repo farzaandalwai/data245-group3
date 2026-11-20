@@ -107,3 +107,8 @@ is preserved as a historical snapshot, not relabeled as real evidence.
 The task branch is authorized for a draft PR, not merging. Full multi-model comparison still needs DEVGRU's
 accepted predictions and behavioral verification. Final test scoring remains
 blocked even after this task is published for review.
+
+Publication verified: implementation commit `3e55dd4` is pushed on
+`SAS/local-tree-evaluator`. [Draft PR #4](https://github.com/farzaandalwai/data245-group3/pull/4)
+is open against main; GitHub readback confirmed draft status and no merge.
+The publication receipt is recorded in a documentation-only follow-up commit.

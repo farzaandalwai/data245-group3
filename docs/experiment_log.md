@@ -86,3 +86,28 @@ No test predictions/scoring, no teammates' model implementation, no merge.
 Synthetic bootstrap smoke runs are separately labeled and are not research
 findings. All 61 tests passed; exact provenance/limits in
 [SAS integration](SAS_INTEGRATION.md) and [evidence](SAS_INTEGRATION_EVIDENCE.json).
+
+## 2026-11-20 — harmonized DEVELOPMENT evaluation of original predictions
+
+No model rerun/retuning. Exact development r2 manifest
+`043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7`;
+PR6 artifact commit `044fac1a9ed0fae52179df25946a5a994f2826b5`; original SAS outputs
+checked against previously committed evidence and copied unchanged for sharing.
+Three supporting PR6 inventory inconsistencies remain flagged; all four original
+prediction checksums, keys, targets/splits, finiteness and paired coverage passed.
+
+Run `artifacts/SAS/development/harmonized-200-series-20261120-r3` evaluates original
+Linear/Ridge/Tree predictions on 3,000 identical validation rows, 200 series,
+113 stores, plus newly materialized validation-only persistence/7-day references.
+Whole-store paired percentile intervals, 95%, 2,000 replicates, seed 245, pooled
+row weighting, aware-minus-sales MAE. Original DEVGRU series-bootstrap results
+were reproduced and preserved separately. Only run IDs changed in memory.
+
+Linear/Ridge aware MAEs 0.334190/0.334119 versus sales 0.334257/0.334256; Tree
+aware 0.352070 versus sales 0.348255. All three harmonized paired intervals include
+zero. Baseline MAEs persistence 0.417757 / 7-day mean 0.337380. No clear
+stockout-feature benefit established; no final, causal or sustainability finding.
+Retrospective subgroups: 1,698 fully-stocked / 1,302 stockout rows. Detailed
+metrics, limitations, source hashes and PNG/SVG figures are in the versioned run
+and [handoff](SAS_DEVELOPMENT_COMPARISON.md). Final scoring remains blocked;
+no final input/outcomes were inspected, no PR merged.

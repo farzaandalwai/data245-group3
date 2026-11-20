@@ -16,7 +16,7 @@ baselines_use_same_evaluation_population: true
 models:
   persistence: {owner: DELTA, scope: required_baseline, status: implemented_v2_development, matched_eligible_scoring: verified_development_final_blocked}
   recent_avg_7: {owner: DELTA, scope: required_baseline, status: implemented_v2_development, matched_eligible_scoring: verified_development_final_blocked}
-  linear_regression: {owner: DEVGRU, scope: required_core, status: not_implemented}
-  ridge_regression: {owner: DEVGRU, scope: approved_extension, status: not_implemented}
+  linear_regression: {owner: DEVGRU, scope: required_core, status: implemented_development_PR6_verified_provenance_review_pending}
+  ridge_regression: {owner: DEVGRU, scope: approved_extension, status: implemented_development_PR6_verified_provenance_review_pending}
   decision_tree: {owner: SAS, scope: required_core, status: implemented_development_verified_final_pending}
   random_forest: {owner: SAS, scope: approved_optional_extension, status: not_implemented}

@@ -1,6 +1,6 @@
 # Shared project context
 
-Updated **2026-11-19, America/Los_Angeles**. Orientation/handoff only, not live shared memory or a lock. Fetch and compare current Git/issue/PR state at startup.
+Updated **2026-11-20, America/Los_Angeles**. Orientation/handoff only, not live shared memory or a lock. Fetch and compare current Git/issue/PR state at startup.
 
 ## Active identity and ownership
 
@@ -12,16 +12,20 @@ All three share scientific decisions, review, integration and final submissions.
 
 ## Current implementation and Git state
 
-Current requester: SAS / Farzaan Dalwai, authenticated GitHub `farzaandalwai`, reverified 2026-11-19. DELTA's implementation commit `308c658` is merged into main at `d2a323e`; its earlier uncommitted/no-merge handoff statements are historical snapshots. Origin was fetched successfully and no open issues/PRs were present at SAS task start. Current task branch `SAS/local-tree-evaluator` starts at `d2a323e`; the initial local changes are retained. The latest explicit integration request now authorizes SAS commit/push and a draft PR, without merge. Publication state is tracked in the task branch/PR and integration record.
+Current requester: SAS / Farzaan Dalwai, authenticated `farzaandalwai`. New branch
+`SAS/development-comparison` starts from clean fetched main `c54f9ab`. Live GitHub
+readback: PR #4 is MERGED at `ae158eb`; DEVGRU code PR #5 is MERGED at `c54f9ab`;
+original DEVGRU artifact PR #6 remains OPEN at `044fac1`. Earlier draft/local-only
+labels are historical. No PR is merged by this task. Local originals and all
+teammate code/output are preserved. PR6 was inspected in an isolated read-only
+checkout and its exact package cached under ignored `runs/SAS/incoming/`.
 
-Publication verified: implementation commit `3e55dd4` pushed to
-`origin/SAS/local-tree-evaluator`; [PR #4](https://github.com/farzaandalwai/data245-group3/pull/4)
-is OPEN and DRAFT against `main`. No merge. This receipt is a documentation-only
-follow-up on that same task branch. Next work requires review of the draft,
-DEVGRU behavioral evidence and final-workflow gates; do not infer merge or test
-scoring authorization from the draft submission.
-
-Current authorized scope: SAS Decision Tree/development evaluator, paired store-cluster intervals, consumer CLI, behavioral tests and affected shared decision/status/AI records, followed by SAS-only staging/commit/push and a draft PR. See [SAS handoff](docs/SAS_LOCAL_HANDOFF.md) and [saved request](docs/prompts/2026-11-19-sas-local-implementation.md). DELTA's [handoff](docs/DELTA_DATA_HANDOFF.md) and [report](docs/DELTA_V2_IMPLEMENTATION_REPORT.md) remain producer evidence. No edits to DELTA/DEVGRU implementations, OLD, archives, canonical pilot/manifests or inherited results.
+Scope: [current request](docs/prompts/2026-11-20-sas-development-integration.md)
+authorizes original SAS artifact sharing, PR6 acceptance, metadata adapters,
+separate development comparisons/figures, tests/handoff, commit/push and a SAS PR.
+It does not authorize final test scoring, model retraining, wider searches or PR
+merges. Current acceptance/evidence/commands/limitations are in
+[SAS development comparison](docs/SAS_DEVELOPMENT_COMPARISON.md).
 
 ## Approved science and source of truth
 
@@ -45,11 +49,43 @@ Read in precedence order: [protocol](docs/experiment_protocol.md), [interfaces](
 
 **PROVISIONAL:** missing/closed-hour business semantics and exact export lineage/scaling coefficient. The [publisher's documented hourly convention](docs/DELTA_DATA_HANDOFF.md#semantics-and-sampling-limits) reconciles with every local row. Zero annotated stockout defines the retrospective label but does not prove unrestricted availability.
 
-**PENDING:** DEVGRU linear/ridge code and behavioral verification of train-fitted standardization/validation-MAE alpha selection, optional SAS forest, final predictions/comparisons/figures and final workflow acceptance. No clipping is agreed; parameter tie proposals await team agreement. SAS still resolves exact ties by declared grid order. The broader technical contract remains DRAFT. Final test evaluation stays blocked. Historical test exposure remains disclosed.
+**CURRENT DEVELOPMENT INTEGRATION:** all 16 original SAS files are copied byte-for-byte
+under `artifacts/SAS/development/original-200-series-20261119/`; prior manifests and
+hashes remain authoritative. Original tree JSONs reproduce all 24,400 saved
+train/validation predictions without fitting. PR6's four original prediction
+files pass exact key/target/split/finiteness/coverage checks. Its original series
+bootstrap summaries reproduce, but three supporting inventory entries disagree
+with published bytes; exact Git-blob pins and provenance limits are recorded.
+Only run IDs are normalized in memory. All three learned families plus both
+validation-only simple baselines now use one evaluator on 3,000 matched rows /
+113 stores. New comparison/PNG/SVG figures live under
+`artifacts/SAS/development/harmonized-200-series-20261120-r3/`. All paired
+whole-store 95% intervals include zero. These are DEVELOPMENT, not final evidence.
+
+**PENDING:** PR6 inventory/execution-lineage confirmation, final model/settings
+and collective tie-rule agreement, final freeze/entry-point acceptance and final
+reports. DEVGRU models are implemented; earlier not-implemented labels are stale.
+No clipping is agreed; actual SAS tie rule is first grid candidate, actual Ridge
+rule prefers smaller alpha on exact ties. The complexity-based alternative
+remains a proposal. Development store bootstrap is approved; applying it in a
+final workflow still needs review. Final test scoring is blocked.
 
 ## Next cross-team dependencies
 
-1. Human review of local SAS changes and DELTA producer acceptance remain pending. The latest [integration request](docs/prompts/2026-11-19-sas-integration.md) explicitly authorizes a draft PR; merge remains unauthorized.
-2. The exact ignored development bundle is now verified and SAS development validation has run. SAS implementation does not require waiting for DEVGRU; a full multi-model comparison needs DEVGRU's accepted standardized predictions.
-3. Jointly resolve remaining business-semantics limitations, remaining model settings/tie rules and final workflow acceptance; no clipping and development paired store-cluster intervals are now recorded. Freeze actual validation selections before final scoring. Current SAS commands reject final bundles and test scoring unconditionally.
-4. Preserve historical evidence and prior holdout exposure. Synthetic results are not research evidence; no new final or sustainability findings are claimed. Human implementation/review credit remains separate from AI-generated code and automated checks.
+1. DEVGRU: correct/confirm the three PR6 inventory discrepancies, base-only source
+   revision and unsaved fitted-model limits; do not replace original predictions
+   with newly trained outputs. Review the in-memory run-ID mapping and common
+   store-bootstrap development comparison.
+2. DELTA: accept the exact producer/final bundle and outstanding business/export
+   semantics; participate in technical freeze/review. No new final input was
+   opened by SAS. Raw/final inputs remain out of Git.
+3. SAS: review original-artifact sharing and combined development results, then
+   coordinate final settings/tie/validation-freeze and final executor review.
+   `python3 -m scripts.sas_final_preflight` is config-only and exits 2 (blocked).
+4. All 84 tests pass (including 12 new SAS integration tests and 11 existing DEVGRU
+   synthetic checks). The exact missing ignored synthetic fixture was imported
+   after a pinned Drive verification; no teammate tests were changed. Synthetic
+   tests and real original-prediction acceptance/evaluation are separate evidence.
+   Human review and personal contribution validation remain pending.
+
+Implementation checkout for this handoff is explicitly `/Users/farzu/Desktop/data245-group3` on `SAS/development-comparison`. The app-attached PR6 review worktree is detached/read-only and retained because the managed archival tool marks it protected; do not implement SAS changes in that review checkout.

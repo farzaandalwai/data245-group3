@@ -6,11 +6,11 @@ We ask whether historical stockout information improves next-day recorded normal
 
 The target is `sale_amount` for `(store_id, product_id, dt)` in FreshRetailNet-50K. Recorded sales are not unrestricted latent demand, kilograms, revenue, or measured food waste. Better stocking could support SDG 12 and waste prevention; this project has not measured environmental benefits.
 
-## Status as of 2026-11-19 (America/Los_Angeles)
+## Status as of 2026-11-20 (America/Los_Angeles)
 
 The group-approved [v2 protocol](docs/experiment_protocol.md) is the scientific authority. It uses all eligible target dates including stockouts, 200 development/1,000 final series, 14-day primary history, core linear/tree models and approved Ridge/optional Random Forest extensions. Secondary test groups are retrospective stocked/stockout target dates. DELTA producer/inputs/development baselines are operationally verified in its recorded runs. SAS’s Decision Tree/development evaluator passed synthetic checks and real development validation on DELTA’s exact pinned r2 bundle, including 95% paired store-cluster intervals. See [SAS integration](docs/SAS_INTEGRATION.md). Business semantics remain provisional and final test scoring is blocked. See [DELTA handoff](docs/DELTA_DATA_HANDOFF.md) and [SAS handoff](docs/SAS_LOCAL_HANDOFF.md).
 
-DELTA implementation is merged in base `d2a323e`; earlier layout/methodology work is integrated. Current branch `SAS/local-tree-evaluator` contains SAS integration work for an authorized draft PR; no merge is in progress. See [context](context.md) for the current task and [reconciliation](docs/V2_RECONCILIATION.md) for historical integration evidence.
+DELTA implementation is merged in base `d2a323e`; earlier layout/methodology work is integrated. SAS PR #4 and DEVGRU PR #5 are merged into `main` (`c54f9ab`); DEVGRU artifact PR #6 is open. Branch `SAS/development-comparison` holds the SAS development-comparison work; no merge is in progress. See [context](context.md) for the current task and [reconciliation](docs/V2_RECONCILIATION.md) for historical integration evidence.
 
 - Timothy Tran's preparation code, notebook, exact 200-series manifest, pilot, exclusions, audit, predictions, and baseline metrics are imported unchanged. The original handoff is in [docs/handoff](docs/handoff/README.utf8.md). Attribution and hashes are in [provenance](docs/provenance.md).
 - Setup verifies imported bytes, syntax/JSON, schemas, unique keys, manifest membership, calendar coverage, and split counts. It does not reproduce the full raw-data pipeline or independently reproduce baseline scores.
@@ -93,7 +93,7 @@ data245-group3/
   archive/original_pilot/       # ten byte-identical handoff originals
 ```
 
-DELTA producer/baselines and local SAS Decision Tree/development evaluator are implemented. DEVGRU models and the optional SAS forest remain pending. `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. The broader technical freeze remains pending. The [protocol](docs/experiment_protocol.md#authority-and-evidence-statuses) defines the authority hierarchy; [Copilot guidance](.github/copilot-instructions.md) points to it.
+DELTA producer/baselines and local SAS Decision Tree/development evaluator are implemented. DEVGRU Linear/Ridge models are implemented (PR #5); the optional SAS forest is not implemented. `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. The broader technical freeze remains pending. The [protocol](docs/experiment_protocol.md#authority-and-evidence-statuses) defines the authority hierarchy; [Copilot guidance](.github/copilot-instructions.md) points to it.
 
 You can develop and push owned components in parallel after agreeing the shared interface. Real model runs need the same verified DELTA feature bundle; final comparisons need accepted predictions, and new model test evaluation waits for the freeze. See [interfaces and dependencies](docs/interfaces.md).
 
@@ -138,3 +138,7 @@ Suggested optional next step: two teammates independently make tiny documentatio
 There is no blanket repository license. Timothy's imported code retains its original authorship; the upstream baseline repository's license does not automatically license teammate code. Dataset rights remain CC BY 4.0. Final submissions and report prose are individual.
 
 Tested environment lock: `requirements-v2-tested.txt` (Python 3.12.10). Install with `python -m pip install -r requirements-v2-tested.txt` when exact local package versions are needed.
+
+## Current development artifact handoff — 2026-11-20
+
+PR #4 and model-code PR #5 are merged. Original SAS files are shared under `artifacts/SAS/development/original-200-series-20261119/`; originals remain unchanged. Unmerged PR6 is Git-byte-pinned and numerically checked, with supporting inventory issues reported. A separate harmonized validation comparison includes Linear/Ridge/Tree plus both common baselines and labeled PNG/SVG figures. All paired store-bootstrap intervals include zero. See [current SAS handoff](docs/SAS_DEVELOPMENT_COMPARISON.md) for exact paths, reproduction commands, missing provenance and final gates. Earlier local-only/pending-implementation descriptions are historical snapshots. No final scoring or merge is performed by this task.

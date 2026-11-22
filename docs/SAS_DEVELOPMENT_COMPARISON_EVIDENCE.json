@@ -1,0 +1,58 @@
+{
+  "PR4_status": "MERGED",
+  "PR6_commit": "044fac1a9ed0fae52179df25946a5a994f2826b5",
+  "PR6_status_at_review": "OPEN",
+  "base_commit": "c54f9ab",
+  "branch": "SAS/development-comparison",
+  "checks": {
+    "DEVGRU_original_prediction_rows_accepted": 48800,
+    "figures_rendered_and_visually_checked": true,
+    "git_retention_checked": true,
+    "new_SAS_integration_tests": 12,
+    "original_tree_predictions_reconstructed_exactly": 24400,
+    "setup_integrity_passed": true,
+    "unit_tests": 84,
+    "unit_tests_passed": true,
+    "validation_rows_per_condition": 3000,
+    "validation_series": 200,
+    "validation_stores": 113
+  },
+  "date": "2026-11-20",
+  "development_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+  "final_bundle_opened": false,
+  "harmonized_package": {
+    "comparison_manifest_sha256": "ab5e2e9de0eb8eb506c1c0ce6ca44ff3c0cd7fcf8ab4fd57eb0aee3839dd4118",
+    "package_sha256sums_sha256": "26c17758f053a89d2c1fde6ac6dd7d21a98dccc56ad9eb7343e03db6f60c55c5",
+    "path": "artifacts/SAS/development/harmonized-200-series-20261120-r3"
+  },
+  "limitations_record": "docs/SAS_DEVELOPMENT_COMPARISON.md",
+  "model_refits": false,
+  "new_model_selection": false,
+  "original_SAS_files": 16,
+  "original_package": {
+    "inventory_sha256": "77a65279e9b0739f1c657d12bd8f055d0fafeace7361ccfded82d8b7ba69e1b5",
+    "path": "artifacts/SAS/development/original-200-series-20261119",
+    "sha256sums_sha256": "3d915cb8c14576f2e17c0e8e24c822c7b4ee1c11c7a7baa18386b73449b71a6e"
+  },
+  "originals_replaced": false,
+  "owner": "SAS",
+  "source": {
+    "base_commit": "c54f9ab1d499e754f77c4a85422445a0614f3850",
+    "branch": "SAS/development-comparison",
+    "files_sha256": {
+      "docs/SAS_DEVGRU_PR6_PIN.json": "f6fd4cc7717498149318a4f246a5b52cd9e06a9145a93c763960d1aa4f40e561",
+      "requirements.txt": "7a449642b78824d051b847de92f332e4f62e9e20923ae938583a300ea00d6e3f",
+      "scripts/sas_development_comparison.py": "602f1dd27d5fad3d0a58d3f3d632af8936396b40434a0ac2980ea004dd84d9d1",
+      "scripts/sas_v2.py": "1e49e380f023c8766b63157e3441101c2464c206d8c229ff35cd8a630d856ffa",
+      "src/evaluation_SAS/bootstrap.py": "6f123a0dadeef8d4f721dad3a598ce9df5c1fe089a5b33848c96d378ef63048e",
+      "src/evaluation_SAS/figures.py": "c3257f27e0024dd1c6e4b7727cb009a6ce9d49be56e68c9ecc21472845a5e587",
+      "src/evaluation_SAS/integration.py": "44818fce3fe81db4c2ecc5d547200b9a8618c01a8f6dc12bc6885aa9150271fa",
+      "src/evaluation_SAS/runs.py": "57e2decf0fc42fab2c4c94b8b6751e1fd4f70232aa1c1dca34ad28a420269e6c",
+      "src/evaluation_SAS/v2.py": "de2b93d1afab3323e16b3f38b2aa450091a3bf269fecdbff03736b12c4370e14",
+      "src/models/decision_tree_SAS/v2.py": "a4574ad314863967bca9df76e593b25a685a2cdb87daebc68b4f2127658c99fc"
+    },
+    "working_tree_dirty": true
+  },
+  "synthetic_test_fixture_sha256": "3c51884b4d24a615d797578af8fc047c1109d82ec55b3017ce97556b7b180769",
+  "test_predictions_or_scores_created": false
+}

@@ -1,14 +1,14 @@
 """Local SAS consumers: python -m scripts.sas_v2 --help (no publication)."""
 import argparse
 
-from src.evaluation_SAS.runs import ROOT, evaluate_runs, train_tree_run
+from src.evaluation_SAS.runs import ROOT, evaluate_runs, train_forest_run, train_tree_run
 from src.evaluation_SAS.v2 import BASELINES, LEARNED_MODELS
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    for name in ("train-tree", "evaluate"):
+    for name in ("train-tree", "train-forest", "evaluate"):
         command = sub.add_parser(name)
         command.add_argument("--bundle", required=True)
         command.add_argument("--manifest-sha256", required=True,
@@ -16,6 +16,8 @@ def main(argv=None):
         command.add_argument("--run-id", required=True)
         if name == "train-tree":
             command.add_argument("--policy", default="src/models/decision_tree_SAS/development_policy.json")
+        elif name == "train-forest":
+            command.add_argument("--policy", default="src/models/random_forest_SAS/development_policy.json")
         else:
             command.add_argument("--run", action="append", required=True,
                                  help="Prediction-run directory; repeat for each producer")
@@ -28,6 +30,12 @@ def main(argv=None):
         destination = ROOT / "results/decision_tree_SAS/v2" / args.run_id
         manifest = train_tree_run(ROOT / args.bundle, args.manifest_sha256, destination,
                                   args.run_id, ROOT / args.policy)
+    elif args.command == "train-forest":
+        from src.evaluation_SAS.runs import checked_id
+        checked_id(args.run_id)
+        destination = ROOT / "results/random_forest_SAS/v2" / args.run_id
+        manifest = train_forest_run(ROOT / args.bundle, args.manifest_sha256, destination,
+                                    args.run_id, ROOT / args.policy)
     else:
         from src.evaluation_SAS.runs import checked_id
         checked_id(args.run_id)

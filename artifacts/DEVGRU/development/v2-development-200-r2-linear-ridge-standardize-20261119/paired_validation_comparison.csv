@@ -1,0 +1,3 @@
+model,MAE_sales_only,MAE_stockout_aware,MAE_difference_stockout_aware_minus_sales_only,bootstrap_ci_lower,bootstrap_ci_upper,bootstrap_repetitions,bootstrap_seed,resampled_series,bootstrap_unit,interpretation
+linear_regression,0.3342568283331493,0.3341904534068818,-6.637492626748849e-05,-0.0023230173477969923,0.002156931604763117,2000,245,200,store-product series,negative favors stockout-aware forecasting
+ridge_regression,0.3342560217623993,0.33411891383472503,-0.00013710792767430353,-0.0022904929782239054,0.0019328162325238918,2000,246,200,store-product series,negative favors stockout-aware forecasting

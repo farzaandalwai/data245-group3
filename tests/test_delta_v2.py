@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 
 from scripts.delta_v2 import fixture
+from scripts.verify_delta_v2 import _frame_sha256
 from src.data_preprocessing_DELTA.v2 import validate_records, complete_series, select_sample, subset, KEY, SERIES
 from src.features_DELTA.v2 import build_features, reconstruct, COMMON, EXTRA
 from src.features_DELTA.bundle import publish_bundle, load_bundle, sha256, validate_tables
@@ -16,6 +17,13 @@ from src.models.baselines_DELTA.v2 import predictions, metrics, run_development
 
 
 class DeltaV2Tests(unittest.TestCase):
+    def test_verifier_hashes_csv_bytes_without_filesystem_temp(self):
+        frame = pd.DataFrame({"a": [1.0, 2.0], "b": ["x", "y"]})
+        self.assertEqual(_frame_sha256(frame), _frame_sha256(frame.copy()))
+        changed = frame.copy()
+        changed.loc[0, "a"] = 3.0
+        self.assertNotEqual(_frame_sha256(frame), _frame_sha256(changed))
+
     def setUp(self):
         self.raw=fixture()
         self.frame=validate_records(self.raw)

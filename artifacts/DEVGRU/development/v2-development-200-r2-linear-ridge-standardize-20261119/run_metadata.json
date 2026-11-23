@@ -1,0 +1,150 @@
+{
+  "bootstrap": {
+    "difference": "MAE(stockout_aware) - MAE(sales_only)",
+    "interval": "percentile 95%",
+    "repetitions": 2000,
+    "seed_by_model": {
+      "linear_regression": 245,
+      "ridge_regression": 246
+    },
+    "unit": "store-product series"
+  },
+  "bundle_id": "v2-development-200-r2",
+  "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+  "evidence_status": "development_validation_only",
+  "feature_sets": {
+    "sales_only": [
+      "sales_lag_1",
+      "sales_lag_2",
+      "sales_lag_3",
+      "sales_lag_7",
+      "sales_lag_14",
+      "sales_mean_7",
+      "sales_mean_14",
+      "weekday",
+      "is_weekend"
+    ],
+    "stockout_aware": [
+      "sales_lag_1",
+      "sales_lag_2",
+      "sales_lag_3",
+      "sales_lag_7",
+      "sales_lag_14",
+      "sales_mean_7",
+      "sales_mean_14",
+      "weekday",
+      "is_weekend",
+      "stockout_hours_lag_1",
+      "stockout_hours_mean_7",
+      "stockout_hours_mean_14",
+      "stockout_day_fraction_7",
+      "stockout_day_fraction_14"
+    ]
+  },
+  "experiments": [
+    {
+      "model_name": "linear_regression",
+      "feature_set": "sales_only",
+      "run_id": "dev-v2-r2-linear-ridge-standardize-20261119-linear_regression-sales_only",
+      "prediction_artifact": "runs/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119/linear_regression/sales_only.predictions.csv",
+      "split_coverage": ["train", "validation"],
+      "prediction_rows": 12200,
+      "selected_ridge_alpha": null,
+      "validation_metrics": {
+        "MAE": 0.3342568283331493,
+        "RMSE": 0.5359985311484307,
+        "signed_bias": 0.00391265925502756
+      },
+      "bundle_id": "v2-development-200-r2",
+      "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+      "preprocessing_policy": "standardize",
+      "experiment_status": "development_validation_only"
+    },
+    {
+      "model_name": "linear_regression",
+      "feature_set": "stockout_aware",
+      "run_id": "dev-v2-r2-linear-ridge-standardize-20261119-linear_regression-stockout_aware",
+      "prediction_artifact": "runs/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119/linear_regression/stockout_aware.predictions.csv",
+      "split_coverage": ["train", "validation"],
+      "prediction_rows": 12200,
+      "selected_ridge_alpha": null,
+      "validation_metrics": {
+        "MAE": 0.3341904534068818,
+        "RMSE": 0.5326892560786005,
+        "signed_bias": -0.006326944026326037
+      },
+      "bundle_id": "v2-development-200-r2",
+      "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+      "preprocessing_policy": "standardize",
+      "experiment_status": "development_validation_only"
+    },
+    {
+      "model_name": "ridge_regression",
+      "feature_set": "sales_only",
+      "run_id": "dev-v2-r2-linear-ridge-standardize-20261119-ridge_regression-sales_only",
+      "prediction_artifact": "runs/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119/ridge_regression/sales_only.predictions.csv",
+      "split_coverage": ["train", "validation"],
+      "prediction_rows": 12200,
+      "selected_ridge_alpha": 10.0,
+      "validation_metrics": {
+        "MAE": 0.3342560217623993,
+        "RMSE": 0.5358897267751174,
+        "signed_bias": 0.0037910808545073664
+      },
+      "bundle_id": "v2-development-200-r2",
+      "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+      "preprocessing_policy": "standardize",
+      "experiment_status": "development_validation_only"
+    },
+    {
+      "model_name": "ridge_regression",
+      "feature_set": "stockout_aware",
+      "run_id": "dev-v2-r2-linear-ridge-standardize-20261119-ridge_regression-stockout_aware",
+      "prediction_artifact": "runs/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119/ridge_regression/stockout_aware.predictions.csv",
+      "split_coverage": ["train", "validation"],
+      "prediction_rows": 12200,
+      "selected_ridge_alpha": 100.0,
+      "validation_metrics": {
+        "MAE": 0.33411891383472503,
+        "RMSE": 0.531885179271836,
+        "signed_bias": -0.00692712595745581
+      },
+      "bundle_id": "v2-development-200-r2",
+      "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+      "preprocessing_policy": "standardize",
+      "experiment_status": "development_validation_only"
+    }
+  ],
+  "generated_predictions": "train and validation only; test blocked",
+  "models": [
+    "linear_regression",
+    "ridge_regression"
+  ],
+  "numpy": "2.5.5",
+  "pandas": "3.1.1",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "prediction_postprocessing": "none",
+  "preprocessing_policy": "standardize",
+  "protocol_version": "2.0",
+  "purpose": "development_debugging",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "ridge_alpha_candidates": [
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "run_id": "dev-v2-r2-linear-ridge-standardize-20261119",
+  "selected_ridge_alphas": {
+    "sales_only": 10.0,
+    "stockout_aware": 100.0
+  },
+  "source_git_revision": "d2a323eb2358d6d94f01d2c6fc73c32c00756618",
+  "split_populations": {
+    "test": 3000,
+    "train": 9200,
+    "validation": 3000
+  },
+  "technical_contract_status": "draft"
+}

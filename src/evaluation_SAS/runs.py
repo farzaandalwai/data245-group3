@@ -8,7 +8,6 @@ import platform
 import re
 import shutil
 import subprocess
-import tempfile
 
 import numpy as np
 import pandas as pd
@@ -69,7 +68,10 @@ def new_run(destination):
     if destination.exists():
         raise FileExistsError(f"Immutable run already exists: {destination}")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    temporary = Path(tempfile.mkdtemp(prefix=".sas-building-", dir=destination.parent))
+    temporary = destination.parent / f".sas-building-{os.getpid()}-{id(destination):x}"
+    if temporary.exists():
+        raise FileExistsError(f"Temporary run already exists: {temporary}")
+    temporary.mkdir()
     try:
         yield temporary
         if destination.exists():

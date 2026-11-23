@@ -1,0 +1,49 @@
+{
+  "conditions": [
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "sales_only",
+      "model": "decision_tree",
+      "rows": 3000,
+      "run_id": "sas-tree-dev-200-bootstrap-r1"
+    },
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "stockout_aware",
+      "model": "decision_tree",
+      "rows": 3000,
+      "run_id": "sas-tree-dev-200-bootstrap-r1"
+    }
+  ],
+  "evidence_status": "DEVELOPMENT_NOT_FINAL",
+  "exact_coverage_verified": true,
+  "metadata_coverage_verified": true,
+  "purpose": "development_debugging",
+  "requested_models": [
+    "decision_tree"
+  ],
+  "scored_splits": [
+    "validation"
+  ],
+  "uncertainty": {
+    "cluster_unit": "store_id",
+    "confidence_level": 0.95,
+    "estimand": "row_weighted_MAE_stockout_aware_minus_sales_only",
+    "limitations": [
+      "Conditional on this sample, fitted models and validation-selected settings; no refitting",
+      "Validation selection can make validation comparisons optimistic",
+      "Few stores can produce unstable or degenerate percentile intervals",
+      "Assumes independent stores; shared calendar shocks and cross-store dependence are not addressed",
+      "Observed-store resampling does not establish population representativeness",
+      "Historical holdout exposure and retrospective series completeness remain limitations",
+      "Training intervals are descriptive diagnostics, not held-out performance"
+    ],
+    "method": "paired_store_cluster_percentile",
+    "quantile_method": "linear",
+    "replicates": 2000,
+    "rng": "numpy.Generator(PCG64)",
+    "scope": "development_train_validation_only",
+    "seed": 245
+  },
+  "uncertainty_status": "implemented_development_paired_store_bootstrap"
+}

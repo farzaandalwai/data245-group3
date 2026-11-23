@@ -90,3 +90,22 @@ token.json
 *.npz
 *.npy
 *.log
+
+# Explicit reviewed SAS development artifacts; raw data and other generated CSVs remain ignored.
+!/artifacts/SAS/development/harmonized-200-series-20261120-r3/development_comparison.csv
+!/artifacts/SAS/development/harmonized-200-series-20261120-r3/mae_difference_intervals.csv
+!/artifacts/SAS/development/harmonized-200-series-20261120-r3/overall.csv
+!/artifacts/SAS/development/harmonized-200-series-20261120-r3/paired_comparisons.csv
+!/artifacts/SAS/development/harmonized-200-series-20261120-r3/per_series.csv
+!/artifacts/SAS/development/harmonized-200-series-20261120-r3/per_store.csv
+!/artifacts/SAS/development/harmonized-200-series-20261120-r3/subgroups.csv
+!/artifacts/SAS/development/harmonized-200-series-20261120-r3/validation_baseline_predictions.csv
+!/artifacts/SAS/development/original-200-series-20261119/comparison/mae_difference_intervals.csv
+!/artifacts/SAS/development/original-200-series-20261119/comparison/overall.csv
+!/artifacts/SAS/development/original-200-series-20261119/comparison/paired_comparisons.csv
+!/artifacts/SAS/development/original-200-series-20261119/comparison/per_series.csv
+!/artifacts/SAS/development/original-200-series-20261119/comparison/per_store.csv
+!/artifacts/SAS/development/original-200-series-20261119/comparison/subgroups.csv
+!/artifacts/SAS/development/original-200-series-20261119/decision_tree/development_metrics.csv
+!/artifacts/SAS/development/original-200-series-20261119/decision_tree/mae_difference_intervals.csv
+!/artifacts/SAS/development/original-200-series-20261119/decision_tree/predictions.csv

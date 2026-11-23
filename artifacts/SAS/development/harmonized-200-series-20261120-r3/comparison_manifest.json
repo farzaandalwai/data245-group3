@@ -1,0 +1,125 @@
+{
+  "DEVGRU_source_commit": "044fac1a9ed0fae52179df25946a5a994f2826b5",
+  "artifacts": {
+    "coverage_audit.json": {
+      "bytes": 3185,
+      "sha256": "975f6d8fcc9d75839ab968eb8bcda7559a7a901a2e96bdabcdecd4e63d7e61d9"
+    },
+    "development_comparison.csv": {
+      "bytes": 2364,
+      "sha256": "787518795c6ade7b0c8875819c344d0e1c9a35a54f569605eb703287e59ff7b6"
+    },
+    "development_mae.png": {
+      "bytes": 93001,
+      "sha256": "9cb72735a6b326ec373e8046691b8c9dcf5c09e7a71c411810dfdec86fe30653"
+    },
+    "development_mae.svg": {
+      "bytes": 72122,
+      "sha256": "99166d1a28d0c60f37508078c68e586279b236f93f9bbca40cd9f11ce50d8a84"
+    },
+    "development_mae_differences.png": {
+      "bytes": 66550,
+      "sha256": "c64f5741e02045f646833196ba9a642b1c6222ac59d6cae18b12fcfddcb1384d"
+    },
+    "development_mae_differences.svg": {
+      "bytes": 59523,
+      "sha256": "e9e2554f58c736e034b9485ab567978463d48fb8af36dbab247cf82331ced5b2"
+    },
+    "input_acceptance.json": {
+      "bytes": 11741,
+      "sha256": "9d198de3c57284c6aef84530aff119a8b4a982e5bd5f82fd81e0af8d076f727d"
+    },
+    "mae_difference_intervals.csv": {
+      "bytes": 2200,
+      "sha256": "f68180820307bc15fc949fae308c8d2f69d62aec28bac8e49f7edd77d9128d76"
+    },
+    "overall.csv": {
+      "bytes": 1598,
+      "sha256": "65996dac4bb40f3cbc758b04f88bd5e0afb9d7fe589d1aca5af656ee451c0429"
+    },
+    "paired_comparisons.csv": {
+      "bytes": 1243,
+      "sha256": "a3548ab284c138c687bdb73f9226377dd218b2a3c4c981a5bfb39a9cea43001f"
+    },
+    "per_series.csv": {
+      "bytes": 307303,
+      "sha256": "9b1d6e6853ae18619ea5d0a3b73bac111b4d0bfcc54404c7b1f214c7a648906d"
+    },
+    "per_store.csv": {
+      "bytes": 168866,
+      "sha256": "4a60722ac219c7fd5cb51c701c0afe355b3fe8eabdefe37826326673941bb167"
+    },
+    "subgroups.csv": {
+      "bytes": 3408,
+      "sha256": "17183584c4b690181e3ab022454a2ed83c3f514e2a2f0dbd8a98f13b95c6247a"
+    },
+    "validation_baseline_predictions.csv": {
+      "bytes": 804939,
+      "sha256": "21e5a264044391b64b5a40bb55df0890d557cff299e734e6f6a953624b325368"
+    }
+  },
+  "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+  "comparison_version": "SAS-harmonized-development-1",
+  "environment": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.4.3",
+    "pandas": "3.0.1",
+    "python": "3.14.2"
+  },
+  "model_retraining": false,
+  "models": [
+    "linear_regression",
+    "ridge_regression",
+    "decision_tree",
+    "persistence",
+    "recent_avg_7"
+  ],
+  "originals_modified": false,
+  "owner": "SAS",
+  "producer_contract_version": "2.0.0",
+  "protocol_version": "2.0",
+  "purpose": "development_debugging",
+  "sample_sha256": "79fa3759f30fee49e7a2a5edead0884456be1767788e6eb0fb326dbb2e772cc4",
+  "scored_splits": [
+    "validation"
+  ],
+  "source": {
+    "base_commit": "c54f9ab1d499e754f77c4a85422445a0614f3850",
+    "branch": "SAS/development-comparison",
+    "files_sha256": {
+      "docs/SAS_DEVGRU_PR6_PIN.json": "f6fd4cc7717498149318a4f246a5b52cd9e06a9145a93c763960d1aa4f40e561",
+      "requirements.txt": "7a449642b78824d051b847de92f332e4f62e9e20923ae938583a300ea00d6e3f",
+      "scripts/sas_development_comparison.py": "602f1dd27d5fad3d0a58d3f3d632af8936396b40434a0ac2980ea004dd84d9d1",
+      "scripts/sas_v2.py": "1e49e380f023c8766b63157e3441101c2464c206d8c229ff35cd8a630d856ffa",
+      "src/evaluation_SAS/bootstrap.py": "6f123a0dadeef8d4f721dad3a598ce9df5c1fe089a5b33848c96d378ef63048e",
+      "src/evaluation_SAS/figures.py": "c3257f27e0024dd1c6e4b7727cb009a6ce9d49be56e68c9ecc21472845a5e587",
+      "src/evaluation_SAS/integration.py": "44818fce3fe81db4c2ecc5d547200b9a8618c01a8f6dc12bc6885aa9150271fa",
+      "src/evaluation_SAS/runs.py": "57e2decf0fc42fab2c4c94b8b6751e1fd4f70232aa1c1dca34ad28a420269e6c",
+      "src/evaluation_SAS/v2.py": "de2b93d1afab3323e16b3f38b2aa450091a3bf269fecdbff03736b12c4370e14",
+      "src/models/decision_tree_SAS/v2.py": "a4574ad314863967bca9df76e593b25a685a2cdb87daebc68b4f2127658c99fc"
+    },
+    "working_tree_dirty": true
+  },
+  "status": "DEVELOPMENT_VALIDATION_NOT_FINAL",
+  "test_scored": false,
+  "uncertainty": {
+    "cluster_unit": "store_id",
+    "confidence_level": 0.95,
+    "estimand": "row_weighted_MAE_stockout_aware_minus_sales_only",
+    "limitations": [
+      "Conditional on this sample, fitted models and validation-selected settings; no refitting",
+      "Validation selection can make validation comparisons optimistic",
+      "Few stores can produce unstable or degenerate percentile intervals",
+      "Assumes independent stores; shared calendar shocks and cross-store dependence are not addressed",
+      "Observed-store resampling does not establish population representativeness",
+      "Historical holdout exposure and retrospective series completeness remain limitations",
+      "Training intervals are descriptive diagnostics, not held-out performance"
+    ],
+    "method": "paired_store_cluster_percentile",
+    "quantile_method": "linear",
+    "replicates": 2000,
+    "rng": "numpy.Generator(PCG64)",
+    "scope": "development_train_validation_only",
+    "seed": 245
+  }
+}

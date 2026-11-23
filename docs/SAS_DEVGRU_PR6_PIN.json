@@ -1,0 +1,52 @@
+{
+  "commit": "044fac1a9ed0fae52179df25946a5a994f2826b5",
+  "files": {
+    "INVENTORY.md": {
+      "bytes": 5773,
+      "sha256": "0eafa5ecf58548ff0c99c694b600f1133b6b54644c62c7065548cd20304443e0"
+    },
+    "README.md": {
+      "bytes": 1078,
+      "sha256": "2ba4c62b0e5e9bb68aeaae7cf020073ff9549110b2a1548ef8f83c86b5995565"
+    },
+    "development_report.md": {
+      "bytes": 2690,
+      "sha256": "5257f456b985eb39fb3df7779d47b090b418ad3f473d15b3a71b7c9b5c5eb5ac"
+    },
+    "linear_regression/sales_only.predictions.csv": {
+      "bytes": 1840299,
+      "sha256": "fd2d1d1f30d2d1870f4b1fdb3ead9d1703ff3ed14d410f91e7de62ef440561d7"
+    },
+    "linear_regression/stockout_aware.predictions.csv": {
+      "bytes": 1938142,
+      "sha256": "4af534b8fcd8f150d998da99d925bdc1881cc128b46f9218abf720f37754495c"
+    },
+    "paired_validation_comparison.csv": {
+      "bytes": 611,
+      "sha256": "63051e6a2bb4d6976f525eeba5e23288d05c3d6c499f910b5f3f598ccf427450"
+    },
+    "ridge_alpha_selection.csv": {
+      "bytes": 404,
+      "sha256": "2b5d4b13a699a1ab3ce09b5f8f2a42613d069977fafa15a5b543079352dcbbb8"
+    },
+    "ridge_regression/sales_only.predictions.csv": {
+      "bytes": 1816003,
+      "sha256": "aaf2b9be37f1ab28d2a54db089ed13ee65ef3daa865cdedd72f26336f2b3785a"
+    },
+    "ridge_regression/stockout_aware.predictions.csv": {
+      "bytes": 1913754,
+      "sha256": "54e1547aa462d15fd3d65e2b242a600eaf43f5dbd0401da8acf57438bad518df"
+    },
+    "run_metadata.json": {
+      "bytes": 5430,
+      "sha256": "e3331387f91ab337bc7751845424b47aafd089803d25a417119cc8142fdac8da"
+    },
+    "validation_metrics.csv": {
+      "bytes": 931,
+      "sha256": "7c1032be0b89ad26f5586b266d8aa8e9a6aaf55e9a80e9c1cee90bd69bccbce4"
+    }
+  },
+  "package_path": "artifacts/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119",
+  "pr_url": "https://github.com/farzaandalwai/data245-group3/pull/6",
+  "trust_basis": "exact published PR commit Git blob bytes; not a claim that all original inventory entries match"
+}

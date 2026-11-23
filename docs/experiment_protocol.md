@@ -12,7 +12,8 @@ Scientific authority, in order: this protocol; [interfaces](interfaces.md); [tea
 - **DRAFT CONTRACT:** remaining learned-model verification/tuning settings, parameter tie agreement and final workflow acceptance. DELTA producer schemas/filenames are implemented; see handoff.
 - **IMPLEMENTED / VERIFIED operationally:** DELTA producer, development/final feature bundles, final 1,000-series manifest and development baselines; see [handoff](DELTA_DATA_HANDOFF.md).
 - **IMPLEMENTED / DEVELOPMENT VERIFIED:** SAS Decision Tree consumer and common development evaluator with paired store-cluster intervals; [integration record](SAS_INTEGRATION.md). Synthetic checks and real development validation use distinct evidence. Tree settings remain provisional, not a shared technical freeze.
-- **NOT IMPLEMENTED:** final scoring/comparisons; DEVGRU linear/ridge and optional SAS forest implementations.
+- **DEVELOPMENT INTEGRATION VERIFIED:** DEVGRU linear/ridge code is merged; original PR6 predictions and SAS outputs are evaluated together in a separate [harmonized run](SAS_DEVELOPMENT_COMPARISON.md). Supporting provenance discrepancies remain explicit.
+- **NOT IMPLEMENTED:** final scoring/comparisons and optional SAS forest.
 - **IMPLEMENTED:** requires actual code and supporting checks; documentation alone never qualifies.
 - **HISTORICAL:** previous 200-series experiments/results and superseded contract evidence.
 

@@ -159,6 +159,10 @@ class SharedContractTests(unittest.TestCase):
             if name == "decision_tree":
                 self.assertEqual(model["status"],
                                  "implemented_development_verified_final_pending")
+            elif name in ("linear_regression", "ridge_regression"):
+                self.assertEqual(model["status"], "implemented_development_PR6_verified_provenance_review_pending")
+            elif name == "random_forest":
+                self.assertEqual(model["status"], "implemented_development_only_final_pending")
             elif scope != "required_baseline":
                 self.assertEqual(model["status"], "not_implemented")
         self.assertTrue(self.models["applicable_learned_models_compare_both_feature_conditions"])

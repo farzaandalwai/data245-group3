@@ -1,0 +1,299 @@
+{
+  "DEVGRU": {
+    "coverage": [
+      {
+        "exact_keys_actuals_splits": true,
+        "feature_set": "sales_only",
+        "model": "linear_regression",
+        "rows": 12200,
+        "run_id": "SAS-adapted-dev-v2-r2-linear-ridge-standardize-20261119-linear_regression"
+      },
+      {
+        "exact_keys_actuals_splits": true,
+        "feature_set": "stockout_aware",
+        "model": "linear_regression",
+        "rows": 12200,
+        "run_id": "SAS-adapted-dev-v2-r2-linear-ridge-standardize-20261119-linear_regression"
+      },
+      {
+        "exact_keys_actuals_splits": true,
+        "feature_set": "sales_only",
+        "model": "ridge_regression",
+        "rows": 12200,
+        "run_id": "SAS-adapted-dev-v2-r2-linear-ridge-standardize-20261119-ridge_regression"
+      },
+      {
+        "exact_keys_actuals_splits": true,
+        "feature_set": "stockout_aware",
+        "model": "ridge_regression",
+        "rows": 12200,
+        "run_id": "SAS-adapted-dev-v2-r2-linear-ridge-standardize-20261119-ridge_regression"
+      }
+    ],
+    "declarations": {
+      "prediction_postprocessing": "none",
+      "preprocessing_policy": "standardize",
+      "selected_ridge_alphas": {
+        "sales_only": 10.0,
+        "stockout_aware": 100.0
+      },
+      "source_git_revision": "d2a323eb2358d6d94f01d2c6fc73c32c00756618"
+    },
+    "files": {
+      "INVENTORY.md": {
+        "bytes": 5773,
+        "sha256": "0eafa5ecf58548ff0c99c694b600f1133b6b54644c62c7065548cd20304443e0"
+      },
+      "README.md": {
+        "bytes": 1078,
+        "sha256": "2ba4c62b0e5e9bb68aeaae7cf020073ff9549110b2a1548ef8f83c86b5995565"
+      },
+      "development_report.md": {
+        "bytes": 2690,
+        "sha256": "5257f456b985eb39fb3df7779d47b090b418ad3f473d15b3a71b7c9b5c5eb5ac"
+      },
+      "linear_regression/sales_only.predictions.csv": {
+        "bytes": 1840299,
+        "sha256": "fd2d1d1f30d2d1870f4b1fdb3ead9d1703ff3ed14d410f91e7de62ef440561d7"
+      },
+      "linear_regression/stockout_aware.predictions.csv": {
+        "bytes": 1938142,
+        "sha256": "4af534b8fcd8f150d998da99d925bdc1881cc128b46f9218abf720f37754495c"
+      },
+      "paired_validation_comparison.csv": {
+        "bytes": 611,
+        "sha256": "63051e6a2bb4d6976f525eeba5e23288d05c3d6c499f910b5f3f598ccf427450"
+      },
+      "ridge_alpha_selection.csv": {
+        "bytes": 404,
+        "sha256": "2b5d4b13a699a1ab3ce09b5f8f2a42613d069977fafa15a5b543079352dcbbb8"
+      },
+      "ridge_regression/sales_only.predictions.csv": {
+        "bytes": 1816003,
+        "sha256": "aaf2b9be37f1ab28d2a54db089ed13ee65ef3daa865cdedd72f26336f2b3785a"
+      },
+      "ridge_regression/stockout_aware.predictions.csv": {
+        "bytes": 1913754,
+        "sha256": "54e1547aa462d15fd3d65e2b242a600eaf43f5dbd0401da8acf57438bad518df"
+      },
+      "run_metadata.json": {
+        "bytes": 5430,
+        "sha256": "e3331387f91ab337bc7751845424b47aafd089803d25a417119cc8142fdac8da"
+      },
+      "validation_metrics.csv": {
+        "bytes": 931,
+        "sha256": "7c1032be0b89ad26f5586b266d8aa8e9a6aaf55e9a80e9c1cee90bd69bccbce4"
+      }
+    },
+    "limitations": [
+      "Original DEVGRU fitted model files were never saved",
+      "Metadata was enriched for handoff; supporting inventory has discrepancies",
+      "Source revision records base d2a323e, without original dirty-source hashes",
+      "Code inspection/synthetic behavioral checks support policy; declarations alone do not prove original execution"
+    ],
+    "original_bootstrap_audit": [
+      {
+        "model": "linear_regression",
+        "original_ci_lower": -0.0023230173477969923,
+        "original_ci_upper": 0.002156931604763117,
+        "original_replicates": 2000,
+        "original_seed": 245,
+        "original_unit": "store-product series",
+        "reproduced_from_original_predictions": true,
+        "series_have_equal_validation_rows": true
+      },
+      {
+        "model": "ridge_regression",
+        "original_ci_lower": -0.0022904929782239054,
+        "original_ci_upper": 0.0019328162325238918,
+        "original_replicates": 2000,
+        "original_seed": 246,
+        "original_unit": "store-product series",
+        "reproduced_from_original_predictions": true,
+        "series_have_equal_validation_rows": true
+      }
+    ],
+    "original_inventory_discrepancies": [
+      {
+        "declared_sha256": [
+          "ef50e38013d7e158351752cc890e74b99726ac831cc706ea0e052eb59ea56b4b"
+        ],
+        "file": "development_report.md",
+        "published_git_blob_sha256": "5257f456b985eb39fb3df7779d47b090b418ad3f473d15b3a71b7c9b5c5eb5ac",
+        "status": "original_inventory_checksum_mismatch"
+      },
+      {
+        "declared_sha256": [
+          "63051e6a2bb4d6976f525ee5ae23288d05c3d6c499f910b5f3f598ccf427450"
+        ],
+        "file": "paired_validation_comparison.csv",
+        "published_git_blob_sha256": "63051e6a2bb4d6976f525eeba5e23288d05c3d6c499f910b5f3f598ccf427450",
+        "status": "original_inventory_checksum_mismatch"
+      },
+      {
+        "declared_sha256": [
+          "563c5cbc0e6d31e780d622700c7054aa2dd5e91d2eaa93178837b03726fff713"
+        ],
+        "file": "run_metadata.json",
+        "published_git_blob_sha256": "e3331387f91ab337bc7751845424b47aafd089803d25a417119cc8142fdac8da",
+        "status": "original_inventory_checksum_mismatch"
+      }
+    ],
+    "run_id_mapping": [
+      {
+        "changed_fields": [
+          "run_id"
+        ],
+        "evaluation_run_id": "SAS-adapted-dev-v2-r2-linear-ridge-standardize-20261119-linear_regression",
+        "feature_set": "sales_only",
+        "file": "linear_regression/sales_only.predictions.csv",
+        "model": "linear_regression",
+        "negative_predictions": 0,
+        "original_run_id": "dev-v2-r2-linear-ridge-standardize-20261119-linear_regression-sales_only"
+      },
+      {
+        "changed_fields": [
+          "run_id"
+        ],
+        "evaluation_run_id": "SAS-adapted-dev-v2-r2-linear-ridge-standardize-20261119-linear_regression",
+        "feature_set": "stockout_aware",
+        "file": "linear_regression/stockout_aware.predictions.csv",
+        "model": "linear_regression",
+        "negative_predictions": 9,
+        "original_run_id": "dev-v2-r2-linear-ridge-standardize-20261119-linear_regression-stockout_aware"
+      },
+      {
+        "changed_fields": [
+          "run_id"
+        ],
+        "evaluation_run_id": "SAS-adapted-dev-v2-r2-linear-ridge-standardize-20261119-ridge_regression",
+        "feature_set": "sales_only",
+        "file": "ridge_regression/sales_only.predictions.csv",
+        "model": "ridge_regression",
+        "negative_predictions": 0,
+        "original_run_id": "dev-v2-r2-linear-ridge-standardize-20261119-ridge_regression-sales_only"
+      },
+      {
+        "changed_fields": [
+          "run_id"
+        ],
+        "evaluation_run_id": "SAS-adapted-dev-v2-r2-linear-ridge-standardize-20261119-ridge_regression",
+        "feature_set": "stockout_aware",
+        "file": "ridge_regression/stockout_aware.predictions.csv",
+        "model": "ridge_regression",
+        "negative_predictions": 6,
+        "original_run_id": "dev-v2-r2-linear-ridge-standardize-20261119-ridge_regression-stockout_aware"
+      }
+    ],
+    "source_commit": "044fac1a9ed0fae52179df25946a5a994f2826b5",
+    "source_pr": "https://github.com/farzaandalwai/data245-group3/pull/6"
+  },
+  "SAS": {
+    "files": {
+      "comparison/comparison_manifest.json": {
+        "sha256": "eacf4cff56fb403089241c99aacddd0d560fab89ab4cff7c4a89fd27d9a4cf5e"
+      },
+      "comparison/coverage_audit.json": {
+        "bytes": 1732,
+        "sha256": "06249ad00085e2547d3700e34abcf15d5994d3774fccace1998454f2a6386d9d"
+      },
+      "comparison/mae_difference_intervals.csv": {
+        "bytes": 809,
+        "sha256": "957be30f0466707a1ba3b3de23506ce24d8bec56d729a81bb45ea9e069146dc7"
+      },
+      "comparison/overall.csv": {
+        "bytes": 513,
+        "sha256": "7b7907d7ef8c6b8aeff299def9c676645482111a74ce70eee74f3c04bf10912e"
+      },
+      "comparison/paired_comparisons.csv": {
+        "bytes": 496,
+        "sha256": "7bf70fba38bc4b418f3b79f11e24740829ce8ab38e68211e596a0bc7d70b69ce"
+      },
+      "comparison/per_series.csv": {
+        "bytes": 76054,
+        "sha256": "dcebb7b2650aa30ea819c83a8b6d0ddf852f8131913f64d6116f8c22010dc510"
+      },
+      "comparison/per_store.csv": {
+        "bytes": 41944,
+        "sha256": "2b5bc3cc720934574cfbe283308e2d17725bed979b13975a5fc823b803ffb327"
+      },
+      "comparison/subgroups.csv": {
+        "bytes": 946,
+        "sha256": "62fe129d25e8507679f8d6c94404271bc17df7184c0b555ba22e38d0fb9ffe3e"
+      },
+      "decision_tree/coverage_audit.json": {
+        "bytes": 1747,
+        "sha256": "6ce3d3bf17dd3b08413903307c03b91ee31432c2d8275ebe86ac6d67ec9201b6"
+      },
+      "decision_tree/development_metrics.csv": {
+        "bytes": 876,
+        "sha256": "b05c9f53a8b31fd40eb41d93bd595ae68fa2d8a27f1d8438f5ba780600fd4518"
+      },
+      "decision_tree/mae_difference_intervals.csv": {
+        "bytes": 1496,
+        "sha256": "e8d315ae5dcebd1ef7442cc33f39b807036323cf0a7e518b520bca464e45b5a8"
+      },
+      "decision_tree/predictions.csv": {
+        "bytes": 2861295,
+        "sha256": "2c7f7523e6ab7e2d8edd822cbf857a52eebc6e6dd0682d7aa991f521d30cba38"
+      },
+      "decision_tree/run_manifest.json": {
+        "sha256": "f9d0079f227842f4e8e4cc3dc17c598763963482f86f6648c7acf65e22c57a66"
+      },
+      "decision_tree/sales_only_tree.json": {
+        "bytes": 6502,
+        "sha256": "010c3ab9e1c13823d688a2bca462a782eae30dd20cd4bf99760cc161a448820e"
+      },
+      "decision_tree/selection.json": {
+        "bytes": 8973,
+        "sha256": "d5a7da46afc3d861a7e568f5285ad66b4137731ae7d23211af990d516c37d9f0"
+      },
+      "decision_tree/stockout_aware_tree.json": {
+        "bytes": 6630,
+        "sha256": "7a162cc2b22b96a8a3bf73586220dae7769470268281c8e239de3529cb6acfc2"
+      }
+    },
+    "missing": [
+      "Per-replicate bootstrap draw arrays were not saved",
+      "No pickle/joblib; numeric selected tree JSON exports are provided"
+    ],
+    "policy": {
+      "criterion": "squared_error",
+      "max_depth": [
+        3,
+        5,
+        8,
+        null
+      ],
+      "min_samples_leaf": [
+        5,
+        20,
+        50
+      ],
+      "policy_version": "sas-tree-development-1",
+      "prediction_postprocessing": "none",
+      "preprocessing": "none",
+      "random_state": 245,
+      "selection_metric": "MAE",
+      "selection_split": "validation",
+      "status": "development_only_not_group_frozen",
+      "tie_break": "first_in_declared_grid_order"
+    },
+    "run_manifest_sha256": "f9d0079f227842f4e8e4cc3dc17c598763963482f86f6648c7acf65e22c57a66",
+    "saved_tree_predictions_reconstructed_without_refitting": true,
+    "source": {
+      "base_commit": "d2a323eb2358d6d94f01d2c6fc73c32c00756618",
+      "branch": "SAS/local-tree-evaluator",
+      "files_sha256": {
+        "requirements.txt": "305d468fbdba9531fd76fb678b02fc992ea56fbee11f99aaa947d0d551086a92",
+        "scripts/sas_v2.py": "1e49e380f023c8766b63157e3441101c2464c206d8c229ff35cd8a630d856ffa",
+        "src/evaluation_SAS/bootstrap.py": "6f123a0dadeef8d4f721dad3a598ce9df5c1fe089a5b33848c96d378ef63048e",
+        "src/evaluation_SAS/runs.py": "8fd1e0687f83e19f2bf79e90549931208149510441ef2423fdc3b809cef09815",
+        "src/evaluation_SAS/v2.py": "de2b93d1afab3323e16b3f38b2aa450091a3bf269fecdbff03736b12c4370e14",
+        "src/models/decision_tree_SAS/v2.py": "a4574ad314863967bca9df76e593b25a685a2cdb87daebc68b4f2127658c99fc"
+      },
+      "working_tree_dirty": true
+    }
+  },
+  "baselines": "New validation-only materialization of DELTA lag-1/mean-7 formulas from exact bundle; not original DELTA output files"
+}

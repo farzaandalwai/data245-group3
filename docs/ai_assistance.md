@@ -111,3 +111,46 @@ are conditional on validation-selected models; the interval includes zero.
 Exact artifacts, limitations and pending human/DEVGRU verification are in
 [integration evidence](SAS_INTEGRATION_EVIDENCE.json) and [integration record](SAS_INTEGRATION.md).
 Student personal contribution and independent human review remain unverified.
+
+## 2026-11-20 — SAS artifact publication and harmonized development integration
+
+- Codex (GPT-6 family; exact variant/version unknown), authenticated requester
+  `farzaandalwai` / SAS. [Saved authorization](prompts/2026-11-20-sas-development-integration.md).
+  No subagents and no messages to teammates. GitHub publication is explicitly
+  authorized; no merge is authorized or performed.
+- Assistance: current-main/PR inspection, isolated PR6 artifact review, exact-byte
+  SAS original packaging, source Git-blob pins and hash checks, schema/provenance
+  adapters, original series-bootstrap reproduction, whole-store development
+  evaluation, validation-only baselines, metrics/figures, metadata-only final
+  preflight, behavioral tests, disclosure/context/handoff and task-PR publication.
+  Source predictions/model files were preserved, with no real model fitting,
+  tuning or expanded search. All evaluated real rows are development validation.
+- Tools: Git/gh, Codex managed worktree tools, Python/NumPy/pandas/Matplotlib,
+  unittest and file patching. Canvas guidance was consulted and not applied:
+  requested deliverables are repository artifacts/figures and a PR. Google Drive
+  skill/connector located DELTA's exact ignored synthetic fixture for existing
+  tests; its pinned manifest/all files were verified before import. No original
+  test was weakened, no substitute dataset and no expiring file URL saved to Git.
+- Checks: 84 tests passed after obtaining the required fixture; 12 new integration
+  tests use synthetic fixtures or verify tracked original bytes. Existing DEVGRU
+  tests fit small synthetic models only. Real stored-prediction acceptance,
+  stored-tree reconstruction and development comparisons are separately labeled.
+  Original prediction/metric/series-bootstrap checks passed within documented
+  numeric tolerances. Three PR6 inventory discrepancies and missing original
+  execution hashes/model objects are reported rather than repaired or invented.
+- Limitations/results: all three harmonized paired 95% intervals include zero;
+  no clear development stockout-feature benefit. Validation-selected estimates
+  omit training/tuning uncertainty and retain documented dependence/sampling
+  limits. No final bundle was opened or scored. See [handoff](SAS_DEVELOPMENT_COMPARISON.md).
+  Human review and student personal contribution credit remain pending.
+
+## 2026-11-20 — SAS Random Forest (Claude Code, model Claude Sonnet 5.5)
+
+- Prompt: [SAS remaining-work request](prompts/2026-11-20-sas-random-forest.md).
+- Assistance: committed the staged SAS integration work into four commits and opened
+  PR #7; implemented the development-only Random Forest module, policy, run function,
+  CLI and tests; ran one real development fit on validation only; wrote the handoff.
+- Checks: full test suite and setup checker (counts recorded in the PR). The real run
+  and synthetic tests are separate evidence. No test or final data was scored.
+- Not done by the assistant: any individual report prose, cross-team decisions, merges.
+  Human review and personal contribution credit remain pending.

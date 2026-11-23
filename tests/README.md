@@ -36,3 +36,7 @@ SAS bootstrap integration adds five tests (61 total; 26 SAS). Literal whole-stor
 ## SAS shared development integration — 2026-11-20
 
 The full suite is now 84 tests: 61 earlier checks, 11 existing DEVGRU tests and 12 new `test_sas_integration.py` checks. DEVGRU tests require the exact ignored `v2-synthetic-fixture-r2` (SHA-256 `3c51884b4d24a615d797578af8fc047c1109d82ec55b3017ce97556b7b180769`), obtainable from DELTA’s shared Drive fixture folder; no test is changed to use another dataset. New checks cover original-file preservation, source hash rejection, coverage/actual/split/condition/finiteness failures, metadata policy mismatches, recorded tuning/metric/interval consistency, validation-only baseline slicing and pre-outcome final rejection. See [current handoff](../docs/SAS_DEVELOPMENT_COMPARISON.md). All model fitting in the unit suite is synthetic only.
+
+## SAS Random Forest — 2026-11-20
+
+`test_sas_forest.py` has 7 synthetic checks: fit rows and allowlists, matched 12-candidate budget, test-row isolation, reproducibility and tie rule, fail-closed policy, a run round trip, and final-bundle rejection. They fit tiny forests only and are not research evidence.

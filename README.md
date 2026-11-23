@@ -93,7 +93,7 @@ data245-group3/
   archive/original_pilot/       # ten byte-identical handoff originals
 ```
 
-DELTA producer/baselines and local SAS Decision Tree/development evaluator are implemented. DEVGRU Linear/Ridge models are implemented (PR #5); the optional SAS forest is not implemented. `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. The broader technical freeze remains pending. The [protocol](docs/experiment_protocol.md#authority-and-evidence-statuses) defines the authority hierarchy; [Copilot guidance](.github/copilot-instructions.md) points to it.
+DELTA producer/baselines and local SAS Decision Tree/development evaluator are implemented. DEVGRU Linear/Ridge models are implemented (PR #5); the optional SAS Random Forest is implemented for development only (see [SAS Random Forest](docs/SAS_RANDOM_FOREST.md)). `pyproject.toml` supplies checked workspace metadata; dependencies remain in `requirements.txt`. The broader technical freeze remains pending. The [protocol](docs/experiment_protocol.md#authority-and-evidence-statuses) defines the authority hierarchy; [Copilot guidance](.github/copilot-instructions.md) points to it.
 
 You can develop and push owned components in parallel after agreeing the shared interface. Real model runs need the same verified DELTA feature bundle; final comparisons need accepted predictions, and new model test evaluation waits for the freeze. See [interfaces and dependencies](docs/interfaces.md).
 

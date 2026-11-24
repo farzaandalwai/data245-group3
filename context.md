@@ -104,6 +104,15 @@ rule prefers smaller alpha on exact ties. The complexity-based alternative
 remains a proposal. Development store bootstrap is approved; applying it in a
 final workflow still needs review. Final test scoring is blocked.
 
+**SAS FINAL-EVALUATOR REPAIR (2026-11-24, branch `SAS/final-evaluator-repair`, draft PR):**
+new reviewed entry point `scripts/sas_final_evaluation.py` / `src/evaluation_SAS/final.py`
+with V2 gates, shared exact-coverage checks, pooled-row store bootstrap, a PROPOSED (not
+approved) `configs/final_settings.json`, optional Random Forest and transactional output.
+Synthetic tests only; 114 tests pass; preflight and `check` exit 2 (blocked). Legacy
+`scripts/final_evaluation.py` (`91fab8d`) is unchanged; the Nov 20 final run cited by
+`submission_local/` is unverified (outputs not in Git, gates were closed). See
+[SAS final evaluator](docs/SAS_FINAL_EVALUATOR.md).
+
 ## Next cross-team dependencies
 
 1. DEVGRU: `1f4e6a4` fixed the malformed `paired_validation_comparison.csv` checksum.

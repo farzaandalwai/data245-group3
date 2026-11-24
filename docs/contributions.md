@@ -158,3 +158,10 @@ Random Forest run, extended the comparison with the forest and relative MAE impr
 added 4 tests, ran the r4 comparison and updated context/handoffs. No teammate code or
 output edited; no model fitted. Human review and personal contribution validation
 remain pending.
+
+## 2026-11-24 — SAS final-evaluator repair
+
+Requester: SAS / Farzaan Dalwai. Claude Code implemented the reviewed final evaluator, settings
+proposal, entry point, preflight update and 11 synthetic tests, and wrote the handoff. Legacy
+`scripts/final_evaluation.py` and all evidence were left unchanged. No final scoring. Human
+review and personal contribution validation remain pending.

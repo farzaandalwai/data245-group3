@@ -40,3 +40,7 @@ The full suite is now 84 tests: 61 earlier checks, 11 existing DEVGRU tests and 
 ## SAS Random Forest — 2026-11-20
 
 `test_sas_forest.py` has 7 synthetic checks: fit rows and allowlists, matched 12-candidate budget, test-row isolation, reproducibility and tie rule, fail-closed policy, a run round trip, and final-bundle rejection. They fit tiny forests only and are not research evidence.
+
+## SAS final evaluator — 2026-11-24
+
+`test_sas_final.py` has 11 synthetic checks: closed gates block before any data load, missing approvals/freeze record, bundle hash/purpose mismatch, strict settings schema, an end-to-end synthetic final-purpose run, optional Random Forest, test-split isolation, pooled-row weighting versus store means, transactional failure, and legacy-evaluator preservation. No real final bundle is opened.

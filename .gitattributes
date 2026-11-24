@@ -14,3 +14,6 @@
 # Preserve published DEVGRU evidence bytes on future checkouts, including Windows.
 # Existing original files are never renormalized by this task.
 /artifacts/DEVGRU/development/** -text
+
+# Preserve original SAS artifact Git bytes across Windows checkouts.
+/artifacts/SAS/development/** -text

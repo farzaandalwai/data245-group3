@@ -131,3 +131,11 @@ published `artifacts/SAS/development/harmonized-200-series-20261123-r4/`. It rep
 every r3 number and adds the forest plus relative MAE improvement: Linear +0.020%, Ridge
 +0.041%, Tree −1.095%, Forest −0.159%. All four paired intervals include zero. Two DEVGRU
 inventory entries still differ from published bytes. No final input, no test scoring.
+
+## 2026-11-24 — SAS final-evaluator repair (no scoring)
+
+Requester: SAS / Farzaan Dalwai. [Request](prompts/2026-11-24-sas-final-evaluator-repair.md).
+Added the reviewed final entry point with V2 gates, shared checks, pooled-row bootstrap,
+proposed (unapproved) settings file, optional Random Forest and safe output. Synthetic tests only;
+no real final bundle opened, no test scoring, no flags changed. The Nov 20 final run cited in
+`submission_local/` remains unverified. See [SAS final evaluator](SAS_FINAL_EVALUATOR.md).

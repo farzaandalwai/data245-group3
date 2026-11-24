@@ -183,3 +183,12 @@ Student personal contribution and independent human review remain unverified.
   the forest and relative MAE, 4 tests, r4 run and figures (visually checked), docs.
 - Checks: 95 tests and the setup checker passed; r4 reproduces every r3 metric exactly.
 - Not done: final scoring, teammate edits, merges, team freeze decisions.
+
+## 2026-11-24 — SAS final-evaluator repair (Claude Code, Claude Opus 5.5)
+
+- Prompt: [repair request](prompts/2026-11-24-sas-final-evaluator-repair.md).
+- Assistance: diagnosed the legacy evaluator (V1 gate, store-mean bootstrap, hardcoded
+  settings, unsafe writes), implemented the gated replacement, tests and docs. Also moved three
+  iCloud duplicate files out of `.git/` (backed up, not deleted) so `git fetch` worked.
+- Checks: 114 tests and the setup checker passed; preflight/check exit 2. Synthetic data only.
+- Not done: final scoring, approval flags, team approval, merges.

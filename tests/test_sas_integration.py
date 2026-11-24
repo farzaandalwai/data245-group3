@@ -160,6 +160,37 @@ class IncomingArtifactTests(unittest.TestCase):
 
 
 class PreservationAndFinalGateTests(unittest.TestCase):
+    def checkout_original_package(self, relative):
+        """Exercise checkout attributes without rewriting this checkout's evidence.
+
+        checkout-index reads the repository index and current attributes, but only
+        writes original Git blobs into this test's temporary directory. Force
+        autocrlf so missing byte-preservation attributes fail on every platform.
+        """
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        destination = Path(temporary.name)
+        names = subprocess.check_output(
+            ['git', 'ls-files', '--', relative], cwd=ROOT, text=True).splitlines()
+        self.assertTrue(names)
+        subprocess.run(
+            ['git', '-c', 'core.autocrlf=true', 'checkout-index',
+             '--prefix=' + destination.as_posix() + '/', '--', *names],
+            cwd=ROOT, check=True, capture_output=True)
+        return destination / relative
+
+    def assert_converted_bytes_rejected(self, package, relative):
+        # Mutate only the disposable checkout, never the archived source files.
+        path = package / relative
+        original = path.read_bytes()
+        self.assertIn(b'\n', original)
+        self.assertNotIn(b'\r\n', original)
+        import hashlib
+        record = {'sha256': hashlib.sha256(original).hexdigest(), 'bytes': len(original)}
+        path.write_bytes(original.replace(b'\n', b'\r\n'))
+        with self.assertRaisesRegex(ValueError, 'Artifact hash/size mismatch'):
+            verify_files(package, {relative: record})
+
     def test_only_reviewed_artifact_CSVs_are_publishable_and_local_READMEs_stay_ignored(self):
         for name, ignored in [
             ('runs/SAS/incoming/example/README.md', True),
@@ -178,7 +209,8 @@ class PreservationAndFinalGateTests(unittest.TestCase):
 
     def test_shared_original_SAS_files_match_prior_committed_evidence(self):
         evidence = read_json(ROOT / 'docs/SAS_INTEGRATION_EVIDENCE.json')
-        package = ROOT / 'artifacts/SAS/development/original-200-series-20261119'
+        package = self.checkout_original_package(
+            'artifacts/SAS/development/original-200-series-20261119')
         expected = {}
         for key, folder in [('real_tree', 'decision_tree'), ('real_validation', 'comparison')]:
             record = evidence['runs'][key]
@@ -186,9 +218,11 @@ class PreservationAndFinalGateTests(unittest.TestCase):
             expected.update({folder+'/'+name: info for name, info in record['artifact_hashes'].items()})
         self.assertEqual(len(expected), 16)
         verify_files(package, expected)
+        self.assert_converted_bytes_rejected(package, "decision_tree/run_manifest.json")
 
     def test_shared_forest_run_matches_recorded_identity_and_SHA256SUMS(self):
-        package = ROOT / 'artifacts/SAS/development/random-forest-200-series-20261120'
+        package = self.checkout_original_package(
+            'artifacts/SAS/development/random-forest-200-series-20261120')
         self.assertEqual(sha256(package / 'run_manifest.json'), FOREST_RUN_MANIFEST_SHA256)
         sums = dict(reversed(line.split('  ', 1)) for line in (package / 'SHA256SUMS').read_text().splitlines())
         self.assertEqual(len(sums), 6)
@@ -197,6 +231,7 @@ class PreservationAndFinalGateTests(unittest.TestCase):
         self.assertEqual((manifest['models'], manifest['test_scored']), (['random_forest'], False))
         registered = {name: record['sha256'] for name, record in manifest['artifacts'].items()}
         self.assertEqual(registered, {name: digest for name, digest in sums.items() if name != 'run_manifest.json'})
+        self.assert_converted_bytes_rejected(package, 'run_manifest.json')
 
     def test_forest_with_unrecorded_manifest_is_rejected_before_loading(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -244,7 +244,8 @@ class PreservationAndFinalGateTests(unittest.TestCase):
             result = inspect_final_gates(root)
             self.assertFalse(result['ready_for_final_scoring'])
             self.assertFalse(result['final_data_opened'])
-            self.assertEqual(len(result['blocking_requirements']), 1)
+            self.assertIn('reviewed_final_scoring_entry_point', result['blocking_requirements'])
+            self.assertIn('missing_final_settings_file', result['blocking_requirements'])
 
 
 if __name__ == '__main__':

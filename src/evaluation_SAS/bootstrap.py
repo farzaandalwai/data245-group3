@@ -32,11 +32,21 @@ def paired_store_intervals(predictions, observations, *, purpose, models, splits
     total row count, never an unweighted mean of store MAEs. Pairing is validated
     before any resampling. Sorted keys/stores make input row order irrelevant.
     """
-    from src.data_preprocessing_DELTA.v2 import KEY
-    from src.evaluation_SAS.v2 import BASELINES, development_gate, validate_predictions
+    from src.evaluation_SAS.v2 import development_gate, validate_predictions
 
     development_gate(purpose, splits)
     validate_predictions(predictions, observations, models, splits)
+    return pooled_store_interval_rows(predictions, models, splits, BOOTSTRAP_SPEC["limitations"])
+
+
+def pooled_store_interval_rows(predictions, models, splits, limitations):
+    """Gate-free core shared by the development and reviewed final evaluators.
+
+    Callers must enforce their own purpose/split gate and exact coverage first.
+    """
+    from src.data_preprocessing_DELTA.v2 import KEY
+    from src.evaluation_SAS.v2 import BASELINES
+
     rows = []
     for model in models:
         if model in BASELINES:
@@ -69,5 +79,5 @@ def paired_store_intervals(predictions, observations, *, purpose, models, splits
                          "n_stores": n_stores, "MAE_difference": point,
                          "ci_lower": low, "ci_upper": high, "confidence_level": .95,
                          "replicates": 2000 if n_stores >= 2 else 0, "seed": 245,
-                         "status": status, "limitations": "; ".join(BOOTSTRAP_SPEC["limitations"])})
+                         "status": status, "limitations": "; ".join(limitations)})
     return pd.DataFrame(rows, columns=INTERVAL_COLUMNS)

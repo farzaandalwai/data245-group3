@@ -1,0 +1,184 @@
+# DATA 245 — Publish Verified Project and Prepare Team Handoff
+
+Act as a Senior Data Engineer and GitHub Release Manager.
+
+I am Timothy Tran, the DATA 245 project lead. I authorize a scoped commit, push, and pull request for our verified final project materials.
+
+Our teammates need to pull the repository tomorrow, understand the ML experiment pipeline, demonstrate it, and update the final presentation.
+
+The final experiment is COMPLETE and independently verified.
+
+Run ID:
+`final-1000-attested-20261124T094349Z`
+
+Source base:
+`47f531f`
+
+Working branch:
+`DELTA/final-execution-readiness`
+
+Existing checklist:
+`docs/FINAL_SUBMISSION_CHECKLIST.md`
+
+IMPORTANT: Do not rerun the experiment, retrain models, or regenerate the verified results.
+
+## 1. Inspect publication readiness
+
+Review the current Git status and the existing 19-entry publication inventory.
+
+Inspect only files relevant to the final experiment publication and team handoff.
+
+Verify the original run identity, artifact hashes, documentation reconciliation, and prepared small evidence package.
+
+Avoid another comprehensive repository audit.
+
+## 2. Prepare the GitHub publication
+
+Publish the reviewed project materials:
+
+- Corrected final report Markdown.
+- Corrected presentation Markdown.
+- Updated submission and technical documentation.
+- Original prospective freeze record.
+- Actual project-lead approval attestation.
+- Verified final metrics.
+- Paired confidence intervals.
+- Subgroup and store diagnostics included in the small evidence package.
+- Final run manifest.
+- Independent verification results.
+- Execution log.
+- Evidence inventory and checksums.
+- Existing DELTA, DEVGRU, and SAS pipeline source code.
+
+Preserve original experimental artifact bytes.
+
+Follow the reviewed staging allowlist in `docs/FINAL_SUBMISSION_CHECKLIST.md`.
+
+## 3. Critical Git safety
+
+Do NOT use `git add .`, `git add -A`, or commit the entire worktree.
+
+Do NOT stage:
+
+- Live `configs/contract.yaml` with enabled scoring gates.
+- Live `configs/final_settings.json`.
+- Raw datasets.
+- Local virtual environments.
+- Ignored bulk results.
+- Original 76 MB predictions.
+- Original 3 MB per-series diagnostics.
+- Credentials or local secrets.
+- Unrelated worktree or audit files.
+
+Keep main's default scoring gates CLOSED.
+
+Include only the reviewed historical configuration snapshots as evidence.
+
+Do not make the approved historical freeze a reusable scoring authorization.
+
+Verify every staged path and inspect the staged diff before committing.
+
+## 4. Prepare the teammate ML pipeline guide
+
+Create:
+
+`docs/TEAM_FINAL_PIPELINE_HANDOFF.md`
+
+Explain the actual implemented workflow:
+
+Raw dataset → deterministic sampling → feature engineering → chronological splitting → baselines → Linear/Ridge/Decision Tree → evaluation → bootstrap confidence intervals → preserved final results.
+
+Include:
+
+1. Environment setup from a fresh Git clone.
+2. Required dependencies.
+3. Repository directory structure.
+4. Where DELTA, DEVGRU, and SAS implementations live.
+5. How the existing pipeline operates.
+6. Exact final model settings.
+7. How to inspect the frozen final results.
+8. Safe development-data or synthetic demonstration commands.
+9. Which final experiment commands must NOT be rerun.
+10. How to verify the provided small evidence package.
+11. How to prepare the live presentation/demo without accessing or rescoring the final test set.
+12. Which additional ignored datasets or bulk outputs must be obtained separately.
+
+Do not invent executable commands. Inspect the actual entry points and document only commands that are supported by the repository.
+
+If a fresh clone cannot run a particular workflow without ignored local data, clearly document that dependency. Do not claim full reproducibility from Git alone.
+
+## 5. Prepare the teammate presentation guide
+
+Create:
+
+`docs/TEAM_PRESENTATION_HANDOFF.md`
+
+Include the verified results:
+
+- Ridge stockout-aware MAE: 0.377191.
+- Ridge stockout-aware RMSE: 0.618490.
+- Linear stockout-aware MAE: 0.377354.
+- Ridge relative MAE improvement: 0.343760%.
+- Linear relative MAE improvement: 0.305113%.
+- Decision Tree stockout features worsened MAE.
+
+Include the corrected paired 95% confidence intervals.
+
+Explain that Linear/Ridge overall improvements do NOT imply improvement on stockout dates.
+
+Explain historical test exposure and the descriptive interpretation.
+
+Identify which slides and tables require reconciliation.
+
+Provide a simple demonstration sequence that teammates can present without rerunning the final experiment.
+
+Do not manufacture new claims, metrics, plots, or demonstrations.
+
+## 6. Preserve bulk evidence
+
+Verify the original hashes of:
+
+- `predictions.csv`
+- `per_series.csv`
+
+Prepare a reproducible archive inventory and instructions for an independently accessible, immutable shared archive.
+
+Do not commit the large files.
+
+Do not upload them without separately reviewed storage destination and access permissions.
+
+Clearly identify any files teammates cannot access through Git alone.
+
+## 7. Publish through Git
+
+After completing verification:
+
+1. Create a dedicated publication branch from the correct current base, preserving the existing worktree.
+2. Stage only reviewed files.
+3. Run `git diff --cached --check`.
+4. Confirm no enabled live scoring configuration is staged.
+5. Confirm no secrets, raw datasets, environments, or unintended large files are staged.
+6. Commit the scoped publication.
+7. Push the branch to GitHub.
+8. Open a pull request targeting `main`.
+
+Do not merge automatically.
+
+Report the PR URL, commit SHA, file inventory, and GitHub check status.
+
+## 8. Final response
+
+Keep the response concise.
+
+Answer:
+
+1. Was the verified project evidence published to a GitHub PR?
+2. What was included?
+3. What remains local?
+4. Are the default scoring gates closed?
+5. Can teammates understand the experiment pipeline from a fresh clone?
+6. What additional data or artifacts do they need?
+7. Can teammates update their presentation using the published results?
+8. What must I review and merge tonight?
+
+Prioritize a safe, usable team handoff over generating lengthy new documentation.

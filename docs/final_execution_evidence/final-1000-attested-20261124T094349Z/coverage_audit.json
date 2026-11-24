@@ -1,0 +1,71 @@
+{
+  "conditions": [
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "sales_only",
+      "model": "linear_regression",
+      "rows": 76000,
+      "run_id": "final-1000-attested-20261124T094349Z"
+    },
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "stockout_aware",
+      "model": "linear_regression",
+      "rows": 76000,
+      "run_id": "final-1000-attested-20261124T094349Z"
+    },
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "sales_only",
+      "model": "ridge_regression",
+      "rows": 76000,
+      "run_id": "final-1000-attested-20261124T094349Z"
+    },
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "stockout_aware",
+      "model": "ridge_regression",
+      "rows": 76000,
+      "run_id": "final-1000-attested-20261124T094349Z"
+    },
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "sales_only",
+      "model": "decision_tree",
+      "rows": 76000,
+      "run_id": "final-1000-attested-20261124T094349Z"
+    },
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "stockout_aware",
+      "model": "decision_tree",
+      "rows": 76000,
+      "run_id": "final-1000-attested-20261124T094349Z"
+    },
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "common_reference",
+      "model": "persistence",
+      "rows": 76000,
+      "run_id": "final-1000-attested-20261124T094349Z"
+    },
+    {
+      "exact_keys_actuals_splits": true,
+      "feature_set": "common_reference",
+      "model": "recent_avg_7",
+      "rows": 76000,
+      "run_id": "final-1000-attested-20261124T094349Z"
+    }
+  ],
+  "exact_coverage_verified": true,
+  "metadata_coverage_verified": true,
+  "reported_splits": [
+    "validation",
+    "test"
+  ],
+  "validated_splits": [
+    "train",
+    "validation",
+    "test"
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "status": "PROSPECTIVE_AUTHORIZED_FINAL_FREEZE",
+  "frozen_utc": "2026-11-24T09:43:49.460111+00:00",
+  "source_revision": "47f531fdf551202662ad334636177fc5d7475163",
+  "source_worktree": "A:\\Projects\\DATA 245\\data245-group3-final-execution",
+  "source_files_sha256": {
+    "scripts/audit_contract.py": "92e486686eb92627410d5237e00bf358872f0b34aa604c06a3f8c62ef8e37e4c",
+    "scripts/delta_v2.py": "a65a040cb04c2aa9eb6fe6bdaec8f7ed40a067d67241f3d23de31fc01d012dab",
+    "scripts/final_evaluation.py": "0c64a59ce7ce6676db63917951cfd650503c9a1c8a2f1cb06673761a1133472e",
+    "scripts/sas_development_comparison.py": "51f452b6bc10417977a1e9f9bbc51791c93fc8aea0a31b13405b5d690392434c",
+    "scripts/sas_final_evaluation.py": "5b2d0e3e8af4c1eb2d7e94d0880072d9b3685c161cbc14d9e570aff395a1db64",
+    "scripts/sas_final_preflight.py": "dfc4b9e80463b9758c98ea1aaf88a3569a20c12b8ed25e20a267c5d3af5b2ac7",
+    "scripts/sas_v2.py": "95951d08b2283fa2a7773c747543647f5cf96c91951901be0e9110132a880d2d",
+    "scripts/verify_delta_v2.py": "66b3cd10f3d804d84dd14f779f3224101d4911bfdd4482ee66f8f71613424b33",
+    "scripts/verify_devgru.py": "72c3798781cb8c100b718bfc117a467e3cfd9224daba88aa83b012bc452b6f6d",
+    "scripts/verify_setup.py": "40a9a561399131d393c442b537424584d1a19ebb3c6fde68ad646934a2fd7b60",
+    "src/data_preprocessing_DELTA/data_explore.py": "e51d03b97143ebb67ab597c1bc7f6473df53817f8aeac67f00a5d5243628d511",
+    "src/data_preprocessing_DELTA/prepare_and_baselines.py": "9c7add70ae1d74daf7173c0b81e905586720dfe18fede154169d03c24870d909",
+    "src/data_preprocessing_DELTA/run_artifacts.py": "b79926b6ecde144536444b4eca91ec91fe83fd0e8ed246808352595885f6c8af",
+    "src/data_preprocessing_DELTA/v2.py": "a281464abd01fe967136bccd3e856ba7fbc15946632c8dbcca0f1505f333e16a",
+    "src/evaluation_SAS/bootstrap.py": "3ba774bceb4bd6dccf8cf771da4fec14b0c96a0bbfe12aae8b19ae65cecc4a80",
+    "src/evaluation_SAS/figures.py": "297f607bf90cccca9800c532ee7e29e120e2ee2b838062fc5bd863460c64e083",
+    "src/evaluation_SAS/final.py": "17b2d8f3da0a9f983c512095e51e9a4072c6ee9ff8b5bcd92ba05dc12cc97581",
+    "src/evaluation_SAS/integration.py": "c5d4b5e0776275025f93b813fc21e19d6ab1408ebba32b175492ef692b103065",
+    "src/evaluation_SAS/runs.py": "133530699c70212259fdbc31b916a07a214ff4d5587fac50909fb3e6f073733d",
+    "src/evaluation_SAS/v2.py": "96e1e179ec62a29d9698001db8e6545b48c1bdee3d13a52747555b4921cdb619",
+    "src/features_DELTA/bundle.py": "3d9b015f9bfd16787c7b1d3278280bf0df3a32c102d2c5659026295f52c47f1a",
+    "src/features_DELTA/v2.py": "c5987f406764c4c40ebf71fb2da261e044c7ca01a7ced4b3a96826445ce60df4",
+    "src/models/baselines_DELTA/v2.py": "06208249dc4c85c9aad20e4f70913af9572fcee032a8257a2cdd05a39173b0f9",
+    "src/models/decision_tree_SAS/v2.py": "4d3efcb9c781db5e1f9bba836ea7c15b464eae40c8445a89206a01e363c076ba",
+    "src/models/linear_regression_DEVGRU/__init__.py": "6df5237839c05ebc5dc01116604921768f5f5d2a64d1b24c6ff08f429966cfe5",
+    "src/models/linear_regression_DEVGRU/artifacts.py": "1e05cf3dedc3d1da3109e7378a81267feeddddae61758cbaf5709197b57a1128",
+    "src/models/linear_regression_DEVGRU/core.py": "56cf7596833b762d298f15ed6e823f6f9939530ffaac6948845d24a9ec5f000c",
+    "src/models/linear_regression_DEVGRU/development.py": "7771fef2aee49a6bb3a8ddf5edabc82d1fe5e1996fc901af8b10e54b0aaa3860",
+    "src/models/linear_regression_DEVGRU/model.py": "bbc475c692f9abbd1b8c91ed3f8f970f66ef8c8ee2b80e72fab161648789ec3a",
+    "src/models/random_forest_SAS/v2.py": "0d6d80c55fd1d1f99b7bcb90eb3f5f5b0cd867638b6b1211f6f54b95677faab9",
+    "src/models/ridge_regression_DEVGRU/__init__.py": "8d0d1389363f12c82eb596040e625a991329ee36b969eb63b0f0de56b117b4a4",
+    "src/models/ridge_regression_DEVGRU/model.py": "8889956376c8abbb0f5a91495db62bc197f45f4c5721769871895500c48d18c4"
+  },
+  "settings_file": "configs/final_settings.json",
+  "settings_sha256": "e2c76bd8686b8434d1ed84f3b86fc10856e4a7b0a3efb8b322b29adb54e48479",
+  "attestation_file": "docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt",
+  "attestation_sha256": "95bb468b976e34e27c79fe6477752eed552ab2affd84c83992caa4235c871903",
+  "approval_evidence_semantics": "DELTA direct authorization; DEVGRU and SAS approvals attested by project lead. Entry date for these two is attestation date, not original contributor approval date. No direct signatures claimed. Governance requires joint scientific acceptance and does not prescribe original-message evidence; current explicit user direction accepts this attestation mechanism. Validator unchanged.",
+  "identity_evidence": {
+    "DEVGRU": [
+      "https://github.com/farzaandalwai/data245-group3/pull/5",
+      "https://github.com/farzaandalwai/data245-group3/pull/6"
+    ],
+    "SAS": [
+      "https://github.com/farzaandalwai/data245-group3/pull/11"
+    ],
+    "note": "GitHub role/account association verified. Public profiles supply no full-name validation; no independent full-name identity claim."
+  },
+  "bundle_path": "A:\\Projects\\DATA 245\\data245-group3\\data\\processed\\feature_bundles\\v2-final-1000-r2",
+  "bundle_manifest_sha256": "52f4faec954ee311970bb567682d4ac7b466a2d5b8ce7f8c87af5d171fc6af7c",
+  "sample_sha256": "830d30a1249f609ad3c95c37032d2e7b7f0d5671fc7ad8864ad8b5e31d1356e7",
+  "split_counts": {
+    "test": 15000,
+    "train": 46000,
+    "validation": 15000
+  },
+  "feature_counts": {
+    "sales_only": 9,
+    "stockout_aware": 14
+  },
+  "metrics": {
+    "primary": "MAE",
+    "secondary": [
+      "RMSE",
+      "signed_bias_prediction_minus_actual"
+    ]
+  },
+  "settings": {
+    "settings_version": "sas-final-settings-proposal-1",
+    "status": "APPROVED",
+    "approved": true,
+    "approvals": [
+      {
+        "codename": "DELTA",
+        "github": "Timothytran109",
+        "date": "2026-11-24",
+        "date_semantics": "direct_DELTA_authorization_date",
+        "evidence_type": "direct_user_authorization",
+        "attested_by": "Timothytran109",
+        "contributor_original_approval_date": "2026-11-24",
+        "evidence": "docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt"
+      },
+      {
+        "codename": "DEVGRU",
+        "github": "shoddy16",
+        "date": "2026-11-24",
+        "date_semantics": "project_lead_attestation_date",
+        "evidence_type": "project_lead_attestation",
+        "attested_by": "Timothytran109",
+        "contributor_original_approval_date": null,
+        "evidence": "docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt"
+      },
+      {
+        "codename": "SAS",
+        "github": "farzaandalwai",
+        "date": "2026-11-24",
+        "date_semantics": "project_lead_attestation_date",
+        "evidence_type": "project_lead_attestation",
+        "attested_by": "Timothytran109",
+        "contributor_original_approval_date": null,
+        "evidence": "docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt"
+      }
+    ],
+    "freeze_record": "docs/FINAL_FREEZE_20261124T094349Z.json",
+    "protocol_version": "2.0",
+    "purpose": "final_experiment",
+    "final_bundle": {
+      "bundle_id": "v2-final-1000-r2",
+      "manifest_sha256": "52f4faec954ee311970bb567682d4ac7b466a2d5b8ce7f8c87af5d171fc6af7c"
+    },
+    "fit_split": "train",
+    "selection": "frozen_settings_no_final_tuning",
+    "prediction_postprocessing": "none",
+    "models": {
+      "linear_regression": {
+        "enabled": true,
+        "preprocessing": "standardize"
+      },
+      "ridge_regression": {
+        "enabled": true,
+        "preprocessing": "standardize",
+        "alpha": {
+          "sales_only": 10.0,
+          "stockout_aware": 100.0
+        }
+      },
+      "decision_tree": {
+        "enabled": true,
+        "random_state": 245,
+        "parameters": {
+          "sales_only": {
+            "max_depth": 5,
+            "min_samples_leaf": 5
+          },
+          "stockout_aware": {
+            "max_depth": 5,
+            "min_samples_leaf": 5
+          }
+        }
+      },
+      "random_forest": {
+        "enabled": false,
+        "random_state": 245,
+        "n_estimators": 200,
+        "max_features": 1.0,
+        "bootstrap": true,
+        "parameters": {
+          "sales_only": {
+            "max_depth": 8,
+            "min_samples_leaf": 5
+          },
+          "stockout_aware": {
+            "max_depth": 8,
+            "min_samples_leaf": 20
+          }
+        }
+      }
+    },
+    "baselines": [
+      "persistence",
+      "recent_avg_7"
+    ],
+    "uncertainty": {
+      "method": "paired_store_cluster_percentile",
+      "weighting": "pooled_row",
+      "difference": "MAE_stockout_aware_minus_sales_only",
+      "confidence_level": 0.95,
+      "replicates": 2000,
+      "seed": 245
+    },
+    "provenance": "Prospective freeze authorized by Timothytran109 on 2026-11-24. DEVGRU/SAS acceptance is documented through his explicit project-lead attestation, not direct teammate messages; their original approval dates are unknown. Role identities verified from GitHub PRs 5/6 (DEVGRU) and 11 (SAS). See docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt and docs/FINAL_FREEZE_20261124T094349Z.json. Development-selected parameters retained; no test tuning or final-validation reselection."
+  },
+  "tests": {
+    "passed": 26,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "scope": "15 integration and 11 final-evaluator; synthetic only; before real authorization flags changed"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.4.3",
+    "pandas": "3.0.1",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1",
+    "PyYAML": "6.0.3",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.6.0"
+  },
+  "run_id": "final-1000-attested-20261124T094349Z",
+  "destination": "A:\\Projects\\DATA 245\\data245-group3-final-execution\\results\\final_evaluation\\v2\\final-1000-attested-20261124T094349Z",
+  "limitations": [
+    "Retrospective complete-90-day series selection",
+    "Historical development/test exposure; not pristine confirmatory holdout",
+    "November 20 claimed final run remains unverified",
+    "New results descriptive, not causal or measured food-waste effects",
+    "Fixed-model store bootstrap omits model-selection uncertainty and cross-store/calendar dependence"
+  ],
+  "hash_design": "Settings reference this record by path, not its hash. This record hashes settings; no circular self hash."
+}

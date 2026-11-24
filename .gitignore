@@ -121,3 +121,14 @@ token.json
 !/artifacts/SAS/development/harmonized-200-series-20261123-r4/per_store.csv
 !/artifacts/SAS/development/harmonized-200-series-20261123-r4/subgroups.csv
 !/artifacts/SAS/development/harmonized-200-series-20261123-r4/validation_baseline_predictions.csv
+
+# Reviewed small final evidence only; predictions and per-series bulk remain ignored.
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/FINAL_VERIFIED_RESULTS.csv
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/mae_difference_intervals.csv
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/overall.csv
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/paired_comparisons.csv
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/per_store.csv
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/PUBLICATION_INVENTORY.csv
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/subgroups.csv
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/ARCHIVE_INVENTORY.csv
+!/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/final-1000-attested-20261124T094349Z.log

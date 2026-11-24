@@ -1,0 +1,25 @@
+# Active V2 registration; producer v2.0.0 implemented, broader experiment freeze pending.
+protocol_version: '2.0'
+contract_version: '2.0-draft'
+scientific_status: approved
+technical_contract_status: draft
+contract_frozen: true
+implementation_verified: true
+authority: docs/experiment_protocol.md
+interfaces: docs/interfaces.md
+metadata_files:
+  dataset: configs/dataset.yaml
+  experiments: configs/experiments.yaml
+  models: configs/models.yaml
+historical_evidence: docs/history/contract_v1
+initial_validation_parameters_frozen: true
+new_model_test_evaluation_allowed: true
+pending:
+  - raw_export_lineage_and_learned_model_environment_compatibility
+  - undocumented_closed_or_missing_hour_business_semantics
+  - original_DEVGRU_inventory_and_execution_lineage_review
+  - model_settings_and_validation_tuning_grids
+  - parameter_tie_rule_agreement_and_final_uncertainty_workflow_acceptance
+producer_contract_version: 2.0.0
+producer_status: verified_operational_provisional_business_semantics
+producer_handoff: docs/DELTA_DATA_HANDOFF.md

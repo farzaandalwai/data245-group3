@@ -1,0 +1,200 @@
+{
+  "artifacts": {
+    "coverage_audit.json": {
+      "bytes": 1837,
+      "sha256": "0c065e2aad2318ab7a8a5f4b491c2cbfa3914b24533ee7fda7a68a0c6a6f93a7"
+    },
+    "mae_difference_intervals.csv": {
+      "bytes": 3537,
+      "sha256": "1b58f2cb3b55247039cbc59ddb2bcc5112dad17ce41cb9bd67d424cda18fe9e9"
+    },
+    "overall.csv": {
+      "bytes": 3087,
+      "sha256": "c71204fa9b1e7566f89264f16ce821e2451835bc3756c51a43f5349a1b7babdb"
+    },
+    "paired_comparisons.csv": {
+      "bytes": 753,
+      "sha256": "81099b24049b93bfb6b60f8ed001d024cb6ff815aa8476005aa3df7be428f537"
+    },
+    "per_series.csv": {
+      "bytes": 3020569,
+      "sha256": "ac8ee3f4cafcb60fec1c2655545affe9582a749205308153a73a310a84a244e9"
+    },
+    "per_store.csv": {
+      "bytes": 537861,
+      "sha256": "150c833b7f279dab29ef0d7e4b857804eddecf12a12dca6a1b773471cd6b842c"
+    },
+    "predictions.csv": {
+      "bytes": 76348581,
+      "sha256": "49d08764862627a20bda16eba376d3f5026b007e539525581e5052cb335b1ce5"
+    },
+    "subgroups.csv": {
+      "bytes": 6410,
+      "sha256": "c42a32a15a95d6f0310a4e30ed4866382dd5a32a4f693791ef2e2644a765fa34"
+    }
+  },
+  "bundle_id": "v2-final-1000-r2",
+  "bundle_manifest_sha256": "52f4faec954ee311970bb567682d4ac7b466a2d5b8ce7f8c87af5d171fc6af7c",
+  "environment": {
+    "numpy": "2.4.3",
+    "pandas": "3.0.1",
+    "python": "3.12.10",
+    "scikit-learn": "1.9.0"
+  },
+  "evidence_status": "FINAL_FROZEN_SETTINGS",
+  "fit_split": "train",
+  "generated_utc": "2026-11-24T09:44:22.634207+00:00",
+  "limitations": [
+    "Conditional on the frozen fitted models and settings; no refitting or tuning uncertainty",
+    "Assumes independent stores; shared calendar shocks and cross-store dependence are not addressed",
+    "Observed-store resampling does not establish population representativeness",
+    "Historical holdout exposure and retrospective series completeness remain limitations",
+    "Overall intervals do not imply subgroup intervals; no multiple-comparison adjustment"
+  ],
+  "models": [
+    "linear_regression",
+    "ridge_regression",
+    "decision_tree",
+    "persistence",
+    "recent_avg_7"
+  ],
+  "owner": "SAS",
+  "protocol_version": "2.0",
+  "purpose": "final_experiment",
+  "reported_splits": [
+    "validation",
+    "test"
+  ],
+  "run_id": "final-1000-attested-20261124T094349Z",
+  "settings": {
+    "approvals": [
+      {
+        "attested_by": "Timothytran109",
+        "codename": "DELTA",
+        "contributor_original_approval_date": "2026-11-24",
+        "date": "2026-11-24",
+        "date_semantics": "direct_DELTA_authorization_date",
+        "evidence": "docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt",
+        "evidence_type": "direct_user_authorization",
+        "github": "Timothytran109"
+      },
+      {
+        "attested_by": "Timothytran109",
+        "codename": "DEVGRU",
+        "contributor_original_approval_date": null,
+        "date": "2026-11-24",
+        "date_semantics": "project_lead_attestation_date",
+        "evidence": "docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt",
+        "evidence_type": "project_lead_attestation",
+        "github": "shoddy16"
+      },
+      {
+        "attested_by": "Timothytran109",
+        "codename": "SAS",
+        "contributor_original_approval_date": null,
+        "date": "2026-11-24",
+        "date_semantics": "project_lead_attestation_date",
+        "evidence": "docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt",
+        "evidence_type": "project_lead_attestation",
+        "github": "farzaandalwai"
+      }
+    ],
+    "approved": true,
+    "baselines": [
+      "persistence",
+      "recent_avg_7"
+    ],
+    "final_bundle": {
+      "bundle_id": "v2-final-1000-r2",
+      "manifest_sha256": "52f4faec954ee311970bb567682d4ac7b466a2d5b8ce7f8c87af5d171fc6af7c"
+    },
+    "fit_split": "train",
+    "freeze_record": "docs/FINAL_FREEZE_20261124T094349Z.json",
+    "models": {
+      "decision_tree": {
+        "enabled": true,
+        "parameters": {
+          "sales_only": {
+            "max_depth": 5,
+            "min_samples_leaf": 5
+          },
+          "stockout_aware": {
+            "max_depth": 5,
+            "min_samples_leaf": 5
+          }
+        },
+        "random_state": 245
+      },
+      "linear_regression": {
+        "enabled": true,
+        "preprocessing": "standardize"
+      },
+      "random_forest": {
+        "bootstrap": true,
+        "enabled": false,
+        "max_features": 1.0,
+        "n_estimators": 200,
+        "parameters": {
+          "sales_only": {
+            "max_depth": 8,
+            "min_samples_leaf": 5
+          },
+          "stockout_aware": {
+            "max_depth": 8,
+            "min_samples_leaf": 20
+          }
+        },
+        "random_state": 245
+      },
+      "ridge_regression": {
+        "alpha": {
+          "sales_only": 10.0,
+          "stockout_aware": 100.0
+        },
+        "enabled": true,
+        "preprocessing": "standardize"
+      }
+    },
+    "prediction_postprocessing": "none",
+    "protocol_version": "2.0",
+    "provenance": "Prospective freeze authorized by Timothytran109 on 2026-11-24. DEVGRU/SAS acceptance is documented through his explicit project-lead attestation, not direct teammate messages; their original approval dates are unknown. Role identities verified from GitHub PRs 5/6 (DEVGRU) and 11 (SAS). See docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt and docs/FINAL_FREEZE_20261124T094349Z.json. Development-selected parameters retained; no test tuning or final-validation reselection.",
+    "purpose": "final_experiment",
+    "selection": "frozen_settings_no_final_tuning",
+    "settings_version": "sas-final-settings-proposal-1",
+    "status": "APPROVED",
+    "uncertainty": {
+      "confidence_level": 0.95,
+      "difference": "MAE_stockout_aware_minus_sales_only",
+      "method": "paired_store_cluster_percentile",
+      "replicates": 2000,
+      "seed": 245,
+      "weighting": "pooled_row"
+    }
+  },
+  "settings_sha256": "e2c76bd8686b8434d1ed84f3b86fc10856e4a7b0a3efb8b322b29adb54e48479",
+  "source": {
+    "base_commit": "47f531fdf551202662ad334636177fc5d7475163",
+    "branch": "DELTA/final-execution-readiness",
+    "files_sha256": {
+      "requirements.txt": "5b271530755516a6d5b3cc0871c406933de717e228a7e442cd52243e573ae54a",
+      "scripts/sas_v2.py": "95951d08b2283fa2a7773c747543647f5cf96c91951901be0e9110132a880d2d",
+      "src/evaluation_SAS/bootstrap.py": "3ba774bceb4bd6dccf8cf771da4fec14b0c96a0bbfe12aae8b19ae65cecc4a80",
+      "src/evaluation_SAS/figures.py": "297f607bf90cccca9800c532ee7e29e120e2ee2b838062fc5bd863460c64e083",
+      "src/evaluation_SAS/final.py": "17b2d8f3da0a9f983c512095e51e9a4072c6ee9ff8b5bcd92ba05dc12cc97581",
+      "src/evaluation_SAS/integration.py": "c5d4b5e0776275025f93b813fc21e19d6ab1408ebba32b175492ef692b103065",
+      "src/evaluation_SAS/runs.py": "133530699c70212259fdbc31b916a07a214ff4d5587fac50909fb3e6f073733d",
+      "src/evaluation_SAS/v2.py": "96e1e179ec62a29d9698001db8e6545b48c1bdee3d13a52747555b4921cdb619",
+      "src/models/decision_tree_SAS/v2.py": "4d3efcb9c781db5e1f9bba836ea7c15b464eae40c8445a89206a01e363c076ba",
+      "src/models/random_forest_SAS/v2.py": "0d6d80c55fd1d1f99b7bcb90eb3f5f5b0cd867638b6b1211f6f54b95677faab9"
+    },
+    "working_tree_dirty": true
+  },
+  "uncertainty": {
+    "confidence_level": 0.95,
+    "difference": "MAE_stockout_aware_minus_sales_only",
+    "method": "paired_store_cluster_percentile",
+    "replicates": 2000,
+    "seed": 245,
+    "weighting": "pooled_row"
+  }
+}

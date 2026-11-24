@@ -1,0 +1,154 @@
+# DATA 245 — Final Freeze, Authorized Execution, and Independent Verification
+
+Act as the lead Machine Learning Engineer responsible for completing the DATA 245 final experiment.
+
+I am Timothy, the project lead and DELTA representative. DEVGRU (Shoury) and SAS (Farzaan) have now approved the agreed final settings. I authorize proceeding with the prospective final freeze and new final experiment, subject to the repository's required evidence and safety checks.
+
+The previous execution-readiness audit established:
+
+- Main commit at that time: `47f531f`.
+- PRs #11 and #12 merged.
+- 26/26 targeted integration and final-evaluator tests passed.
+- Final r2 bundle verified.
+- Isolated Python environment available.
+- Final scoring blocked only by pending approval/freeze records.
+- Historical November 20 run remains unverified.
+
+Read `FINAL_EXECUTION_HANDOFF.md` and existing repository context. Do not repeat completed audits.
+
+## 1. Verify the actual approvals
+
+Read the exact approval schema in `configs/final_settings.json` and relevant governance documentation.
+
+Record the actual DEVGRU, SAS and DELTA approvals using the evidence available to this session.
+
+Do not invent approval messages, GitHub identities, dates, signatures or delegation records.
+
+If the approvals occurred outside the repository, determine the minimum evidence needed and record accurate references to the supplied confirmations.
+
+If the required evidence is unavailable, complete the freeze proposal and report precisely what is missing. Do not falsely record approvals.
+
+## 2. Establish the prospective technical freeze
+
+Use the previously verified settings:
+
+- Final bundle: `v2-final-1000-r2`.
+- Bundle manifest SHA-256: `52f4faec954ee311970bb567682d4ac7b466a2d5b8ce7f8c87af5d171fc6af7c`.
+- 1,000 series.
+- Train/validation/test: 46,000/15,000/15,000.
+- Sales-only: 9 features.
+- Stockout-aware: 14 features.
+- Linear: training-only standardization.
+- Ridge: alpha 10 sales-only, 100 stockout-aware.
+- Tree: maximum depth 5, minimum leaf 5 for both conditions.
+- Random Forest: excluded from primary final execution.
+- Baselines: persistence and previous seven-day mean.
+- No prediction clipping.
+- Primary metric: MAE.
+- Secondary metrics: RMSE and signed bias.
+- Paired whole-store bootstrap, pooled-row weighting, 2,000 replicates, seed 245.
+
+Verify all settings against the approved development evidence before freezing.
+
+Record the actual prospective freeze, approved source revision, input identity, parameter selection, evaluation method, and documented historical limitations.
+
+Do not backdate the freeze or imply the test holdout was untouched.
+
+Use the repository's actual freeze schema. Avoid circular self-referential file hashes.
+
+## 3. Prepare execution
+
+Use an isolated feature branch and preserve any existing local changes.
+
+Verify the current main revision and ensure PR #12's evidence-preserving checkout rules are active.
+
+Reuse the existing compatible isolated Python environment.
+
+Run the relevant targeted tests and strict artifact checks.
+
+Only when genuine approval evidence is recorded and the proposed settings pass validation, update the required active V2 authorization flags through the approved configuration workflow.
+
+Do not use or modify the legacy V1 lock.
+
+Run:
+
+- `scripts.sas_final_preflight`
+- `scripts.sas_final_evaluation check`
+
+Require both to return `ready=true`.
+
+If either fails, STOP. Do not bypass guards.
+
+## 4. Execute the new final experiment
+
+Once authorized:
+
+- Use only the repaired `scripts.sas_final_evaluation` entry point.
+- Generate a new unique run ID.
+- Preserve the historical `final-authorized-20261120-r1` identity separately.
+- Execute the authorized 1,000-series experiment once.
+- Use the frozen train-only fitting and model settings.
+- Do not tune models on test outcomes.
+- Do not modify the frozen input bundles.
+- Preserve original predictions, metrics, subgroup results, paired confidence intervals, per-store diagnostics, manifest, source identities and execution logs.
+- Do not overwrite any existing run directory.
+
+If execution fails, preserve diagnostic evidence and do not automatically perform another scoring attempt without reviewing what was exposed or written.
+
+## 5. Independently verify outputs
+
+Without refitting:
+
+1. Verify all prediction keys, split labels and actual values against the final bundle.
+2. Confirm the required eight model-condition/baseline groups.
+3. Confirm 15,000 test observations per group.
+4. Independently recompute MAE, RMSE and signed bias.
+5. Recompute stockout-aware versus sales-only MAE differences.
+6. Verify the paired whole-store pooled-row bootstrap intervals.
+7. Validate subgroup and per-store metrics.
+8. Verify output hashes and manifest provenance.
+9. Identify the best final model by MAE and RMSE.
+10. Compare the verified results with the existing report's claims.
+
+Report the results as descriptive evaluation because previous test exposure occurred. Do not claim the experiment used a pristine holdout or demonstrates causal food-waste reduction.
+
+## 6. Deliverables
+
+Create:
+
+`audit_handoff/final_execution/FINAL_VERIFIED_EXECUTION.md`
+
+and:
+
+`audit_handoff/final_execution/FINAL_VERIFIED_RESULTS.csv`
+
+The Markdown handoff must include:
+
+- Current Git revision.
+- Actual approval evidence and freeze record.
+- Final settings and source hashes.
+- Environment and test results.
+- Preflight outcomes.
+- Execution status.
+- New run ID and exact output locations.
+- Independently verified results.
+- Bootstrap confidence intervals.
+- Limitations and outstanding submission tasks.
+
+If scoring remains blocked, document the precise reason instead of generating a misleading results CSV.
+
+Do not automatically commit, push or merge the freeze changes or result artifacts.
+
+## Final response
+
+Answer concisely:
+
+1. Was the freeze recorded and accepted?
+2. Did both preflights pass?
+3. Did the final experiment actually execute?
+4. What are the verified final MAE, RMSE and bias results?
+5. Which model performed best?
+6. Did stockout-aware features improve forecasting?
+7. What remains before report and slide submission?
+
+Prioritize completing the approved final experiment, not repeating repository audits.

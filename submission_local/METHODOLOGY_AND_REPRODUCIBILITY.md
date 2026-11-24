@@ -1,29 +1,9 @@
-# Methodology and Reproducibility
+# Methodology and reproducibility
 
-## Scientific contract
+Use the approved V2 next-day normalized recorded-sales target and identical keyed observations across conditions. All eligible target dates, including stockouts, remain included. Sales-only uses9 past/calendar features; aware adds5 past-stockout features. Target-day stockout is retrospective metadata, never a predictor. Final r2 contains1,000 complete series and46,000/15,000/15,000 train/validation/test rows.
 
-The target is normalized recorded `sale_amount`, represented as `actual`, keyed by `(store_id, product_id, dt)`. The approved question compares recent-sales forecasting with and without past stockout history. `sales_only` has the nine approved sales/calendar predictors; `stockout_aware` adds the five approved historical stockout predictors. Target-day stockout status is retrospective metadata only.
+The new verified final run is final-1000-attested-20261124T094349Z. Train-only standardization/fit, development-validation-selected Ridge alphas10/100 and Tree depth5/leaf5 were prospectively frozen. No final-validation reselection, clipping or test tuning; Random Forest excluded by scope. MAE primary; RMSE/bias secondary. Paired whole-store bootstrap pools sampled loss sums/counts,2,000 draws seed245,95% linear percentiles. See the original freeze and manifest in docs/FINAL_SUBMISSION_CHECKLIST.md.
 
-The protocol uses 14 days of past-only history, target eligibility beginning on day 15, development population 200 series, and chronological days 1–60 train, 61–75 validation, 76–90 test. Preprocessing is training-only, tuning is validation-only, MAE is primary, RMSE and signed bias are secondary, and no clipping is recorded. Conditions must share keys, actuals, and splits.
+Independent saved-prediction verification already passed. No rerun is needed. Reconciliation only checks existing hashes/document consistency. The former November20 run remains unverified, even though rounded point estimates agree.
 
-## Evidence provenance
-
-The trusted development manifest SHA-256 is `043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7`. The development bundle itself is not present in this isolated worktree, so its contents were not opened or verified here. The R3 comparison manifest records development-only purpose, validation scoring, no retraining, and no test scoring.
-
-The R3 package's `PACKAGE_SHA256SUMS` corresponds to committed Git blob bytes. Several text/CSV files in the current checkout have different raw hashes because of checkout line endings/encoding and assume-unchanged state; their textual records were not rewritten. This is an evidence-handling limitation, not a reason to overwrite originals.
-
-## Commands actually run
-
-```text
-python scripts/verify_setup.py
-.venv/Scripts/python.exe -m unittest tests.test_devgru_linear_ridge tests.test_sas_v2 -v
-.venv/Scripts/python.exe -m scripts.verify_delta_v2
-.venv/Scripts/python.exe -m scripts.sas_final_preflight
-git diff --check
-```
-
-Setup verification passed. Unit tests stopped at import because `numpy` is absent; DELTA verification stopped at import because `pandas` is absent; final preflight stopped at import because `yaml` is absent. No fitting, prediction generation, bundle reproduction, or scoring was performed.
-
-## Reproduction limitations
-
-The original DEVGRU prediction outputs and exact DELTA development bundle are absent from this execution copy. Therefore the Linear/Ridge fits and source-to-prediction provenance cannot be independently rerun here. No serialized DEVGRU or Random Forest model artifacts were found in this copy.
+DEVGRU/SAS acceptance is recorded through Timothy's November24 project-lead attestation, with their original dates/messages unverified. Historical test exposure, retrospective completeness selection, conditional fixed-model intervals, cross-store/shared-shock dependence and provisional export/normalization/hour semantics remain limitations. Stockout-day Linear/Ridge MAE worsens despite modest aggregate improvement. No latent demand or measured waste effect is claimed.

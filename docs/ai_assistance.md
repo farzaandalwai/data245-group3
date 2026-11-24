@@ -192,3 +192,8 @@ Student personal contribution and independent human review remain unverified.
   iCloud duplicate files out of `.git/` (backed up, not deleted) so `git fetch` worked.
 - Checks: 114 tests and the setup checker passed; preflight/check exit 2. Synthetic data only.
 - Not done: final scoring, approval flags, team approval, merges.
+
+
+## 2026-11-24 verified-final publication handoff
+
+Owner/requester: DELTA / Timothytran109; branch DELTA/verified-final-publication, base47f531f. Explicit user authorization covers scoped commit/push/PR, not merge or bulk upload. Publishes reconciled report/slide sources, original freeze/attestation, byte-identical small evidence for final-1000-attested-20261124T094349Z, storage inventory and two team guides. Main live configs are unchanged/default-closed; enabled execution configs and bulk predictions/per-series remain local. Existing pipeline code is inherited unchanged. No new scoring, training, tuning, metrics or plots. Original November20 claims remain unverified; DEVGRU/SAS approval is lead-attested. Integration requires human PR review and merge; external PDF/PPTX updates and authorized bulk sharing remain outstanding.

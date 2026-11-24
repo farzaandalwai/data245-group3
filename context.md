@@ -2,6 +2,32 @@
 
 Updated **2026-11-20, America/Los_Angeles**. Orientation/handoff only, not live shared memory or a lock. Fetch and compare current Git/issue/PR state at startup.
 
+## 2026-11-24 DELTA/DEVGRU publication checkpoint
+
+Authenticated requester/account: DELTA / `Timothytran109`; explicit authorization
+also covers DEVGRU. Branch `DELTA/delta-devgru-readiness` is based on fetched main
+`4dffb0d`. The user now authorizes the reviewed source/test/documentation commit,
+feature-branch push and PR targeting main, with no merge or final scoring. This
+supersedes the earlier task-specific no-publication restriction. Integration and
+independent human review remain pending.
+
+Implemented and locally verified: trusted/past-only development baseline exports;
+SAS-compatible DEVGRU run envelopes; numeric fitted-state exports for future
+runs; approved development store intervals through the unchanged SAS library;
+transactional writes and explicit LF/CRLF evidence identities. Owned tests: 37
+passed. Saved original development metrics reproduce without fitting; final
+inputs are compatible, but all three V2 freeze gates remain false. Missing
+original fitted models/exact execution lineage are not reconstructed.
+
+PR #9 (`SAS/rf-comparison-r4`, inspected `ec6abf1`) remains OPEN. Implementation
+paths do not overlap its source changes; the three required shared ledgers now
+have separate dated entries and require semantic reconciliation at integration.
+SAS's final bootstrap/V1-lock defects and joint freeze remain blockers. No real
+model was retrained and no final 1,000-series prediction/scoring was performed.
+See [tracked readiness](docs/DELTA_DEVGRU_READINESS.md) and the
+[publication authorization](docs/prompts/2026-11-24-delta-devgru-publication.txt).
+Earlier dated session snapshots below remain historical context.
+
 ## Active identity and ownership
 
 - **DELTA - Timothy Tran (Tim)**; confirmed GitHub `Timothytran109`. Central dataset/data contract, raw validation, preparation, pilot/final sampling, splits, shared sales/stockout features, manifests, persistence/7-day baselines and provenance/preprocessing validation.

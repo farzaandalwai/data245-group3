@@ -123,6 +123,8 @@ def main():
     baseline=sub.add_parser("baselines")
     baseline.add_argument("bundle")
     baseline.add_argument("--run-id",required=True)
+    baseline.add_argument("--manifest-sha256",required=True,
+                          help="Trusted development bundle manifest SHA-256 from DELTA evidence")
     args=parser.parse_args()
     logging.basicConfig(level=logging.INFO,format="%(levelname)s: %(message)s")
     if args.command=="build":
@@ -133,7 +135,8 @@ def main():
     else:
         if not args.run_id or any(c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_" for c in args.run_id):
             raise ValueError("Invalid run ID")
-        run_development(ROOT/args.bundle,ROOT/"results/baselines_DELTA/v2"/args.run_id,args.run_id)
+        run_development(ROOT/args.bundle,ROOT/"results/baselines_DELTA/v2"/args.run_id,args.run_id,
+                        expected_manifest_sha256=args.manifest_sha256)
         LOG.info("Development baselines saved: %s",args.run_id)
 
 

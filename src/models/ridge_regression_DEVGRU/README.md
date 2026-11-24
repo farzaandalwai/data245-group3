@@ -1,7 +1,18 @@
-# Ridge regression — DEVGRU
+# Ridge Regression - DEVGRU
 
-Status: APPROVED extension; NOT IMPLEMENTED. No further course-fit gate applies under the v2 protocol. Use the same shared feature-bundle and prediction contracts as linear regression, with matched eligible keys and tuning budgets across feature conditions. Fit preprocessing on training only and choose regularization on validation only.
+IMPLEMENTED approved extension. NumPy solves an augmented least-squares system
+with an unpenalized intercept. Standardization is fitted on training rows only.
+Each feature condition uses validation MAE over `[0.01, 0.1, 1, 10, 100]`; exact
+ties prefer smaller alpha. Saved development choices are 10 (sales-only) and
+100 (stockout-aware), verified against the original selection records and saved
+predictions. They are validation choices, not a jointly approved final freeze.
 
-Write separate runs under `results/ridge_regression_DEVGRU/`. Do not add ridge results or claim coverage until the implementation is actually run and checked. Shared interfaces are in `docs/interfaces.md`.
+New runs share Linear Regression's SAS-compatible development envelope and
+numeric fitted-state exports. Original missing fitted objects remain missing.
+The model's bundle prediction API rejects test splits. Final execution remains
+blocked pending joint freeze and SAS executor review. No real-model retraining
+or final predictions occurred in this task.
 
-Follow the [approved v2 protocol](../../../docs/experiment_protocol.md) and [draft shared contract](../../../docs/interfaces.md). Real runs use DELTA's same verified development/final bundle and target keys, including otherwise eligible stockout target dates; subgroup labels are evaluation-only. V1 evidence/tests are now separate from active V2 checks; DELTA producer 2.0.0 is implemented and operationally verified; see [handoff](../../../docs/DELTA_DATA_HANDOFF.md). Base ancestry integration is complete. Consumer development may proceed; human acceptance, remaining model/evaluation details and final-scoring freeze remain pending.
+See [Linear/development usage](../linear_regression_DEVGRU/README.md), the
+[readiness record](../../../docs/DELTA_DEVGRU_READINESS.md) and the
+[approved protocol](../../../docs/experiment_protocol.md).

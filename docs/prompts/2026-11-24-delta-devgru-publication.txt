@@ -1,0 +1,21 @@
+The pre-PR review returned READY FOR PR.
+
+Please prepare and publish my DELTA/DEVGRU changes.
+
+1. Confirm the current branch is `DELTA/delta-devgru-readiness`.
+2. Verify the review found no blocking issues and check that the branch is based on an appropriate, current main.
+3. Stage only the approved DELTA/DEVGRU source, tests, and documentation files.
+4. Exclude local datasets, virtual environments, temporary files, audit artifacts, junctions, and secrets.
+5. Run the relevant tests and `git diff --cached --check`.
+6. Commit with a descriptive message.
+7. Push the feature branch to origin.
+8. Open a pull request targeting `main`, including:
+   - Summary of changes.
+   - Test results.
+   - Scientific and reproducibility considerations.
+   - Remaining SAS dependencies.
+   - Explicit statement that final 1,000-series scoring was not performed.
+
+Do not merge the PR automatically.
+
+Return the PR URL, commit hash, and CI status. Do not claim CI passed unless GitHub confirms it.

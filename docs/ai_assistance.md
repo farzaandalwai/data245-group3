@@ -2,6 +2,27 @@
 
 Current integration correction (2026-11-19): layout/startup changes are merged via PR #2 at `35bfa71`. Pending-integration labels in the dated historical records below describe earlier snapshots; they are not current migration status. Human technical review is a separate claim. Current v2 alignment edits are local/uncommitted.
 
+## 2026-11-24 DELTA/DEVGRU readiness and authorized publication
+
+- Tool: Codex; exact serving model version unknown. No subagents.
+- Requests: [implementation](prompts/2026-11-24-delta-devgru-readiness.txt),
+  [continuation](prompts/2026-11-24-delta-devgru-readiness-continuation.txt), and
+  [publication](prompts/2026-11-24-delta-devgru-publication.txt).
+- Assistance: owned source/packaging fixes, numeric fitted-state export/reload for
+  future runs, explicit published-LF/Windows-CRLF evidence registration, saved-
+  prediction verification, synthetic tests, documentation and Git/PR operations.
+- Verification: 37 owned tests passed; setup and original metric/hash checks
+  passed. Missing sklearn blocks 45 SAS methods locally. The focused review's
+  documentation blockers are corrected before publication. CI is reported only
+  after GitHub readback; local tests are not a claim of CI success.
+- Boundaries: no real-model retraining, final predictions/scoring, gate changes,
+  original artifact edits, SAS implementation changes, PR merges or direct
+  teammate messages. Shared ledger entries preserve existing records and are
+  called out for semantic integration with PR #9. No independent human technical
+  validation or personal coding credit is inferred from agent work.
+- Integration: feature-branch publication authorized, main integration pending.
+  Detailed behavior and limitations: [readiness](DELTA_DEVGRU_READINESS.md).
+
 ## 2026-11-18 — setup and import
 
 - Tool: Codex desktop coding agent. Model family exposed by this session: GPT-6. Exact model variant/version: **unknown**. Do not infer a precise release identifier.

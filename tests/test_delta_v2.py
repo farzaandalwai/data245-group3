@@ -155,9 +155,10 @@ class DeltaV2Tests(unittest.TestCase):
             final=Path(d)/"final";dev=Path(d)/"dev"
             self.publish(final,"final_experiment");self.publish(dev,"development_debugging")
             self.assertNotEqual(sha256(final/"bundle_manifest.json"),sha256(dev/"bundle_manifest.json"))
-            with self.assertRaises(ValueError):run_development(final,Path(d)/"blocked","blocked")
+            with self.assertRaises(ValueError):run_development(final,Path(d)/"blocked","blocked",
+                    expected_manifest_sha256=sha256(final/"bundle_manifest.json"))
             self.assertFalse((Path(d)/"blocked").exists())
-            run_development(dev,Path(d)/"run","fixture")
+            run_development(dev,Path(d)/"run","fixture",expected_manifest_sha256=sha256(dev/"bundle_manifest.json"))
             self.assertTrue((Path(d)/"run/run_manifest.json").is_file())
 
 

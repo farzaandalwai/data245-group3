@@ -20,7 +20,10 @@ from src.features_DELTA.bundle import sha256, write_csv, write_json
 from src.features_DELTA.v2 import COMMON, EXTRA
 
 DEVGRU_MODELS = ("linear_regression", "ridge_regression")
-ALL_MODELS = [*DEVGRU_MODELS, "decision_tree", "persistence", "recent_avg_7"]
+LEARNED = [*DEVGRU_MODELS, "decision_tree", "random_forest"]
+ALL_MODELS = [*LEARNED, "persistence", "recent_avg_7"]
+# Recorded in docs/SAS_RANDOM_FOREST.md when run sas-forest-dev-200-r1 was made.
+FOREST_RUN_MANIFEST_SHA256 = "ba8696f1cc7e780dfee1141be0f4a3e58df547fab98c7e522469e78c92e45bc9"
 
 
 def verify_files(directory, records):
@@ -52,6 +55,32 @@ def sas_originals(directory, identity, observations, evidence):
                        "policy": manifest["policy"], "source": manifest["source"],
                        "missing": ["Per-replicate bootstrap draw arrays were not saved",
                                    "No pickle/joblib; numeric selected tree JSON exports are provided"]}
+
+
+def sas_forest(directory, identity, observations, expected_manifest_sha256=FOREST_RUN_MANIFEST_SHA256):
+    """Accept the shared Random Forest run only at its recorded manifest identity."""
+    directory = Path(directory)
+    manifest_path = directory / "run_manifest.json"
+    if manifest_path.is_symlink() or not manifest_path.is_file() or sha256(manifest_path) != expected_manifest_sha256:
+        raise ValueError("Random Forest run manifest differs from the recorded run")
+    predicted, manifest = load_prediction_run(directory, identity, observations)
+    if manifest["models"] != ["random_forest"]:
+        raise ValueError("Forest run must contain only random_forest predictions")
+    return predicted, {"run_id": manifest["run_id"], "run_manifest_sha256": expected_manifest_sha256,
+                       "policy": manifest["policy"], "selected_parameters": manifest["selected_parameters"],
+                       "source": manifest["source"],
+                       "limitations": ["Development-only proposal; settings are not team-frozen",
+                                       "No fitted forest file saved; the seeded run is reproducible from code/policy",
+                                       "Run manifest records an uncommitted working tree with per-file source hashes"]}
+
+
+def relative_mae_improvement(summary):
+    """Protocol's 100*(MAE_sales - MAE_aware)/MAE_sales per learned model; undefined at zero."""
+    pivot = summary.loc[summary.feature_set.isin(["sales_only", "stockout_aware"])].pivot(
+        index="model", columns="feature_set", values="MAE")
+    sales, aware = pivot["sales_only"], pivot["stockout_aware"]
+    value = (100 * (sales - aware) / sales).where(sales != 0)
+    return value.rename("relative_MAE_improvement_pct")
 
 
 def _inventory_findings(directory, pin):
@@ -178,13 +207,17 @@ def devgru_originals(directory, pin, identity, observations):
     coverage = validate_predictions(predicted, observations, list(DEVGRU_MODELS), ["train", "validation"])
     _audit_metrics_and_selection(directory, original_frames, metadata)
     old_intervals = _audit_original_series_bootstrap(directory, original_frames, metadata)
+    findings = _inventory_findings(directory, pin)
     return predicted, {
         "source_commit": pin["commit"], "source_pr": pin["pr_url"], "files": pin["files"],
-        "original_inventory_discrepancies": _inventory_findings(directory, pin),
+        "pin_supersedes": pin.get("supersedes"),
+        "original_inventory_discrepancies": findings,
         "run_id_mapping": mappings, "coverage": coverage, "original_bootstrap_audit": old_intervals,
         "declarations": {k: metadata[k] for k in ("preprocessing_policy", "prediction_postprocessing", "selected_ridge_alphas", "source_git_revision")},
         "limitations": ["Original DEVGRU fitted model files were never saved",
-                        "Metadata was enriched for handoff; supporting inventory has discrepancies",
+                        ("Metadata was enriched for handoff; supporting inventory entries still differ from published bytes: "
+                         + ", ".join(sorted(f["file"] for f in findings))) if findings
+                        else "Metadata was enriched for handoff; inventory entries match published bytes",
                         "Source revision records base d2a323e, without original dirty-source hashes",
                         "Code inspection/synthetic behavioral checks support policy; declarations alone do not prove original execution"],
     }
@@ -223,9 +256,11 @@ def verify_sas_tree_exports(directory, tables, predictions):
             raise ValueError("Original SAS predictions do not match saved tree exports")
 
 
-def compare_development(bundle, bundle_hash, sas_directory, devgru_directory, pin, destination):
+def compare_development(bundle, bundle_hash, sas_directory, devgru_directory, pin, destination,
+                        forest_directory=None):
     destination = Path(destination)
-    for original in (sas_directory, devgru_directory, bundle):
+    sources = [sas_directory, devgru_directory, bundle] + ([forest_directory] if forest_directory else [])
+    for original in sources:
         if destination.resolve().is_relative_to(Path(original).resolve()):
             raise ValueError("Comparison destination must be separate from source artifacts")
     if destination.exists():
@@ -236,12 +271,19 @@ def compare_development(bundle, bundle_hash, sas_directory, devgru_directory, pi
     verify_sas_tree_exports(sas_directory, tables, sas)
     sas_audit["saved_tree_predictions_reconstructed_without_refitting"] = True
     devgru, devgru_audit = devgru_originals(devgru_directory, pin, identity, tables["observations"])
+    frames = [sas.loc[sas.split.eq("validation")], devgru.loc[devgru.split.eq("validation")]]
+    models = [m for m in ALL_MODELS if m != "random_forest"]
+    forest_audit = None
+    if forest_directory:
+        forest, forest_audit = sas_forest(forest_directory, identity, tables["observations"])
+        frames.append(forest.loc[forest.split.eq("validation")])
+        models = list(ALL_MODELS)
     baseline = validation_baselines(tables, "SAS-validation-reference-formulas-20261120")
-    predictions = pd.concat([sas.loc[sas.split.eq("validation")],
-                             devgru.loc[devgru.split.eq("validation")], baseline], ignore_index=True)
+    predictions = pd.concat([*frames, baseline], ignore_index=True)
     report = evaluate_predictions(predictions, tables["observations"], tables["evaluation_metadata"],
-                                  purpose=identity["purpose"], models=ALL_MODELS)
+                                  purpose=identity["purpose"], models=models)
     summary = report["overall"].copy()
+    summary = summary.merge(relative_mae_improvement(summary), left_on="model", right_index=True, how="left")
     summary["n_stores"] = tables["observations"].loc[tables["observations"].split.eq("validation"), "store_id"].nunique()
     summary["evidence_status"] = "DEVELOPMENT_VALIDATION_NOT_FINAL"
     summary = summary.merge(report["mae_difference_intervals"][["model", "split", "MAE_difference", "ci_lower", "ci_upper"]],
@@ -254,17 +296,20 @@ def compare_development(bundle, bundle_hash, sas_directory, devgru_directory, pi
         for name in ("overall", "subgroups", "per_series", "per_store", "paired_comparisons", "mae_difference_intervals"):
             write_csv(temporary / f"{name}.csv", report[name])
         write_csv(temporary / "validation_baseline_predictions.csv", baseline)
-        write_json(temporary / "input_acceptance.json", {"SAS": sas_audit, "DEVGRU": devgru_audit,
+        write_json(temporary / "input_acceptance.json", {"SAS": sas_audit, "SAS_random_forest": forest_audit,
+                   "DEVGRU": devgru_audit,
                    "baselines": "New validation-only materialization of DELTA lag-1/mean-7 formulas from exact bundle; not original DELTA output files"})
         write_json(temporary / "coverage_audit.json", report["coverage_audit"])
         from src.evaluation_SAS.figures import development_figures
         development_figures(summary, report["mae_difference_intervals"], temporary)
         source = source_snapshot()
-        for name in ("scripts/sas_development_comparison.py", "docs/SAS_DEVGRU_PR6_PIN.json"):
+        for name in ("scripts/sas_development_comparison.py", "docs/SAS_DEVGRU_PR6_PIN.json",
+                     "src/models/random_forest_SAS/v2.py"):
             source["files_sha256"][name] = sha256(ROOT / name)
         manifest = {**identity, "comparison_version": "SAS-harmonized-development-1", "owner": "SAS",
                     "status": "DEVELOPMENT_VALIDATION_NOT_FINAL", "source": source,
-                    "models": ALL_MODELS, "scored_splits": ["validation"], "test_scored": False,
+                    "models": models, "scored_splits": ["validation"], "test_scored": False,
+                    "relative_MAE_improvement": "100*(MAE_sales_only-MAE_stockout_aware)/MAE_sales_only; point estimate only, no interval",
                     "uncertainty": BOOTSTRAP_SPEC, "DEVGRU_source_commit": pin["commit"],
                     "originals_modified": False, "model_retraining": False,
                     "environment": {"python": platform.python_version(), "numpy": np.__version__,

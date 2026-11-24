@@ -36,7 +36,9 @@ figures condition on validation selection and are not final, causal or
 sustainability findings.
 
 Comparison `sas-forest-vs-tree-dev-r1` evaluated the forest and the original tree
-predictions together. It was not merged into the shared r3 harmonized package.
+predictions together. Since 2026-11-23 the run is shared byte-for-byte under
+`artifacts/SAS/development/random-forest-200-series-20261120/` and included in the r4
+harmonized comparison with all models and baselines (relative MAE improvement −0.159%).
 
 Local hashes (ignored files): forest `run_manifest.json`
 `ba8696f1cc7e780dfee1141be0f4a3e58df547fab98c7e522469e78c92e45bc9`, `predictions.csv`

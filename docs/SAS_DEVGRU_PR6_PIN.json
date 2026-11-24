@@ -1,9 +1,9 @@
 {
-  "commit": "044fac1a9ed0fae52179df25946a5a994f2826b5",
+  "commit": "1f4e6a4cdad560735f79f218fc83cfb532818a51",
   "files": {
     "INVENTORY.md": {
-      "bytes": 5773,
-      "sha256": "0eafa5ecf58548ff0c99c694b600f1133b6b54644c62c7065548cd20304443e0"
+      "bytes": 6384,
+      "sha256": "67091cbbbd591c0ab9186cb18cf8767c5f322ae7b843f0adea311b74264b2d0d"
     },
     "README.md": {
       "bytes": 1078,
@@ -48,5 +48,13 @@
   },
   "package_path": "artifacts/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119",
   "pr_url": "https://github.com/farzaandalwai/data245-group3/pull/6",
-  "trust_basis": "exact published PR commit Git blob bytes; not a claim that all original inventory entries match"
+  "supersedes": {
+    "INVENTORY.md": {
+      "bytes": 5773,
+      "sha256": "0eafa5ecf58548ff0c99c694b600f1133b6b54644c62c7065548cd20304443e0"
+    },
+    "commit": "044fac1a9ed0fae52179df25946a5a994f2826b5",
+    "reason": "DEVGRU correction commit 1f4e6a4 changed only INVENTORY.md (corrected malformed checksum record, added correction note); the other ten package files are byte-identical."
+  },
+  "trust_basis": "exact published Git blob bytes at the pinned commit; not a claim that DEVGRU's execution lineage is verified"
 }

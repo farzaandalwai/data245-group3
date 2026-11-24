@@ -1,0 +1,476 @@
+{
+  "candidates": [
+    {
+      "candidate_index": 0,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 3,
+        "max_features": 1.0,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.34820496332441825
+    },
+    {
+      "candidate_index": 1,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 3,
+        "max_features": 1.0,
+        "min_samples_leaf": 20,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3488568545574173
+    },
+    {
+      "candidate_index": 2,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 3,
+        "max_features": 1.0,
+        "min_samples_leaf": 50,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.35020097712141385
+    },
+    {
+      "candidate_index": 3,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 5,
+        "max_features": 1.0,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33753665468151745
+    },
+    {
+      "candidate_index": 4,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 5,
+        "max_features": 1.0,
+        "min_samples_leaf": 20,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33807465285037247
+    },
+    {
+      "candidate_index": 5,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 5,
+        "max_features": 1.0,
+        "min_samples_leaf": 50,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3423135394326594
+    },
+    {
+      "candidate_index": 6,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 8,
+        "max_features": 1.0,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33596907821138666
+    },
+    {
+      "candidate_index": 7,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 8,
+        "max_features": 1.0,
+        "min_samples_leaf": 20,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33685141850894607
+    },
+    {
+      "candidate_index": 8,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 8,
+        "max_features": 1.0,
+        "min_samples_leaf": 50,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3415201166861689
+    },
+    {
+      "candidate_index": 9,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33952071366149983
+    },
+    {
+      "candidate_index": 10,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "min_samples_leaf": 20,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3378912532975518
+    },
+    {
+      "candidate_index": 11,
+      "feature_set": "sales_only",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "min_samples_leaf": 50,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3416022480616708
+    },
+    {
+      "candidate_index": 0,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 3,
+        "max_features": 1.0,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3483359259088582
+    },
+    {
+      "candidate_index": 1,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 3,
+        "max_features": 1.0,
+        "min_samples_leaf": 20,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3489350963443383
+    },
+    {
+      "candidate_index": 2,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 3,
+        "max_features": 1.0,
+        "min_samples_leaf": 50,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.35031333095193146
+    },
+    {
+      "candidate_index": 3,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 5,
+        "max_features": 1.0,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33826597138757153
+    },
+    {
+      "candidate_index": 4,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 5,
+        "max_features": 1.0,
+        "min_samples_leaf": 20,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33805954928320264
+    },
+    {
+      "candidate_index": 5,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 5,
+        "max_features": 1.0,
+        "min_samples_leaf": 50,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.34239681913587894
+    },
+    {
+      "candidate_index": 6,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 8,
+        "max_features": 1.0,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33733641053181246
+    },
+    {
+      "candidate_index": 7,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 8,
+        "max_features": 1.0,
+        "min_samples_leaf": 20,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.336503832343562
+    },
+    {
+      "candidate_index": 8,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": 8,
+        "max_features": 1.0,
+        "min_samples_leaf": 50,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3408536190623854
+    },
+    {
+      "candidate_index": 9,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.3405028861857025
+    },
+    {
+      "candidate_index": 10,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "min_samples_leaf": 20,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.33721406202954995
+    },
+    {
+      "candidate_index": 11,
+      "feature_set": "stockout_aware",
+      "parameters": {
+        "bootstrap": true,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "min_samples_leaf": 50,
+        "n_estimators": 200,
+        "n_jobs": 1,
+        "random_state": 245
+      },
+      "validation_MAE": 0.34084501623885954
+    }
+  ],
+  "candidates_per_condition": 12,
+  "feature_columns": {
+    "sales_only": [
+      "sales_lag_1",
+      "sales_lag_2",
+      "sales_lag_3",
+      "sales_lag_7",
+      "sales_lag_14",
+      "sales_mean_7",
+      "sales_mean_14",
+      "weekday",
+      "is_weekend"
+    ],
+    "stockout_aware": [
+      "sales_lag_1",
+      "sales_lag_2",
+      "sales_lag_3",
+      "sales_lag_7",
+      "sales_lag_14",
+      "sales_mean_7",
+      "sales_mean_14",
+      "weekday",
+      "is_weekend",
+      "stockout_hours_lag_1",
+      "stockout_hours_mean_7",
+      "stockout_hours_mean_14",
+      "stockout_day_fraction_7",
+      "stockout_day_fraction_14"
+    ]
+  },
+  "feature_importances": {
+    "sales_only": {
+      "is_weekend": 0.012706828991482328,
+      "sales_lag_1": 0.02588069514098322,
+      "sales_lag_14": 0.012895109172400348,
+      "sales_lag_2": 0.01434152748523279,
+      "sales_lag_3": 0.010009937328146049,
+      "sales_lag_7": 0.016264437240685787,
+      "sales_mean_14": 0.7196762822625338,
+      "sales_mean_7": 0.1668454246604166,
+      "weekday": 0.021379757718119202
+    },
+    "stockout_aware": {
+      "is_weekend": 0.014187850636030919,
+      "sales_lag_1": 0.01446889805105564,
+      "sales_lag_14": 0.006753895547369127,
+      "sales_lag_2": 0.004751398355416622,
+      "sales_lag_3": 0.0029797580017367573,
+      "sales_lag_7": 0.007038239821701164,
+      "sales_mean_14": 0.7446864437159051,
+      "sales_mean_7": 0.16412578808178852,
+      "stockout_day_fraction_14": 0.0038646417963000175,
+      "stockout_day_fraction_7": 0.001698773156266722,
+      "stockout_hours_lag_1": 0.0023642574854362422,
+      "stockout_hours_mean_14": 0.006475686176804237,
+      "stockout_hours_mean_7": 0.008107008606942167,
+      "weekday": 0.018497360567246702
+    }
+  },
+  "fit_split": "train",
+  "policy": {
+    "bootstrap": true,
+    "criterion": "squared_error",
+    "max_depth": [
+      3,
+      5,
+      8,
+      null
+    ],
+    "max_features": 1.0,
+    "min_samples_leaf": [
+      5,
+      20,
+      50
+    ],
+    "n_estimators": 200,
+    "policy_version": "sas-forest-development-1",
+    "prediction_postprocessing": "none",
+    "preprocessing": "none",
+    "random_state": 245,
+    "selection_metric": "MAE",
+    "selection_split": "validation",
+    "status": "development_only_not_group_frozen",
+    "tie_break": "first_in_declared_grid_order"
+  },
+  "refit_on_validation": false,
+  "selected_parameters": {
+    "sales_only": {
+      "bootstrap": true,
+      "criterion": "squared_error",
+      "max_depth": 8,
+      "max_features": 1.0,
+      "min_samples_leaf": 5,
+      "n_estimators": 200,
+      "n_jobs": 1,
+      "random_state": 245
+    },
+    "stockout_aware": {
+      "bootstrap": true,
+      "criterion": "squared_error",
+      "max_depth": 8,
+      "max_features": 1.0,
+      "min_samples_leaf": 20,
+      "n_estimators": 200,
+      "n_jobs": 1,
+      "random_state": 245
+    }
+  },
+  "selection_split": "validation",
+  "test_scored": false,
+  "training_rows": 9200,
+  "validation_rows": 3000
+}

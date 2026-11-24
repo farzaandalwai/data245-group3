@@ -1,0 +1,103 @@
+{
+  "bundle_id": "v2-development-200-r2",
+  "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+  "files": {
+    "INVENTORY.md": {
+      "bytes": 6384,
+      "sha256": "67091cbbbd591c0ab9186cb18cf8767c5f322ae7b843f0adea311b74264b2d0d",
+      "windows_crlf": {
+        "bytes": 6463,
+        "sha256": "6a0534ea19961abe26bbe0f14cb7f5b0bc8b212c6e82b8a4361e0f8cf456aa91"
+      }
+    },
+    "README.md": {
+      "bytes": 1078,
+      "sha256": "2ba4c62b0e5e9bb68aeaae7cf020073ff9549110b2a1548ef8f83c86b5995565",
+      "windows_crlf": {
+        "bytes": 1094,
+        "sha256": "a70e1e45056b729e9390d38b2c9560762bd6b2a801ca40f7f68b762e43b475f2"
+      }
+    },
+    "development_report.md": {
+      "bytes": 2690,
+      "sha256": "5257f456b985eb39fb3df7779d47b090b418ad3f473d15b3a71b7c9b5c5eb5ac",
+      "windows_crlf": {
+        "bytes": 2732,
+        "sha256": "ef50e38013d7e158351752cc890e74b99726ac831cc706ea0e052eb59ea56b4b"
+      }
+    },
+    "linear_regression/sales_only.predictions.csv": {
+      "bytes": 1840299,
+      "sha256": "fd2d1d1f30d2d1870f4b1fdb3ead9d1703ff3ed14d410f91e7de62ef440561d7",
+      "windows_crlf": {
+        "bytes": 1852500,
+        "sha256": "b9ee18ed207f886cee20ea9e81893247f6775b15b888ef28b2f74f7f36c57e86"
+      }
+    },
+    "linear_regression/stockout_aware.predictions.csv": {
+      "bytes": 1938142,
+      "sha256": "4af534b8fcd8f150d998da99d925bdc1881cc128b46f9218abf720f37754495c",
+      "windows_crlf": {
+        "bytes": 1950343,
+        "sha256": "308874df8616a2f81d82206b8d6e8a44aded1c19ef160c1d814c2d9a2f9ae4c0"
+      }
+    },
+    "paired_validation_comparison.csv": {
+      "bytes": 611,
+      "sha256": "63051e6a2bb4d6976f525eeba5e23288d05c3d6c499f910b5f3f598ccf427450",
+      "windows_crlf": {
+        "bytes": 614,
+        "sha256": "30293efdbe0d7a502e931894b5fdd5915fbc865a078c7b705d774e98e973f34a"
+      }
+    },
+    "ridge_alpha_selection.csv": {
+      "bytes": 404,
+      "sha256": "2b5d4b13a699a1ab3ce09b5f8f2a42613d069977fafa15a5b543079352dcbbb8",
+      "windows_crlf": {
+        "bytes": 415,
+        "sha256": "00c77f85a36011cab3d96d1dddf08890a576c2340bdebe62395eea2591a32ca1"
+      }
+    },
+    "ridge_regression/sales_only.predictions.csv": {
+      "bytes": 1816003,
+      "sha256": "aaf2b9be37f1ab28d2a54db089ed13ee65ef3daa865cdedd72f26336f2b3785a",
+      "windows_crlf": {
+        "bytes": 1828204,
+        "sha256": "6228aecb1c28e50a49aa1f5d525f4c032187ea2dd73e2a17b1ac5a93787c24dc"
+      }
+    },
+    "ridge_regression/stockout_aware.predictions.csv": {
+      "bytes": 1913754,
+      "sha256": "54e1547aa462d15fd3d65e2b242a600eaf43f5dbd0401da8acf57438bad518df",
+      "windows_crlf": {
+        "bytes": 1925955,
+        "sha256": "ef813fd4a4f8ee9390e42eb9b0b3b15a0e4dde8497e7bc94d9920a8989122a81"
+      }
+    },
+    "run_metadata.json": {
+      "bytes": 5430,
+      "sha256": "e3331387f91ab337bc7751845424b47aafd089803d25a417119cc8142fdac8da",
+      "windows_crlf": {
+        "bytes": 5580,
+        "sha256": "563c5cbc0e6d31e780d622700c7054aa2dd5e91d2eaa93178837b03726fff713"
+      }
+    },
+    "validation_metrics.csv": {
+      "bytes": 931,
+      "sha256": "7c1032be0b89ad26f5586b266d8aa8e9a6aaf55e9a80e9c1cee90bd69bccbce4",
+      "windows_crlf": {
+        "bytes": 940,
+        "sha256": "286302c482db86a47f86bb8828d90f9beb770b5601c2003c737858995e267b95"
+      }
+    }
+  },
+  "limitations": [
+    "Original fitted models were not saved",
+    "Original execution source revision is a base commit, without dirty-source hashes",
+    "CRLF identities identify an explicit checkout representation; they are not identical original bytes",
+    "SAS historical pin is owned by SAS; PR9 proposes its update"
+  ],
+  "path": "artifacts/DEVGRU/development/v2-development-200-r2-linear-ridge-standardize-20261119",
+  "source_commit": "1f4e6a4cdad560735f79f218fc83cfb532818a51",
+  "status": "PUBLISHED_DEVELOPMENT_EVIDENCE_NOT_FINAL_FREEZE"
+}

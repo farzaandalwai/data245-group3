@@ -10,3 +10,7 @@
 
 # Preserve exact imported V1 evidence and its lock across Windows checkouts.
 /docs/history/contract_v1/** -text
+
+# Preserve published DEVGRU evidence bytes on future checkouts, including Windows.
+# Existing original files are never renormalized by this task.
+/artifacts/DEVGRU/development/** -text

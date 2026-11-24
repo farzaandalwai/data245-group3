@@ -1,0 +1,26 @@
+Continue the DELTA + DEVGRU repository completion task using the original instructions.
+The missing continuation is:
+Dependency installation
+- Prefer the existing .venv environment.
+- If dependencies are missing, use a project-local virtual environment only when installation is necessary, safe, and compatible with the repository's tested requirements.
+- Do not modify global Python packages.
+- Do not install dependencies unnecessarily.
+- If installation is blocked or uncertain, document the blocker and continue with available checks.
+Testing
+- Run available DELTA and DEVGRU tests.
+- Add focused regression tests for actual bugs fixed.
+- Preserve existing development predictions, metrics, and immutable datasets.
+- Do not retrain real models or execute final test scoring.
+- Report exact test pass/fail/skip counts.
+Deliverable
+Create:
+audit_handoff/delta_devgru_completion/DELTA_DEVGRU_COMPLETION.md
+Include the initial repository state, verification findings, issues identified, changes implemented, modified files, test results, verified development metrics, remaining SAS dependencies, and final-readiness assessment.
+Git constraints
+- Use a dedicated feature branch if code changes are necessary.
+- Preserve existing uncommitted changes.
+- Do not commit, push, merge, or modify SAS-owned code without authorization.
+- Do not enable V2 freeze gates or bypass final evaluation restrictions.
+Final response
+Answer whether DELTA and DEVGRU are complete, what was fixed, which tests passed, whether they are ready for integration, and what SAS still needs to do.
+Proceed with implementation and testing. Do not ask for additional clarification unless a necessary action would violate these constraints. Be token-efficient.

@@ -1,0 +1,156 @@
+# DATA 245 — DELTA + DEVGRU Implementation and Final Readiness
+
+Act as a Senior Machine Learning Engineer responsible for bringing the DELTA and DEVGRU workstreams to a verified, reproducible, submission-ready state.
+
+This is my actual DATA 245 project repository, NOT a video or documentation-only task.
+
+I am working on two workstreams:
+
+**DELTA:** Data preparation, data validation, feature engineering, dataset integrity, and forecasting baselines.
+
+**DEVGRU:** Linear Regression, Ridge Regression, regularization, model training, validation, and prediction artifact generation.
+
+I need you to investigate the latest repository state, identify what remains unfinished within these two workstreams, and implement necessary corrections.
+
+## 1. Read the existing project context
+
+Before making changes, inspect:
+
+- `AGENTS.md`
+- `context.md`
+- `docs/experiment_protocol.md`
+- `docs/interfaces.md`
+- `docs/team_responsibilities.md`
+- `docs/DELTA_DATA_HANDOFF.md`
+- `audit_handoff/home_recovery/DATA245_HOME_MASTER_HANDOFF.md`
+- `audit_handoff/home_recovery/DATA245_HOME_VERIFIED_RESULTS.csv`
+- `audit_handoff/home_recovery/DATA245_HOME_ARTIFACT_INVENTORY.md`
+
+Inspect the current Git branch, working tree, latest commits, and remote state.
+
+Follow the repository's collaboration rules.
+
+Preserve existing uncommitted changes, experimental evidence, and immutable datasets.
+
+## 2. DELTA — Verify and finish
+
+Audit the current implementations in:
+
+- `src/data_preprocessing_DELTA/`
+- `src/features_DELTA/`
+- `src/models/baselines_DELTA/`
+- `scripts/delta_v2.py`
+- Related tests and configurations.
+
+Verify:
+
+1. Raw data integrity.
+2. Deterministic 200-series development sampling.
+3. Deterministic 1,000-series final sampling.
+4. Chronological train/validation/test splits.
+5. Feature engineering and lag alignment.
+6. No target-day or future-value leakage.
+7. Matching sales-only and stockout-aware observations.
+8. Baseline forecasting correctness.
+9. Feature-bundle manifest and checksum validation.
+10. Compatibility with DEVGRU model inputs.
+
+The latest audit already verified the authoritative `v2-final-1000-r2` bundle and its 76,000 observations.
+
+Do not rebuild that bundle unnecessarily or overwrite its contents.
+
+Identify and fix genuine DELTA implementation issues within the approved methodology.
+
+Preserve the existing study population and disclose retrospective completeness selection rather than silently changing the sample.
+
+Ensure that DELTA outputs are reproducible and usable by downstream models.
+
+## 3. DEVGRU — Verify and finish
+
+Audit:
+
+- `src/models/linear_regression_DEVGRU/`
+- `src/models/ridge_regression_DEVGRU/`
+- Existing development runners.
+- Saved prediction files.
+- Alpha-selection records.
+- Model tests.
+- Relevant run manifests.
+
+Verify:
+
+1. Linear Regression implementation.
+2. Ridge Regression implementation.
+3. Training-only preprocessing.
+4. Validation-only hyperparameter selection.
+5. Identical data and targets across feature conditions.
+6. Correct prediction formatting.
+7. Correct MAE, RMSE, and signed-bias calculations.
+8. Reproducibility of saved development results.
+9. Compatibility with the shared SAS evaluator.
+10. Final experiment interface readiness.
+
+Previously verified development-validation results:
+
+- Linear sales-only MAE: 0.3342568283
+- Linear stockout-aware MAE: 0.3341904534
+- Ridge sales-only MAE: 0.3342560218
+- Ridge stockout-aware MAE: 0.3341189138
+
+Independently verify these values against existing predictions.
+
+Do not treat them as final 1,000-series test results.
+
+## 4. Address remaining integration issues
+
+The previous audit identified:
+
+- Windows LF/CRLF conversion affecting strict artifact hashes.
+- A stale DEVGRU/SAS inventory checksum reference.
+- Missing original fitted-model artifacts.
+- An unfinished final experiment.
+- An unapproved V2 technical freeze.
+- A final evaluator with incorrect bootstrap weighting.
+- A final runner using an obsolete V1 freeze lock.
+
+Determine which issues are within DELTA or DEVGRU ownership.
+
+Implement safe fixes only for DELTA/DEVGRU code, validation, packaging, and documentation.
+
+For SAS-owned evaluation or final-scoring defects, document the exact required changes and affected interfaces. Do not silently modify another workstream's code.
+
+Coordinate proposed cross-team interface changes through the repository's established rules.
+
+## 5. Final 1,000-series readiness
+
+The final input bundle already exists.
+
+Determine whether DELTA and DEVGRU can safely support the final experiment.
+
+Verify:
+
+- Input bundle and manifest identity.
+- Model feature compatibility.
+- Frozen parameter selection evidence.
+- Training and validation procedures.
+- Prediction export contracts.
+- Required model metadata.
+- Reproducible execution commands.
+
+Implement missing DELTA/DEVGRU support that is clearly required for final execution.
+
+**Do not execute final test scoring or generate new final test predictions.**
+
+The active V2 freeze gates are currently false. Preserve those restrictions until the team explicitly approves the final protocol and evaluation.
+
+Do not enable gates, bypass guards, or manufacture authorization records.
+
+If the final experiment is blocked by SAS-owned work, explain the dependencies instead of bypassing them.
+
+## 6. Tests and validation
+
+Run available DELTA and DEVGRU tests.
+
+Use the existing project environment where possible.
+
+If dependencies are missing, identify them and use a project-local environment only when

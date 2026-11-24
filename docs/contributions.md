@@ -4,6 +4,24 @@ Updated 2026-11-18 (America/Los_Angeles). Task ownership is not proof of complet
 
 Current integration note (2026-11-19): startup/layout work is merged via PR #2 (`35bfa71`); historical pending-integration labels below refer to earlier snapshots. The current documentation alignment remains local/uncommitted. Historical course-fit conditions do not override approved v2 extensions.
 
+## 2026-11-24 DELTA/DEVGRU readiness and publication
+
+Requester/account: DELTA / Timothy Tran, authenticated `Timothytran109`; explicit
+request also covers DEVGRU work. Codex implemented baseline isolation/pinning,
+new-run exchange manifests, numeric model-state export/reload, transactional
+publishing and an original-evidence verifier. Existing model mathematics and
+all original data/predictions/artifacts were preserved. All fitting in tests was
+synthetic; saved real development metrics were checked without retraining.
+
+37 owned tests passed; setup/evidence checks passed. The broader local suite
+previously passed 55 tests with three missing-sklearn import errors blocking 45
+SAS methods; this is not a full-suite pass. Final gates remain false. No final
+1,000-series predictions/scoring occurred. Branch `DELTA/delta-devgru-readiness`
+is authorized for commit/push/PR only; integration/human review and personal
+student contribution credit remain pending. See the
+[readiness record](DELTA_DEVGRU_READINESS.md). Existing SAS and imported attribution
+are retained. This entry is separate from PR #9's SAS work.
+
 ## Historical assignments from the original handoff
 
 - **Timothy Tran** — existing preparation, pilot, baseline work; reproduction support. The handoff explicitly states that he completed the pilot preparation/baselines, and source files/outputs are present. Setup imported and structurally checked them; full reproduction remains pending. Supplied GitHub mapping: `timothytran109` (GitHub canonical case `Timothytran109`).

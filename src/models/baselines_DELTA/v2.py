@@ -5,6 +5,9 @@ import pandas as pd
 
 from src.features_DELTA.bundle import load_bundle, sha256, write_csv, write_json
 from src.data_preprocessing_DELTA.v2 import KEY
+from src.data_preprocessing_DELTA.run_artifacts import (
+    check_destination, checked_run_id, environment, inventory, new_run, source_snapshot,
+)
 
 
 def predictions(tables, run_id):
@@ -33,18 +36,38 @@ def metrics(predicted):
     return pd.DataFrame(rows)
 
 
-def run_development(bundle, destination, run_id):
-    tables,manifest=load_bundle(bundle)
-    if manifest["purpose"]!="development_debugging":
+def run_development(bundle, destination, run_id, *, expected_manifest_sha256):
+    checked_run_id(run_id)
+    bundle=Path(bundle)
+    destination=check_destination(destination,inputs=[bundle])
+    if not expected_manifest_sha256 or sha256(bundle/"bundle_manifest.json")!=expected_manifest_sha256:
+        raise ValueError("A matching trusted bundle manifest SHA-256 is required")
+    # Reject final purpose before opening outcome CSVs.
+    import json
+    header=json.loads((bundle/"bundle_manifest.json").read_text())
+    if header.get("purpose")!="development_debugging":
         raise ValueError("Final test scoring is blocked; only development baselines supported")
-    destination=Path(destination)
-    if destination.exists():
-        raise FileExistsError("Immutable baseline run already exists")
-    predicted=predictions(tables,run_id)
-    destination.mkdir(parents=True)
-    write_csv(destination/"predictions.csv",predicted)
-    write_csv(destination/"metrics.csv",metrics(predicted))
-    write_json(destination/"run_manifest.json",{"protocol_version":"2.0","purpose":manifest["purpose"],"run_id":run_id,
-               "bundle_manifest_sha256":sha256(Path(bundle)/"bundle_manifest.json"),"models":["persistence","recent_avg_7"],
-               "artifacts":{name:sha256(destination/name) for name in ("predictions.csv","metrics.csv")},
-               "test_exposure":"development historical holdout previously examined; no adaptive selection"})
+    tables,manifest=load_bundle(bundle,expected_manifest_sha256)
+    keys=tables["observations"].loc[tables["observations"].split.isin(["train","validation"]),KEY]
+    non_test={name:tables[name].merge(keys,on=KEY,validate="one_to_one")
+              for name in ("observations","features_sales_only")}
+    predicted=predictions(non_test,run_id)
+    with new_run(destination,inputs=[bundle]) as temporary:
+        write_csv(temporary/"predictions.csv",predicted)
+        write_csv(temporary/"metrics.csv",metrics(predicted))
+        write_json(temporary/"run_manifest.json",{
+            "prediction_run_version":"2.0-development-1", "protocol_version":"2.0",
+            "producer_contract_version":manifest["producer_contract_version"],
+            "purpose":manifest["purpose"],"run_id":run_id,"owner":"DELTA",
+            "bundle_manifest_sha256":sha256(bundle/"bundle_manifest.json"),
+            "sample_sha256":manifest["sample_sha256"],"models":["persistence","recent_avg_7"],
+            "scored_splits":["train","validation"],"test_scored":False,
+            "evidence_status":"DEVELOPMENT_NOT_FINAL","group_validation_choices_frozen":False,
+            "policy":{"preprocessing":"none","prediction_postprocessing":"none",
+                      "predictors":{"persistence":"sales_lag_1","recent_avg_7":"sales_mean_7"}},
+            "selected_parameters":{},"environment":environment(),
+            "source":source_snapshot(["src/models/baselines_DELTA/v2.py",
+                "src/data_preprocessing_DELTA/run_artifacts.py","src/features_DELTA/bundle.py",
+                "src/features_DELTA/v2.py","scripts/delta_v2.py"]),
+            "artifacts":inventory(temporary),
+            "test_exposure":"Historical development holdout previously examined; no new test scoring"})

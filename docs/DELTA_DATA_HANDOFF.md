@@ -74,7 +74,7 @@ PowerShell, from repository root (use a fresh bundle/run ID on regeneration):
 .venv/Scripts/python.exe -m scripts.delta_v2 build --purpose development_debugging --bundle-id v2-development-200-r3
 .venv/Scripts/python.exe -m scripts.delta_v2 build --purpose final_experiment --bundle-id v2-final-1000-r3
 .venv/Scripts/python.exe -m scripts.delta_v2 build --purpose synthetic_test_only --bundle-id v2-synthetic-fixture-r3
-.venv/Scripts/python.exe -m scripts.delta_v2 baselines data/processed/feature_bundles/v2-development-200-r3 --run-id v2-development-baselines-r3
+.venv/Scripts/python.exe -m scripts.delta_v2 baselines data/processed/feature_bundles/v2-development-200-r3 --run-id v2-development-baselines-r3 --manifest-sha256 'TRUSTED_NEW_BUNDLE_MANIFEST_SHA256'
 ```
 
 Generation needs `data/raw/freshretail.csv`: copy OLD `data/freshretail.csv` without moving/deleting it, or obtain DELTA's byte-identical local export. Verify 323,577,557 bytes and SHA-256 `6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5`. Never substitute a fresh upstream download silently. The producer checks this registered identity. Bundle consumers do not need raw data.
@@ -92,3 +92,16 @@ Do not mix `archive/original_pilot/`, `docs/history/contract_v1/`, `results/base
 Precision reconciliation: 54 canonical pilot sales floats differ from raw by at most 4.44e-16 due to legacy serialization. Development preserves canonical pilot values; final uses raw values. Keys/splits are identical on overlapping series; values agree within explicit 1e-12 tolerances. Each comparison uses one bundle, so model/condition targets are identical. r1 bundles are retained as superseded verification outputs; r2 records this tolerance explicitly and is authoritative.
 
 Tested environment lock: `requirements-v2-tested.txt` (Python 3.12.10). Install with `python -m pip install -r requirements-v2-tested.txt` when exact local package versions are needed.
+
+## 2026-11-24 owned readiness update
+
+The r2 inputs and original baseline files above remain immutable. New baseline
+runs require `--manifest-sha256` and generate **train/validation only**, using the
+already supported SAS development manifest envelope. The placeholder in the r3
+example must be replaced by the newly generated bundle's trusted hash. Do not
+rebuild the existing final r2 bundle just to run checks. The current real data
+and original saved DEVGRU predictions were verified without learned-model
+retraining. Refer to [DELTA/DEVGRU readiness](DELTA_DEVGRU_READINESS.md) for current
+commands, exact results, remaining SAS dependencies and the still-blocked final
+workflow. Earlier statements about no implemented learned consumers describe the
+original DELTA-only task, not the current merged repository.

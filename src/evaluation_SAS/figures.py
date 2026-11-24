@@ -12,7 +12,7 @@ def development_figures(summary, intervals, destination):
     from matplotlib.patches import Patch
 
     destination = Path(destination)
-    names = {"linear_regression": "Linear", "ridge_regression": "Ridge", "decision_tree": "Decision Tree",
+    names = {"linear_regression": "Linear", "ridge_regression": "Ridge", "decision_tree": "Decision Tree", "random_forest": "Random Forest",
              "persistence": "Persistence", "recent_avg_7": "7-day mean"}
     colors = {"sales_only": "#777777", "stockout_aware": "#236b8e", "common_reference": "#333333"}
     ordered = summary.sort_values(["model", "feature_set"]).reset_index(drop=True)

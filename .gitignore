@@ -109,3 +109,15 @@ token.json
 !/artifacts/SAS/development/original-200-series-20261119/decision_tree/development_metrics.csv
 !/artifacts/SAS/development/original-200-series-20261119/decision_tree/mae_difference_intervals.csv
 !/artifacts/SAS/development/original-200-series-20261119/decision_tree/predictions.csv
+# Reviewed SAS Random Forest run and r4 harmonized comparison (2026-11-23).
+!/artifacts/SAS/development/random-forest-200-series-20261120/development_metrics.csv
+!/artifacts/SAS/development/random-forest-200-series-20261120/mae_difference_intervals.csv
+!/artifacts/SAS/development/random-forest-200-series-20261120/predictions.csv
+!/artifacts/SAS/development/harmonized-200-series-20261123-r4/development_comparison.csv
+!/artifacts/SAS/development/harmonized-200-series-20261123-r4/mae_difference_intervals.csv
+!/artifacts/SAS/development/harmonized-200-series-20261123-r4/overall.csv
+!/artifacts/SAS/development/harmonized-200-series-20261123-r4/paired_comparisons.csv
+!/artifacts/SAS/development/harmonized-200-series-20261123-r4/per_series.csv
+!/artifacts/SAS/development/harmonized-200-series-20261123-r4/per_store.csv
+!/artifacts/SAS/development/harmonized-200-series-20261123-r4/subgroups.csv
+!/artifacts/SAS/development/harmonized-200-series-20261123-r4/validation_baseline_predictions.csv

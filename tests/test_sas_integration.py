@@ -15,7 +15,8 @@ import pandas as pd
 
 from scripts.sas_final_preflight import inspect_final_gates
 from src.evaluation_SAS.integration import (
-    compare_development, devgru_originals, validation_baselines, verify_files,
+    FOREST_RUN_MANIFEST_SHA256, compare_development, devgru_originals, relative_mae_improvement,
+    sas_forest, validation_baselines, verify_files,
 )
 from src.evaluation_SAS.runs import ROOT, pinned_bundle, read_json
 from src.evaluation_SAS.v2 import CONDITIONS, PREDICTION_COLUMNS, regression_metrics
@@ -167,6 +168,9 @@ class PreservationAndFinalGateTests(unittest.TestCase):
             ('artifacts/SAS/development/unreviewed/predictions.csv', True),
             ('artifacts/SAS/development/original-200-series-20261119/decision_tree/predictions.csv', False),
             ('artifacts/SAS/development/harmonized-200-series-20261120-r3/development_comparison.csv', False),
+            ('artifacts/SAS/development/random-forest-200-series-20261120/predictions.csv', False),
+            ('artifacts/SAS/development/harmonized-200-series-20261123-r4/development_comparison.csv', False),
+            ('artifacts/SAS/development/harmonized-200-series-20261123-r4/unreviewed.csv', True),
         ]:
             result = subprocess.run(['git', 'check-ignore', '--no-index', '-q', name], cwd=ROOT)
             self.assertIn(result.returncode, (0, 1))
@@ -182,6 +186,37 @@ class PreservationAndFinalGateTests(unittest.TestCase):
             expected.update({folder+'/'+name: info for name, info in record['artifact_hashes'].items()})
         self.assertEqual(len(expected), 16)
         verify_files(package, expected)
+
+    def test_shared_forest_run_matches_recorded_identity_and_SHA256SUMS(self):
+        package = ROOT / 'artifacts/SAS/development/random-forest-200-series-20261120'
+        self.assertEqual(sha256(package / 'run_manifest.json'), FOREST_RUN_MANIFEST_SHA256)
+        sums = dict(reversed(line.split('  ', 1)) for line in (package / 'SHA256SUMS').read_text().splitlines())
+        self.assertEqual(len(sums), 6)
+        verify_files(package, {name: {'sha256': digest} for name, digest in sums.items()})
+        manifest = read_json(package / 'run_manifest.json')
+        self.assertEqual((manifest['models'], manifest['test_scored']), (['random_forest'], False))
+        registered = {name: record['sha256'] for name, record in manifest['artifacts'].items()}
+        self.assertEqual(registered, {name: digest for name, digest in sums.items() if name != 'run_manifest.json'})
+
+    def test_forest_with_unrecorded_manifest_is_rejected_before_loading(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)
+            write_json(path / 'run_manifest.json', {'models': ['random_forest']})
+            with patch('src.evaluation_SAS.integration.load_prediction_run',
+                       side_effect=AssertionError('must not load')) as loader:
+                with self.assertRaises(ValueError):
+                    sas_forest(path, {}, None)
+                loader.assert_not_called()
+
+    def test_relative_mae_improvement_definition_and_zero_denominator(self):
+        summary = pd.DataFrame({
+            'model': ['a', 'a', 'b', 'b', 'persistence'],
+            'feature_set': ['sales_only', 'stockout_aware', 'sales_only', 'stockout_aware', 'common_reference'],
+            'MAE': [0.5, 0.4, 0.0, 0.1, 0.9]})
+        result = relative_mae_improvement(summary)
+        self.assertAlmostEqual(result['a'], 20.0)
+        self.assertTrue(np.isnan(result['b']))
+        self.assertNotIn('persistence', result.index)
 
     def test_unsafe_artifact_paths_and_original_destinations_are_rejected(self):
         with tempfile.TemporaryDirectory() as folder:

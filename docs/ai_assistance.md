@@ -154,3 +154,11 @@ Student personal contribution and independent human review remain unverified.
   and synthetic tests are separate evidence. No test or final data was scored.
 - Not done by the assistant: any individual report prose, cross-team decisions, merges.
   Human review and personal contribution credit remain pending.
+
+## 2026-11-23 — SAS r4 comparison (Claude Code; Claude Sonnet 5.5, then Claude Opus 5.5)
+
+- Prompt: [SAS step-1 request](prompts/2026-11-23-sas-step1.md).
+- Assistance: re-pin of merged PR #6, byte-identical forest package, comparison code for
+  the forest and relative MAE, 4 tests, r4 run and figures (visually checked), docs.
+- Checks: 95 tests and the setup checker passed; r4 reproduces every r3 metric exactly.
+- Not done: final scoring, teammate edits, merges, team freeze decisions.

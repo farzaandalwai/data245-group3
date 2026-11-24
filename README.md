@@ -139,6 +139,15 @@ There is no blanket repository license. Timothy's imported code retains its orig
 
 Tested environment lock: `requirements-v2-tested.txt` (Python 3.12.10). Install with `python -m pip install -r requirements-v2-tested.txt` when exact local package versions are needed.
 
-## Current development artifact handoff — 2026-11-20
+## Current development artifact handoff — 2026-11-23
+
+PRs #6, #7 and #8 are merged. The current shareable development comparison is
+`artifacts/SAS/development/harmonized-200-series-20261123-r4/`: Linear, Ridge,
+Decision Tree, Random Forest and both baselines on 3,000 matched validation rows,
+with relative MAE improvement and PNG/SVG figures. All four paired store-bootstrap
+intervals include zero. Final scoring remains blocked. See the
+[SAS handoff](docs/SAS_DEVELOPMENT_COMPARISON.md).
+
+### Earlier handoff — 2026-11-20
 
 PR #4 and model-code PR #5 are merged. Original SAS files are shared under `artifacts/SAS/development/original-200-series-20261119/`; originals remain unchanged. Unmerged PR6 is Git-byte-pinned and numerically checked, with supporting inventory issues reported. A separate harmonized validation comparison includes Linear/Ridge/Tree plus both common baselines and labeled PNG/SVG figures. All paired store-bootstrap intervals include zero. See [current SAS handoff](docs/SAS_DEVELOPMENT_COMPARISON.md) for exact paths, reproduction commands, missing provenance and final gates. Earlier local-only/pending-implementation descriptions are historical snapshots. No final scoring or merge is performed by this task.

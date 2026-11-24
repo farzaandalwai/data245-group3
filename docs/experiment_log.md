@@ -121,3 +121,13 @@ with the tree's grid, seed and train-only/validation-MAE protocol. Real run
 sales-only 0.335969 / aware 0.336504; aware minus sales +0.000535, 95% store
 interval [-0.003533, +0.005357], so no clear stockout-feature benefit. No test
 scoring, no final input, no team-frozen setting. Details: [SAS Random Forest](SAS_RANDOM_FOREST.md).
+
+## 2026-11-23 — SAS r4 DEVELOPMENT comparison (Random Forest + relative MAE)
+
+Requester: SAS / Farzaan Dalwai. [Request](prompts/2026-11-23-sas-step1.md). No model
+fitting or retuning. Re-pinned merged PR #6 at DEVGRU correction `1f4e6a4` (only
+`INVENTORY.md` changed); shared Random Forest run `sas-forest-dev-200-r1` byte-for-byte;
+published `artifacts/SAS/development/harmonized-200-series-20261123-r4/`. It reproduces
+every r3 number and adds the forest plus relative MAE improvement: Linear +0.020%, Ridge
++0.041%, Tree −1.095%, Forest −0.159%. All four paired intervals include zero. Two DEVGRU
+inventory entries still differ from published bytes. No final input, no test scoring.

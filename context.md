@@ -12,20 +12,17 @@ All three share scientific decisions, review, integration and final submissions.
 
 ## Current implementation and Git state
 
-Current requester: SAS / Farzaan Dalwai, authenticated `farzaandalwai`. New branch
-`SAS/development-comparison` starts from clean fetched main `c54f9ab`. Live GitHub
-readback: PR #4 is MERGED at `ae158eb`; DEVGRU code PR #5 is MERGED at `c54f9ab`;
-original DEVGRU artifact PR #6 remains OPEN at `044fac1`. Earlier draft/local-only
-labels are historical. No PR is merged by this task. Local originals and all
-teammate code/output are preserved. PR6 was inspected in an isolated read-only
-checkout and its exact package cached under ignored `runs/SAS/incoming/`.
+Live GitHub readback 2026-11-23: PRs #2–#8 are MERGED; `main` is `4dffb0d`. On
+2026-11-23 Timothytran109 merged SAS PR #8 (Random Forest), SAS PR #7 (development
+comparison) and DEVGRU PR #6 (original artifacts, including DEVGRU's checksum
+correction `1f4e6a4`). The repository is public. No PR is merged by SAS tasks.
 
-Scope: [current request](docs/prompts/2026-11-20-sas-development-integration.md)
-authorizes original SAS artifact sharing, PR6 acceptance, metadata adapters,
-separate development comparisons/figures, tests/handoff, commit/push and a SAS PR.
-It does not authorize final test scoring, model retraining, wider searches or PR
-merges. Current acceptance/evidence/commands/limitations are in
-[SAS development comparison](docs/SAS_DEVELOPMENT_COMPARISON.md).
+Current requester: SAS / Farzaan Dalwai (`farzaandalwai`). Branch
+`SAS/rf-comparison-r4` from `4dffb0d`, per the
+[SAS step-1 request](docs/prompts/2026-11-23-sas-step1.md): re-pin the merged PR #6
+package, share the Random Forest run, add relative MAE improvement and publish a
+separate r4 comparison. No final scoring, retraining or teammate edits. Evidence and
+commands: [SAS development comparison](docs/SAS_DEVELOPMENT_COMPARISON.md).
 
 ## Approved science and source of truth
 
@@ -67,7 +64,11 @@ the approved optional forest is implemented with the tree's grid/seed and
 train-only/validation-MAE protocol (fixed 200 trees, `max_features=1.0`). Real
 validation MAE sales-only 0.335969 / aware 0.336504; aware minus sales +0.000535,
 store interval [-0.003533, +0.005357] includes zero. Not group-frozen; no test
-scoring. See [SAS Random Forest](docs/SAS_RANDOM_FOREST.md). Stacked on PR #7.
+scoring. See [SAS Random Forest](docs/SAS_RANDOM_FOREST.md). Merged in PR #8; the run is
+shared under `artifacts/SAS/development/random-forest-200-series-20261120/` and included in
+the r4 comparison `artifacts/SAS/development/harmonized-200-series-20261123-r4/`, which
+reproduces every r3 number and adds relative MAE improvement (Linear +0.020%, Ridge
++0.041%, Tree −1.095%, Forest −0.159%; negative = stockout-aware worse).
 
 **PENDING:** PR6 inventory/execution-lineage confirmation, final model/settings
 and collective tie-rule agreement, final freeze/entry-point acceptance and final
@@ -79,20 +80,24 @@ final workflow still needs review. Final test scoring is blocked.
 
 ## Next cross-team dependencies
 
-1. DEVGRU: correct/confirm the three PR6 inventory discrepancies, base-only source
+1. DEVGRU: `1f4e6a4` fixed the malformed `paired_validation_comparison.csv` checksum.
+   The inventory entries for `development_report.md` and `run_metadata.json` still differ
+   from the published bytes (declared `ef50e380…` / `563c5cbc…`, published `5257f456…` /
+   `e3331387…`); please correct or explain. Also confirm base-only source
    revision and unsaved fitted-model limits; do not replace original predictions
    with newly trained outputs. Review the in-memory run-ID mapping and common
    store-bootstrap development comparison.
 2. DELTA: accept the exact producer/final bundle and outstanding business/export
    semantics; participate in technical freeze/review. No new final input was
    opened by SAS. Raw/final inputs remain out of Git.
-3. SAS: review original-artifact sharing and combined development results, then
-   coordinate final settings/tie/validation-freeze and final executor review.
+3. SAS: step-1 work (re-pin, shared forest run, r4 comparison with relative MAE) is on
+   `SAS/rf-comparison-r4`; next coordinate final settings/tie/validation-freeze and,
+   after the freeze, build the final-scoring entry point for DELTA/DEVGRU review.
    `python3 -m scripts.sas_final_preflight` is config-only and exits 2 (blocked).
-4. All 84 tests pass (including 12 new SAS integration tests and 11 existing DEVGRU
-   synthetic checks). The exact missing ignored synthetic fixture was imported
+4. All 95 tests pass on `SAS/rf-comparison-r4` (84 earlier, 7 forest, 4 new integration
+   checks). The exact missing ignored synthetic fixture was imported
    after a pinned Drive verification; no teammate tests were changed. Synthetic
    tests and real original-prediction acceptance/evaluation are separate evidence.
    Human review and personal contribution validation remain pending.
 
-Implementation checkout for this handoff is explicitly `/Users/farzu/Desktop/data245-group3` on `SAS/development-comparison`. The app-attached PR6 review worktree is detached/read-only and retained because the managed archival tool marks it protected; do not implement SAS changes in that review checkout.
+Implementation checkout for this handoff is explicitly `/Users/farzu/Desktop/data245-group3` on `SAS/rf-comparison-r4`. The app-attached PR6 review worktree is detached/read-only and retained because the managed archival tool marks it protected; do not implement SAS changes in that review checkout.

@@ -1,4 +1,43 @@
-# SAS development integration — 2026-11-20
+# SAS development integration — 2026-11-20 (r4 update 2026-11-23)
+
+## r4 update — 2026-11-23 (current shareable comparison)
+
+Branch `SAS/rf-comparison-r4` from merged `main` `4dffb0d`. Package:
+`artifacts/SAS/development/harmonized-200-series-20261123-r4/`. Same bundle, rows,
+evaluator and bootstrap as r3; r3 is unchanged and every r3 metric/interval is
+reproduced exactly.
+
+- **Pin:** PR #6 merged with DEVGRU correction `1f4e6a4`, which changed only
+  `INVENTORY.md`. `docs/SAS_DEVGRU_PR6_PIN.json` now pins that commit; the old
+  `044fac1` record is kept under `supersedes`. The malformed
+  `paired_validation_comparison.csv` checksum is fixed. The inventory entries for
+  `development_report.md` and `run_metadata.json` still differ from the published bytes,
+  so DEVGRU's note that they always matched is not confirmed.
+- **Random Forest:** the run `sas-forest-dev-200-r1` is shared byte-for-byte under
+  `artifacts/SAS/development/random-forest-200-series-20261120/` and accepted only at its
+  recorded manifest SHA-256.
+- **Relative MAE improvement** (100 × (sales − aware) / sales, point estimate only):
+  Linear +0.020%, Ridge +0.041%, Decision Tree −1.095%, Random Forest −0.159%.
+
+| Model | Sales MAE | Aware MAE | Aware − sales | 95% store interval |
+| --- | --- | --- | --- | --- |
+| Linear | 0.334257 | 0.334190 | −0.000066 | [−0.002462, +0.002373] |
+| Ridge | 0.334256 | 0.334119 | −0.000137 | [−0.002427, +0.002148] |
+| Decision Tree | 0.348255 | 0.352070 | +0.003814 | [−0.003332, +0.013629] |
+| Random Forest | 0.335969 | 0.336504 | +0.000535 | [−0.003533, +0.005357] |
+
+Baselines on the same rows: persistence 0.417757, 7-day mean 0.337380. All four intervals
+include zero; no stockout-feature benefit is established. DEVELOPMENT only.
+
+Reproduce (needs DELTA's ignored r2 bundle; PR #6 is now on `main`, so no isolated checkout):
+
+```sh
+python3 -m scripts.sas_development_comparison verify
+python3 -m scripts.sas_development_comparison compare --output runs/SAS/reproduce-development-r5
+```
+
+Pass `--sas-forest ""` to omit the forest. Older sections below are the 2026-11-20 record.
+
 
 Owner/requester: SAS / Farzaan Dalwai (`farzaandalwai`, authenticated).
 Branch: `SAS/development-comparison`, clean fetched main base `c54f9ab`.

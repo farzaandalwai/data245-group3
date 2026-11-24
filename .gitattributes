@@ -17,3 +17,9 @@
 
 # Preserve original SAS artifact Git bytes across Windows checkouts.
 /artifacts/SAS/development/** -text
+
+# Preserve exact reviewed final-execution snapshots and approval evidence.
+/docs/final_execution_evidence/final-1000-attested-20261124T094349Z/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/docs/FINAL_FREEZE_20261124T094349Z.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/docs/prompts/2026-11-24-project-lead-final-approval-attestation.txt -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/docs/prompts/2026-11-24-final-freeze-execution-request.txt -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

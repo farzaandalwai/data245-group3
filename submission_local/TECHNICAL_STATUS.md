@@ -1,29 +1,11 @@
-# Local Technical Status
+# Final submission technical status ? November24, 2026
 
-Date: 2026-11-20. Worktree: `data245-execution` (detached HEAD), HEAD `99481e7c12a813c18446b4ba588fcc3dce969d1c`.
+New run `final-1000-attested-20261124T094349Z` executed once and independently verified; source base47f531f. Existing evidence only was read during documentation reconciliation. No retraining, rescoring or retuning.
 
-This is a local execution assessment only. No commit, push, pull, merge, rebase, branch creation, remote change, final-bundle access, final/test scoring, or experiment rerun was performed. Existing evidence was inspected without modification.
+26 targeted integration/final-evaluator tests passed before execution; both authorized preflights returned ready=true. Environment: Python3.12.10, NumPy2.4.3, pandas3.0.1, sklearn1.9.0, SciPy1.18.1, PyYAML6.0.3. These are recorded prior execution checks, not newly rerun checks.
 
-## Environment and evidence
+Ridge-aware test MAE0.377191 / RMSE0.618490 / bias-0.056262 is best by MAE/RMSE. Eight test groups have15,000 observations each. The saved original manifest binds608,000 total prediction rows; independent verification covers metrics, six intervals and diagnostics.
 
-- `.venv/Scripts/python.exe` is Python 3.12.10; verified imports are numpy 2.5.5, pandas 3.1.1, scikit-learn 1.9.1, and PyYAML 6.0.3. No packages were installed.
-- `scripts/verify_setup.py`: PASS. It validated syntax, notebooks, pilot schemas, inherited baseline schemas/coverage/actuals, Markdown links, and ignore/retention rules; it did not fit or score models.
-- The R3 harmonized package exists at `artifacts/SAS/development/harmonized-200-series-20261120-r3/` with validation comparison tables, audits, intervals, predictions, figures, README, and `PACKAGE_SHA256SUMS`.
-- Original Decision Tree evidence exists at `artifacts/SAS/development/original-200-series-20261119/decision_tree/`; predictions have the canonical schema, 18,400 train rows, 6,000 validation rows, and zero test rows.
-- Inherited DELTA baselines exist under `results/baselines_DELTA/inherited/`.
-- DEVGRU development run and local DELTA r2 bundles are present. RF generated artifacts remain absent and the optional RF suite was runtime-inconclusive.
+See docs/FINAL_SUBMISSION_CHECKLIST.md for storage, hashes and exact original locations. DEVGRU/SAS approvals were attested by Timothy on November24; their original dates/messages remain unverified. November20's claimed run is historical and unverified. Do not reuse its identity.
 
-## Existing results reused
-
-Existing R3 validation evidence reports MAE: Linear sales-only 0.334257, Linear stockout-aware 0.334190, Ridge sales-only 0.334256, Ridge stockout-aware 0.334119, Decision Tree sales-only 0.348255, Decision Tree stockout-aware 0.352070, persistence 0.417757, and previous-7-day mean 0.337380. Paired intervals include zero. These are not newly generated results.
-
-## Checks and blockers
-
-- `python -m scripts.verify_delta_v2`: PASS; raw identity, three bundles, sample selection, 10 rebuilt CSV hashes, source snapshots, and two baseline hashes.
-- `pytest` DEVGRU regression tests: PASS, 11 tests and 17 subtests; added verifier hash test also passed.
-- Decision Tree development run: PASS, new run `sas-tree-development-20261120-r2`.
-- Final preflight: PASS, exit code 0, no final data opened by the preflight.
-- Final authorized run: PASS, `results/final_evaluation/v2/final-authorized-20261120-r1`.
-- `git diff --check`: PASS.
-
-Status: **DEVELOPMENT AND FINAL RUN COMPLETE WITH DISCLOSED LIMITATIONS**. Random Forest remains optional and was not retained.
+A scoped publication PR is authorized; integration remains pending human review and merge. This publication branch retains closed active defaults. The separate execution worktree still has enabled live gates; preserve those originals and exclude them from publication. A separate closed-gate candidate and byte-identical execution snapshots are prepared. The legacy evaluator remains unsafe and must not be used. An explicit single-use runtime authorization mechanism is future hardening, not implemented by this documentation change.

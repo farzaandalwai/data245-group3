@@ -1,23 +1,11 @@
-# Submission Blockers
+# Remaining submission actions ? November24, 2026
 
-## Final scoring completed with limitations
+Final experiment `final-1000-attested-20261124T094349Z` is executed and verified. No additional scoring, tuning or training is required.
 
-- The frozen contract and final-scoring preflight passed before the authorized run.
-- Final predictions and metrics are in `results/final_evaluation/v2/final-authorized-20261120-r1/`.
-- Random Forest was not retained because its optional test suite remained runtime-inconclusive.
-- Historical pilot/holdout exposure is documented, so the final holdout is not pristine confirmatory evidence.
+- Human-review reconciled report/slides, exact conditional intervals and subgroup caveat; preserve historical-exposure and lead-attestation disclosures.
+- Adapt individual IEEE/course templates and actual contribution/GenAI records; export/review PDF and PPTX/PDF separately, then verify Canvas deadline and presentation requirements.
+- Review the authorized publication PR and inventory before merge; archive upload still requires separate destination/access authorization. Bulk predictions and per-series diagnostics are not yet shared.
+- Do not commit enabled live gates. Main already has closed defaults; the execution snapshot is historical evidence, not ongoing permission to score again.
+- November20's original run remains unverified. Agreement on new prospective settings does not retroactively validate it. No direct teammate signatures, original approval dates, causal demand or measured waste findings should be invented.
 
-## BLOCKED: executable verification
-
-- The current `.venv` imports `numpy 2.5.5`, `pandas 3.1.1`, `scikit-learn 1.9.1`, and `PyYAML 6.0.3`.
-- Serialized fitted model binaries are not retained; predictions, manifests, metrics, and frozen configuration are retained.
-
-## NEEDS TEAM APPROVAL
-
-Agreement is still needed on final model grids and matched budgets, preprocessing/standardization and feature-order freeze, tie rules, clipping, bootstrap resampling unit/repetitions/seed/interval method, subgroup and multiple-comparison handling, missing/closed-hour semantics, scaling coefficient, export/business semantics, and final handoff. DELTA must accept the final bundle and business/export semantics.
-
-## Evidence and coursework limitations
-
-- The R3 checksum file validates committed blob bytes, while some current checkout text/CSV bytes differ due to line endings/encoding and assume-unchanged state. Originals were not altered.
-- DEVGRU and RF serialized model files are not available here; they must not be fabricated.
-- Individual IEEE-template reports/PDFs, LaTeX sources, rubric appendices, literature survey, lessons learned, GenAI disclosures, CRediT records, presentation, and human review records are not present as completed submissions in this execution copy.
+Detailed checklist: docs/FINAL_SUBMISSION_CHECKLIST.md.

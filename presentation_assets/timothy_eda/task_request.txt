@@ -1,0 +1,302 @@
+# DATA 245 — Generate Timothy's Final Presentation EDA Visualizations
+
+Act as a Senior Data Scientist specializing in exploratory data analysis, time-series visualization, and publication-quality Matplotlib charts.
+
+## Objective
+
+Generate accurate, visually polished exploratory data analysis (EDA) charts for my DATA 245 final project presentation.
+
+Project:
+**Does Sold Out Get Mistaken for Unpopular? Stockout-Aware Forecasting for Fresh Retail**
+
+Repository:
+`C:\Projects\data245-group3`
+
+My responsibility (Timothy / DELTA):
+- Dataset exploration
+- Data quality validation
+- Store-product series selection
+- Chronological data preparation
+- Sales and stockout feature engineering
+
+I need real visualizations for my existing dark-green grocery-themed PowerPoint presentation.
+
+This is NOT a new ML experiment.
+
+## 1. Locate and validate the dataset
+
+Start by inspecting the repository and existing dataset documentation.
+
+The dataset was previously verified at:
+
+`C:\Users\timho\Downloads\data-20261124T182319Z-1-001\data`
+
+Also inspect whether the repository has:
+
+`data/raw/freshretail.csv`
+
+Locate the correct original dataset by checking the file header and registered SHA-256 hash.
+
+Expected raw dataset:
+- 1,459,198 records
+- 19 columns
+- 16,214 store-product series
+- 16,213 complete 90-day series
+- One incomplete 28-day series
+- Date range: March 28 to June 25, 2024
+- No missing source values
+- No duplicate `(store_id, product_id, dt)` records
+
+Relevant columns:
+- `store_id`
+- `product_id`
+- `dt`
+- `sale_amount`
+- `stock_hour6_22_cnt`
+- `hours_stock_status`
+
+Read existing DELTA documentation and source files to verify dataset semantics before plotting.
+
+Use the existing original data. Do not download a replacement dataset.
+
+Never modify, rename, overwrite, or reserialize the original dataset.
+
+## 2. Create a dedicated output directory
+
+Save everything under:
+
+`C:\Projects\data245-group3\presentation_assets\timothy_eda\`
+
+Create the folder if it does not exist.
+
+Keep generated figures, the visualization script, and documentation inside this folder.
+
+Do not modify existing project files outside this directory.
+
+## 3. Generate these five figures
+
+### Figure 1 — Sales versus stockout hours
+
+Filename:
+`01_sales_vs_stockout_hours.png`
+
+Select one actual complete store-product series from the dataset using a documented, deterministic selection rule.
+
+The selected series should contain:
+- Valid historical sales values.
+- Some recorded stockout hours.
+- Enough variation to make the relationship visible.
+
+Show:
+- Date on the horizontal axis.
+- Normalized recorded sales as a line.
+- Annotated daily stockout hours as bars or another clearly distinguishable visual.
+
+Use separate, labeled axes where necessary.
+
+The chart should clearly communicate that a stockout may constrain recorded sales.
+
+Do not claim that low sales were caused by stockouts without direct evidence.
+
+Include the real store ID, product ID, and date range in a readable subtitle or caption.
+
+Document how the series was selected to avoid presenting a cherry-picked example as representative.
+
+### Figure 2 — Distribution of stockout hours
+
+Filename:
+`02_stockout_hours_distribution.png`
+
+Create a histogram of `stock_hour6_22_cnt`.
+
+Show how often the dataset records:
+- Zero stockout hours.
+- Short stockout periods.
+- Longer stockout periods.
+
+Use actual counts or percentages, with clear axis labels.
+
+Explain what the variable measures according to the verified schema.
+
+### Figure 3 — Sales distribution by availability status
+
+Filename:
+`03_sales_by_stockout_status.png`
+
+Compare normalized recorded sales for:
+- Days with zero annotated stockout hours.
+- Days with positive annotated stockout hours.
+
+Use a readable box plot, violin plot, or distribution chart.
+
+Handle extreme values without misleading truncation. Explain any percentile-based axis limits.
+
+Label the number of observations in each group.
+
+This comparison is descriptive, not causal.
+
+### Figure 4 — Stockout prevalence over time
+
+Filename:
+`04_daily_stockout_prevalence.png`
+
+For each date, calculate the percentage of observations with positive annotated stockout hours.
+
+Display the percentage over the complete 90-day calendar.
+
+Explain whether the percentage varies over time.
+
+Do not imply causality or fabricate trends.
+
+### Figure 5 — Dataset preparation and selection
+
+Filename:
+`05_dataset_validation_and_selection.png`
+
+Create a clean visual flow showing:
+
+16,214 raw store-product series
+→ 16,213 complete series
+→ 200-series development cohort
+→ 1,000-series final cohort
+
+Important:
+The development and final cohorts are separately selected from the eligible population, not a guaranteed nested sample.
+
+Annotate:
+- One incomplete 28-day series excluded.
+- Zero missing source values.
+- Zero duplicate store-product-date records.
+- Deterministic sampling procedures.
+
+Use the actual documented selection methods rather than claiming both cohorts were chosen identically.
+
+## 4. Visual design
+
+Match my existing DATA 245 PowerPoint theme.
+
+Style:
+- Dark near-black background.
+- Forest-green accents.
+- Orange accents for stockout data.
+- Teal or light green for sales data.
+- White or light-gray typography.
+- Minimal clutter.
+- Clear titles.
+- Professional academic presentation styling.
+
+All visualizations should be:
+- 16:9 format where practical.
+- At least 1920 × 1080 pixels.
+- High-resolution PNG.
+- Readable on a classroom projector.
+- Consistent in font, spacing, colors, and legends.
+- Free of overlapping text or clipped labels.
+
+Do not use default white-background Matplotlib styling.
+
+Avoid decorative illustrations that are not data-driven.
+
+## 5. Scientific and data integrity
+
+This is an EDA-only task.
+
+DO NOT:
+- Retrain any model.
+- Run final scoring.
+- Recalculate final model performance.
+- Enable scoring authorization gates.
+- Modify final experiment configurations.
+- Modify the final evidence directory.
+- Overwrite existing figures.
+- Alter tracked source files.
+- Commit, push, merge, clean, reset, or restore repository files.
+- Generate synthetic data and label it as real observations.
+
+The final November 24 experiment is already complete and independently verified.
+
+Do not disturb it.
+
+These charts should help explain the dataset and feature-engineering rationale, not change the scientific results.
+
+Distinguish clearly between statistics for the original 1.46-million-row export and statistics for the selected development or final cohorts.
+
+## 6. Python environment
+
+Check available Python environments before running the script.
+
+My laptop recently lacked NumPy, pandas, and Matplotlib.
+
+If necessary, create a dedicated virtual environment under the new presentation-assets directory and install only the dependencies required for generating these figures.
+
+Do not modify the project's existing environment or dependency files.
+
+Do not install machine-learning packages unless actually needed for these EDA plots.
+
+## 7. Generate reproducible source code
+
+Save the code as:
+
+`presentation_assets/timothy_eda/generate_eda.py`
+
+Requirements:
+- Deterministic results.
+- Clearly defined input paths.
+- Clear chart-generation functions.
+- Reuse the verified data without changing it.
+- Efficient memory usage for approximately 1.46 million rows.
+- Dataset and column validation.
+- Explicit error messages if the data is missing or invalid.
+- No hidden downloads or external API calls.
+
+The script should regenerate all five PNGs.
+
+## 8. Write chart descriptions
+
+Create:
+
+`presentation_assets/timothy_eda/README.md`
+
+For every chart, document:
+- Exact source dataset.
+- What the chart displays.
+- Which population it describes.
+- Any filtering or selection rules.
+- Important observations supported by the plotted data.
+- Limitations.
+- A 1–2 sentence explanation suitable for my presentation.
+
+Include a data-quality summary and distinguish original dataset statistics from final experimental statistics.
+
+## 9. Quality assurance
+
+After generating the figures:
+
+1. Verify all five PNG files exist.
+2. Confirm their resolution.
+3. Inspect every image visually.
+4. Verify labels, legends, and units.
+5. Check that all plotted values come from real data.
+6. Verify the selected store-product series is complete.
+7. Check for clipped text, inconsistent colors, and illegible labels.
+8. Correct any rendering problems.
+9. Confirm that no existing project artifacts were changed.
+
+## 10. Final response
+
+Report:
+
+1. Dataset path used.
+2. Dataset verification result.
+3. Python interpreter/environment used.
+4. Files generated.
+5. Full output directory.
+6. Key EDA findings.
+7. Which two figures you recommend placing on Timothy's presentation slides.
+8. Any limitations or unexpected issues.
+
+Show the absolute PNG paths so I can open them immediately in Windows File Explorer.
+
+Execute the visualization-generation workflow now. Do not stop at a plan or code suggestion.
+
+Do not retrain or rescore the final ML experiment.

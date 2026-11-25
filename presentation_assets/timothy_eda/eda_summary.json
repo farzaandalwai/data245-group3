@@ -1,0 +1,142 @@
+{
+  "purpose": "presentation_eda_only",
+  "experiment_version": "V2 context; original-export EDA, not final-model results",
+  "raw_records": 1459198,
+  "columns": 19,
+  "raw_series": 16214,
+  "complete_series": 16213,
+  "incomplete": [
+    {
+      "store_id": 420,
+      "product_id": 764,
+      "rows": 28
+    }
+  ],
+  "date_min": "2024-03-28",
+  "date_max": "2024-06-25",
+  "missing_values": 0,
+  "duplicate_keys": 0,
+  "hourly_count_mismatches": 0,
+  "positive_stockout_rows": 642027,
+  "stockout_percent": 43.99862116039085,
+  "stockout_hour_counts": {
+    "0": 817171,
+    "1": 40897,
+    "2": 40079,
+    "3": 48925,
+    "4": 66512,
+    "5": 78125,
+    "6": 67089,
+    "7": 49510,
+    "8": 41518,
+    "9": 37802,
+    "10": 37429,
+    "11": 36656,
+    "12": 28891,
+    "13": 18819,
+    "14": 9693,
+    "15": 4438,
+    "16": 35644
+  },
+  "sales_groups": {
+    "zero": {
+      "n": 817171,
+      "min": 0.0,
+      "q1": 0.4,
+      "median": 0.7,
+      "q3": 1.1,
+      "p99": 5.8,
+      "max": 27.5,
+      "above_pooled_p99": 7874
+    },
+    "positive": {
+      "n": 642027,
+      "min": 0.0,
+      "q1": 0.4,
+      "median": 0.7,
+      "q3": 1.2,
+      "p99": 5.8,
+      "max": 27.0,
+      "above_pooled_p99": 6100
+    }
+  },
+  "pooled_sales_p99": 5.8,
+  "daily_prevalence_min": 30.204157157836303,
+  "daily_prevalence_max": 79.94942642161095,
+  "daily_min_date": "2024-05-24",
+  "daily_max_date": "2024-04-08",
+  "daily_denominator_min": 16213,
+  "daily_denominator_max": 16214,
+  "illustrative_series": {
+    "store_id": 196,
+    "product_id": 650,
+    "rows": 90,
+    "stockout_days": 40,
+    "selection_rule": "Complete raw series; train-only nonzero sales standard deviation and 1-59 positive-stockout dates in first 60 days; minimum SHA256 eda|245|store_id|product_id; no relationship/correlation or model-score filter",
+    "eligible_example_candidates": 16172
+  },
+  "cohorts": {
+    "identities": {
+      "v2-development-200-r2": {
+        "bundle_manifest_sha256": "043a9d183244645f439c6c8ee134bb6e2058f81d847489bbd1270fb87cc3a7c7",
+        "sample_manifest_sha256": "79fa3759f30fee49e7a2a5edead0884456be1767788e6eb0fb326dbb2e772cc4"
+      },
+      "v2-final-1000-r2": {
+        "bundle_manifest_sha256": "52f4faec954ee311970bb567682d4ac7b466a2d5b8ce7f8c87af5d171fc6af7c",
+        "sample_manifest_sha256": "830d30a1249f609ad3c95c37032d2e7b7f0d5671fc7ad8864ad8b5e31d1356e7"
+      }
+    },
+    "overlap_series": 9,
+    "development_method": "Preserved inherited 200-series manifest; original pandas sample(n=200, random_state=245)",
+    "final_method": "First 1000 complete keys ranked by SHA256 of ASCII v2|245|store_id|product_id; numeric-key tie breaks"
+  },
+  "source_path": "C:\\Users\\timho\\Downloads\\data-20261124T182319Z-1-001\\data\\raw\\freshretail.csv",
+  "source_sha256": "6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5",
+  "source_bytes": 323577557,
+  "interpreter": "C:\\Projects\\data245-group3\\presentation_assets\\timothy_eda\\.venv\\Scripts\\python.exe",
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "matplotlib": "3.11.2"
+  },
+  "source_code_sha256": "a3d75cf62ef2b81f11e863b4c0334face65033ed553119b4881d3a30a9d69f04",
+  "figures": {
+    "01_sales_vs_stockout_hours.png": {
+      "sha256": "cdc117b557bdbaab806b811bf03542e7b49ec4c377eba95cc48378df0310c461",
+      "pixels": [
+        2560,
+        1440
+      ]
+    },
+    "02_stockout_hours_distribution.png": {
+      "sha256": "70bb01a172b68cdc350effe52e49b03ffd8b19eb2d484b48fe0c565dad1016cb",
+      "pixels": [
+        2560,
+        1440
+      ]
+    },
+    "03_sales_by_stockout_status.png": {
+      "sha256": "3b7e37b2ff5298cf7510ceeba036ffcf392cce6e996be2a297c8aa29634bdeae",
+      "pixels": [
+        2560,
+        1440
+      ]
+    },
+    "04_daily_stockout_prevalence.png": {
+      "sha256": "ed2a4ba1f039726504110413d6a151718e5bf4672832cea6bf3ef9c0dca24b7e",
+      "pixels": [
+        2560,
+        1440
+      ]
+    },
+    "05_dataset_validation_and_selection.png": {
+      "sha256": "b78bcb7378f8a21508c54abe52ca9ab6c6669f73c735f936c87b643d7b870602",
+      "pixels": [
+        2560,
+        1440
+      ]
+    }
+  },
+  "render_revision": "Final histogram title and cohort-flow spacing; earlier changed renders preserved in render_history/first_pass"
+}

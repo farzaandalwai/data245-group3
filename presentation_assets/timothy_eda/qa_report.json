@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "purpose": "V2 context; original-export presentation EDA only",
+  "figure_checks": [
+    {
+      "file": "01_sales_vs_stockout_hours.png",
+      "pixels": [
+        2560,
+        1440
+      ],
+      "sha256": "cdc117b557bdbaab806b811bf03542e7b49ec4c377eba95cc48378df0310c461",
+      "reproduction_byte_identical": true,
+      "visually_reviewed": true,
+      "labels_units_legends_readable": true,
+      "clipped_or_overlapping_text": false
+    },
+    {
+      "file": "02_stockout_hours_distribution.png",
+      "pixels": [
+        2560,
+        1440
+      ],
+      "sha256": "70bb01a172b68cdc350effe52e49b03ffd8b19eb2d484b48fe0c565dad1016cb",
+      "reproduction_byte_identical": true,
+      "visually_reviewed": true,
+      "labels_units_legends_readable": true,
+      "clipped_or_overlapping_text": false
+    },
+    {
+      "file": "03_sales_by_stockout_status.png",
+      "pixels": [
+        2560,
+        1440
+      ],
+      "sha256": "3b7e37b2ff5298cf7510ceeba036ffcf392cce6e996be2a297c8aa29634bdeae",
+      "reproduction_byte_identical": true,
+      "visually_reviewed": true,
+      "labels_units_legends_readable": true,
+      "clipped_or_overlapping_text": false
+    },
+    {
+      "file": "04_daily_stockout_prevalence.png",
+      "pixels": [
+        2560,
+        1440
+      ],
+      "sha256": "ed2a4ba1f039726504110413d6a151718e5bf4672832cea6bf3ef9c0dca24b7e",
+      "reproduction_byte_identical": true,
+      "visually_reviewed": true,
+      "labels_units_legends_readable": true,
+      "clipped_or_overlapping_text": false
+    },
+    {
+      "file": "05_dataset_validation_and_selection.png",
+      "pixels": [
+        2560,
+        1440
+      ],
+      "sha256": "b78bcb7378f8a21508c54abe52ca9ab6c6669f73c735f936c87b643d7b870602",
+      "reproduction_byte_identical": true,
+      "visually_reviewed": true,
+      "labels_units_legends_readable": true,
+      "clipped_or_overlapping_text": false
+    }
+  ],
+  "validation": {
+    "raw_records": 1459198,
+    "columns": 19,
+    "raw_series": 16214,
+    "complete_series": 16213,
+    "incomplete": [
+      {
+        "store_id": 420,
+        "product_id": 764,
+        "rows": 28
+      }
+    ],
+    "missing_values": 0,
+    "duplicate_keys": 0,
+    "hourly_count_mismatches": 0,
+    "source_sha256": "6d956f6cab0094e794beb97872d9047d7c49469d35044930f5d8a96a307110b5"
+  },
+  "original_dataset_unchanged": true,
+  "tracked_files_checked": 294,
+  "tracked_files_changed": [],
+  "git_status_outside_output_unchanged": true,
+  "no_existing_figures_overwritten": "No figures existed at task start; changed first-pass renders preserved in render_history/first_pass",
+  "visual_review": "All five final PNGs viewed individually; histogram interval wording and cohort-flow text spacing corrected; re-rendered figures viewed again",
+  "reproducibility": "Entire final script rerun to reproducibility_check; all five PNG SHA256 hashes identical",
+  "branch": "main",
+  "base_commit": "b4df9261263505e84b946f1ef5c9bd3d48fd5d63",
+  "training_tuning_final_scoring_executed": false,
+  "packages_installed": "Only NumPy, pandas, Matplotlib and their plotting/runtime dependencies in dedicated local .venv"
+}

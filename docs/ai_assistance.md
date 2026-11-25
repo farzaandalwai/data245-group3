@@ -1,5 +1,23 @@
 # AI assistance disclosure
 
+## 2026-11-24 submission package sharing
+
+- Tool: Codex; exact serving model version unknown. No subagents.
+- Authorization: [request](prompts/2026-11-24-share-submission-demo.md) explicitly
+  permits the scoped commit/push for teammate access; no merge or direct messages.
+- Assistance: inventory and credential-pattern inspection; exact model inclusion;
+  narrow Git ignore/byte-preservation rules; portable setup/pinned dependencies;
+  isolated worktree checks; scoped Git publication and draft PR preparation.
+- Checks: exact script/model SHA-256, embedded CLI, complete notebook execution
+  with an unavailable external bundle and fit/least-squares methods prohibited,
+  and dependency-resolution dry-run in the existing matching environment passed.
+  A fresh dependency installation or macOS/Linux run was not performed here.
+- Boundaries: no new training/tuning/final evaluation, no report/source/result/
+  frozen-config changes, no copied environment/raw data, no merged PR. Existing
+  report/model authorship and earlier disclosure records are preserved. Main
+  integration/human review remain pending; AI packaging is not student coding
+  credit or independent scientific validation.
+
 Current integration correction (2026-11-19): layout/startup changes are merged via PR #2 at `35bfa71`. Pending-integration labels in the dated historical records below describe earlier snapshots; they are not current migration status. Human technical review is a separate claim. Current v2 alignment edits are local/uncommitted.
 
 ## 2026-11-24 DELTA/DEVGRU readiness and authorized publication

@@ -1,5 +1,10 @@
 # DATA 245 submission sources
 
+**Running the presentation on another computer? Start with
+[START_HERE.md](START_HERE.md)** for the included model, pinned dependencies,
+kernel installation and notebook launch commands. No dataset is needed for the
+embedded example.
+
 Current verified run: `final-1000-attested-20261124T094349Z` (November24, 2026). The report and slide Markdown have been reconciled with its saved, independently verified results. No experiment should be repeated to export documents.
 
 - `report/final_report.md`: report source; adapt to each student's actual contribution and required template.

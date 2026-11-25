@@ -1,5 +1,9 @@
 # DATA 245 Ridge notebook
 
+For a different computer, use [the portable setup guide](../START_HERE.md) and
+[requirements-demo.txt](requirements-demo.txt). The temporary paths below are
+the original local setup/verification record, not prerequisites on your machine.
+
 Verified November 24, 2026 (America/Los_Angeles). Submission demonstration of the
 existing V2 reproduction, source experiment
 `final-1000-attested-20261124T094349Z`. No new model training or parameter selection.

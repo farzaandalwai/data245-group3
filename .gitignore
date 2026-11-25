@@ -83,6 +83,7 @@ token.json
 *.pkl
 *.pickle
 *.joblib
+!/submission_local/demo/stockout_aware_ridge.joblib
 *.pt
 *.pth
 *.h5

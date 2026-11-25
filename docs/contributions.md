@@ -1,5 +1,17 @@
 # Contributions and historical roles
 
+## 2026-11-24 submission package sharing
+
+DELTA / Timothytran109 requested sharing the complete submission package for a
+teammate's presentation. Codex packaged the existing verified model without
+retraining, added portable setup/pinned dependencies and exact-byte checkout
+rules, and prepared the task branch/draft PR. The report, slide, feature and model
+implementation authorship is unchanged. Isolated-checkout CLI and no-data/no-fit
+notebook checks passed; matching environment dependency dry-run passed. No new
+final scores, teammate messages, merge or human technical validation are claimed.
+Main integration and personal student contribution review remain pending. See
+[authorization](prompts/2026-11-24-share-submission-demo.md).
+
 Updated 2026-11-18 (America/Los_Angeles). Task ownership is not proof of completion. This record can support later individual CRediT statements, but final statements require each human's validation and evidence.
 
 Current integration note (2026-11-19): startup/layout work is merged via PR #2 (`35bfa71`); historical pending-integration labels below refer to earlier snapshots. The current documentation alignment remains local/uncommitted. Historical course-fit conditions do not override approved v2 extensions.

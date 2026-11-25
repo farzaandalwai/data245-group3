@@ -1,4 +1,7 @@
 # Original source/data/evidence bytes must survive all autocrlf settings.
+# The verified demo checks the script/model hashes before inference.
+/submission_local/demo/ml_pipeline.py -text
+/submission_local/demo/stockout_aware_ridge.joblib -text
 /archive/original_pilot/** -text
 /data/processed/pilot_200_series.csv -text
 /data/manifests/pilot_series_manifest.csv -text

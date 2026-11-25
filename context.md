@@ -1,5 +1,26 @@
 # Shared project context
 
+## 2026-11-24 submission demo sharing checkpoint
+
+Authenticated requester: DELTA / Timothytran109. The user explicitly requests
+commit/push of the submission package for a teammate's presentation. Isolated
+branch `DELTA/share-submission-demo` starts from fetched main `dc5c10c`; the
+original checkout is unchanged. Main already contains the report, slides,
+notebook and script. This task adds the previously ignored exact 3,810-byte
+joblib, a narrow ignore exception and byte-preservation attributes, pinned demo
+dependencies and [fresh-computer setup](submission_local/START_HERE.md).
+
+IMPLEMENTED / VERIFIED packaging: model/script hashes match their original
+verified bytes; notebook execution passes in the isolated checkout without an
+external bundle and with all fitting prohibited; embedded CLI passes; dependency
+dry-run resolves against the existing matching environment. No fresh environment
+installation or another operating system was tested during packaging. No new
+training, tuning, final evaluation or changes to scientific results/configs.
+The package retains the aggregate-MAE versus missing row-level-reference caveat.
+Notebook caches, raw data, environments and credentials are excluded. Publication
+of the task branch and draft PR is authorized; main integration/human review
+remain pending. Request: [saved authorization](docs/prompts/2026-11-24-share-submission-demo.md).
+
 Updated **2026-11-20, America/Los_Angeles**. Orientation/handoff only, not live shared memory or a lock. Fetch and compare current Git/issue/PR state at startup.
 
 ## 2026-11-24 DELTA/DEVGRU publication checkpoint
